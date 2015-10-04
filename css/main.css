@@ -17,13 +17,11 @@
   border-radius: 14px;
 }
 .mr-index{
+  text-shadow: 2px 2px #000000;
   background: url(../img/login-back.jpg) no-repeat;
   background-position: 50% 73%;
   border-bottom-right-radius: 14px; 
   border-bottom-left-radius: 14px;
-}
-.mr-index-back{
-  background: rgba(0,0,0,0.6);
 }
 /* De uso General para el Sitio*/
 .color-white{ /*Color Blanco*/
