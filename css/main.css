@@ -16,16 +16,54 @@
   background: rgba(0,0,0,0.6);
   border-radius: 14px;
 }
-
+.mr-index{
+  background: url(../img/login-back.jpg) no-repeat;
+  background-position: 50% 73%;
+  border-bottom-right-radius: 14px; 
+  border-bottom-left-radius: 14px;
+}
+.mr-index-back{
+  background: rgba(0,0,0,0.6);
+}
 /* De uso General para el Sitio*/
-.color-white{
+.color-white{ /*Color Blanco*/
   color: #FFFFFF;
 }
+.color-blue-1{
+  color: #009AFF;
+}
+.bgcolor-blue-1{
+  background-color: #009AFF;
+}
+.mr-glyphicon-1{
+  font-size: 30px;
+  padding: 10px;
+}
 .mr-infobar{
-  background-color: #A1A1A1;
+  background-color: #008DFF;
+  color: #FFFFFF;
   height: 30px;
   line-height: 30px;
   text-align: right;
   padding-right: 20px;
 }
+.mr-justificar{
+  text-align: justify;
+}
+.separate{
+  width: 30%;
+  border-bottom: 1px solid #474747;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
 
