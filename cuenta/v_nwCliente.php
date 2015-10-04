@@ -15,44 +15,65 @@
         <link rel="stylesheet" href="../css/main.css">
 
         <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <script type="text/javascript">
+function mostrar(){
+document.getElementById('oculto').style.display = 'block';}
+</script>
+     
     </head>
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-    <nav role="navigation" class="navbar navbar-inverse">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand">Bienvenido : USUARIO HORA :</a>
-        </div>
-        <!-- Collection of nav links and other content for toggling -->
-        <div id="navbarCollapse" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li ><a href="#" class="glyphicon glyphicon-home" >HOME</a></li>
-                <li class="active"><a href="#" class="glyphicon glyphicon-user">CLIENTES</a></li>
-                <li><a href="#" class="glyphicon glyphicon-tower">LOTIFICACION</a></li>
-                <li><a href="#" class="glyphicon glyphicon-tree-conifer">LOTE</a></li>
-                <li><a href="#" class="glyphicon glyphicon-list-alt">CUENTA</a></li>
-                <li><a href="#" class="glyphicon glyphicon-book">IMPUESTOS</a></li>
-                <li><a href="#" class="glyphicon glyphicon-usd">PAGOS</a></li>
-                <li><a href="#" class="glyphicon glyphicon-folder-open">REPORTES</a></li>
-                <li><a href="#" class="glyphicon glyphicon-cog">SISTEMA</a></li>
+    <!-- Nuevo Nav Bar-->
+            <nav class="navbar navbar-inverse navbar-fixed-top"> <!-- navbar-dafault o navbar-inverse -->
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="#" class="navbar-brand">SICOPA</a>
+                    </div>
 
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li ><a href="#" class="glyphicon glyphicon-off" >LOGOUT</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="#" class="glyphicon glyphicon-home" ></a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                <li><a href="#" class="glyphicon glyphicon-user"> Clientes</a></li>
+                                <li><a href="#" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
+                                <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
+                            </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                <li><a href="#" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
+                                <li><a href="#" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
+                            </ul>
+                            </li>
+                            
+                            <li><a href="#" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                            <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
+                            <li><a href="#" class="glyphicon glyphicon-cog"> SISTEMA</a></li>
+                            
+                            <li ><a href="#" class="glyphicon glyphicon-off" > SALIR</a></li>
+                        </ul>
+
+                    </div>
+
+
+                </div><!-- Container Fluid-->
+            </nav>
+            <div class="mr-infobar hidden-xs">
+                Bienvenido: <strong>Marvin Segura</strong> Hora: <strong>02:00 AM</strong>
+            </div>
+            <!-- FIN Nuevo Nav Bar-->
 
 
     
@@ -60,8 +81,9 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-      <div class="row">
- <div class="col-sm-3">
+
+      	<div class="row">
+  <div class="col-sm-3">
     <div class="sidebar-nav">
       <div class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
@@ -75,7 +97,7 @@
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Agregar Cliente</a></li>
+            <li><a href="#" onclick="mostrar()">Agregar Cliente</a></li>
             <li><a href="#">Buscar Cliente</a></li>
 
           </ul>
@@ -83,10 +105,10 @@
       </div>
     </div>
   </div>
-<div class="col-sm-9">
+  <div class="col-sm-9">
     
     
-   <div > 	
+   <div id="oculto" style='display:none;'> 	
    <center><label>FORMULARIO DE INGRESO DE CLIENTES</label></center>
 <form class="form-horizontal">
      <div class="form-group">
@@ -176,8 +198,7 @@
 
 
   </div>
-
-  </div>
+</div>
 
       </div>
     </div>
