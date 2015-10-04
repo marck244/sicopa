@@ -45,6 +45,7 @@
                 <li><a href="#" class="glyphicon glyphicon-usd">PAGOS</a></li>
                 <li><a href="#" class="glyphicon glyphicon-folder-open">REPORTES</a></li>
                 <li><a href="#" class="glyphicon glyphicon-cog">SISTEMA</a></li>
+                
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
