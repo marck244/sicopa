@@ -3,8 +3,26 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-   
- /* make sidebar nav vertical */ 
+  /*un margin del top . para quedar justo abajo del NAV*/
+  body{
+    margin-top: 60px;
+  } 
+  /* Solo aplica a login. con tamaño especifico*/
+.mr-login{
+  background: url(../img/login-back.jpg) no-repeat center top fixed;
+  margin-top: -60px;
+}
+.mr-login-background{
+  background: rgba(0,0,0,0.6);
+  border-radius: 14px;
+}
+
+/* De uso General para el Sitio*/
+.color-white{
+  color: #FFFFFF;
+}
+
+ /* make sidebar nav vertical */ /* Esto lo vamos a depurar*/
 @media (min-width: 768px) {
   .sidebar-nav .navbar .navbar-collapse {
     padding: 0;
@@ -25,3 +43,4 @@
     padding-bottom: 12px;
   }
 }
+
