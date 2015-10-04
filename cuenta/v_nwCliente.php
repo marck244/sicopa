@@ -60,8 +60,124 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
+      <div class="row">
+ <div class="col-sm-3">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <span class="visible-xs navbar-brand">Menu Opciones Clientes</span>
+        </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Agregar Cliente</a></li>
+            <li><a href="#">Buscar Cliente</a></li>
+
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+<div class="col-sm-9">
+    
+    
+   <div > 	
+   <center><label>FORMULARIO DE INGRESO DE CLIENTES</label></center>
+<form class="form-horizontal">
+     <div class="form-group">
+         <label for="inputName" class="control-label col-xs-2">Nombre:</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Nombre">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Apellido :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Apellido">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Nit :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Nit">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Edad :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Edad">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Domicilio :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Domicilio">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Telefono :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Telefono">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Fecha Nacimiento :</label>
+         <div class="col-xs-10">
+             <input type="date" class="form-control">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Profesion :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Profesion">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Municipio :</label>
+         <div class="col-xs-10">
+             <select name="cbomuni" class="form-control">
+             	<option>Seleccione</option>
+             </select>
+         </div>
+     </div>
+
+      <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Sabe Firmar :</label>
+        <div class="col-xs-10">
+             <select name="cbofirma" class="form-control">
+             	<option>Si</option>
+             	<option>No</option>
+             </select>
+         </div>
+     </div>
 
 
+
+     <div class="form-group">
+     <center>
+         <div class="col-xs-offset-2 col-xs-10">
+             <button type="submit" class="btn btn-primary">Registrar Cliente</button>
+         </div>
+         </center>
+     </div>
+</form>
+   </div>
+
+
+
+  </div>
+
+  </div>
 
       </div>
     </div>
