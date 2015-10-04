@@ -3,25 +3,29 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-   
- /* make sidebar nav vertical */ 
-@media (min-width: 768px) {
-  .sidebar-nav .navbar .navbar-collapse {
-    padding: 0;
-    max-height: none;
-  }
-  .sidebar-nav .navbar ul {
-    float: none;
-  }
-  .sidebar-nav .navbar ul:not {
-    display: block;
-  }
-  .sidebar-nav .navbar li {
-    float: none;
-    display: block;
-  }
-  .sidebar-nav .navbar li a {
-    padding-top: 12px;
-    padding-bottom: 12px;
-  }
+  /*un margin del top . para quedar justo abajo del NAV*/
+  body{
+    margin-top: 51px;
+  } 
+  /* Solo aplica a login. con tamaño especifico*/
+.mr-login{
+  background: url(../img/login-back.jpg) no-repeat center top fixed;
+  margin-top: -51px;
 }
+.mr-login-background{
+  background: rgba(0,0,0,0.6);
+  border-radius: 14px;
+}
+
+/* De uso General para el Sitio*/
+.color-white{
+  color: #FFFFFF;
+}
+.mr-infobar{
+  background-color: #A1A1A1;
+  height: 30px;
+  line-height: 30px;
+  text-align: right;
+  padding-right: 20px;
+}
+
