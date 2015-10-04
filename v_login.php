@@ -16,6 +16,11 @@
                 padding-top: 50px;
                 padding-bottom: 20px;
             }
+            
+.CattoBorderRadius
+{
+    border-radius: 300px;
+}
         </style>
         <link rel="stylesheet" href="css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="css/main.css">
@@ -61,7 +66,7 @@
     <div class="jumbotron">
       <div class="container">
       <center>
-      <img src="imagenes/logo.png" class="img-responsive img-responsive">
+      <img src="imagenes/logo.png" class="img-responsive CattoBorderRadius">
       </center>
       </div>
     </div>
