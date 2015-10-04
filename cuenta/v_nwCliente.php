@@ -36,15 +36,16 @@
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#" class="glyphicon glyphicon-home" >HOME</a></li>
-                <li><a href="#" class="glyphicon glyphicon-user"> CLIENTES</a></li>
-                <li><a href="#" class="glyphicon glyphicon-tower"> LOTIFICACION</a></li>
-                <li><a href="#" class="glyphicon glyphicon-tree-conifer"> LOTE</a></li>
-                <li><a href="#" class="glyphicon glyphicon-list-alt"> CUENTA</a></li>
-                <li><a href="#" class="glyphicon glyphicon-book"> IMPUESTOS</a></li>
-                <li><a href="#" class="glyphicon glyphicon-usd"> PAGOS</a></li>
-                <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
-                <li><a href="#" class="glyphicon glyphicon-cog"> SISTEMA</a></li>
+                <li ><a href="#" class="glyphicon glyphicon-home" >HOME</a></li>
+                <li class="active"><a href="#" class="glyphicon glyphicon-user">CLIENTES</a></li>
+                <li><a href="#" class="glyphicon glyphicon-tower">LOTIFICACION</a></li>
+                <li><a href="#" class="glyphicon glyphicon-tree-conifer">LOTE</a></li>
+                <li><a href="#" class="glyphicon glyphicon-list-alt">CUENTA</a></li>
+                <li><a href="#" class="glyphicon glyphicon-book">IMPUESTOS</a></li>
+                <li><a href="#" class="glyphicon glyphicon-usd">PAGOS</a></li>
+                <li><a href="#" class="glyphicon glyphicon-folder-open">REPORTES</a></li>
+                <li><a href="#" class="glyphicon glyphicon-cog">SISTEMA</a></li>
+
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ><a href="#" class="glyphicon glyphicon-off" >LOGOUT</a></li>
@@ -59,7 +60,9 @@
   <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
- 
+
+
+
       </div>
     </div>
 
