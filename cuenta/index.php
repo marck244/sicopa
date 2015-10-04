@@ -173,9 +173,11 @@ document.getElementById('oculto').style.display = 'block';}
 
 
      <div class="form-group">
+     <center>
          <div class="col-xs-offset-2 col-xs-10">
-             <button type="submit" class="btn btn-primary">Enviar</button>
+             <button type="submit" class="btn btn-primary">Registrar Cliente</button>
          </div>
+         </center>
      </div>
 </form>
    </div>
