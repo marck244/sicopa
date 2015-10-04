@@ -15,6 +15,12 @@
         <link rel="stylesheet" href="../css/main.css">
 
         <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <script type="text/javascript">
+function mostrar(){
+document.getElementById('oculto').style.display = 'block';}
+</script>
+     
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -44,8 +50,9 @@
                 <li><a href="#" class="glyphicon glyphicon-book">IMPUESTOS</a></li>
                 <li><a href="#" class="glyphicon glyphicon-usd">PAGOS</a></li>
                 <li><a href="#" class="glyphicon glyphicon-folder-open">REPORTES</a></li>
+
                 <li><a href="#" class="glyphicon glyphicon-cog">SISTEMA</a></li>
-                
+
 
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -77,7 +84,7 @@
         </div>
         <div class="navbar-collapse collapse sidebar-navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Agregar Cliente</a></li>
+            <li><a href="#" onclick="mostrar()">Agregar Cliente</a></li>
             <li><a href="#">Buscar Cliente</a></li>
 
           </ul>
@@ -86,7 +93,66 @@
     </div>
   </div>
   <div class="col-sm-9">
-    Main content goes here
+    
+    
+   <div id="oculto" style='display:none;'> 	
+   <center><label>FORMULARIO DE INGRESO DE CLIENTES</label></center>
+<form class="form-horizontal">
+     <div class="form-group">
+         <label for="inputName" class="control-label col-xs-2">Nombre:</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Nombre">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Apellido :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Apellido">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Nit :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Nit">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Edad :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Edad">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Domicilio :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Domicilio">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Telefono :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Telefono">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Fecha Nacimiento :</label>
+         <div class="col-xs-10">
+             <input type="date" class="form-control">
+         </div>
+     </div>
+     <div class="form-group">
+         <div class="col-xs-offset-2 col-xs-10">
+             <button type="submit" class="btn btn-primary">Enviar</button>
+         </div>
+     </div>
+</form>
+   </div>
+
+
+
   </div>
 </div>
 
@@ -107,9 +173,9 @@
     </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-        <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="../js/vendor/bootstrap.min.js"></script>
 
-        <script src="js/main.js"></script>
+        <script src="../js/main.js"></script>
     </body>
 </html>
 
