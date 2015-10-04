@@ -143,6 +143,35 @@ document.getElementById('oculto').style.display = 'block';}
              <input type="date" class="form-control">
          </div>
      </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Profesion :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Profesion">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Municipio :</label>
+         <div class="col-xs-10">
+             <select name="cbomuni" class="form-control">
+             	<option>Seleccione</option>
+             </select>
+         </div>
+     </div>
+
+      <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Sabe Firmar :</label>
+        <div class="col-xs-10">
+             <select name="cbofirma" class="form-control">
+             	<option>Si</option>
+             	<option>No</option>
+             </select>
+         </div>
+     </div>
+
+
+
      <div class="form-group">
          <div class="col-xs-offset-2 col-xs-10">
              <button type="submit" class="btn btn-primary">Enviar</button>
