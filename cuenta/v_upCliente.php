@@ -35,11 +35,11 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="#" class="glyphicon glyphicon-home" ></a></li>
-                        <li class="dropdown">
+                        <li ><a href="#" class="glyphicon glyphicon-home" ></a></li>
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="glyphicon glyphicon-user"> Clientes</a></li>
+                                <li class="active"><a href="#" class="glyphicon glyphicon-user"> Clientes</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
@@ -70,7 +70,7 @@
 
         <div class="container">
             <H1>Clientes</H1>
-            <h4>Clientes > Buscar Clientes</h4>
+            <h4>Clientes > Actualizar Cliente</h4>
             <p class="separate"></p>
         </div>
 
@@ -99,21 +99,96 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Busqueda de Clientes</legend>
+                        <legend>Actualizar Registro Del Cliente Seleccionado</legend>
                         <form class="form-horizontal">
-     <div class="row">
-  <div class="col-lg-6">
-<label for="inputName" class="control-label col-xs-2">Nombre:</label>
-    <div class="input-group">
+ <div class="form-group">
+                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Identificador Cliente</label>
+                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                
+                                <p class="form-control-static">#ID (Sera dinamico)</p>
+                            </div>
+                        </div>
+     <div class="form-group">
+         <label for="inputName" class="control-label col-xs-2">Nombre:</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Nombre">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Apellido :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Apellido">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Nit :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Nit">
+         </div>
+     </div>
 
-      <input type="text" class="form-control" placeholder="Buscar por Nombre">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Buscar!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-     
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Edad :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Edad">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Domicilio :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Domicilio">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Telefono :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Telefono">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Fecha Nacimiento :</label>
+         <div class="col-xs-10">
+             <input type="date" class="form-control">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Profesion :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="Profesion">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Municipio :</label>
+         <div class="col-xs-10">
+             <select name="cbomuni" class="form-control">
+                <option>Seleccione</option>
+             </select>
+         </div>
+     </div>
+
+      <div class="form-group">
+         <label for="inputEmail" class="control-label col-xs-2">Sabe Firmar :</label>
+        <div class="col-xs-10">
+             <select name="cbofirma" class="form-control">
+                <option>Si</option>
+                <option>No</option>
+             </select>
+         </div>
+     </div>
+
+
+
+     <div class="form-group">
+     <center>
+         <div class="col-xs-offset-2 col-xs-10">
+             <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
+         </div>
+         </center>
+     </div>
 </form>
                     </fielset>
                 </div>
