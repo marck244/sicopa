@@ -70,7 +70,7 @@
 
         <div class="container">
             <H1>Lotificacion</H1>
-            <h4>Lotificacion > Actualizar Lotificacion</h4>
+            <h4>Lotificacion > Eliminar/Cambio de Estado de  Lotificacion</h4>
             <p class="separate"></p>
         </div>
 
@@ -100,7 +100,7 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
             <fielset>
-                <legend>Actualizacion de Lotificacion</legend>
+                <legend>Eliminacion de Lotificacion</legend>
 
 
                 <div class="jumbotron">
@@ -120,46 +120,61 @@
                 </div>
 
 
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Lotificaciones Registradas en <strong>SICOPA</strong></div>
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-hover text-center">
+     <tr>
+       <th>Codigo</th>
+       <th>Nombre Lotificacion</th>
+       <th>Numero de Lotes</th>      
+       <th>Precio de Lotificacion</th>
+       <th>Eliminar</th>
+     </tr>
 
-
-        <form action="" class="form-horizontal">
-            <div class="form-group">
-                <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Identificador Lotificacion</label>
-                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-
-                    <p class="form-control-static">#ID (Sera dinamico)</p>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="Nombre Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre Lotificacion</label>
-                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" class="form-control" placeholder="Nombre de la Nueva Lotificacion">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="Numero de Lotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Numero de Lotes</label>
-                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" class="form-control" placeholder="Numero de Lotes que posee o puede poseer">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="Precio de Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio de Lotificacion</label>
-                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" class="form-control" placeholder="Precio de la lotificacion adquirida">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-                    <button class="btn btn-primary">Actualizar Lotificacion</button>
-                </div>
-            </div>
-        </form>
+     <tr>
+      <td>300</td>
+      <td>Lotificacion Esparta</td>
+      <td>300,000</td>
+      <td>$ 3,000,000.00 </td>
+      <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
+    </tr>
+  </table>
+</div>
+</div>        
     </fielset>
 </div>
 </div>
 </div>
 
-
+ <div class="modal fade" id="inicioModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminacion de Lotificacion</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="idloti">Codigo de Lotificacion</label>
+                            <input type="text" value="300" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Nombre: </label>
+                            <p class="form-control-static">Lotificacion Esparta</p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Aceptar</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>                            
+            </div>
+        </div>
+    </div>
 
 
 

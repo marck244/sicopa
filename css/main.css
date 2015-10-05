@@ -7,6 +7,9 @@
   body{
     margin-top: 51px;
   } 
+  th{
+    text-align: center;
+  }
   /* Solo aplica a login. con tamaño especifico*/
 .mr-login{
   background: url(../img/login-back.jpg) no-repeat center top fixed;
@@ -47,6 +50,9 @@
 }
 .mr-justificar{
   text-align: justify;
+}
+.txt-center{
+  text-align: center;
 }
 .separate{
   width: 30%;
