@@ -105,7 +105,7 @@
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Identificador Cliente</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                <p class="form-control-static">#ID (Sera dinamico)</p>
+                                <p class="form-control-static">#ID</p>
                             </div>
                         </div>
      <div class="form-group">
