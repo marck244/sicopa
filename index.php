@@ -47,7 +47,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                <li><a href="#" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
+                                <li><a href="lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                             </li>
@@ -189,7 +189,7 @@
                 <p>&copy; SICOPA 2015</p>
             </footer>
         </center>
-    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
     <script src="js/vendor/bootstrap.min.js"></script>

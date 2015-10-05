@@ -70,7 +70,7 @@
 
         <div class="container">
             <H1>Lotificacion</H1>
-            <h4>Lotificacion > Agregar Nueva Lotificacion</h4>
+            <h4>Lotificacion > Actualizar Lotificacion</h4>
             <p class="separate"></p>
         </div>
 
@@ -86,67 +86,91 @@
                             <span class="icon-bar"></span>
                         </button>
                         <span class="visible-xs navbar-brand">Menu Lotificacion</span>
-                        </div>
-                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="v_nwLotificacion">Agregar Lotificacion</a></li>
-                                <li><a href="v_upLotificacion">Actualizar Lotificacion</a></li>
-                                <li><a href="v_dlLotificacion">Eliminar Lotificacion</a></li>
-                            </ul>
-                        </div><!--/.nav-collapse -->
-                        </div>
                     </div>
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="v_nwLotificacion">Agregar Lotificacion</a></li>
+                            <li><a href="v_upLotificacion">Actualizar Lotificacion</a></li>
+                            <li><a href="v_dlLotificacion">Eliminar Lotificacion</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
 
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
-                    <fielset>
-                        <legend>Registro de una nueva Lotificacion</legend>
-                        <form action="" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Identificador Lotificacion</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                
-                                <p class="form-control-static">#ID (Sera dinamico)</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Nombre Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre Lotificacion</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                <input type="text" class="form-control" placeholder="Nombre de la Nueva Lotificacion">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Numero de Lotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Numero de Lotes</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                <input type="text" class="form-control" placeholder="Numero de Lotes que posee o puede poseer">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Precio de Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio de Lotificacion</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                <input type="text" class="form-control" placeholder="Precio de la lotificacion adquirida">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-                                <button class="btn btn-primary">Registrar Lotificacion</button>
-                            </div>
-                        </div>
-                    </form>
-                    </fielset>
-                </div>
-                </div>
         </div>
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+            <fielset>
+                <legend>Actualizacion de Lotificacion</legend>
+
+
+                <div class="jumbotron">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lotificacion</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div><!-- /.row -->
+                </form>
+                </div>
+
+
+
+
+        <form action="" class="form-horizontal">
+            <div class="form-group">
+                <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Identificador Lotificacion</label>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+
+                    <p class="form-control-static">#ID (Sera dinamico)</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Nombre Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre Lotificacion</label>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" class="form-control" placeholder="Nombre de la Nueva Lotificacion">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Numero de Lotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Numero de Lotes</label>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" class="form-control" placeholder="Numero de Lotes que posee o puede poseer">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="Precio de Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio de Lotificacion</label>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                    <input type="text" class="form-control" placeholder="Precio de la lotificacion adquirida">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-2 col-sm-offset-3">
+                    <button class="btn btn-primary">Actualizar Lotificacion</button>
+                </div>
+            </div>
+        </form>
+    </fielset>
+</div>
+</div>
+</div>
+
+
+
 
 
 
 
 <center>
-    <footer>
-        <p>&copy; SICOPA 2015</p>
-    </footer>
+  <footer>
+    <p>&copy; SICOPA 2015</p>
+</footer>
 </center>
-     
+</div> <!-- /container -->       
 <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
 <script src="../js/vendor/bootstrap.min.js"></script>
@@ -154,4 +178,3 @@
 <script src="../js/main.js"></script>
 </body>
 </html>
-
