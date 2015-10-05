@@ -85,12 +85,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Clientes</span>
+                        <span class="visible-xs navbar-brand">Menu Lotificacion</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Agregar Lotificacion</a></li>
-                                <li><a href="#">Buscar Lotificacion</a></li>
+                                <li><a href="v_nwLotificacion">Agregar Lotificacion</a></li>
+                                <li><a href="v_upLotificacion">Actualizar Lotificacion</a></li>
+                                <li><a href="v_dlLotificacion">Eliminar Lotificacion</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
