@@ -102,12 +102,11 @@
                         <legend>Registro de un nuevo cliente</legend>
                         <form class="form-horizontal">
  <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Identificador Cliente</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                
-                                <p class="form-control-static">#ID (Sera dinamico)</p>
-                            </div>
-                        </div>
+         <label for="inputName" class="control-label col-xs-2">Dui :</label>
+         <div class="col-xs-10">
+             <input type="name" class="form-control" placeholder="# Dui">
+         </div>
+     </div>
      <div class="form-group">
          <label for="inputName" class="control-label col-xs-2">Nombre:</label>
          <div class="col-xs-10">
