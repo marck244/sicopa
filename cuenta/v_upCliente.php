@@ -70,7 +70,7 @@
 
         <div class="container">
             <H1>Clientes</H1>
-            <h4>Clientes > Agregar Nuevo Cliente</h4>
+            <h4>Clientes > Actualizar Cliente</h4>
             <p class="separate"></p>
         </div>
 
@@ -99,13 +99,13 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Registro de un nuevo cliente</legend>
+                        <legend>Actualizar Registro Del Cliente Seleccionado</legend>
                         <form class="form-horizontal">
  <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Identificador Cliente</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                <p class="form-control-static">#ID (Sera dinamico)</p>
+                                <p class="form-control-static">#ID</p>
                             </div>
                         </div>
      <div class="form-group">
@@ -185,7 +185,7 @@
      <div class="form-group">
      <center>
          <div class="col-xs-offset-2 col-xs-10">
-             <button type="submit" class="btn btn-primary">Registrar Cliente</button>
+             <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
          </div>
          </center>
      </div>

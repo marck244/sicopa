@@ -35,7 +35,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li ><a href="#" class="glyphicon glyphicon-home" ></a></li>
+                        <li><a href="#" class="glyphicon glyphicon-home" ></a></li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -70,7 +70,7 @@
 
         <div class="container">
             <H1>Clientes</H1>
-            <h4>Clientes > Agregar Nuevo Cliente</h4>
+            <h4>Clientes > Buscar Clientes</h4>
             <p class="separate"></p>
         </div>
 
@@ -99,100 +99,58 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Registro de un nuevo cliente</legend>
+                        <legend>Busqueda de Clientes</legend>
                         <form class="form-horizontal">
- <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Identificador Cliente</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                
-                                <p class="form-control-static">#ID (Sera dinamico)</p>
-                            </div>
-                        </div>
-     <div class="form-group">
-         <label for="inputName" class="control-label col-xs-2">Nombre:</label>
-         <div class="col-xs-10">
-             <input type="name" class="form-control" placeholder="Nombre">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Apellido :</label>
-         <div class="col-xs-10">
-             <input type="name" class="form-control" placeholder="Apellido">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Nit :</label>
-         <div class="col-xs-10">
-             <input type="name" class="form-control" placeholder="Nit">
-         </div>
-     </div>
+     <div class="row">
+  <div class="col-lg-6">
+<label for="inputName" class="control-label col-xs-3">Nombre:</label>
+    <div class="input-group">
 
-     <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Edad :</label>
-         <div class="col-xs-10">
-             <input type="name" class="form-control" placeholder="Edad">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Domicilio :</label>
-         <div class="col-xs-10">
-             <input type="name" class="form-control" placeholder="Domicilio">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Telefono :</label>
-         <div class="col-xs-10">
-             <input type="name" class="form-control" placeholder="Telefono">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Fecha Nacimiento :</label>
-         <div class="col-xs-10">
-             <input type="date" class="form-control">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Profesion :</label>
-         <div class="col-xs-10">
-             <input type="name" class="form-control" placeholder="Profesion">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Municipio :</label>
-         <div class="col-xs-10">
-             <select name="cbomuni" class="form-control">
-                <option>Seleccione</option>
-             </select>
-         </div>
-     </div>
-
-      <div class="form-group">
-         <label for="inputEmail" class="control-label col-xs-2">Sabe Firmar :</label>
-        <div class="col-xs-10">
-             <select name="cbofirma" class="form-control">
-                <option>Si</option>
-                <option>No</option>
-             </select>
-         </div>
-     </div>
-
-
-
-     <div class="form-group">
-     <center>
-         <div class="col-xs-offset-2 col-xs-10">
-             <button type="submit" class="btn btn-primary">Registrar Cliente</button>
-         </div>
-         </center>
-     </div>
+      <input type="text" class="form-control" placeholder="Buscar por Nombre">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Buscar!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+     
 </form>
                     </fielset>
                 </div>
                 </div>
+
+
+
+<br>
+<br>
+                <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Clientes registrados en <strong>SICOPA</strong></div>
+
+  <!-- Table -->
+  <div class="table-responsive">
+  <table class="table table-hover">
+     <tr>
+     <th>DUI</th>
+    <th>Nombre</th>
+    <th>Apellido</th>      
+    <th>NIT</th>
+    <th>Editar Cliente</th>
+    <th>Eliminar Cliente</th>
+  </tr>
+
+  <tr>
+      <td>0000000</td>
+      <td>Jairo</td>
+      <td>Ernesto</td>
+      <td>0000000</td>
+      <td><a href="" class="glyphicon glyphicon-edit"></a></td>
+      <td><a href="" class="glyphicon glyphicon-trash"></a></td>
+  </tr>
+  </table>
+  </div>
+</div>
+
         </div>
 
 
