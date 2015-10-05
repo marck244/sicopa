@@ -69,14 +69,11 @@
             <!-- FIN Nuevo Nav Bar-->
 
 
-           
+            
 
 
 
 
-
-      <div class="container">
-          <!-- Example row of columns -->
           <center>
               <footer>
                 <p>&copy; SICOPA 2015</p>
@@ -90,4 +87,3 @@
     <script src="js/main.js"></script>
 </body>
 </html>
-
