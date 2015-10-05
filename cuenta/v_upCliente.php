@@ -89,8 +89,8 @@
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Agregar Clientes</a></li>
-                                <li><a href="#">Buscar Clientes</a></li>
+                                <li><a href="v_nwCliente">Agregar Clientes</a></li>
+                                <li><a href="v_upCliente">Actualizar Clientes</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
@@ -99,28 +99,33 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Busqueda de Clientes</legend>
-                        <form class="form-horizontal">
-     <div class="row">
-  <div class="col-lg-6">
-<label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
-    <div class="input-group">
+                        <legend>Actualizar Clientes</legend>
 
-      <input type="text" class="form-control" placeholder="Buscar por numero de Dui">
-      <span class="input-group-btn ">
-        <button class="btn btn-default" type="button">Buscar!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
-</div><!-- /.row -->
-     
-</form>
+
+  <div class="jumbotron">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Nombre :</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="#numero de Dui">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div><!-- /.row -->
+                </form>
+                </div>
+
+
+
                     </fielset>
                 </div>
                 </div>
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
-                        <div class="col-15 col-sm-12 col-md-12 col-lg-13 "><legend>Modificar Informacion Con El Cliente Seleccionado</legend></div>
+                        
                        <form action="" class="form-horizontal">
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
@@ -206,7 +211,7 @@
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Actualizar Informacion</button>
+             <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
          </div>
          </center>
      </div>
