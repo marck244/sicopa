@@ -106,7 +106,7 @@
 <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
     <div class="input-group">
 
-      <input type="text" class="form-control" placeholder="Buscar por Nombre">
+      <input type="text" class="form-control" placeholder="Buscar por numero de Dui">
       <span class="input-group-btn ">
         <button class="btn btn-default" type="button">Buscar!</button>
       </span>
@@ -118,9 +118,9 @@
                     </fielset>
                 </div>
                 </div>
-<div class="col-12 col-sm-9 col-md-9 col-lg-10">
+<div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
-                        <legend>Modificar Informacion Con El Cliente Seleccionado</legend>
+                        <div class="col-15 col-sm-12 col-md-12 col-lg-13 "><legend>Modificar Informacion Con El Cliente Seleccionado</legend></div>
                        <form action="" class="form-horizontal">
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
@@ -206,7 +206,7 @@
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Registrar Cliente</button>
+             <button type="submit" class="btn btn-primary">Actualizar Informacion</button>
          </div>
          </center>
      </div>
