@@ -70,7 +70,7 @@
 
         <div class="container">
             <H1>Lotes</H1>
-            <h4>Lotes > Modificar Lote</h4>
+            <h4>Lotes > Actualizar Lote</h4>
             <p class="separate"></p>
         </div>
 
@@ -100,7 +100,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Modificar Lote</legend>
+                        <legend>Actualizar Lote</legend>
 
 
   <div class="jumbotron">
@@ -136,19 +136,19 @@
                             </div>
                         </div>
                              <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension del lote:</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="name" class="form-control" placeholder="Metros cuadrados">
          </div>
      </div>
      <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio del lote :</label>
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="name" class="form-control" placeholder="valor de el lote">
          </div>
      </div>
      <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion a agregar lote :</label>
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbolotificacion" class="form-control">
                  
