@@ -35,7 +35,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li ><a href="#" class="glyphicon glyphicon-home" ></a></li>
+                        <li><a href="#" class="glyphicon glyphicon-home" ></a></li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -69,8 +69,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Clientes</H1>
-            <h4>Clientes > Agregar Nuevo Cliente</h4>
+            <H1>Lotes</H1>
+            <h4>Lotes > Modificar Lote</h4>
             <p class="separate"></p>
         </div>
 
@@ -85,13 +85,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Clientes</span>
+                        <span class="visible-xs navbar-brand">Menu Opciones Lotes</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="v_nwCliente">Agregar Cliente</a></li>
-                                <li><a href="v_upCliente">Actualizar Cliente</a></li>
-                                <li><a href="v_dlCliente">Eliminar Cliente</a></li>
+                                <li><a href="v_nwLote">Agregar Lote</a></li>
+                                <li><a href="v_upLote">Actualizar Lote</a></li>
+                                <li><a href="v_dlLote">Eliminar Lote</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
@@ -100,100 +100,87 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Registro de un nuevo cliente</legend>
+                        <legend>Modificar Lote</legend>
+
+
+  <div class="jumbotron">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs"># Lote :</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="#numero de Lote">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div><!-- /.row -->
+                </form>
+                </div>
+
+
+
+                    </fielset>
+                </div>
+                </div>
+<div class="col-15 col-sm-12 col-md-12 col-lg-13">
+                    <fielset>
+                        
                        <form action="" class="form-horizontal">
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                             <input type="name" class="form-control" placeholder="# Dui">
+                                             <input type="name" class="form-control" readonly="true" placeholder="# Lote">
                             </div>
                         </div>
                              <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension del lote:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre">
+             <input type="name" class="form-control" placeholder="Metros cuadrados">
          </div>
      </div>
      <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido :</label>
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio del lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Apellido">
+             <input type="name" class="form-control" placeholder="valor de el lote">
          </div>
      </div>
      <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nit :</label>
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion a agregar lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nit">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Edad :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Edad">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Domicilio :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Domicilio">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Telefono :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Telefono">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Fecha Nacimiento :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="date" class="form-control">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Profesion :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Profesion">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Municipio :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbomuni" class="form-control">
-                <option>Seleccione</option>
+             <select name="cbolotificacion" class="form-control">
+                 
              </select>
          </div>
      </div>
 
-      <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Sabe Firmar :</label>
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbofirma" class="form-control">
-                <option>Si</option>
-                <option>No</option>
+    <div class="form-group">
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Poligono :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <select name="cbopoligono" class="form-control">
+                 
              </select>
          </div>
      </div>
-
 
 
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Registrar Cliente</button>
+             <button type="submit" class="btn btn-primary">Actualizar Lote</button>
          </div>
          </center>
      </div>
                     </form>
                     </fielset>
                 </div>
-                </div>
+
+
+
+      
+
         </div>
 
 
@@ -212,4 +199,3 @@
 <script src="../js/main.js"></script>
 </body>
 </html>
-
