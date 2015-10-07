@@ -89,8 +89,9 @@
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="v_nwCliente">Agregar Clientes</a></li>
+                                <li><a href="v_nwCliente">Agregar Cliente</a></li>
                                 <li><a href="v_upCliente">Actualizar Cliente</a></li>
+                                <li><a href="v_dlCliente">Eliminar Cliente</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>

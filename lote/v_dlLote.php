@@ -69,8 +69,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Clientes</H1>
-            <h4>Clientes > Eliminar/Cambio de Estado de  Clientes</h4>
+            <H1>Lotes</H1>
+            <h4>Lotes > Eliminar Lote</h4>
             <p class="separate"></p>
         </div>
 
@@ -85,13 +85,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Clientes</span>
+                        <span class="visible-xs navbar-brand">Menu Lotes</span>
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="v_nwCliente">Agregar Clientes</a></li>
-                            <li><a href="v_upCliente">Actualizar Clientes</a></li>
-                            <li><a href="v_dlCliente">Eliminar Clientes</a></li>
+                            <li><a href="v_nwLote">Agregar Lotes</a></li>
+                            <li><a href="v_upLote">Actualizar Lotes</a></li>
+                            <li><a href="v_dlLote">Eliminar Lotes</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -100,16 +100,16 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
             <fielset>
-                <legend>Eliminacion de Clientes</legend>
+                <legend>Eliminacion de Lotes</legend>
 
 
                 <div class="jumbotron">
                 <form class="form-horizontal">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Cliente :</label>
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs"># Lote :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Cliente">
+                                <input type="text" class="form-control" placeholder="Numero de Lote">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">Buscar!</button>
                                 </span>
@@ -122,23 +122,25 @@
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Clientes Registrados en <strong>SICOPA</strong></div>
+  <div class="panel-heading">Lotes Registrados en <strong>SICOPA</strong></div>
   <!-- Table -->
   <div class="table-responsive">
     <table class="table table-hover text-center">
      <tr>
-        <th>DUI</th>
-    <th>Nombre</th>
-    <th>Apellido</th>      
-    <th>NIT</th>
+        <th>Numero Lote</th>
+    <th>Precio de Lote</th>
+    <th>Extencion de Lote</th>      
+    <th>Lotificacion ala que pertenece</th>
+    <th>Poligono de Ubicacion</th>
     <th>Eliminar</th>
      </tr>
 
      <tr>
       <td>0000000</td>
-      <td>Jairo</td>
-      <td>Ernesto</td>
-      <td>0000000</td>
+      <td>200000</td>
+      <td>10 M2</td>
+      <td>EL CHAPARRON</td>
+      <td>E</td>
       <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
     </tr>
   </table>
@@ -154,17 +156,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminacion de Cliente</h4>
+                    <h4 class="modal-title">Eliminacion de Lote</h4>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="idloti">Codigo De Cliente</label>
+                            <label for="idloti">Codigo Del Lote</label>
                             <input type="text" value="000000000" class="form-control" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="pass">Nombre: </label>
-                            <p class="form-control-static">Jairo Ernesto Velasquez</p>
+                            <label for="pass">Numero Del Lote: </label>
+                            <p class="form-control-static">45</p>
                         </div>
                     </form>
                 </div>

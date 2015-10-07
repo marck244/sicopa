@@ -35,11 +35,11 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="../" class="glyphicon glyphicon-home" ></a></li>
-                        <li class="dropdown">
+                        <li ><a href="#" class="glyphicon glyphicon-home" ></a></li>
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="glyphicon glyphicon-user"> Clientes</a></li>
+                                <li class="active"><a href="#" class="glyphicon glyphicon-user"> Clientes</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
@@ -69,8 +69,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Clientes</H1>
-            <h4>Clientes > Eliminar/Cambio de Estado de  Clientes</h4>
+            <H1>Lotes</H1>
+            <h4>Lote > Agregar Nuevo Lote</h4>
             <p class="separate"></p>
         </div>
 
@@ -85,107 +85,79 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Clientes</span>
+                        <span class="visible-xs navbar-brand">Menu Opciones Lotes</span>
+                        </div>
+                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="v_nwLote">Agregar Lote</a></li>
+                                <li><a href="v_upLote">Actualizar Lote</a></li>
+                                <li><a href="v_dlCliente">Eliminar Lote</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                        </div>
                     </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="v_nwCliente">Agregar Clientes</a></li>
-                            <li><a href="v_upCliente">Actualizar Clientes</a></li>
-                            <li><a href="v_dlCliente">Eliminar Clientes</a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
+
                 </div>
-            </div>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+                    <fielset>
+                        <legend>Registro de un nuevo lote</legend>
+                       <form action="" class="form-horizontal">
+                        
+                             <div class="form-group">
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension del lote:</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="name" class="form-control" placeholder="Metros cuadrados">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio del lote :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="name" class="form-control" placeholder="valor de el lote">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion a agregar lote :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <select name="cbolotificacion" class="form-control">
+                 
+             </select>
+         </div>
+     </div>
 
-        </div>
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
-            <fielset>
-                <legend>Eliminacion de Clientes</legend>
+    <div class="form-group">
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Poligono :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <select name="cbopoligono" class="form-control">
+                 
+             </select>
+         </div>
+     </div>
+     
 
 
-                <div class="jumbotron">
-                <form class="form-horizontal">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Cliente :</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Cliente">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
-                                </span>
-                            </div><!-- /input-group -->
-                        </div><!-- /.col-lg-6 -->
-                    </div><!-- /.row -->
-                </form>
-                </div>
 
-
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Clientes Registrados en <strong>SICOPA</strong></div>
-  <!-- Table -->
-  <div class="table-responsive">
-    <table class="table table-hover text-center">
-     <tr>
-        <th>DUI</th>
-    <th>Nombre</th>
-    <th>Apellido</th>      
-    <th>NIT</th>
-    <th>Eliminar</th>
-     </tr>
-
-     <tr>
-      <td>0000000</td>
-      <td>Jairo</td>
-      <td>Ernesto</td>
-      <td>0000000</td>
-      <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
-    </tr>
-  </table>
-</div>
-</div>        
-    </fielset>
-</div>
-</div>
-</div>
-
- <div class="modal fade" id="inicioModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminacion de Cliente</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="idloti">Codigo De Cliente</label>
-                            <input type="text" value="000000000" class="form-control" disabled>
-                        </div>
-                        <div class="form-group">
-                            <label for="pass">Nombre: </label>
-                            <p class="form-control-static">Jairo Ernesto Velasquez</p>
-                        </div>
+     <div class="form-group">
+     <center>
+         <div class="col-xs-12 col-sm-2 col-sm-offset-3">
+             <button type="submit" class="btn btn-primary">Registrar Lote</button>
+         </div>
+         </center>
+     </div>
                     </form>
+                    </fielset>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary">Aceptar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                </div>                            
-            </div>
+                </div>
         </div>
-    </div>
-
 
 
 
 
 <center>
-  <footer>
-    <p>&copy; SICOPA 2015</p>
-</footer>
+    <footer>
+        <p>&copy; SICOPA 2015</p>
+    </footer>
 </center>
-</div> <!-- /container -->       
+</div> <!-- /container -->        
 <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
 <script src="../js/vendor/bootstrap.min.js"></script>
