@@ -91,7 +91,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="v_nwImpuestos">Agregar Impuesto</a></li>
                                 <li><a href="v_upImpuesto">Actualizar Impuesto</a></li>
-                                <li><a href="#">Eliminar Impuesto</a></li>
+                                <li><a href="v_dlImpuesto">Eliminar Impuesto</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
