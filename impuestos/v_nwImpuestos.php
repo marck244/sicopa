@@ -69,8 +69,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Lotes</H1>
-            <h4>Lote > Agregar Nuevo Lote</h4>
+            <H1>Impuestos</H1>
+            <h4>Impuestos > Agregar Nuevo Impuesto</h4>
             <p class="separate"></p>
         </div>
 
@@ -85,13 +85,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Lotes</span>
+                        <span class="visible-xs navbar-brand">Menu Opciones Impuestos</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="v_nwLote">Agregar Lote</a></li>
-                                <li><a href="v_upLote">Actualizar Lote</a></li>
-                                <li><a href="v_dlLote">Eliminar Lote</a></li>
+                                <li><a href="v_nwImpuestos">Agregar Impuesto</a></li>
+                                <li><a href="v_upImpuesto">Actualizar Impuesto</a></li>
+                                <li><a href="#">Eliminar Impuesto</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
@@ -100,46 +100,32 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Registro de un nuevo lote</legend>
+                        <legend>Registro de un nuevo Impuesto</legend>
                        <form action="" class="form-horizontal">
                         
-                        <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+                   <div class="form-group">
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre Impuesto:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Codigo de Lote">
+             <input type="name" class="form-control" placeholder="Nombre del impuesto">
          </div>
      </div>
 
 
                              <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension :</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Metros cuadrados">
+             <input type="name" class="form-control" placeholder="Valor del impuesto">
          </div>
      </div>
+    
      <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio Lote:</label>
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Descripcion Impuesto :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="valor de el lote">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbolotificacion" class="form-control">
-                 
-             </select>
+            <textarea class="form-control" rows="3" placeholder="Ingresa una descripcion del impuesto"></textarea>
          </div>
      </div>
 
-    <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Poligono :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbopoligono" class="form-control">
-                 
-             </select>
-         </div>
-     </div>
+   
      
 
 
@@ -147,7 +133,7 @@
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Registrar Lote</button>
+             <button type="submit" class="btn btn-primary">Registrar Impuesto</button>
          </div>
          </center>
      </div>
