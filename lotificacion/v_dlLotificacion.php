@@ -177,9 +177,6 @@
     </div>
 
 
-
-
-
 <center>
   <footer>
     <p>&copy; SICOPA 2015</p>
