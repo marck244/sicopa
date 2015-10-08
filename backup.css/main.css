@@ -10,7 +10,6 @@
   th{
     text-align: center;
   }
-
   /* Solo aplica a login. con tamaño especifico*/
 .mr-login{
   background: url(../img/login-back.jpg) no-repeat center top fixed;
@@ -40,9 +39,6 @@
 .mr-glyphicon-1{
   font-size: 30px;
   padding: 10px;
-}
-.mr-glyphicon-2{
-  font-size: 20px;
 }
 .mr-infobar{
   background-color: #008DFF;
