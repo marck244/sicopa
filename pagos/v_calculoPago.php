@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="../css/main.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+
+
+
+
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -69,8 +75,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Lotificacion</H1>
-            <h4>Lotificacion > Eliminar/Cambio de Estado de  Lotificacion</h4>
+            <H1>Pagos</H1>
+            <h4>Pagos > Calculo de Pagos</h4>
             <p class="separate"></p>
         </div>
 
@@ -85,104 +91,99 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Lotificacion</span>
+                        <span class="visible-xs navbar-brand">Menu Pagos</span>
+                        </div>
+                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#">Calculo de Pagos</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                        </div>
                     </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <li><a href="v_nwLotificacion">Agregar Lotificacion</a></li>
-                            <li><a href="v_upLotificacion">Actualizar Lotificacion</a></li>
-                            <li><a href="v_dlLotificacion">Eliminar Lotificacion</a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
+
                 </div>
-            </div>
-
-        </div>
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
-            <fielset>
-                <legend>Eliminacion de Lotificacion</legend>
-
-
-                <div class="jumbotron">
-                <form class="form-horizontal">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lotificacion</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
-                                </span>
-                            </div><!-- /input-group -->
-                        </div><!-- /.col-lg-6 -->
-                    </div><!-- /.row -->
-                </form>
-                </div>
-
-
-<div class="panel panel-default">
-  <!-- Default panel contents -->
-  <div class="panel-heading">Lotificaciones Registradas en <strong>SICOPA</strong></div>
-  <!-- Table -->
-  <div class="table-responsive">
-    <table class="table table-hover text-center">
-     <tr>
-       <th>Codigo</th>
-       <th>Nombre Lotificacion</th>
-       <th>Numero de Lotes</th>      
-       <th>Precio de Lotificacion</th>
-       <th>Eliminar</th>
-     </tr>
-
-     <tr>
-      <td>300</td>
-      <td>Lotificacion Esparta</td>
-      <td>300,000</td>
-      <td>$ 3,000,000.00 </td>
-      <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
-    </tr>
-  </table>
-</div>
-</div>        
-    </fielset>
-</div>
-</div>
-</div>
-
- <div class="modal fade" id="inicioModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminacion de Lotificacion</h4>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="idloti">Codigo de Lotificacion</label>
-                            <input type="text" value="300" class="form-control" disabled>
+                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+                    <fielset>
+                        <legend>Calculo de Pagos</legend>
+                        <div class="jumbotron">
+                            <form class="form-horizontal">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <label for="lotiname" class="control-label col-sm-4 hidden-xs">DUI Cliente</label>
+                                        <div class="input-group col-sm-8">
+                                            <input type="text" class="form-control" placeholder="000000-0">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default" type="button">Buscar!</button>
+                                            </span>
+                                        </div><!-- /input-group -->
+                                    </div><!-- /.col-lg-6 -->
+                                </div><!-- /.row -->
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="pass">Nombre: </label>
-                            <p class="form-control-static">Lotificacion Esparta</p>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary">Aceptar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                </div>                            
-            </div>
-        </div>
-    </div>
+                    </fielset>
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Listado de Cuentas Abiertas de <strong>Marvin Rolando Segura Menjivar</strong></div>
+                        <!-- Table -->
+                        <div class="table-responsive">
+                            <table class="table table-hover text-center">
+                               <tr>
+                                 <th>Codigo Cuenta</th>
+                                 <th>DUI</th>
+                                 <th>Lotificacion</th>
+                                 <th>Lote</th>      
+                                 <th>Fecha</th>
+                                 <th>Numero de Recibo</th>
+                                 <th>Abono a Cuenta</th>
+                                 <th>Pagar</th>
+                             </tr>
+
+                             <tr>
+                              <td>2</td>
+                              <td>558866-7</td>
+                              <td>Lotificacion Esparta</td>
+                              <td>E004 </td>
+                              <td><?php echo date("Y/m/d");?></td>
+                              <td><input type="text" placeholder="#00253"></td>
+                              <td><input type="text" placeholder="$"></td>
+                              <td><span class="glyphicon glyphicon-triangle-left"></span></td>
+                          </tr>
+                          <tr>
+                              <td>3</td>
+                              <td>558866-7</td>
+                              <td>Lotificacion Esparta</td>
+                              <td>E005 </td>
+                              <td><?php echo date("Y/m/d");?></td>
+                              <td><input type="text" placeholder="#00253"></td>
+                              <td><input type="text" placeholder="$"></td>
+                              <td><span class="glyphicon glyphicons-projector"></span></td>
+                          </tr>
+                          <tr>
+                              <td>38</td>
+                              <td>558866-7</td>
+                              <td>Lotificacion Esparta</td>
+                              <td>E0040 </td>
+                              <td><?php echo date("Y/m/d");?></td>
+                              <td><input type="text" placeholder="#00253"></td>
+                              <td><input type="text" placeholder="$"></td>
+                              <td><span class="glyphicon glyphicon-piggy-bank"></span></td>
+                          </tr>
+                      </table>
+                  </div>
+              </div> 
+          </div><!-- row 2-->
+                </div><!-- ROW-->
+        </div><!-- container-->
+
+
 
 
 <center>
-  <footer>
-    <p>&copy; SICOPA 2015</p>
-</footer>
+    <footer>
+        <p>&copy; SICOPA 2015</p>
+    </footer>
 </center>
-</div> <!-- /container -->       
+     
 <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
 <script src="../js/vendor/bootstrap.min.js"></script>
@@ -190,3 +191,4 @@
 <script src="../js/main.js"></script>
 </body>
 </html>
+
