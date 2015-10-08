@@ -146,7 +146,9 @@
                               <td><?php echo date("Y/m/d");?></td>
                               <td><input type="text" placeholder="#00253"></td>
                               <td><input type="text" placeholder="$"></td>
-                              <td><span class="glyphicon glyphicon-triangle-left"></span></td>
+                              <td>
+                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
+                              </td>
                           </tr>
                           <tr>
                               <td>3</td>
@@ -156,7 +158,9 @@
                               <td><?php echo date("Y/m/d");?></td>
                               <td><input type="text" placeholder="#00253"></td>
                               <td><input type="text" placeholder="$"></td>
-                              <td><span class="glyphicon glyphicons-projector"></span></td>
+                              <td>
+                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
+                              </td>
                           </tr>
                           <tr>
                               <td>38</td>
@@ -166,7 +170,19 @@
                               <td><?php echo date("Y/m/d");?></td>
                               <td><input type="text" placeholder="#00253"></td>
                               <td><input type="text" placeholder="$"></td>
-                              <td><span class="glyphicon glyphicon-piggy-bank"></span></td>
+                              <td>
+                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
+                              </td>
+                          </tr>
+                            <tr>
+                              <td></td>
+                              <td></td>
+                              <td><strong>Minimo Total</strong></td>
+                              <td><strong>$ 82.96</strong></td>
+                              <td></td>
+                              <td><strong>Total</strong></td>
+                              <td><strong>$ 80.60</strong></td>
+                              <td></td>
                           </tr>
                       </table>
                   </div>
