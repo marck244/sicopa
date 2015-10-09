@@ -69,8 +69,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Impuestos</H1>
-            <h4>Impuestos > Agregar Nuevo Impuesto</h4>
+            <H1>Usuarios</H1>
+            <h4>Usuarios > Agregar Nuevo Usuario</h4>
             <p class="separate"></p>
         </div>
 
@@ -85,13 +85,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Impuestos</span>
+                        <span class="visible-xs navbar-brand">Menu Opciones Usuario</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="v_nwImpuestos">Agregar Impuesto</a></li>
-                                <li><a href="v_upImpuesto">Actualizar Impuesto</a></li>
-                                <li><a href="v_dlImpuesto">Eliminar Impuesto</a></li>
+                                <li><a href="v_nwLote">Agregar Usuario</a></li>
+                                <li><a href="#">Actualizar Usuario</a></li>
+                                <li><a href="#">Eliminar Usuario</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
@@ -100,32 +100,47 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Registro de un nuevo Impuesto</legend>
+                        <legend>Registro de un nuevo Usuario</legend>
                        <form action="" class="form-horizontal">
                         
-                   <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre Impuesto:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del impuesto">
-         </div>
-     </div>
+                  
 
 
                              <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Valor del impuesto">
+             <input type="name" class="form-control" placeholder="Nombre del Usuario">
          </div>
      </div>
-    
      <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Descripcion Impuesto :</label>
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea class="form-control" rows="3" placeholder="Ingresa una descripcion del impuesto"></textarea>
+             <input type="name" class="form-control" placeholder="Apellido del Usuario">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña:</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="password" class="form-control" placeholder="*********">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Repetir Contraseña:</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="password" class="form-control" placeholder="*********">
          </div>
      </div>
 
-   
+    <div class="form-group">
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nivel de Acceso :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <select name="cbonivelacceso" class="form-control">
+                 <option value="Administrador">Administrador</option>
+                 <option value="Gerencia">Gerencia</option>
+                 <option value="Operador">Operador</option>
+             </select>
+         </div>
+     </div>
      
 
 
@@ -133,7 +148,7 @@
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Registrar Impuesto</button>
+             <button type="submit" class="btn btn-primary">Registrar Usuario</button>
          </div>
          </center>
      </div>
