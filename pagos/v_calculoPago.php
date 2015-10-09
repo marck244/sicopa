@@ -15,6 +15,22 @@
     <link rel="stylesheet" href="../css/main.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script>
+    function sumar(num){
+      var suma = 0.00;
+      i=1;
+      while(i<=3){
+        if(eval($("#cuenta"+i).val())==null){
+          suma += 0;
+        }
+        else{
+          suma += eval($("#cuenta"+i).val()); 
+        }
+        i++;
+      }
+      document.getElementById("total").innerHTML = "$ "+suma.toFixed(2);;
+    }
+    </script>
 
 
 
@@ -128,60 +144,81 @@
                         <div class="table-responsive">
                             <table class="table table-hover text-center">
                                <tr>
-                                 <th>Codigo Cuenta</th>
-                                 <th>DUI</th>
+                                 <th>Cod Cuenta</th>
                                  <th>Lotificacion</th>
                                  <th>Lote</th>      
                                  <th>Fecha</th>
-                                 <th>Numero de Recibo</th>
+                                 <th>Numero Recibo</th>
+                                 <th>Monto Restante</th>
+                                 <th>Cuota Capital</th>
+                                 <th>Cuota Interes</th>
+                                 <th>Couta Iva</th>
+                                 <th>Pago Minimo</th>
                                  <th>Abono a Cuenta</th>
-                                 <th>Pagar</th>
+                                 <th></th>
                              </tr>
 
                              <tr>
                               <td>2</td>
-                              <td>558866-7</td>
                               <td>Lotificacion Esparta</td>
                               <td>E004 </td>
                               <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253"></td>
-                              <td><input type="text" placeholder="$"></td>
+                              <td><input type="text" placeholder="#00253" size="10"></td>
+                              <td>$ 4,500.00</td>
+                              <td>$ 33.33</td>
+                              <td>$ 5.00</td>
+                              <td>$ 4.33</td>
+                              <td>$ 42.37</td>
+                              <td><input type="text" placeholder="$" id="cuenta1" onkeyup="sumar(3)" size="10"></td>
                               <td>
                                 <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
                               </td>
                           </tr>
                           <tr>
                               <td>3</td>
-                              <td>558866-7</td>
                               <td>Lotificacion Esparta</td>
                               <td>E005 </td>
                               <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253"></td>
-                              <td><input type="text" placeholder="$"></td>
+                              <td><input type="text" placeholder="#00253" size="10"></td>
+                              <td>$ 4,500.00</td>
+                              <td>$ 33.33</td>
+                              <td>$ 5.00</td>
+                              <td>$ 4.33</td>
+                              <td>$ 42.37</td>
+                              <td><input type="text" placeholder="$" id="cuenta2" onkeyup="sumar(3)" size="10"></td>
                               <td>
                                 <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
                               </td>
                           </tr>
                           <tr>
                               <td>38</td>
-                              <td>558866-7</td>
                               <td>Lotificacion Esparta</td>
-                              <td>E0040 </td>
+                              <td>E040 </td>
                               <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253"></td>
-                              <td><input type="text" placeholder="$"></td>
+                              <td><input type="text" placeholder="#00253" size="10"></td>
+                              <td>$ 4,500.00</td>
+                              <td>$ 33.33</td>
+                              <td>$ 5.00</td>
+                              <td>$ 4.33</td>
+                              <td>$ 42.37</td>
+                              <td><input type="text" placeholder="$" id="cuenta3" onkeyup="sumar(3)" size="10"></td>
                               <td>
                                 <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
                               </td>
                           </tr>
                             <tr>
+                              
                               <td></td>
                               <td></td>
-                              <td><strong>Minimo Total</strong></td>
+                              <td></td>
+                              <td></td>
+                              <td></td>
+                              
+                              <td colspan=2><strong>Minimo Total</strong></td>
                               <td><strong>$ 82.96</strong></td>
                               <td></td>
                               <td><strong>Total</strong></td>
-                              <td><strong>$ 80.60</strong></td>
+                              <td><strong id="total"></strong></td>
                               <td></td>
                           </tr>
                       </table>
