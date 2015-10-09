@@ -35,7 +35,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li ><a href="#" class="glyphicon glyphicon-home" ></a></li>
+                        <li><a href="#" class="glyphicon glyphicon-home" ></a></li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -70,7 +70,7 @@
 
         <div class="container">
             <H1>Usuarios</H1>
-            <h4>Usuarios > Agregar Nuevo Usuario</h4>
+            <h4>Usuarios > Actualizar Usuario</h4>
             <p class="separate"></p>
         </div>
 
@@ -85,7 +85,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Usuario</span>
+                        <span class="visible-xs navbar-brand">Menu Opciones Usuarios</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
@@ -100,13 +100,43 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Registro de un nuevo Usuario</legend>
-                       <form action="" class="form-horizontal">
+                        <legend>Actualizar Usuario</legend>
+
+
+  <div class="jumbotron">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Usuario :</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Nombre Completo">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+                    </div><!-- /.row -->
+                </form>
+                </div>
+
+
+
+                    </fielset>
+                </div>
+                </div>
+<div class="col-15 col-sm-12 col-md-12 col-lg-13">
+                    <fielset>
                         
-                  
+                       <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                                
+                                             <input type="name" class="form-control" disabled="true" placeholder="Id Usuario">
+                            </div>
+                        </div>
 
-
-                             <div class="form-group">
+                         <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="name" class="form-control" placeholder="Nombre del Usuario">
@@ -119,13 +149,13 @@
          </div>
      </div>
      <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña:</label>
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña(Old):</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="password" class="form-control" placeholder="*********">
          </div>
      </div>
      <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Repetir Contraseña:</label>
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña(New):</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="password" class="form-control" placeholder="*********">
          </div>
@@ -141,21 +171,24 @@
              </select>
          </div>
      </div>
-     
-
+                             
 
 
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Registrar Usuario</button>
+             <button type="submit" class="btn btn-primary">Actualizar Usuario</button>
          </div>
          </center>
      </div>
                     </form>
                     </fielset>
                 </div>
-                </div>
+
+
+
+      
+
         </div>
 
 
