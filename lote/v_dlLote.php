@@ -35,7 +35,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="../" class="glyphicon glyphicon-home" ></a></li>
+                        <li><a href="../" class="glyphicon glyphicon-home" ></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -44,17 +44,26 @@
                                 <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
-                                <li><a href="#" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
+                                <li  class="active"><a href="#" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                         </li>
                         
-                        <li><a href="#" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                         <li><a href="#" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                         <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
-                        <li><a href="#" class="glyphicon glyphicon-cog"> SISTEMA</a></li>
+                        
+
+                             <li class="dropdown">
+                            <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
+                                <li><a href="#" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                            </ul>
+                        </li>
+
                         <li ><a href="#" class="glyphicon glyphicon-off" > SALIR</a></li>
                     </ul>
 
