@@ -15,27 +15,6 @@
     <link rel="stylesheet" href="../css/main.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-    <script>
-    function sumar(num){
-      var suma = 0.00;
-      i=1;
-      while(i<=3){
-        if(eval($("#cuenta"+i).val())==null){
-          suma += 0;
-        }
-        else{
-          suma += eval($("#cuenta"+i).val()); 
-        }
-        i++;
-      }
-      document.getElementById("total").innerHTML = "$ "+suma.toFixed(2);;
-    }
-    </script>
-
-
-
-
-
 
 </head>
 <body>
@@ -91,8 +70,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Pagos</H1>
-            <h4>Pagos > Calculo de Pagos</h4>
+            <H1>Reportes</H1>
+            <h4>Reportes > Estado de Cuenta</h4>
             <p class="separate"></p>
         </div>
 
@@ -107,11 +86,12 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Pagos</span>
+                        <span class="visible-xs navbar-brand">Menu Reportes</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="#">Calculo de Pagos</a></li>
+                                <li><a href="v_estadoCuenta">Estado de Cuentas</a></li>
+                                <li><a href="v_listadoCuentas">Listado de Estado de Cuentas</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
@@ -120,7 +100,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Calculo de Pagos</legend>
+                        <legend>Estado de Cuenta</legend>
                         <div class="jumbotron">
                             <form class="form-horizontal">
                                 <div class="row">
@@ -139,94 +119,100 @@
                     </fielset>
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Listado de Cuentas Abiertas de <strong>Marvin Rolando Segura Menjivar</strong></div>
+                        <div class="panel-heading">Estado de Cuenta de <strong>Jacinto Ordoñez</strong></div>
                         <!-- Table -->
                         <div class="table-responsive">
-                            <table class="table table-hover text-center">
-                               <tr>
-                                 <th>Cod Cuenta</th>
-                                 <th>Lotificacion</th>
-                                 <th>Lote</th>      
-                                 <th>Fecha</th>
-                                 <th>Numero Recibo</th>
-                                 <th>Monto Restante</th>
-                                 <th>Cuota Capital</th>
-                                 <th>Cuota Interes</th>
-                                 <th>Couta Iva</th>
-                                 <th>Pago Minimo</th>
-                                 <th>Abono a Cuenta</th>
-                                 <th></th>
-                             </tr>
-
-                             <tr>
-                              <td>2</td>
-                              <td>Lotificacion Esparta</td>
-                              <td>E004 </td>
-                              <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253" size="10"></td>
-                              <td>$ 4,500.00</td>
-                              <td>$ 33.33</td>
-                              <td>$ 5.00</td>
-                              <td>$ 4.33</td>
-                              <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta1" onkeyup="sumar(3)" size="10"></td>
-                              <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>3</td>
-                              <td>Lotificacion Esparta</td>
-                              <td>E005 </td>
-                              <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253" size="10"></td>
-                              <td>$ 4,500.00</td>
-                              <td>$ 33.33</td>
-                              <td>$ 5.00</td>
-                              <td>$ 4.33</td>
-                              <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta2" onkeyup="sumar(3)" size="10"></td>
-                              <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>38</td>
-                              <td>Lotificacion Esparta</td>
-                              <td>E040 </td>
-                              <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253" size="10"></td>
-                              <td>$ 4,500.00</td>
-                              <td>$ 33.33</td>
-                              <td>$ 5.00</td>
-                              <td>$ 4.33</td>
-                              <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta3" onkeyup="sumar(3)" size="10"></td>
-                              <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
-                              </td>
-                          </tr>
+                          <table class="table table-hover text-center">
                             <tr>
-                              
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              
-                              <td colspan=2><strong>Minimo Total</strong></td>
-                              <td><strong>$ 82.96</strong></td>
-                              <td></td>
-                              <td><strong>Total</strong></td>
-                              <td><strong id="total"></strong></td>
-                              <td></td>
-                          </tr>
-                      </table>
-                  </div>
-              </div> 
-          </div><!-- row 2-->
+                              <th>Cuenta</th>
+                              <th>Fecha</th>
+                              <th>Capital</th>
+                              <th>Prima</th>
+                              <th>Interes</th>
+                              <th>IVA</th>
+                              <th>Credito Total</th>
+                              <th>C.C</th>
+                              <th>C.Interes</th>
+                              <th>C.IVA</th>
+                              <th>T. Cuota</th>
+                              <th>Estado</th>
+                              <th></th>
+                            </tr>
+                            <tr>
+                              <td>2</td>
+                              <td>2015/01/05</td>
+                              <td>$6,000</td>
+                              <td>$100</td>
+                              <td>$900</td>
+                              <td>$897.00</td>
+                              <td>$7,797</td>
+                              <td>$50.00</td>
+                              <td>$7.50</td>
+                              <td>$7.48</td>
+                              <td>$64.98</td>
+                              <td>VIGENTE</td>
+                              <td><a href="#" class="glyphicon glyphicon-search mr-glyphicon-2"></a></td>
+                            </tr>
+                            <tr>
+                              <td>38</td>
+                              <td>2015/04/24</td>
+                              <td>$4,000</td>
+                              <td>$200</td>
+                              <td>$600</td>
+                              <td>$520</td>
+                              <td>$5,120</td>
+                              <td>$33.33</td>
+                              <td>$5.00</td>
+                              <td>$4.33</td>
+                              <td>$42.67</td>
+                              <td>CANCELADA</td>
+                              <td><a href="#" class="glyphicon glyphicon-search mr-glyphicon-2"></a></td>
+                            </tr>
+                          </table>
+                        </div>
+                        </div>
+                        <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Estado de Cuenta - Lotificacion: <strong>Esparta</strong> - Lote: <strong>E004</strong></div>
+                        <!-- Table -->
+                        <div class="table-responsive">
+                          <table class="table table-hover text-center">
+                            <tr>
+                              <th>#</th>
+                              <th>Fecha Pago</th>
+                              <th>Saldo Capital</th>
+                              <th>Saldo Interes</th>
+                              <th>Saldo IVA</th>
+                              <th>Credito Total</th>
+                              <th>C.C</th>
+                              <th>C.Interes</th>
+                              <th>C.IVA</th>
+                              <th>T. Cuota</th>
+                              <th>Credito Pagado</th>
+                            </tr>
+                            <tr><td>01</td><td>2015/02/15</td><td>$5,950.00</td><td>$892.50</td><td>$889.53</td><td>$7,732.03</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$64.98 </td></tr>
+                            <tr><td>02</td><td>2015/03/15</td><td>$5,900.00</td><td>$885.00</td><td>$882.05</td><td>$7,667.05</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$129.95</td></tr> 
+                            <tr><td>03</td><td>2015/04/15</td><td>$5,850.00</td><td>$877.50</td><td>$874.58</td><td>$7,602.08</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$194.93</td></tr> 
+                            <tr><td>04</td><td>2015/05/15</td><td>$5,800.00</td><td>$870.00</td><td>$867.10</td><td>$7,537.10</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$259.90</td></tr> 
+                            <tr><td>05</td><td>2015/06/15</td><td>$5,750.00</td><td>$862.50</td><td>$859.63</td><td>$7,472.13</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$324.88</td></tr> 
+                            <tr><td>06</td><td>2015/07/15</td><td>$5,700.00</td><td>$855.00</td><td>$852.15</td><td>$7,407.15</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$389.85</td></tr> 
+                            <tr><td>07</td><td>2015/08/15</td><td>$5,650.00</td><td>$847.50</td><td>$844.68</td><td>$7,342.18</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$454.83</td></tr> 
+                            <tr><td>08</td><td>2015/09/15</td><td>$5,600.00</td><td>$840.00</td><td>$837.20</td><td>$7,277.20</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$519.80</td></tr> 
+                            <tr><td>09</td><td>2015/10/15</td><td>$5,550.00</td><td>$832.50</td><td>$829.73</td><td>$7,212.23</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$584.78</td></tr> 
+                            <tr><td>10</td><td>2015/11/15</td><td>$5,500.00</td><td>$825.00</td><td>$822.25</td><td>$7,147.25</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$649.75</td></tr> 
+                            <tr><td>11</td><td>2015/12/15</td><td>$5,450.00</td><td>$817.50</td><td>$814.78</td><td>$7,082.28</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$714.73</td></tr> 
+                            <tr><td>12</td><td>2016/01/15</td><td>$5,400.00</td><td>$810.00</td><td>$807.30</td><td>$7,017.30</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$779.70</td></tr> 
+                            <tr><td>13</td><td>2016/02/15</td><td>$5,350.00</td><td>$802.50</td><td>$799.83</td><td>$6,952.33</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$844.68</td></tr> 
+                          </table>
+                        </div>
+                        </div>  
+                      </div><!-- row 2-->
                 </div><!-- ROW-->
         </div><!-- container-->
+
+
+
+
 
 
 
