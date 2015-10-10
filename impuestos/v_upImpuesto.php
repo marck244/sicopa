@@ -160,7 +160,7 @@
 
      <div class="form-group">
      <center>
-         <div class="col-xs-12 col-sm-2 col-sm-offset-3">
+         <div class="col-xs-12 col-sm-1 col-sm-offset-3">
              <button type="submit" class="btn btn-primary">Actualizar Impuesto</button>
          </div>
          </center>
