@@ -52,10 +52,20 @@
                             </ul>
                         </li>
                         
-                        <li><a href="#" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                    <li><a href="#" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                         <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
-                        <li><a href="#" class="glyphicon glyphicon-cog"> SISTEMA</a></li>
+                        
+
+                             <li class="dropdown active">
+                            <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
+                                <li class="active"><a href="#" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                            </ul>
+                        </li>
+
                         <li ><a href="#" class="glyphicon glyphicon-off" > SALIR</a></li>
+
                     </ul>
 
                 </div>
@@ -128,14 +138,13 @@
                     <fielset>
                         
                        <form action="" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                
-                                             <input type="name" class="form-control" disabled="true" placeholder="Id Usuario">
-                            </div>
-                        </div>
-
+                     
+              <div class="form-group">
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="name" class="form-control" placeholder="Usuario Nickname">
+         </div>
+     </div>
                          <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
