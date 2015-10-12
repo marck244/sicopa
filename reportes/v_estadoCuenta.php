@@ -92,6 +92,7 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="v_estadoCuenta">Estado de Cuentas</a></li>
                                 <li><a href="v_listadoCuentas">Listado de Estado de Cuentas</a></li>
+                                <li><a href="v_bitacora">Bitacora de SICOPA</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>

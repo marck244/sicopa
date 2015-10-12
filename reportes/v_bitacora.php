@@ -71,7 +71,7 @@
 
         <div class="container">
             <H1>Reportes</H1>
-            <h4>Reportes > Listado de Estados de Cuentas</h4>
+            <h4>Reportes > Bitacora de SICOPA</h4>
             <p class="separate"></p>
         </div>
 
@@ -101,49 +101,62 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Listado de Estados de Cuentas</legend>
+                        <legend>Bitacora del Sistema</legend>
                     </fielset>
+
+                      <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary">Actual</button>
+                        <button type="button" class="btn btn-primary">Dia Específico</button>
+                        <button type="button" class="btn btn-primary">Intervalos</button>
+                      </div>
+                    <br>
+                    
+                    <br>
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading">Listado de Cuenta de <strong>Vigentes</strong></div>
+                        <div class="panel-heading">Actividades de <strong>SICOPA</strong></div>
                         <!-- Table -->
                         <div class="table-responsive">
                           <table class="table table-hover text-center">
                             <tr>
-                              <th>DUI</th>
-                              <th>Nombre</th>
-                              <th>Apellido</th>
-                              <th>Cuenta</th>
-                              <th>Credito Total</th>
-                              <th>Credito Pagado</th>
-                              <th>Dias</th>
+                              <th>#</th>
+                              <th>Usuario</th>
+                              <th>Fecha</th>
+                              <th>Actividad</th>
+                              <th>Tabla</th>
+                              <th>IP</th>
                             </tr>
                             <tr>
-                              <td>023569-8</td>
-                              <td>Ana Patricia</td>
-                              <td>Lemus Castro</td>
-                              <td>50</td>
-                              <td>$ 4,000</td>
-                              <td>$ 300</td>
-                              <td>5</td>
+                              <td>1</td>
+                              <td>Marisol Menjivar</td>
+                              <td>2015/11/10 10:27:05 PM</td>
+                              <td>Nuevo cliente Jorge Alberto</td>
+                              <td>Cliente</td>
+                              <td>192.168.0.14</td>
                             </tr>
                             <tr>
-                              <td>259456-8</td>
-                              <td>Isabel</td>
-                              <td>Franco</td>
-                              <td>15</td>
-                              <td>$ 7,000</td>
-                              <td>$ 1,500</td>
-                              <td>7</td>
-                            </tr>
-                            <tr>
-                              <td>651548-2</td>
-                              <td>Jacinto</td>
-                              <td>Ordoñez</td>
                               <td>2</td>
-                              <td>$ 7,797</td>
-                              <td>$ 844.68</td>
-                              <td>22</td>
+                              <td>Ernesto Lopez</td>
+                              <td>2015/11/10 10:30:55 PM</td>
+                              <td>Genero reporte de Estado de Cuenta de Cindy Garcia</td>
+                              <td>Generada al momento</td>
+                              <td>204.56.52.202</td>
+                            </tr>
+                            <tr>
+                              <td>3</td>
+                              <td>Marisol Menjivar</td>
+                              <td>2015/11/10 10:37:52 PM</td>
+                              <td>Agrego Lote E050 a Jorge Alberto</td>
+                              <td>Cuenta</td>
+                              <td>192.168.0.16</td>
+                            </tr>
+                            <tr>
+                              <td>4</td>
+                              <td>Marisol Menjivar</td>
+                              <td>2015/11/10 10:40:23 PM</td>
+                              <td>Actualizo a Jorge Alberto a Jorge Alberto Deras</td>
+                              <td>Cliente</td>
+                              <td>192.168.0.16</td>
                             </tr>
                           </table>
                         </div>
