@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["loginUser-name"])){
+    /*mas codigo si esta logueado*/
+}else{
+    header("Location: user/v_login");
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -63,7 +71,7 @@
                             </ul>
                         </li>
 
-                        <li ><a href="#" class="glyphicon glyphicon-off" > SALIR</a></li>
+                        <li ><a href="user/logout" class="glyphicon glyphicon-off" > SALIR</a></li>
                         </ul>
 
                     </div>
