@@ -200,6 +200,14 @@
      </div>
 
 
+      <div class="form-group">
+         <label for="inputCuentaMontoTotal" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta Fecha Creacion :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="date" class="form-control" placeholder="">
+         </div>
+     </div>
+
+
 
      <div class="form-group">
      <center>
