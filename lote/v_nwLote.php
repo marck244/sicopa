@@ -79,7 +79,7 @@
 
         <div class="container">
             <H1>Lotes</H1>
-            <h4>Lote > Agregar Nuevo Lote</h4>
+            <h4>Lotes > Agregar Nuevo Lote</h4>
             <p class="separate"></p>
         </div>
 
