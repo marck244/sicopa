@@ -1,3 +1,31 @@
+<?php
+session_start();
+$error = 0;
+if(isset($_SESSION["loginUser-name"])){
+    /*mas codigo si esta logueado*/
+    header("Location: ../");
+}else{
+    if (isset($_POST["nick"])) {
+        # code...
+        require("../conexion/conexion.php");
+         $id=$_POST["nick"];
+         $pass=$_POST["pass"];
+         $pass5 = md5(md5($pass));
+         $sql = "SELECT * FROM usuario WHERE USER_NICK = '".$id."' AND USER_CONTRASENA = '".$pass5."' ";
+         $result = $conn->query($sql);
+         if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                $_SESSION["loginUser-name"] = $id;
+                header("Location: v_login.php");
+            }
+        } else {
+            $error=1;
+        }
+        $conn->close();
+    }
+   
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -15,6 +43,14 @@
         <link rel="stylesheet" href="../css/main.css">
 
         <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+        <script>
+            setTimeout(function() {
+                $("#login-error").slideDown(500);
+                }, 200);
+            setTimeout(function() {
+                $("#login-error").slideUp(500);
+                }, 5000);
+        </script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -49,20 +85,30 @@
                 respectivas. 
             </h3>
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-4">
-                <form class="form-horizontal">
+                <?php if ($error==1) {?>
+                <div id="login-error" class="form-group" style="display: none;">
+                            <div class="alert alert-danger" role="alert">
+                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                              <span class="sr-only">Error:</span>
+                              Nombre de Usuario y Contraseña no coindicen!
+                          </div>
+                </div>
+                <?php } ?>
+                <form class="form-horizontal" method="POST">
                         <div class="form-group">
                             <label for="usuario" class="col-sm-2">Usuario</label>
                             <div class="col-sm-8 col-lg-6">
-                                <input type="text" placeholder="Usuario" class="form-control">
+                                <input type="text" name="nick" placeholder="Ejemplo: Loren.Guitierrez" class="form-control" pattern="[A-Za-z].{4,}">
                             </div>
                             
                         </div>
                         <div class="form-group">
                             <label for="pass" class="col-sm-2">Contraseña</label>
                             <div class="col-sm-8 col-lg-6">
-                                <input type="password" placeholder="Contraseña" class="form-control">
+                                <input type="password" name="pass" placeholder="Contraseña" class="form-control" pattern="[A-Za-z].{4,}">
                             </div>
                         </div>
+
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <button class="btn btn-primary">
@@ -74,10 +120,6 @@
             </div>
             
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
         <br>
         <br>
         <br>
