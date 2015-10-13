@@ -64,7 +64,7 @@
                             </ul>
                         </li>
 
-                        <li ><a href="#" class="glyphicon glyphicon-off" > SALIR</a></li>
+                        <li ><a href="../user/logout" class="glyphicon glyphicon-off" > SALIR</a></li>
                     </ul>
 
                 </div>

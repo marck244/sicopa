@@ -48,7 +48,7 @@ if(isset($_SESSION["loginUser-name"])){
                                 <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                 <li><a href="cuenta/v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-                                <li><a href="#" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
+                                <li><a href="cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                             </li>
