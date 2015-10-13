@@ -98,14 +98,14 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="form-group">
                             <label for="usuario" class="col-sm-2">Usuario</label>
                             <div class="col-sm-8 col-lg-6">
-                                <input type="text" name="nick" placeholder="Ejemplo: Loren.Guitierrez" class="form-control" pattern="[A-Za-z].{4,}">
+                                <input type="text" name="nick" placeholder="Ejemplo: Loren.Guitierrez" class="form-control" pattern="[A-Za-z.]{4,}" title="Ejemplo Loren.Guitierrez. No puede poner numeros ni simbolos especiales" required>
                             </div>
                             
                         </div>
                         <div class="form-group">
                             <label for="pass" class="col-sm-2">Contraseña</label>
                             <div class="col-sm-8 col-lg-6">
-                                <input type="password" name="pass" placeholder="Contraseña" class="form-control" pattern="[A-Za-z].{4,}">
+                                <input type="password" name="pass" placeholder="Contraseña" class="form-control" pattern="[A-Za-z0-9]{4,}" title="No se admiten simbolos especiales. Solo letras y numeros." required>
                             </div>
                         </div>
 
