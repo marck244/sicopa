@@ -55,8 +55,17 @@
                     <a href="#" class="navbar-brand">SICOPA</a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
+<<<<<<< HEAD
+                        <li ><a href="../" class="glyphicon glyphicon-home" ></a></li>
+                        <li class="dropdown active">
+                            <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
+                                <li><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
+                                <li class="active"><a href="v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
+=======
                         <li><a href="../" class="glyphicon glyphicon-home" ></a></li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
@@ -64,24 +73,44 @@
                                 <li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
                                 <li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
                                 <li><a href="v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
+>>>>>>> refs/remotes/origin/master
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                             <ul class="dropdown-menu">
+<<<<<<< HEAD
+                                <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
+=======
                                 <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
+>>>>>>> refs/remotes/origin/master
                                 <li><a href="../lote/v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                         </li>
                         
+<<<<<<< HEAD
+                              <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                                                <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
+                        
+
+                             <li class="dropdown">
+                            <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
+                                <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
+                            </ul>
+                        </li>
+
+=======
                         <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                         <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         <li><a href="#" class="glyphicon glyphicon-cog"> SISTEMA</a></li>
+>>>>>>> refs/remotes/origin/master
                         <li ><a href="../user/logout" class="glyphicon glyphicon-off" > SALIR</a></li>
                     </ul>
 
                 </div>
-
 
             </div><!-- Container Fluid-->
         </nav>

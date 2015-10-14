@@ -41,19 +41,19 @@
                             <ul class="dropdown-menu">
                                 <li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
                                 <li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
-                                <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
+                                <li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
+                                                                        <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
                                 <li class="active"><a href="v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                         </li>
                         
                               <li ><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
-                        <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
+                                                                        <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
                              <li class="dropdown">
@@ -61,6 +61,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                        <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
                             </ul>
                         </li>
 
