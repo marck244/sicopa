@@ -33,14 +33,14 @@
                     <a href="#" class="navbar-brand">SICOPA</a>
                 </div>
 
-                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li ><a href="../" class="glyphicon glyphicon-home" ></a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-                                <li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
+                                <li><a href="#" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
@@ -52,19 +52,19 @@
                             </ul>
                         </li>
                         
-                              <li class="active"><a href="v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                              <li ><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                         <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
-                             <li class="dropdown">
+                             <li class="dropdown active">
                             <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
-                                <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                <li class="active"><a href="v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
                             </ul>
                         </li>
 
-                        <li ><a href="../user/logout" class="glyphicon glyphicon-off" > SALIR</a></li>
+                        <li ><a href="#" class="glyphicon glyphicon-off" > SALIR</a></li>
 
                     </ul>
 
@@ -79,8 +79,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Impuestos</H1>
-            <h4>Impuestos > Actualizar Impuesto</h4>
+            <H1>Profesiones</H1>
+            <h4>Profesiones > Eliminar Profesion</h4>
             <p class="separate"></p>
         </div>
 
@@ -95,31 +95,31 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Impuestos</span>
-                        </div>
-                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="v_nwImpuestos">Agregar Impuesto</a></li>
-                                <li><a href="v_upImpuesto">Actualizar Impuesto</a></li>
-                                <li><a href="v_dlImpuesto">Eliminar Impuesto</a></li>
-                            </ul>
-                        </div><!--/.nav-collapse -->
-                        </div>
+                     <span class="visible-xs navbar-brand">Menu Opciones Profesion</span>
                     </div>
-
+                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                        <ul class="nav navbar-nav">
+                       <li><a href="v_nwProfesion">Agregar Profesion</a></li>
+                                <li><a href="v_upProfesion">Actualizar Profesion</a></li>
+                                <li><a href="v_dlProfesion">Eliminar Profesion</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
                 </div>
-                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
-                    <fielset>
-                        <legend>Actualizar Impuesto</legend>
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+            <fielset>
+                <legend>Eliminar Profesion</legend>
 
 
-  <div class="jumbotron">
-                <form class="form-horizontal">
+                <div class="jumbotron">
+              <form class="form-horizontal">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Impuesto:</label>
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Nombre :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar por nombre del Impuesto">
+                                <input type="text" class="form-control" placeholder="Ingresa Nombre De Profesion">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">Buscar!</button>
                                 </span>
@@ -130,70 +130,71 @@
                 </div>
 
 
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Profesiones Registradas en <strong>SICOPA</strong></div>
+  <!-- Table -->
+  <div class="table-responsive">
+    <table class="table table-hover text-center">
+     <tr>
+     <th>Id</th>
+        <th>Nombre</th>
+         
 
-                    </fielset>
-                </div>
-                </div>
-<div class="col-15 col-sm-12 col-md-12 col-lg-13">
-                    <fielset>
-                        
-                       <form action="" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                
-                                             <input type="name" class="form-control" readonly="true" placeholder="# Impuesto">
-                            </div>
-                        </div>
-                             <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del impuesto">
-         </div>
-     </div>
+    <th>Eliminar</th>
+     </tr>
 
-
-                             <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Valor del impuesto">
-         </div>
-     </div>
-    
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Descripcion:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea class="form-control" rows="3" placeholder="Ingresa una descripcion del impuesto"></textarea>
-         </div>
-     </div>
-
-
-     <div class="form-group">
-     <center>
-         <div class="col-xs-12 col-sm-1 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Actualizar Impuesto</button>
-         </div>
-         </center>
-     </div>
-                    </form>
-                    </fielset>
-                </div>
-
-
-
+     <tr>
+      <td>14521</td>
+      <td>Ingeniero En Sistemas Informaticos</td>
       
+      <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
+    </tr>
+  </table>
+</div>
+</div>        
+    </fielset>
+</div>
+</div>
+</div>
 
+ <div class="modal fade" id="inicioModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Eliminacion de Profesion</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="idloti">Codigo de Profesion</label>
+                            <input type="text" value="14521" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Nombre de la Profesion: </label>
+                            <p class="form-control-static">Ingeniero En Sistemas Informaticos</p>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Aceptar</button>
+                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                </div>                            
+            </div>
         </div>
+    </div>
+
 
 
 
 
 <center>
-    <footer>
-        <p>&copy; SICOPA 2015</p>
-    </footer>
+  <footer>
+    <p>&copy; SICOPA 2015</p>
+</footer>
 </center>
-</div> <!-- /container -->        
+</div> <!-- /container -->       
 <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
 <script src="../js/vendor/bootstrap.min.js"></script>
