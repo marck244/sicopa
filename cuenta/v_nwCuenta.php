@@ -40,7 +40,7 @@
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li ><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-                                <li class="active"><a href="#" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
+                                <li class="active"><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
@@ -64,7 +64,7 @@
                             </ul>
                         </li>
 
-                        <li ><a href="#" class="glyphicon glyphicon-off" > SALIR</a></li>
+                        <li ><a href="../user/logout" class="glyphicon glyphicon-off" > SALIR</a></li>
                     </ul>
 
                 </div>
@@ -196,6 +196,14 @@
          <label for="inputCuentaMontoTotal" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Monto Total :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="number" class="form-control" placeholder="cuenta de monto total a pagar">
+         </div>
+     </div>
+
+
+      <div class="form-group">
+         <label for="inputCuentaMontoTotal" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta Fecha Creacion :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="date" class="form-control" placeholder="">
          </div>
      </div>
 

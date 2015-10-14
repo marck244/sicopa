@@ -36,11 +36,11 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li ><a href="../" class="glyphicon glyphicon-home" ></a></li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-                                <li><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
+                                <li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
+                                <li><a href="#" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
@@ -52,19 +52,20 @@
                             </ul>
                         </li>
                         
-                              <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                              <li ><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                         <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
-                             <li class="dropdown">
+                             <li class="dropdown active">
                             <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
-                                <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                <li class="active"><a href="v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
                             </ul>
                         </li>
 
-                        <li ><a href="../user/logout" class="glyphicon glyphicon-off" > SALIR</a></li>
+                        <li ><a href="#" class="glyphicon glyphicon-off" > SALIR</a></li>
+
                     </ul>
 
                 </div>
@@ -78,8 +79,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Clientes</H1>
-            <h4>Clientes > Actualizar Clientes</h4>
+            <H1>Profesiones</H1>
+            <h4>Profesiones > Actualizar Profesion</h4>
             <p class="separate"></p>
         </div>
 
@@ -94,13 +95,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Clientes</span>
+                        <span class="visible-xs navbar-brand">Menu Opciones Profesion</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="v_nwCliente">Agregar Cliente</a></li>
-                                <li><a href="v_upCliente">Actualizar Cliente</a></li>
-                                <li><a href="v_dlCliente">Eliminar Cliente</a></li>
+                                <li><a href="v_nwProfesion">Agregar Profesion</a></li>
+                                <li><a href="v_upProfesion">Actualizar Profesion</a></li>
+                                <li><a href="v_dlProfesion">Eliminar Profesion</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
@@ -109,7 +110,7 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Actualizar Clientes</legend>
+                        <legend>Actualizar Profesion</legend>
 
 
   <div class="jumbotron">
@@ -118,7 +119,7 @@
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Nombre :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="#numero de Dui">
+                                <input type="text" class="form-control" placeholder="Ingresa Nombre De Profesion">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">Buscar!</button>
                                 </span>
@@ -137,91 +138,21 @@
                     <fielset>
                         
                        <form action="" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+                     
+            
+                         <div class="form-group">
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="name" class="form-control" placeholder="Nombre de Profesion">
+         </div>
+     </div>
                                 
-                                             <input type="name" class="form-control" readonly="true" placeholder="# Dui">
-                            </div>
-                        </div>
-                             <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Apellido">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nit :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nit">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Edad :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Edad">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Domicilio :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Domicilio">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Telefono :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Telefono">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Fecha Nacimiento :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="date" class="form-control">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Profesion :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Profesion">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Municipio :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbomuni" class="form-control">
-                <option>Seleccione</option>
-             </select>
-         </div>
-     </div>
-
-      <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Sabe Firmar :</label>
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbofirma" class="form-control">
-                <option>Si</option>
-                <option>No</option>
-             </select>
-         </div>
-     </div>
-
 
 
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-1 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
+             <button type="submit" class="btn btn-primary">Actualizar Profesion</button>
          </div>
          </center>
      </div>
@@ -251,4 +182,3 @@
 <script src="../js/main.js"></script>
 </body>
 </html>
-

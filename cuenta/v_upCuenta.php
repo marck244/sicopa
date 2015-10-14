@@ -39,8 +39,8 @@
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-                                <li><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
+                                <li><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
+                                <li class="active"><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
                                 <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
@@ -78,8 +78,8 @@
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Clientes</H1>
-            <h4>Clientes > Actualizar Clientes</h4>
+            <H1>Cuentas</H1>
+            <h4>Cuentas > Actualizar Cuenta</h4>
             <p class="separate"></p>
         </div>
 
@@ -94,13 +94,13 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Clientes</span>
+                        <span class="visible-xs navbar-brand">Menu Opciones Cuenta</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="v_nwCliente">Agregar Cliente</a></li>
-                                <li><a href="v_upCliente">Actualizar Cliente</a></li>
-                                <li><a href="v_dlCliente">Eliminar Cliente</a></li>
+                            <li><a href="v_nwCuenta">Agregar Cuenta</a></li>
+                                <li><a href="v_upCuenta">Actualizar Cuenta</a></li>
+                                <li><a href="v_dlCuenta">Eliminar Cuenta</a></li>
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
@@ -109,16 +109,16 @@
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Actualizar Clientes</legend>
+                        <legend>Actualizar Cuenta</legend>
 
 
   <div class="jumbotron">
                 <form class="form-horizontal">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Nombre :</label>
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Cliente :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="#numero de Dui">
+                                <input type="text" class="form-control" placeholder="buscar cuenta por nombre cliente">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">Buscar!</button>
                                 </span>
@@ -136,83 +136,100 @@
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="" class="form-horizontal">
+                      <form action="" class="form-horizontal">
                         <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id Cuenta :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                             <input type="name" class="form-control" readonly="true" placeholder="# Dui">
+                                             <input type="name" class="form-control" disabled="true" placeholder="Codigo de Cuenta">
                             </div>
                         </div>
                              <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre/cliente:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre">
+             <input type="name" class="form-control" placeholder="Ingrese Un Cliente">
          </div>
      </div>
      <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido :</label>
+         <label for="inputImpuesto" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Impuesto :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Apellido">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nit :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nit">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Edad :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Edad">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Domicilio :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Domicilio">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Telefono :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Telefono">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Fecha Nacimiento :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="date" class="form-control">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Profesion :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Profesion">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Municipio :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbomuni" class="form-control">
+             <select name="cboimpuesto" class="form-control">
                 <option>Seleccione</option>
              </select>
          </div>
      </div>
 
-      <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Sabe Firmar :</label>
-        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbofirma" class="form-control">
-                <option>Si</option>
-                <option>No</option>
+     <div class="form-group">
+         <label for="inputEstadoCuenta" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Estado/Cuenta :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <select name="cboestado" class="form-control">
+                <option>Activo</option>
+                <option>Inactivo</option>
              </select>
+         </div>
+     </div>
+
+      <div class="form-group">
+         <label for="inputLotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <select name="cbolotificacion" class="form-control">
+                <option>Seleccione</option>
+              
+             </select>
+         </div>
+     </div>
+
+      <div class="form-group">
+         <label for="inputLotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotes :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <select name="cbolote" class="form-control">
+                <option>Seleccione</option>
+             </select>
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputCuentaPrima" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta/prima :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="number" class="form-control" placeholder="Valor de Prima">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputCuentaPlazo" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta /plazo :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="number" class="form-control" placeholder="Plazo de pago(dias)">
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputCuentaInteres" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta/interes :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="number" class="form-control" placeholder="cuenta de interes a pagar">
+         </div>
+     </div>
+
+
+     <div class="form-group">
+         <label for="inputCuentaIVA" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta IVA :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="number" class="form-control" placeholder="cuenta de IVA">
+         </div>
+     </div>
+
+    
+     <div class="form-group">
+         <label for="inputCuentaMontoTotal" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Monto Total :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="number" class="form-control" placeholder="cuenta de monto total a pagar">
+         </div>
+     </div>
+
+
+      <div class="form-group">
+         <label for="inputCuentaMontoTotal" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Fecha Creacion :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="date" class="form-control" placeholder="">
          </div>
      </div>
 
@@ -221,7 +238,7 @@
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-1 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Actualizar Cliente</button>
+             <button type="submit" class="btn btn-primary">Actualizar Cuenta</button>
          </div>
          </center>
      </div>
@@ -251,4 +268,3 @@
 <script src="../js/main.js"></script>
 </body>
 </html>
-
