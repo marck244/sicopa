@@ -82,7 +82,7 @@ if(isset($_SESSION["loginUser-name"])){
                 </div><!-- Container Fluid-->
             </nav>
             <div class="mr-infobar hidden-xs">
-                Bienvenido: <strong>Marvin Segura</strong> Hora: <strong>02:00 AM</strong>
+                Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong>02:00 AM</strong>
             </div>
             <!-- FIN Nuevo Nav Bar-->
 
@@ -101,8 +101,8 @@ if(isset($_SESSION["loginUser-name"])){
                         <p class="separate"></p>
                         <p class="mr-justificar">
                             Llevar el control de los clientes nunca fué mas facil. Con <strong>SICOPA</strong> usted puede llevar el control
-                            de de los usuarios, clientes, sus cuentas, pagos, historial de cuentas, listado de estados de cuenta y mas.
-                            En el cual se vera reflejado, cuantas coutas lleva pagadas y cual es el monto, interes e iva que tiene pendientes.
+                            de los usuarios, clientes, cuentas, pagos, historial de cuentas, listado de estados de cuenta y mas.
+                            En el cual se vera reflejado las cuantas cuotas pagadas, el monto, interes e iva que tiene pendientes.
                         
                         </p>
                         <div class="media">
