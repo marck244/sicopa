@@ -40,8 +40,8 @@
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-                                <li class="active"><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
-                                <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
+                                <li><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
+                                <li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -140,26 +140,26 @@
     <th>Cliente</th>
     <th>Estado/Cuenta</th>      
     <th>Lote</th>
-    <th>Cuenta/Prima</th>
-    <th>Cuenta/Plazo</th>
-    <th>Cuenta/Interes</th>
-    <th>Cuenta/IVA</th>
-    <th>Cuenta/MontoTotal</th>
-    <th>Cuenta/FechaCreado</th>
-    <th>Eliminar</th>
+    <th>Prima</th>
+    <th>Plazo</th>
+    <th>Interes</th>
+    <th>IVA</th>
+    <th>MontoTotal</th>
+    <th>Fecha Creado</th>
+    <th>CANCELAR</th>
      </tr>
 
      <tr>
       <td>0000000</td>
       <td>Jairo Velasquez</td>
       <td>ACTIVO</td>
-      <td>20,45,50</td>
-      <td>$ 20.00</td>
-      <td>120 dias</td>
-      <td>10 %</td>
-      <td>10 %</td>
+      <td>E040</td>
+      <td>$ 200.00</td>
+      <td>120 meses</td>
+      <td>$ 500</td>
+      <td>$ 450</td>
       <td>$ 6,000</td>
-      <td>2015/10/13</td>
+      <td>13/10/2015</td>
       <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
     </tr>
   </table>

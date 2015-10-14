@@ -39,9 +39,9 @@
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li class="active"><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
+                                <li><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
                                 <li><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
-                                <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
+                                <li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
