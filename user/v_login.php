@@ -16,6 +16,7 @@ if(isset($_SESSION["loginUser-name"])){
          if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $_SESSION["loginUser-name"] = $id;
+                $_SESSION["user-nivelacceso"]=$row["USER_NIVELACCESO"];
                 header("Location: v_login.php");
             }
         } else {
