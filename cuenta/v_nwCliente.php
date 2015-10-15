@@ -186,7 +186,8 @@
    <script type="text/javascript">
    function prueba()
    {
-    alertify.alert('Ready!');
+     alertify.set('notifier','position', 'bottom-right');
+ alertify.success('Current position : ' + alertify.get('notifier','position'));.alert('Ready!');
    }
    </script>
 
@@ -383,7 +384,7 @@
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="button" class="btn btn-primary" onclick="prueba();">Registrar Cliente</button>
+             <button type="submit" name="guardar" class="btn btn-primary" >Registrar Cliente</button>
          </div>
          </center>
      </div>
@@ -409,4 +410,6 @@
 <script src="../js/main.js"></script>
 </body>
 </html>
+
+
 
