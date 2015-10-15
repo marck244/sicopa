@@ -175,6 +175,14 @@
          </div>
      </div>
 
+      <div class="form-group">
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Detalles Extra :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <textarea class="form-control" rows="3" placeholder="Ingresa una descripcion sobre este lote"></textarea>
+         </div>
+     </div>
+     
+
 
      <div class="form-group">
      <center>
