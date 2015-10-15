@@ -48,7 +48,7 @@
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                        <li  class="active"><a href="v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
-                                <li><a href="#" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
+                                <li><a href="../lote/v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                         </li>
                         

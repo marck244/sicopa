@@ -10,11 +10,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.min.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.min.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
 
     <!-- script validacion para NIT INICIO -->
@@ -180,7 +183,14 @@
 
    <!-- script validacion para domicilio excluyendo caracteres como @ o ! FIN-->
 
+   <script type="text/javascript">
+   function prueba()
+   {
+    alertify.alert('Ready!');
+   }
+   </script>
 
+<!-- -->
    </head>
 <body>
     <!--[if lt IE 8]>
@@ -373,7 +383,7 @@
      <div class="form-group">
      <center>
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Registrar Cliente</button>
+             <button type="button" class="btn btn-primary" onclick="prueba();">Registrar Cliente</button>
          </div>
          </center>
      </div>
