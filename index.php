@@ -43,7 +43,7 @@ if(isset($_SESSION["loginUser-name"])){
 
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="active"><a href="#" class="glyphicon glyphicon-home" ></a></li>
+                            <li class="active"><a href="index" class="glyphicon glyphicon-home" ></a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
@@ -59,6 +59,8 @@ if(isset($_SESSION["loginUser-name"])){
                                 <li><a href="lote/v_nwLote" class="glyphicon glyphicon-tree-conifer"> LOTES</a></li>
                             </ul>
                             </li>
+
+                         <li><a href="impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                             
                          <li><a href="reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
