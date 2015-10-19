@@ -13,8 +13,89 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.min.css">
+	<link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.min.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+    <!-- script validacion entrada solo numero INICIO -->
+	 <script type="text/javascript">
+	  <!--
+	  function solonumeros(evt)
+	  {
+		 var charCode = (evt.which) ? evt.which : event.keyCode
+		 if (charCode > 31 && (charCode < 48 || charCode > 57))
+			return false;
+ 
+		 return true;
+	  }
+	  //-->
+   </script>
+   <!-- script validacion entrada solo numero FIN -->
+
+
+
+   <!-- script validacion para detallesextra excluyendo caracteres como @ o ! INICIO-->
+
+   <script type="text/javascript">
+   function detallesextra(e) {
+	tecla=(document.all) ? e.keyCode : e.which;
+	//alert(tecla);
+	if (tecla==64 || tecla==33  || tecla==36 || tecla==37 || tecla==61 || tecla==161 || tecla==63 || tecla==92) {
+ 
+		return false;
+	}
+}
+   </script>
+
+   <!-- script validacion para detallesextra excluyendo caracteres como @ o ! FIN-->
+
+
+
+   <!-- script no dejar campos vacios en el formulario INICIO-->
+
+   <script type="text/javascript">
+
+   function validar(){
+
+		var campoextension= document.getElementById("extension");
+		var campoprecio=document.getElementById("precio");
+		var combolotificacion=document.getElementById("cbolotificacion");
+		var combopoligono=document.getElementById("cbopoligono");
+		
+
+		if (campoextension.value=='') {
+
+			alertify.warning('No puede dejar el campo Extension vacio');
+			return false
+
+		}
+		if(campoprecio.value==''){
+			alertify.warning('No puede dejar el campo Precio vacio');
+			return false;
+		}
+
+		if(combolotificacion.value==''){
+			alertify.warning('No puede dejar el campo Lotificacion sin elegir');
+			return false;
+		}
+
+		if(combopoligono.value==''){
+			alertify.warning('No puede dejar el campo Poligono sin elegir');
+			return false;
+		}
+		
+
+
+
+	return true;		
+
+   }
+
+   </script>
+
+  <!--script no dejar campos vacios en el formulario FIN -->
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -41,19 +122,19 @@
                             <ul class="dropdown-menu">
                                 <li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
                                 <li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
-                                <li><a href="#" class="glyphicon glyphicon-usd"> Pagos</a></li>
+                                <li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
                         <li class="dropdown active">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
+                                                                        <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
                                 <li class="active"><a href="v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                         </li>
                         
                               <li ><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
-                        <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
+                                                                        <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
                              <li class="dropdown">
@@ -61,6 +142,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                        <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
                             </ul>
                         </li>
 
@@ -110,7 +192,7 @@
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo lote</legend>
-                       <form action="" class="form-horizontal">
+                       <form action="" class="form-horizontal" onsubmit="return validar()">
                         
                         <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
@@ -123,20 +205,20 @@
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Metros cuadrados">
+             <input type="name" name="extension" id="extension" onkeypress="return solonumeros(event)" class="form-control" placeholder="Metros cuadrados">
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio Lote:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="valor de el lote">
+             <input type="name" name="precio" id="precio" class="form-control" onkeypress="return solonumeros(event)" placeholder="valor de el lote">
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbolotificacion" class="form-control">
-                 
+             <select name="cbolotificacion" id="cbolotificacion" class="form-control">
+                 <option value="">Seleccione</option>
              </select>
          </div>
      </div>
@@ -144,9 +226,16 @@
     <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Poligono :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbopoligono" class="form-control">
-                 
+             <select name="cbopoligono" id="cbopoligono" class="form-control">
+                 <option value="">Seleccione</option>
              </select>
+         </div>
+     </div>
+
+       <div class="form-group">
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Detalles Extra :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+            <textarea class="form-control"  onkeypress="return detallesextra(event)" rows="3" placeholder="Ingresa una descripcion sobre este lote"></textarea>
          </div>
      </div>
      

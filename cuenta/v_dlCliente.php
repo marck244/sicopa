@@ -13,8 +13,85 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.min.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.min.css">
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+
+
+    <!-- script validacion para DUI INICIO -->
+<script type="text/javascript">
+/**************************************************************
+****************************************************************/
+        var arraydigitosdui = new Array(8,1)
+            function mascaradui(d,sep,pat,nums){
+                if(d.valant != d.value){
+                        val = d.value
+                        largo = val.length
+                        val = val.split(sep)
+                        val2 = ''
+                for(r=0;r<val.length;r++){
+                        
+                        val2 += val[r]  
+            }
+                if(nums){
+                    for(z=0;z<val2.length;z++){
+                        if(isNaN(val2.charAt(z))){
+
+                        letra = new RegExp(val2.charAt(z),"g")
+                        val2 = val2.replace(letra,"")
+            }
+        }
+    }
+                        val = ''
+                        val3 = new Array()
+                for(s=0; s<pat.length; s++){
+
+                        val3[s] = val2.substring(0,pat[s])
+                        val2 = val2.substr(pat[s])
+    }
+                for(q=0;q<val3.length; q++){
+                    if(q ==0){
+                        val = val3[q]
+            }
+                else{
+                    if(val3[q] != ""){
+
+                        val += sep + val3[q]
+                }
+        }
+    }
+                        d.value = val
+                        d.valant = val
+    }
+}
+/**************************************************************
+****************************************************************/
+    </script>
+    <!-- script validacion para DUI FIN -->
+
+    <!-- validacion form busqueda -->
+
+    <script type="text/javascript">
+
+    function valida () {
+        
+        var busqueda= document.getElementById("busqueda");
+
+        if (busqueda.value=='') {
+            alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
+            return false;
+        }
+        return true;
+
+    }
+
+    </script>
+
+    <!-- **************************** -->
+
+    
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -47,13 +124,13 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
+                                <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
                                 <li><a href="../lote/v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                         </li>
                         
                               <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
-                        <li><a href="#" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
+                                               <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
                              <li class="dropdown">
@@ -61,6 +138,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
                             </ul>
                         </li>
 
@@ -113,14 +191,14 @@
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal">
+                <form class="form-horizontal" onsubmit="return valida()">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Cliente :</label>
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Nombre :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Cliente">
+                                <input type="text" name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" class="form-control" placeholder="# Numero de DUI">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
