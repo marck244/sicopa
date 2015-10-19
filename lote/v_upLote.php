@@ -122,9 +122,9 @@
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs"># Lote :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="#numero de Lote">
+                                <input type="text" class="form-control"   placeholder="#numero de Lote" pattern="[A-Za-z ]{5,}" title="No se admiten numeros" required>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
