@@ -197,7 +197,7 @@
                         <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Codigo de Lote">
+             <input type="name" maxlength="4" onkeypress="return detallesextra(event)" class="form-control" placeholder="Codigo de Lote">
          </div>
      </div>
 
@@ -211,7 +211,7 @@
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio Lote:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="precio" id="precio" class="form-control" onkeypress="return solonumeros(event)" placeholder="valor de el lote">
+             <input type="name"  name="precio" id="precio" class="form-control" onkeypress="return solonumeros(event)" placeholder="valor de el lote">
          </div>
      </div>
      <div class="form-group">
@@ -235,7 +235,7 @@
        <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Detalles Extra :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea class="form-control"  onkeypress="return detallesextra(event)" rows="3" placeholder="Ingresa una descripcion sobre este lote"></textarea>
+            <textarea class="form-control" maxlength="100" onkeypress="return detallesextra(event)" rows="3" placeholder="Ingresa una descripcion sobre este lote"></textarea>
          </div>
      </div>
      
