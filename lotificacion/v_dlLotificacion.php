@@ -117,9 +117,9 @@
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lotificacion</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion">
+                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z ]{5,}" title="!Solo introduzca letras!">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
