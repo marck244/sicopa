@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["loginUser-name"])){
+    /*mas codigo si esta logueado*/
+}else{
+    header("Location: ../user/v_login");
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -72,7 +80,7 @@
             </div><!-- Container Fluid-->
         </nav>
         <div class="mr-infobar hidden-xs">
-            Bienvenido: <strong>Marvin Segura</strong> Hora: <strong>02:00 AM</strong>
+            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
 
@@ -180,9 +188,7 @@
 </center>
 </div> <!-- /container -->       
 <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
 <script src="../js/vendor/bootstrap.min.js"></script>
-
 <script src="../js/main.js"></script>
 </body>
 </html>
