@@ -13,13 +13,16 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
     <script>
     function sumar(num){
       var suma = 0.00;
       i=1;
-      while(i<=3){
+      while(i<=num){
         if(eval($("#cuenta"+i).val())==null){
           suma += 0;
         }
@@ -30,6 +33,13 @@
       }
       document.getElementById("total").innerHTML = "$ "+suma.toFixed(2);;
     }
+    function hacerPago(factura,cuota){
+      if(factura=='' || couta==''){
+        alertify.warning('El numero de FACTURA y CUOTA no pueden estar vacios');
+        return false;
+      }
+    }//funcion hacerPago()
+  
     </script>
 
 
@@ -111,27 +121,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-                    <div class="sidebar-nav">
-                      <div class="navbar navbar-default" role="navigation">
-                        <div class="navbar-header">
-                          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <span class="visible-xs navbar-brand">Menu Pagos</span>
-                        </div>
-                        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="#">Calculo de Pagos</a></li>
-                            </ul>
-                        </div><!--/.nav-collapse -->
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <fielset>
                         <legend>Calculo de Pagos</legend>
                         <div class="jumbotron">
@@ -140,9 +130,9 @@
                                     <div class="col-lg-6">
                                         <label for="lotiname" class="control-label col-sm-4 hidden-xs">DUI Cliente</label>
                                         <div class="input-group col-sm-8">
-                                            <input type="text" class="form-control" placeholder="000000-0">
+                                            <input type="text" name="dui" id="dui" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" pattern="[0-9-]{10}" title="Solo se aceptan numeros. No letras." placeholder="00000000-0" required>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default" type="button">Buscar!</button>
+                                                <button class="btn btn-default" type="submit">Buscar!</button>
                                             </span>
                                         </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
@@ -151,9 +141,7 @@
                         </div>
                     </fielset>
                     <div class="panel panel-default">
-                        <!-- Default panel contents -->
                         <div class="panel-heading">Listado de Cuentas Abiertas de <strong>Marvin Rolando Segura Menjivar</strong></div>
-                        <!-- Table -->
                         <div class="table-responsive">
                             <table class="table table-hover text-center">
                                <tr>
@@ -172,52 +160,61 @@
                              </tr>
 
                              <tr>
+                            
                               <td>2</td>
-                              <td>Lotificacion Esparta</td>
+                              <td>La Cima 2</td>
                               <td>E004 </td>
                               <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253" size="10"></td>
+                              <td><input type="number" placeholder="Numero" id="factura1"></td>
                               <td>$ 4,500.00</td>
                               <td>$ 33.33</td>
                               <td>$ 5.00</td>
                               <td>$ 4.33</td>
                               <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta1" onkeyup="sumar(3)" size="10"></td>
+                              <td><input type="text" placeholder="$" id="cuenta1" onkeyup="sumar(3)" size="5"></td>
                               <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
+                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2" onclick="hacerPago(factura1.value,cuenta1.value)"></a>
                               </td>
+                             
+
                           </tr>
                           <tr>
+                           
                               <td>3</td>
-                              <td>Lotificacion Esparta</td>
+                              <td>Esparta</td>
                               <td>E005 </td>
                               <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253" size="10"></td>
+                              <td><input type="number" placeholder="Numero" id="factura2"></td>
                               <td>$ 4,500.00</td>
                               <td>$ 33.33</td>
                               <td>$ 5.00</td>
                               <td>$ 4.33</td>
                               <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta2" onkeyup="sumar(3)" size="10"></td>
+                              <td><input type="text" placeholder="$" id="cuenta2" onkeyup="sumar(3)" size="5"></td>
                               <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
+                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2" onclick="hacerPago(factura2.value,cuenta2.value)"></a>
                               </td>
+                           
+
                           </tr>
                           <tr>
+                            
                               <td>38</td>
-                              <td>Lotificacion Esparta</td>
+                              <td>La Cima</td>
                               <td>E040 </td>
                               <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="text" placeholder="#00253" size="10"></td>
+                              <td><input type="number" placeholder="Numero" id="factura3"></td>
                               <td>$ 4,500.00</td>
                               <td>$ 33.33</td>
                               <td>$ 5.00</td>
                               <td>$ 4.33</td>
                               <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta3" onkeyup="sumar(3)" size="10"></td>
+                              <td><input type="text" placeholder="$" id="cuenta3" onkeyup="sumar(3)" size="5"></td>
                               <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2"></a>
+                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2" onclick="hacerPago(factura3.value,cuenta3.value)"></a>
                               </td>
+                              
+
                           </tr>
                             <tr>
                               
@@ -235,13 +232,13 @@
                               <td></td>
                           </tr>
                       </table>
-                  </div>
-              </div> 
-          </div><!-- row 2-->
-                </div><!-- ROW-->
+                  </div> <!-- no se 1-->
+                  </div> <!-- no se 2-->
+                </div><!-- tabla-->
+            </div><!-- ROW-->
         </div><!-- container-->
 
-
+<button class="btn btn-primary" id="notification">Click</button>
 
 
 <center>
@@ -251,9 +248,7 @@
 </center>
      
 <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
 <script src="../js/vendor/bootstrap.min.js"></script>
-
 <script src="../js/main.js"></script>
 </body>
 </html>

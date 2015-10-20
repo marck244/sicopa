@@ -117,7 +117,7 @@
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lotificacion</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z ]{5,}" title="No se admiten numeros" required>
+                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z ]{5,150}" title="No se admiten numeros" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -141,7 +141,7 @@
             <div class="form-group">
                 <label for="Nombre Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre</label>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" class="form-control" placeholder="Nombre de la Nueva Lotificacion" pattern="[A-Za-z ]{5,}" required>
+                    <input type="text" class="form-control" placeholder="Nombre de la Nueva Lotificacion" pattern="[A-Za-z ]{5,150}" title="No se admiten numeros. Maximo 150 caracteres." required>
                 </div>
             </div>
             <div class="form-group">
@@ -151,9 +151,9 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="Precio de Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio USD $</label>
+                <label for="Precio de Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio $ USD</label>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" class="form-control" placeholder="Precio de la lotificacion adquirida" pattern="[0-9.]{5,}" title="Ejemplo: 12345.67" required>
+                    <input type="text" class="form-control" placeholder="Ejemplo: 10000 o 10000.99" pattern="[0-9.]{7,9}" title="Ejemplo 1234567.89 No se permiten las comas (,). \n Minimo de un terremo es de $1000.00" required>
                 </div>
             </div>
             <div class="form-group">
