@@ -54,15 +54,20 @@
 }
 .alertify-notifier .ajs-message.ajs-success {
   color: #fff;
-  background: rgba(91, 189, 114, 0.95);
+  background: rgba(51, 192, 84, 0.90);
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
 }
 .alertify-notifier .ajs-message.ajs-error {
   color: #fff;
-  background: rgba(217, 92, 92, 0.95);
+  background: rgba(213, 32, 32, 0.90);
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.5);
 }
 .alertify-notifier .ajs-message.ajs-warning {
-  background: rgba(252, 248, 215, 0.95);
+  background: rgba(255, 241, 129, 0.90);
+  border-color: #999;
+}
+.alertify-notifier .ajs-message.ajs-log {
+  color:#fff;
+  background: rgba(0, 0, 0, 0.90);
   border-color: #999;
 }
