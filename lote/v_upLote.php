@@ -18,6 +18,8 @@
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+   
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -122,7 +124,7 @@
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs"># Lote :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control"   placeholder="#numero de Lote" pattern="[A-Za-z ]{5,}" title="No se admiten numeros" required>
+                                <input type="text" class="form-control"   placeholder="#numero de Lote"  onkeypress="return isNumberKey(event)">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -145,7 +147,7 @@
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                             <input type="name" class="form-control" readonly="true" placeholder="# Lote">
+                                             <input type="name" class="form-control" readonly="true"  placeholder="# Lote">
                             </div>
                         </div>
                              <div class="form-group">
