@@ -23,6 +23,20 @@ if(isset($_SESSION["loginUser-name"])){
     <link rel="stylesheet" href="css/main.css">
 
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    <script>
+    var horaServidor = function () {
+        // Do stuff
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("timeServer").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "conexion/timetime.php", true);
+        xhttp.send();
+    };
+    setInterval(horaServidor, 1000);
+    </script>
 </head>
 <body>
         <!--[if lt IE 8]>
@@ -84,7 +98,7 @@ if(isset($_SESSION["loginUser-name"])){
                 </div><!-- Container Fluid-->
             </nav>
             <div class="mr-infobar hidden-xs">
-                Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong>02:00 AM</strong>
+                Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
             </div>
             <!-- FIN Nuevo Nav Bar-->
 
@@ -209,12 +223,9 @@ if(isset($_SESSION["loginUser-name"])){
                 <p>&copy; SICOPA 2015</p>
             </footer>
         </center>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
     <script src="js/vendor/bootstrap.min.js"></script>
 
-    <script src="js/main.js"></script>
 </body>
 </html>
 

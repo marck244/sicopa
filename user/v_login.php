@@ -42,8 +42,11 @@ if(isset($_SESSION["loginUser-name"])){
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+        <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
         <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+        <script type="text/javascript" src="../alertify/alertify.min.js"></script>
         <script>
             setTimeout(function() {
                 $("#login-error").slideDown(500);
@@ -87,13 +90,9 @@ if(isset($_SESSION["loginUser-name"])){
             </h3>
             <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-3 col-lg-6 col-lg-offset-4">
                 <?php if ($error==1) {?>
-                <div id="login-error" class="form-group" style="display: none;">
-                            <div class="alert alert-danger" role="alert">
-                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                              <span class="sr-only">Error:</span>
-                              Nombre de Usuario y Contraseña no coindicen!
-                          </div>
-                </div>
+                <script>
+                alertify.error("Nombre de Usuario y Contraseña no coindicen!");
+                </script>
                 <?php } ?>
                 <form class="form-horizontal" method="POST">
                         <div class="form-group">

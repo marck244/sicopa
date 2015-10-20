@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["loginUser-name"])){
+    /*mas codigo si esta logueado*/
+}else{
+    header("Location: ../user/v_login");
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -40,11 +48,8 @@
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-<<<<<<< HEAD
                                 <li class="active"><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
-=======
                                 <li><a href="v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
->>>>>>> refs/remotes/origin/master
                                 <li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
                             </ul>
                         </li>
@@ -78,7 +83,7 @@
             </div><!-- Container Fluid-->
         </nav>
         <div class="mr-infobar hidden-xs">
-            Bienvenido: <strong>Marvin Segura</strong> Hora: <strong>02:00 AM</strong>
+            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
 

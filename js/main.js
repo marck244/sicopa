@@ -108,3 +108,17 @@
 /**************************************************************
 ****************************************************************/
 	/********** script validacion para NIT FIN ******/
+
+/*  Hora del Sistema */
+var horaServidor = function () {
+        // Do stuff
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("timeServer").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "../conexion/timetime.php", true);
+        xhttp.send();
+    };
+setInterval(horaServidor, 1000);
