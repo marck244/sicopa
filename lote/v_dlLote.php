@@ -122,14 +122,14 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="#">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Num/Lote:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Ingresar Numero de Lote">
+                                <input type="text" class="form-control" placeholder="Ingresar Numero de Lote" pattern="[0-9]{1,5}" title="No dejar este campo Vacio y digitar solo numeros"  required>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
