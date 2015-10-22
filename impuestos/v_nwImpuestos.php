@@ -53,16 +53,17 @@
                             </ul>
                         </li>
                         
-                              <li class="active"><a href="v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                              
                             <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
-                             <li class="dropdown">
+                             <li class="dropdown active">
                             <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
                                               <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
+                                              <li class="active"><a href="v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                             </ul>
                         </li>
 
@@ -117,7 +118,7 @@
                    <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre Impuesto:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del impuesto">
+             <input type="name" class="form-control" placeholder="Nombre del impuesto" pattern="[A-Z]{1,25}" title="Ingresar Solo letras y no dejar el campo vacio" required> 
          </div>
      </div>
 
@@ -125,7 +126,7 @@
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Valor del impuesto">
+             <input type="name" class="form-control" placeholder="Valor del impuesto" pattern="[0-9]" title="Ingreso de solo numeros y no dejar campo vacio" required>
          </div>
      </div>
     
