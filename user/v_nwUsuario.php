@@ -13,8 +13,37 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+    <script type="text/javascript">
+
+    function val(){
+
+    	var contraseña=document.getElementById("contrasenia1");
+    	var contraseña1=document.getElementById("contrasenia2");
+
+    	if (contraseña.value != contraseña1.value) {
+
+    		alertify.error("La contraseñas no coinciden");
+    		return true;
+
+
+    	}
+    	return false;
+
+
+
+
+
+    }
+
+
+
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -112,7 +141,7 @@
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo Usuario</legend>
-                       <form action="#" class="form-horizontal">
+                       <form action="#" class="form-horizontal" onsubmit="return val()">
                         
                     <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
@@ -137,13 +166,13 @@
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" class="form-control" pattern="[-\w.]{6,32}" title="Debe escribir como minimo una contraseña que tenga 5 caracteres y un maximo de 32 caracteres" placeholder="*********" required>
+             <input type="password" id="contrasenia1" class="form-control" pattern="[-\w.]{6,32}" title="Debe escribir como minimo una contraseña que tenga 5 caracteres y un maximo de 32 caracteres" placeholder="*********" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Repetir Contraseña:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" class="form-control" placeholder="*********">
+             <input type="password" id="contrasenia2" class="form-control"  placeholder="*********">
          </div>
      </div>
 
