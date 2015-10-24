@@ -117,7 +117,7 @@
                     <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="text" class="form-control" placeholder="Usuario Nickname" pattern="^[-\w.]{8,25}$" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+             <input type="text" class="form-control" placeholder="Usuario Nickname" pattern="[-\w.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
          </div>
      </div>
 
@@ -125,19 +125,19 @@
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del Usuario" pattern="^[a-zA-Z][-\s.]{4,25}$" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" class="form-control" placeholder="Nombre del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Apellido del Usuario" pattern="[a-zA-Z][-\s.]{4,25}$" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" class="form-control" placeholder="Apellido del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" class="form-control" placeholder="*********">
+             <input type="password" class="form-control" pattern="[-\w.]{6,32}" title="Debe escribir como minimo una contraseña que tenga 5 caracteres y un maximo de 32 caracteres" placeholder="*********" required>
          </div>
      </div>
      <div class="form-group">
