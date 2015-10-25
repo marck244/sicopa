@@ -13,8 +13,37 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+    <script type="text/javascript">
+
+    function val(){
+
+    	var contraseña=document.getElementById("contrasenia1");
+    	var contraseña1=document.getElementById("contrasenia2");
+
+    	if (contraseña.value != contraseña1.value) {
+
+    		alertify.error("La contraseñas no coinciden");
+    		return true;
+
+
+    	}
+    	return false;
+
+
+
+
+
+    }
+
+
+
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -52,7 +81,7 @@
                             </ul>
                         </li>
                         
-                              <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                              
                                                 <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
@@ -62,6 +91,7 @@
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li class="active"><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
                                 <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
+                                <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                             </ul>
                         </li>
 
@@ -111,12 +141,12 @@
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo Usuario</legend>
-                       <form action="" class="form-horizontal">
+                       <form action="#" class="form-horizontal" onsubmit="return val()">
                         
                     <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Usuario Nickname">
+             <input type="text" class="form-control" placeholder="Usuario Nickname" pattern="[-\w.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
          </div>
      </div>
 
@@ -124,25 +154,25 @@
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del Usuario">
+             <input type="name" class="form-control" placeholder="Nombre del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Apellido del Usuario">
+             <input type="name" class="form-control" placeholder="Apellido del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" class="form-control" placeholder="*********">
+             <input type="password" id="contrasenia1" class="form-control" pattern="[-\w.]{6,32}" title="Debe escribir como minimo una contraseña que tenga 5 caracteres y un maximo de 32 caracteres" placeholder="*********" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Repetir Contraseña:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" class="form-control" placeholder="*********">
+             <input type="password" id="contrasenia2" class="form-control"  placeholder="*********">
          </div>
      </div>
 

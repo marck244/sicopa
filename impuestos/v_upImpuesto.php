@@ -53,16 +53,17 @@
                             </ul>
                         </li>
                         
-                              <li class="active"><a href="v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                              
                             <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
-                             <li class="dropdown">
+                             <li class="dropdown active">
                             <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
                                               <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
+                                              <li class="active"><a href="v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                             </ul>
                         </li>
 
@@ -116,14 +117,14 @@
 
 
   <div class="jumbotron">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="#">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Impuesto:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar por nombre del Impuesto">
+                                <input type="text" class="form-control" placeholder="Buscar por nombre del Impuesto" pattern="[A-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
@@ -139,7 +140,7 @@
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="" class="form-horizontal">
+                       <form action="#" class="form-horizontal">
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -150,7 +151,7 @@
                              <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del impuesto">
+             <input type="name" class="form-control" placeholder="Nombre del impuesto" pattern="[A-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
          </div>
      </div>
 
@@ -158,7 +159,7 @@
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Valor del impuesto">
+             <input type="name" class="form-control" placeholder="Valor del impuesto" pattern="[0-9]" title="no dejar el campo vacio y ingresar solo numeros" required>
          </div>
      </div>
     

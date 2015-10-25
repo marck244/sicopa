@@ -74,7 +74,7 @@ if(isset($_SESSION["loginUser-name"])){
                             </ul>
                             </li>
 
-                         <li><a href="impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                         
                             
                          <li><a href="reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
@@ -85,6 +85,7 @@ if(isset($_SESSION["loginUser-name"])){
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
                                 <li><a href="profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
+                                <li><a href="impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                                 
                             </ul>
                         </li>
