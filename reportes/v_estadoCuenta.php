@@ -197,7 +197,7 @@
                         </div>
                         <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading"><span class="glyphicon glyphicon-print mr-glyphicon-2"></span> Estado/Historial de Cuenta</div>                        
+                        <div class="panel-heading alig txt-right">Estado/Historial de Cuenta<span class="glyphicon glyphicon-print mr-glyphicon-2 mr-glyphicon-padding-6"></span></div>                        
                         <!-- Table -->
                         <div class="table-responsive" id="tablaCuenta">
                           

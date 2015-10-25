@@ -44,6 +44,10 @@
 .mr-glyphicon-2{
   font-size: 20px;
 }
+.mr-glyphicon-padding-6{
+  padding-left: 20px;
+  padding-right: 6px;
+}
 .mr-infobar{
   background-color: #008DFF;
   color: #FFFFFF;
@@ -57,6 +61,10 @@
 }
 .txt-center{
   text-align: center;
+}
+.txt-right{
+  text-align: right;
+
 }
 .separate{
   width: 30%;
