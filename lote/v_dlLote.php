@@ -151,7 +151,7 @@ if(isset($_SESSION["loginUser-name"])){
      <tr>
         <th>Numero de Lote</th>
     <th>Precio/Lote</th>
-    <th>Extencion/Lote</th>      
+    <th>Extension/Lote</th>      
     <th>Lotificacion</th>
     <th>Poligono/Ubicacion</th>
     <th>Eliminar</th>
