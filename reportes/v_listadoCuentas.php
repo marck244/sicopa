@@ -113,6 +113,13 @@
                     <fielset>
                         <legend>Listado de Estados de Cuentas</legend>
                     </fielset>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">Al Corriente</button>
+                        <button type="button" class="btn btn-default">Dias Criticos</button>
+                        <button type="button" class="btn btn-default">Mora</button>
+                      </div>
+                      <br><br>
+
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <div class="panel-heading">Listado de Cuenta de <strong>Vigentes</strong></div>
