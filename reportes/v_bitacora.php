@@ -18,6 +18,8 @@
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+<<<<<<< HEAD
+=======
     <script>
     function filtroNormal(){
       setTimeout(function(){
@@ -64,6 +66,7 @@
 
     }
     </script>
+>>>>>>> refs/remotes/origin/master
 
 </head>
 <body>
