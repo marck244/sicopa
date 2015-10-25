@@ -44,6 +44,10 @@
 .mr-glyphicon-2{
   font-size: 20px;
 }
+.mr-glyphicon-padding-6{
+  padding-left: 20px;
+  padding-right: 6px;
+}
 .mr-infobar{
   background-color: #008DFF;
   color: #FFFFFF;
@@ -58,13 +62,22 @@
 .txt-center{
   text-align: center;
 }
+.txt-right{
+  text-align: right;
+
+}
 .separate{
   width: 30%;
   border-bottom: 1px solid #E4E4E4;
   margin-top: 10px;
   margin-bottom: 30px;
 }
-
+.controles-filtro{
+  padding-top: 0px;
+}
+.ocultar{
+  display: none;
+}
 
 
 

@@ -129,7 +129,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lotificacion</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z ]{5,150}" title="!Solo introduzca letras! Minimo 5, maximo 150 caracteres!">
+                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z ]{5,150}" title="!Solo introduzca letras! Minimo 5, maximo 150 caracteres!" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
