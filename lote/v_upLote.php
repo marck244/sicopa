@@ -65,7 +65,7 @@ if(isset($_SESSION["loginUser-name"])){
                             </ul>
                         </li>
                         
-                              <li ><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                              
                                                                         <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
@@ -75,6 +75,7 @@ if(isset($_SESSION["loginUser-name"])){
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
                                         <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
+                                        <li ><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                             </ul>
                         </li>
 
@@ -127,12 +128,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
   <div class="jumbotron">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="#">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs"># Lote :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control"   placeholder="#numero de Lote"  onkeypress="return isNumberKey(event)">
+                                <input type="text" class="form-control" pattern="[0-9]{1,5}"   placeholder="#numero de Lote" required title="No dejar este campo Vacio y digitar solo numeros">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -150,7 +151,7 @@ if(isset($_SESSION["loginUser-name"])){
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="" class="form-horizontal">
+                       <form action="#" class="form-horizontal">
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -161,19 +162,19 @@ if(isset($_SESSION["loginUser-name"])){
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Metros cuadrados">
+             <input type="name" class="form-control" placeholder="Metros cuadrados" pattern="[0-9]" title="Ingresar solo numeros" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="valor de el lote">
+             <input type="name" class="form-control" placeholder="valor de el lote" pattern="[0-9]" title="Ingresar solo numeros" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbolotificacion" class="form-control">
+             <select name="cbolotificacion" class="form-control" required title="Debe seleccionar una Lotificacion">
                  
              </select>
          </div>
@@ -182,7 +183,7 @@ if(isset($_SESSION["loginUser-name"])){
     <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Poligono :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbopoligono" class="form-control">
+             <select name="cbopoligono" class="form-control" required title="Debe seleccionar un poligono">
                  
              </select>
          </div>
