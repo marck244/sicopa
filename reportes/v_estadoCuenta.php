@@ -17,9 +17,9 @@
     <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-<<<<<<< HEAD
+
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
-=======
+
     <script>
     function buscarHistorial(cuenta){
       xhttp = new XMLHttpRequest();
@@ -32,7 +32,7 @@
         xhttp.send();
     }
     </script>
->>>>>>> refs/remotes/origin/master
+
 
 </head>
 <body>
