@@ -17,12 +17,15 @@ if(isset($_SESSION["loginUser-name"])){
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 </head>
 <body>
     <!--[if lt IE 8]>

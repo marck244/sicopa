@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 </head>
 <body>
     <!--[if lt IE 8]>
