@@ -26,6 +26,17 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+    <script type="text/javascript">
+         function cancelareliminarlote(){
+      alertify.log("proceso ha sido Cancelado!");
+    }
+
+        function eliminarlote()
+        {
+            /******************* codigo para eliminar         */
+        }
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -129,9 +140,9 @@ if(isset($_SESSION["loginUser-name"])){
                 <form class="form-horizontal" action="#">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Num/Lote:</label>
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lote:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Ingresar Numero de Lote" pattern="[0-9]{1,5}" title="No dejar este campo Vacio y digitar solo numeros"  required>
+                                <input type="text" class="form-control"    placeholder="Ingresar Codigo de Lote" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" title="Ingresa primer digito letra y los restantes numeros" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -194,7 +205,7 @@ if(isset($_SESSION["loginUser-name"])){
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary">Aceptar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-default" onclick="cancelareliminarlote();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
         </div>

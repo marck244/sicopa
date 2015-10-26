@@ -204,9 +204,9 @@ if(isset($_SESSION["loginUser-name"])){
                        <form action="" class="form-horizontal" onsubmit="return validar()">
                         
                         <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo/Lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" maxlength="4" onkeypress="return detallesextra(event)" class="form-control" placeholder="Codigo de Lote">
+             <input type="name" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" title="Ingresa primer digito letra y los restantes numeros" class="form-control" placeholder="Codigo de Lote" required>
          </div>
      </div>
 
