@@ -51,6 +51,19 @@ if(isset($_SESSION["loginUser-name"])){
 
     <!-- **************************** -->
 
+
+    <script type="text/javascript">
+         function cancelareliminarcliente(){
+      alertify.log("proceso ha sido Cancelado!");
+    }
+
+        function eliminarcliente()
+        {
+            /******************* codigo para eliminar         */
+        }
+    </script>
+
+
     
 </head>
 <body>
@@ -219,7 +232,7 @@ if(isset($_SESSION["loginUser-name"])){
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary">Aceptar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-default" onclick="cancelareliminarcliente();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
         </div>

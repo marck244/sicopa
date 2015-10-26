@@ -131,9 +131,9 @@ if(isset($_SESSION["loginUser-name"])){
                 <form class="form-horizontal" action="#">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs"># Lote :</label>
+                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lote :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" pattern="[0-9]{1,5}"   placeholder="#numero de Lote" required title="No dejar este campo Vacio y digitar solo numeros">
+                                <input type="text" class="form-control"    placeholder="Ingresar Codigo de Lote" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" title="Ingresa primer digito letra y los restantes numeros" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -153,10 +153,10 @@ if(isset($_SESSION["loginUser-name"])){
                         
                        <form action="#" class="form-horizontal">
                         <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo/Lote :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                             <input type="name" class="form-control" readonly="true"  placeholder="# Lote">
+                                             <input type="name" class="form-control" readonly="true"  placeholder="Codigo de Lote">
                             </div>
                         </div>
                              <div class="form-group">

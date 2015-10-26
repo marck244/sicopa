@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["loginUser-name"])){
+    /*mas codigo si esta logueado*/
+}else{
+    header("Location: ../user/v_login");
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -25,6 +33,12 @@
   {
     
     if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+
+        if(form.pwd1.value.length > 25) {
+        alertify.error("Error: la contraseña no debe tener un maximo de 25 caracteres!");
+        form.pwd1.focus();
+        return false;
+      }
       if(form.pwd1.value.length < 6) {
         alertify.error("Error: la contraseña debe tener un minimo de 6 caracteres!");
         form.pwd1.focus();
@@ -115,8 +129,8 @@
 
             </div><!-- Container Fluid-->
         </nav>
-        <div class="mr-infobar hidden-xs">
-            Bienvenido: <strong>Marvin Segura</strong> Hora: <strong>02:00 AM</strong>
+       <div class="mr-infobar hidden-xs">
+            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
 
