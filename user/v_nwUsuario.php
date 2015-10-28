@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["loginUser-name"])){
+    /*mas codigo si esta logueado*/
+}else{
+    header("Location: ../user/v_login");
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -21,25 +29,43 @@
 
     <script type="text/javascript">
 
-    function val(){
+    function checkForm(form)
+  {
+    
+    if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
 
-    	var contraseña=document.getElementById("contrasenia1");
-    	var contraseña1=document.getElementById("contrasenia2");
-
-    	if (contraseña.value != contraseña1.value) {
-
-    		alertify.error("La contraseñas no coinciden");
-    		return true;
-
-
-    	}
-    	return false;
-
-
-
-
-
+        if(form.pwd1.value.length > 25) {
+        alertify.error("Error: la contraseña no debe tener un maximo de 25 caracteres!");
+        form.pwd1.focus();
+        return false;
+      }
+      if(form.pwd1.value.length < 6) {
+        alertify.error("Error: la contraseña debe tener un minimo de 6 caracteres!");
+        form.pwd1.focus();
+        return false;
+      }
+      if(form.pwd1.value == form.username.value) {
+        alertify.error("Error: la contraseña debe ser diferente a el Nickname ingresado!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[0-9]/;
+      if(!re.test(form.pwd1.value)) {
+        alertify.error("Error: la contraseña debe contener al menos un numero!");
+        form.pwd1.focus();
+        return false;
+      }
+     
+     
+    } else {
+      alertify.warning("Atencion: debes ingresar una contraseña y confirmarla!");
+      form.pwd1.focus();
+      return false;
     }
+
+   
+    return true;
+  }
 
 
 
@@ -103,8 +129,8 @@
 
             </div><!-- Container Fluid-->
         </nav>
-        <div class="mr-infobar hidden-xs">
-            Bienvenido: <strong>Marvin Segura</strong> Hora: <strong>02:00 AM</strong>
+       <div class="mr-infobar hidden-xs">
+            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
 
@@ -141,12 +167,12 @@
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo Usuario</legend>
-                       <form action="#" class="form-horizontal" onsubmit="return val()">
+                       <form action="#" class="form-horizontal" onsubmit="return checkForm(this)">
                         
                     <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="text" class="form-control" placeholder="Usuario Nickname" pattern="[-\w.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+             <input type="text" class="form-control" name="username" placeholder="Usuario Nickname" pattern="[/^\w+$/]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
          </div>
      </div>
 
@@ -166,13 +192,13 @@
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" id="contrasenia1" class="form-control" pattern="[-\w.]{6,32}" title="Debe escribir como minimo una contraseña que tenga 5 caracteres y un maximo de 32 caracteres" placeholder="*********" required>
+             <input type="password" name="pwd1" class="form-control"  placeholder="*********">
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Repetir Contraseña:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" id="contrasenia2" class="form-control"  placeholder="*********">
+             <input type="password" name="pwd2" class="form-control"  placeholder="*********">
          </div>
      </div>
 

@@ -21,15 +21,38 @@ if(isset($_SESSION["loginUser-name"])){
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.min.css">
-    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.min.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
 
 
+    <!-- BUSQUEDA METODO ESTILO GOOGLE -->
+    <script type="text/javascript">
+function lookup1(element_1) {
+                if(element_1.length == 0) {
+                    // Hide the suggestion box.
+                    $('#suggestions1').hide();
+                } else {
+                    $.post("m_busquedacliente.php", {consulta: ""+element_1+""}, function(data){
+                        if(data.length >0) {
+                            $('#suggestions1').show();
+                            $('#autoSuggestionsList1').html(data);
+                        }
+                    });
+                }
+            } // lookup
+            
+                function fill1(thisValue) {
+                $('#element_1').val(thisValue);
+                setTimeout("$('#suggestions1').hide();", 200);
+            }
+</script>
 
+
+<!-- FIN SCRIPT -->
    
 
 
@@ -282,7 +305,12 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Nombre :</label>
                             <div class="input-group">
-                                <input name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" type="text" class="form-control" placeholder="#numero de Dui">
+                                <input name="element_1" id="element_1" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" type="text" class="form-control" placeholder="#numero de Dui" onChange='buscar=this.value' onkeyup="lookup1(this.value);" onblur="fill1();">
+                                <div class="suggestionsBox" id="suggestions1" style="display: none; overflow-y:scroll; height:100px;">
+                                <div class="suggestionList" id="autoSuggestionsList1">
+                                    
+                                </div>
+                            </div>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>

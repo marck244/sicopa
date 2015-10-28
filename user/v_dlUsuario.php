@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["loginUser-name"])){
+    /*mas codigo si esta logueado*/
+}else{
+    header("Location: ../user/v_login");
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -13,14 +21,30 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+
+     <script type="text/javascript">
+         function cancelareliminarusuario(){
+      alertify.log("proceso ha sido Cancelado!");
+    }
+
+        function eliminarusuario()
+        {
+            /******************* codigo para eliminar         */
+        }
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+       
         <!-- Nuevo Nav Bar-->
         <nav class="navbar navbar-inverse navbar-fixed-top"> <!-- navbar-dafault o navbar-inverse -->
             <div class="container-fluid">
@@ -33,7 +57,7 @@
                     <a href="#" class="navbar-brand">SICOPA</a>
                 </div>
 
-               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li ><a href="../" class="glyphicon glyphicon-home" ></a></li>
                         <li class="dropdown">
@@ -47,7 +71,7 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                                     <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
+                                          <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
                                 <li><a href="../lote/v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                         </li>
@@ -65,11 +89,8 @@
                                 <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                             </ul>
                         </li>
-                            </ul>
-                        </li>
 
                         <li ><a href="logout" class="glyphicon glyphicon-off" > SALIR</a></li>
-
                     </ul>
 
                 </div>
@@ -77,8 +98,8 @@
 
             </div><!-- Container Fluid-->
         </nav>
-        <div class="mr-infobar hidden-xs">
-            Bienvenido: <strong>Marvin Segura</strong> Hora: <strong>02:00 AM</strong>
+       <div class="mr-infobar hidden-xs">
+            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
 
@@ -118,14 +139,14 @@
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="#">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Usuario :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre Completo">
+                                <input type="text" class="form-control" placeholder="Busqueda por Nickname" pattern="[/^\w+$/]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
@@ -183,7 +204,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary">Aceptar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-default" onclick="cancelareliminarusuario();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
         </div>

@@ -1,10 +1,18 @@
 <?php
+error_reporting(0);
 session_start();
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
+	$usuario=$_SESSION["loginUser-name"];
 }else{
     header("Location: ../user/v_login");
 }
+
+
+
+	
+	
+	
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -21,8 +29,8 @@ if(isset($_SESSION["loginUser-name"])){
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-theme.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
-	<link rel="stylesheet" type="text/css" href="../alertify/css/alertify.min.css">
-	<link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.min.css">
+	<link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
 	<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
 	<script type="text/javascript" src="../alertify/alertify.min.js"></script>
@@ -249,7 +257,8 @@ if(isset($_SESSION["loginUser-name"])){
 				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
 					<fielset>
 						<legend>Registro de un nuevo cliente</legend>
-					   <form action="" class="form-horizontal" onsubmit="return validar()">
+					   <form method="POST" action="m_nwCliente.php" class="form-horizontal" onsubmit="return validar()">
+                       <input type="text" name="usuario" value="<?php echo $usuario; ?>" style="visibility:hidden">
 						<div class="form-group">
 							<label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>
 							<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -299,7 +308,7 @@ if(isset($_SESSION["loginUser-name"])){
 	 <div class="form-group">
 		 <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Fecha Nacimiento :</label>
 		 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-			 <input type="date" class="form-control">
+			 <input type="date" name="fechanacimiento" class="form-control">
 		 </div>
 	 </div>
 
@@ -307,7 +316,8 @@ if(isset($_SESSION["loginUser-name"])){
 		 <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Profesion :</label>
 		 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 			 <select name="cboprofesion" class="form-control">
-				<option>Seleccione</option>
+				<option value="0">Seleccione</option>
+                <option value="1">Ingeniero</option>
 			 </select>
 		 </div>
 	 </div>
@@ -317,6 +327,7 @@ if(isset($_SESSION["loginUser-name"])){
 		 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 			 <select name="cbodepa" class="form-control">
 				<option>Seleccione</option>
+				<option value="Chalatenango">Chalatenango</option>
 			 </select>
 		 </div>
 	 </div>
@@ -326,6 +337,7 @@ if(isset($_SESSION["loginUser-name"])){
 		 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 			 <select name="cbomuni" id="cbomuni" class="form-control">
 				<option value="" >Seleccione</option>
+				<option value="1" >La Palma</option>
 			 </select>
 		 </div>
 	 </div>
@@ -334,8 +346,8 @@ if(isset($_SESSION["loginUser-name"])){
 		 <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Sabe Firmar :</label>
 		<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 			 <select name="cbofirma" class="form-control">
-				<option>Si</option>
-				<option>No</option>
+				<option value="Si">Si</option>
+				<option value="No">No</option>
 			 </select>
 		 </div>
 	 </div>
@@ -372,5 +384,22 @@ if(isset($_SESSION["loginUser-name"])){
 </body>
 </html>
 
+<?php
 
+	if ($_GET["duplicado"] == "dui") {
+		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese DUI porque ya existe");</script>  <?php 
+	}
+	if ($_GET["duplicado"] == "nit") {
+		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese NIT porque ya existe");</script>  <?php 
+	}
+	if($_GET["guardado"]=="si")
+	{
+			
 
+		?> <script type="text/javascript"> alertify.success("El registro del cliente se efectuo exitosamente");</script>  <?php 
+	}
+	if ($_GET["guardado"]== "no") {
+		?> <script type="text/javascript">alertify.error("Error: no se pudo efectuar el registro del cliente");</script>  <?php 
+	}
+
+?>

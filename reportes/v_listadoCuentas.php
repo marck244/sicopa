@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
 </head>
 <body>
@@ -53,7 +56,7 @@
                             </ul>
                         </li>
                         
-                              <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                              
                                                 <li class="active"><a href="v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
@@ -62,6 +65,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                                 <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
                             </ul>
                         </li>

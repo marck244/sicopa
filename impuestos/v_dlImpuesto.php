@@ -13,8 +13,23 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+    <script type="text/javascript">
+         function cancelareliminarimpuesto(){
+      alertify.log("proceso ha sido Cancelado!");
+    }
+
+        function eliminarimpuesto()
+        {
+            /******************* codigo para eliminar         */
+        }
+    </script>
+
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -181,7 +196,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-primary">Aceptar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-default" onclick="cancelareliminarimpuesto();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
         </div>

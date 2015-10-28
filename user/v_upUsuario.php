@@ -1,3 +1,11 @@
+<?php
+session_start();
+if(isset($_SESSION["loginUser-name"])){
+    /*mas codigo si esta logueado*/
+}else{
+    header("Location: ../user/v_login");
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -14,13 +22,62 @@
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
 
+    <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
+    <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
+
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+     <script type="text/javascript">
+
+    function checkForm(form)
+  {
+    
+    if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
+
+        if(form.pwd1.value.length > 25) {
+        alertify.error("Error: la contraseña no debe tener un maximo de 25 caracteres!");
+        form.pwd1.focus();
+        return false;
+      }
+      if(form.pwd1.value.length < 6) {
+        alertify.error("Error: la contraseña debe tener un minimo de 6 caracteres!");
+        form.pwd1.focus();
+        return false;
+      }
+      if(form.pwd1.value == form.username.value) {
+        alertify.error("Error: la contraseña debe ser diferente a el Nickname ingresado!");
+        form.pwd1.focus();
+        return false;
+      }
+      re = /[0-9]/;
+      if(!re.test(form.pwd1.value)) {
+        alertify.error("Error: la contraseña debe contener al menos un numero!");
+        form.pwd1.focus();
+        return false;
+      }
+     
+     
+    } else {
+      alertify.warning("Atencion: debes ingresar una contraseña y confirmarla!");
+      form.pwd1.focus();
+      return false;
+    }
+
+   
+    return true;
+  }
+
+
+
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
+        
         <!-- Nuevo Nav Bar-->
         <nav class="navbar navbar-inverse navbar-fixed-top"> <!-- navbar-dafault o navbar-inverse -->
             <div class="container-fluid">
@@ -47,27 +104,26 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                           <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
+                                          <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
                                 <li><a href="../lote/v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
                             </ul>
                         </li>
                         
                               
-                                                                        <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
+                                                <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
                              <li class="dropdown active">
                             <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
-                                <li class="active"><a href="v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
-                                                                <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
-                                                                <li ><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                                <li class="active"><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
+                                <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                             </ul>
                         </li>
 
                         <li ><a href="logout" class="glyphicon glyphicon-off" > SALIR</a></li>
-
                     </ul>
 
                 </div>
@@ -75,8 +131,8 @@
 
             </div><!-- Container Fluid-->
         </nav>
-        <div class="mr-infobar hidden-xs">
-            Bienvenido: <strong>Marvin Segura</strong> Hora: <strong>02:00 AM</strong>
+       <div class="mr-infobar hidden-xs">
+            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
 
@@ -116,14 +172,14 @@
 
 
   <div class="jumbotron">
-                <form class="form-horizontal">
+                <form class="form-horizontal" action="#">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Usuario :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre Completo">
+                                <input type="text" class="form-control" placeholder="Busqueda por Nickname" pattern="[/^\w+$/]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
@@ -139,36 +195,38 @@
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="" class="form-horizontal">
+                       <form action="#" class="form-horizontal" onsubmit="return checkForm(this);">
                      
               <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Usuario Nickname">
+             <input type="text" class="form-control" name="username" placeholder="Usuario Nickname" pattern="[/^\w+$/]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
          </div>
      </div>
-                         <div class="form-group">
+          
+                          <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del Usuario">
+             <input type="name" class="form-control" placeholder="Nombre del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Apellido del Usuario">
+             <input type="name" class="form-control" placeholder="Apellido del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña(Old):</label>
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña(Nueva):</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" class="form-control" placeholder="*********">
+             <input type="password" name="pwd1" class="form-control" placeholder="*********">
          </div>
      </div>
+
      <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña(New):</label>
+         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Confirmar Contraseña(Nueva):</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" class="form-control" placeholder="*********">
+             <input type="password" name="pwd2" class="form-control" placeholder="*********">
          </div>
      </div>
 

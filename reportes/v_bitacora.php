@@ -18,6 +18,7 @@
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
     <script>
     function filtroNormal(){
       setTimeout(function(){
@@ -65,6 +66,7 @@
     }
     </script>
 
+
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -102,7 +104,7 @@
                             </ul>
                         </li>
                         
-                              <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
+                              
                                                 <li class="active"><a href="v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
                         
 
@@ -111,6 +113,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
                                 <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
+                                <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
                                 <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
                             </ul>
                         </li>
