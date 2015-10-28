@@ -348,9 +348,7 @@ if(isset($_SESSION["loginUser-name"])){
 	if ($_GET["duplicado"] == "dui") {
 		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese DUI porque ya existe");</script>  <?php 
 	}
-	if ($_GET["duplicado"] == "nit") {
-		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese NIT porque ya existe");</script>  <?php 
-	}
+	
 	if($_GET["guardado"]=="si")
 	{
 			
