@@ -2,6 +2,12 @@
 session_start();
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
+    if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3") {
+        # code...
+        require("../conexion/list_menu.php");
+    }else{
+        header("Location: ../");
+    }
 }else{
     header("Location: ../user/v_login");
 }
@@ -47,48 +53,14 @@ if(isset($_SESSION["loginUser-name"])){
                 </div>
 
                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li ><a href="../" class="glyphicon glyphicon-home" ></a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-                                <li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
-                                <li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                                                        <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> LOTIFICACIONES</a></li>
-                                <li class="active"><a href="v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
-                            </ul>
-                        </li>
-                        
-                              
-                                                                        <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
-                        
-
-                             <li class="dropdown">
-                            <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
-                                <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
-                                        <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
-                                        <li ><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
-                            </ul>
-                        </li>
-
-                        <li ><a href="../user/logout" class="glyphicon glyphicon-off" > SALIR</a></li>
-                    </ul>
-
+                    <?php echo $menu_system; ?>
                 </div>
 
 
             </div><!-- Container Fluid-->
         </nav>
         <div class="mr-infobar hidden-xs">
-            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
+            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer">--:--:--</strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
 
@@ -109,7 +81,7 @@ if(isset($_SESSION["loginUser-name"])){
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="visible-xs navbar-brand">Menu Opciones Lotes</span>
+                        <span class=" navbar-brand">Menu Lotes</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">

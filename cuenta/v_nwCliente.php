@@ -2,7 +2,13 @@
 session_start();
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
-    require("../conexion/list_menu.php");
+    if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3" || $_SESSION["user-nivelacceso"]=="4") {
+    	# code...
+    	require("../conexion/list_menu.php");
+    }else{
+    	header("Location: ../");
+    }
+    
 }else{
     header("Location: ../user/v_login");
 }
