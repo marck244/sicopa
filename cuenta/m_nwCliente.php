@@ -10,7 +10,7 @@
 		$nombre = $_POST["nombre"];
 		$apellido = $_POST["apellido"];
 		$nit = TRIM($_POST["nit"]);
-				$nitt= str_replace("-","",$nit);
+		$nitt= str_replace("-","",$nit);
 		$edad = $_POST["edad"];
 		$domicilio = $_POST["domicilio"];
 		$telefono = $_POST["telefono"];
@@ -21,14 +21,26 @@
 		$usuario= $_POST["usuario"];
 		
 		
-		$consultadui=$conn->query("SELECT CLIENTE_ID FROM cliente WHERE CLIENTE_ID=$duis ");
+		$consultadui=$conn->query("SELECT CLIENTE_ID FROM cliente WHERE CLIENTE_ID='$duis' ");
+		$arraydui=$consultadui->fetch_assoc();
+
+
+		$consultanit=$conn->query("SELECT CLIENTE_NIT FROM cliente WHERE CLIENTE_NIT='$nitt' ");
+		$arraynit=$consultanit->fetch_assoc();
+		
 
 		
 		
 		
 
-		if ($consultadui > 0) {
+		if ( $arraydui > 0 ) {
+
 			header("location: v_nwCliente.php?duplicado=dui");
+		}
+		elseif ($arraynit > 0) {
+
+			header("location: v_nwCliente.php?duplicado=nit");
+			
 		}
 
 
