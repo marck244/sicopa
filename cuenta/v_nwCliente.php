@@ -1,5 +1,6 @@
 <?php
 session_start();
+$usuario=$_SESSION["loginUser-name"];
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
     if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3" || $_SESSION["user-nivelacceso"]=="4") {
