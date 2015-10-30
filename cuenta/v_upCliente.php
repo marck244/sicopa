@@ -175,6 +175,26 @@ if(isset($_SESSION["loginUser-name"])){
 
    <!-- script validacion para domicilio excluyendo caracteres como @ o ! FIN-->
 
+   <script type="text/javascript">
+function lookup1(element_1) {
+                if(element_1.length == 0) {
+                    // Hide the suggestion box.
+                    $('#suggestions1').hide();
+                } else {
+                    $.post("m_busquedacliente.php", {consulta: ""+element_1+""}, function(data){
+                        if(data.length >0) {
+                            $('#suggestions1').show();
+                            $('#autoSuggestionsList1').html(data);
+                        }
+                    });
+                }
+            } // lookup
+            
+                function fill1(thisValue) {
+                $('#element_1').val(thisValue);
+                setTimeout("$('#suggestions1').hide();", 200);
+            }
+</script>
 
    
 </head>
@@ -282,11 +302,19 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-4 hidden-xs">DUI Cliente :</label>
                             <div class="input-group">
-                                <input name="cajatexto" id="cajatexto" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" type="text" class="form-control" placeholder="numero de Dui">
+                                <input name="element_1" id="element_1" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true); lookup1(this.value);" type="text" onChange='buscar=this.value' onblur="fill1();" class="form-control" placeholder="numero de Dui">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
+                            <div class="suggestionsBox" id="suggestions1" style="display: none; overflow-y:scroll; height:100px;">
+                                <img src="images/abajo.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" />
+                                <div class="suggestionList" id="autoSuggestionsList1">
+                                    &nbsp;
+                                </div>
+                            </div> 
+
+                            <input class="btn btn-default dropdown-toggle suggestionList" type="text" id="autoSuggestionsList1"  aria-haspopup="true" aria-expanded="true">
                         </div><!-- /.col-lg-6 -->
                     </div><!-- /.row -->
                 </form>
