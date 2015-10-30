@@ -1,5 +1,6 @@
 <?php
 session_start();
+$usuario=$_SESSION["loginUser-name"];
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
     if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3" || $_SESSION["user-nivelacceso"]=="4") {
@@ -228,7 +229,7 @@ if(isset($_SESSION["loginUser-name"])){
 							<label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>
 							<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 								
-											 <input type="text" name="dui" id="dui" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" placeholder="Ingresa Numero De Dui">
+											 <input type="name" name="dui" id="dui" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" placeholder="Ingresa Numero De Dui">
 							</div>
 						</div>
 							 <div class="form-group">
@@ -353,6 +354,10 @@ if(isset($_SESSION["loginUser-name"])){
 
 	if ($_GET["duplicado"] == "dui") {
 		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese DUI porque ya existe");</script>  <?php 
+	}
+
+	if ($_GET["duplicado"] == "nit") {
+		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese NIT porque ya existe");</script>  <?php 
 	}
 	
 	if($_GET["guardado"]=="si")
