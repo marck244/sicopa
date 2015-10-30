@@ -43,7 +43,7 @@ if(isset($_SESSION["loginUser-name"])){
 
     function valida () {
         
-        var busqueda= document.getElementById("busqueda");
+        var busqueda= document.getElementById("typeahead");
 
         if (busqueda.value=='') {
             alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
@@ -142,7 +142,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Nombre :</label>
                             <div class="input-group">
-                                <input type="text" name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" class="form-control" placeholder="# Numero de DUI">
+                                <input type="text" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -219,9 +219,33 @@ if(isset($_SESSION["loginUser-name"])){
 </footer>
 </center>
 </div> <!-- /container -->       
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-
+<script type="text/javascript" src="../js/vendor/jquery-ajax1.7.2.js"></script>
 <script src="../js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/vendor/bootstrap-typeahead.js"></script>
+
+<script type="text/javascript">
+    
+    $(function() {
+        $("#typeahead").typeahead({
+
+            source: function(typeahead,query){
+                $.ajax({
+                    url: 'm_busquedacliente.php',
+                    type: 'POST',
+                    data: 'query='+query,
+                    dataType: 'JSON',
+                    async: false,
+                    success: function(data){
+                            typeahead.process(data);
+                    }
+
+                });
+            }
+        });
+    });
+
+
+</script>
 
 
 </body>
