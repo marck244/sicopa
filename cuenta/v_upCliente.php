@@ -45,7 +45,7 @@ if(isset($_SESSION["loginUser-name"])){
 
     function valida () {
         
-        var busqueda= document.getElementById("busqueda");
+        var busqueda= document.getElementById("typeahead");
 
         if (busqueda.value=='') {
             alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
@@ -181,26 +181,7 @@ if(isset($_SESSION["loginUser-name"])){
 
    <!-- script validacion para domicilio excluyendo caracteres como @ o ! FIN-->
 
-   <script type="text/javascript">
-function lookup1(element_1) {
-                if(element_1.length == 0) {
-                    // Hide the suggestion box.
-                    $('#suggestions1').hide();
-                } else {
-                    $.post("m_busquedacliente.php", {consulta: ""+element_1+""}, function(data){
-                        if(data.length >0) {
-                            $('#suggestions1').show();
-                            $('#autoSuggestionsList1').html(data);
-                        }
-                    });
-                }
-            } // lookup
-            
-                function fill1(thisValue) {
-                $('#element_1').val(thisValue);
-                setTimeout("$('#suggestions1').hide();", 200);
-            }
-</script>
+
 
    
 </head>
@@ -274,19 +255,11 @@ function lookup1(element_1) {
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-4 hidden-xs">DUI Cliente :</label>
                             <div class="input-group">
-                                <input name="element_1" id="element_1" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true); lookup1(this.value);" type="text" onChange='buscar=this.value' onblur="fill1();" class="form-control" placeholder="numero de Dui">
+                                <input type="text" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
-                            </div><!-- /input-group -->
-                            <div class="suggestionsBox" id="suggestions1" style="display: none; overflow-y:scroll; height:100px;">
-                                <img src="images/abajo.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" />
-                                <div class="suggestionList" id="autoSuggestionsList1">
-                                    &nbsp;
-                                </div>
-                            </div> 
-
-                            <input class="btn btn-default dropdown-toggle suggestionList" type="text" id="autoSuggestionsList1"  aria-haspopup="true" aria-expanded="true">
+                            </div><!-- /input-group --> 
                         </div><!-- /.col-lg-6 -->
                     </div><!-- /.row -->
                 </form>
@@ -302,7 +275,7 @@ function lookup1(element_1) {
                         
                        <form action="" class="form-horizontal" onsubmit="return validar()">
                         <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
                                              <input type="name" class="form-control" readonly="true" placeholder="# Dui">
@@ -419,9 +392,34 @@ function lookup1(element_1) {
     </footer>
 </center>
 </div> <!-- /container -->        
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
+<script type="text/javascript" src="../js/vendor/jquery-ajax1.7.2.js"></script>
 <script src="../js/vendor/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/vendor/bootstrap-typeahead.js"></script>
+
+<script type="text/javascript">
+    
+    $(function() {
+        $("#typeahead").typeahead({
+
+            source: function(typeahead,query){
+                $.ajax({
+                    url: 'm_busquedacliente.php',
+                    type: 'POST',
+                    data: 'query='+query,
+                    dataType: 'JSON',
+                    async: false,
+                    success: function(data){
+                            typeahead.process(data);
+                    }
+
+                });
+            }
+        });
+    });
+
+
+</script>
 
 
 </body>
