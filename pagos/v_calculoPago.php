@@ -2,6 +2,12 @@
 session_start();
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
+    if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3" || $_SESSION["user-nivelacceso"]=="4") {
+        # code...
+        require("../conexion/list_menu.php");
+    }else{
+        header("Location: ../");
+    }
 }else{
     header("Location: ../user/v_login");
 }
@@ -91,53 +97,14 @@ if(isset($_SESSION["loginUser-name"])){
                     </button>
                     <a href="#" class="navbar-brand">SICOPA</a>
                 </div>
-
-             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li ><a href="../" class="glyphicon glyphicon-home" ></a></li>
-                        <li class="dropdown active">
-                            <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li ><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> Clientes</a></li>
-
-                                <li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> Cuentas</a></li>
-
-                             
-
-                                <li  class="active"><a href="v_calculoPago" class="glyphicon glyphicon-usd"> Pagos</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle glyphicon glyphicon-tower" data-toggle="dropdown"> LOTIFICACION <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="../lotificacion/v_nwLotificacion" class="glyphicon glyphicon-tower"> Lotificaciones</a></li>
-                                <li><a href="../lote/v_nwLote" class="glyphicon glyphicon-tree-conifer"> Lotes</a></li>
-                            </ul>
-                        </li>
-                        
-                              
-                        <li><a href="../reportes/v_estadoCuenta" class="glyphicon glyphicon-folder-open"> REPORTES</a></li>
-                        
-
-                             <li class="dropdown">
-                            <a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>
-                                <li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>
-                                <li><a href="../profesion/v_nwProfesion" class="glyphicon glyphicon-certificate"> PROFESIONES</a></li>
-                                <li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>
-                            </ul>
-                        </li>
-
-                        <li ><a href="../user/logout" class="glyphicon glyphicon-off" > SALIR</a></li>
-                    </ul>
-
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                  <?php echo $menu_system; ?>
                 </div>
 
             </div><!-- Container Fluid-->
         </nav>
         <div class="mr-infobar hidden-xs">
-            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer"></strong>
+            Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer">--:--:--</strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
 
@@ -158,16 +125,32 @@ if(isset($_SESSION["loginUser-name"])){
                                     <div class="col-lg-6">
                                         <label for="lotiname" class="control-label col-sm-4 hidden-xs">DUI Cliente</label>
                                         <div class="input-group col-sm-8">
-                                            <input type="text" name="dui" id="dui" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" pattern="[0-9-]{10}" title="Solo se aceptan numeros. No letras." placeholder="00000000-0" required>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="submit">Buscar!</button>
-                                            </span>
+                                          <div class="dropdown">
+                                          <input type="text" name="dui" id="dropdownMenu1" class="form-control dropdown-toggle" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" pattern="[0-9-]{10}" title="Solo se aceptan numeros. No letras." placeholder="00000000-0" required autocomplete="off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                            <li><a href="#">Escriba algo..</a></li>
+                                            <li><a href=""></a></li>
+                                          </ul>
+                                        </div>
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-default" type="submit">Buscar!</button>
+                                          </span>
                                         </div><!-- /input-group -->
                                     </div><!-- /.col-lg-6 -->
                                 </div><!-- /.row -->
                             </form>
                         </div>
                     </fielset>
+
+<div class="dropdown ocultar">
+  <input class="dropdown-toggle" type="text" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
                     <div class="panel panel-default">
                         <div class="panel-heading">Listado de Cuentas Abiertas de <strong>Marvin Rolando Segura Menjivar</strong></div>
                         <div class="table-responsive">
