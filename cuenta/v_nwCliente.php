@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 $usuario=$_SESSION["loginUser-name"];
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
@@ -351,14 +352,23 @@ if(isset($_SESSION["loginUser-name"])){
 </html>
 
 <?php
-
-	if ($_GET["duplicado"] == "dui") {
+if (empty($_GET['duplicado'])) 
+	{ 
+		$x="";
+	} 
+	else 
+	{ 
+		$x=$_GET['duplicado'];
+		if ($x == "dui") {
 		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese DUI porque ya existe");</script>  <?php 
 	}
-
-	if ($_GET["duplicado"] == "nit") {
+	if ($x == "nit") {
 		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese NIT porque ya existe");</script>  <?php 
 	}
+	}
+	
+
+	
 	
 	if($_GET["guardado"]=="si")
 	{

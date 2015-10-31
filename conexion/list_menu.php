@@ -35,7 +35,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_index.='</ul>';
 
         $menu_system.='<ul class="nav navbar-nav navbar-right">';
-        $menu_system.='<li><a href="index" class="glyphicon glyphicon-home" ></a></li>';
+        $menu_system.='<li><a href="../" class="glyphicon glyphicon-home" ></a></li>';
         $menu_system.='<li class="dropdown">';
         $menu_system.='<a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown"> CLIENTE <span class="caret"></span></a>';
         $menu_system.='<ul class="dropdown-menu">';

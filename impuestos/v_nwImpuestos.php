@@ -100,7 +100,7 @@ if(isset($_SESSION["loginUser-name"])){
                    <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre Impuesto:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del impuesto" pattern="[A-Z]{1,25}" title="Ingresar Solo letras y no dejar el campo vacio" required> 
+             <input type="name" class="form-control" placeholder="Nombre del impuesto" pattern="[a-zA-Z]{1,25}" title="Ingresar Solo letras y no dejar el campo vacio" required> 
          </div>
      </div>
 
@@ -115,7 +115,7 @@ if(isset($_SESSION["loginUser-name"])){
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Descripcion Impuesto :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea class="form-control" rows="3" placeholder="Ingresa una descripcion del impuesto"></textarea>
+            <textarea class="form-control" pattern="[/^\w+$/]{10,100}" title="No poner un minimo descripcion de 10 caracteres y ingresar un maximo de 100 no se permiten caracteres especiales @!" rows="3" placeholder="Ingresa una descripcion del impuesto"></textarea>
          </div>
      </div>
 

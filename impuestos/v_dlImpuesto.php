@@ -115,7 +115,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Impuesto:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre del impuesto" pattern="[A-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
+                                <input type="text" class="form-control" placeholder="Nombre del impuesto" pattern="[a-zA-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
