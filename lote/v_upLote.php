@@ -105,7 +105,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lote :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control"    placeholder="Ingresar Codigo de Lote" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" title="Ingresa primer digito letra y los restantes numeros" required>
+                                <input type="text" class="form-control"    placeholder="Ingresar Codigo de Lote" maxlength="5" pattern="[a-zA-Z]{1}[0-9]{4}" title="Ingresa primer digito letra y los restantes numeros" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>

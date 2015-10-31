@@ -39,25 +39,7 @@ if(isset($_SESSION["loginUser-name"])){
    
 
 
-    <!-- validacion form busqueda -->
-
-    <script type="text/javascript">
-
-    function valida () {
-        
-        var busqueda= document.getElementById("typeahead");
-
-        if (busqueda.value=='') {
-            alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
-            return false;
-        }
-        return true;
-
-    }
-
-    </script>
-
-    <!-- **************************** -->
+    
 
        <!-- script no dejar campos vacios en el formulario INICIO-->
 
@@ -181,7 +163,33 @@ if(isset($_SESSION["loginUser-name"])){
 
    <!-- script validacion para domicilio excluyendo caracteres como @ o ! FIN-->
 
+<script type="text/javascript">
+function mostrar(){
+    var busqueda= document.getElementById("typeahead");
 
+    
+    
+    if (busqueda.value == '') {
+             alertify.error("Error: No dejar el campo vacio!");
+        busqueda.focus();
+        return false;
+    }
+
+    re = /[0-9.-]/;
+
+    if (!re.test(busqueda.value)) {
+         alertify.error("Error: Solo ingresar numeros!");
+        busqueda.focus();
+        return false;
+    }
+    else
+
+    {
+        document.getElementById('oculto').style.display = 'block';
+        return true;
+    }
+
+</script>
 
    
 </head>
@@ -250,12 +258,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
   <div class="jumbotron">
-                <form class="form-horizontal" onsubmit="return valida()">
+                <form class="form-horizontal" onsubmit="return mostrar();" method="POST" autocomplete="off">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-4 hidden-xs">DUI Cliente :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead">
+                                <input type="text" name="typeahead" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -270,7 +278,9 @@ if(isset($_SESSION["loginUser-name"])){
                     </fielset>
                 </div>
                 </div>
-<div class="col-15 col-sm-12 col-md-12 col-lg-13">
+
+
+<div class="col-15 col-sm-12 col-md-12 col-lg-13" id='oculto' style='display:none;'>
                     <fielset>
                         
                        <form action="" class="form-horizontal" onsubmit="return validar()">
@@ -375,6 +385,8 @@ if(isset($_SESSION["loginUser-name"])){
      </div>
                     </form>
                     </fielset>
+
+
                 </div>
 
 
@@ -392,8 +404,8 @@ if(isset($_SESSION["loginUser-name"])){
     </footer>
 </center>
 </div> <!-- /container -->        
+<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-<script type="text/javascript" src="../js/vendor/jquery-ajax1.7.2.js"></script>
 <script src="../js/vendor/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/vendor/bootstrap-typeahead.js"></script>
 
