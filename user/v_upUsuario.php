@@ -144,12 +144,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
   <div class="jumbotron">
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="m_llenarformupUsuario.php" method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Usuario :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Busqueda por Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+                                <input type="text" class="form-control" name="buscar" placeholder="Busqueda por Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -164,28 +164,56 @@ if(isset($_SESSION["loginUser-name"])){
                     </fielset>
                 </div>
                 </div>
+                 <?php
+                if (empty($_GET['nick'])) {
+
+        $nick="";
+
+         if (empty($_GET['nombre']))
+         {
+                $nombre="";
+         }
+         if (empty($_GET['apellido'])) {
+
+            $apellido="";
+             # code...
+         }
+         if(empty($_GET['nivel']))
+         {
+                $nivel="";
+         }
+
+
+     }
+     else
+     {
+        $nick=$_GET['nick'];
+        $nombre=$_GET['nombre'];
+        $apellido=$_GET['apellido'];
+        $nivel=$_GET['nivel'];
+     ?>
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="#" class="form-horizontal" onsubmit="return checkForm(this);">
+                       <form action="m_upUsuario.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this);">
                      
               <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="text" class="form-control" name="username" placeholder="Usuario Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+             <input type="text" class="form-control" name="username" value="<?php echo $nick; ?>" placeholder="Usuario Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
          </div>
      </div>
           
                           <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" class="form-control" name="nombre" value="<?php echo $nombre; ?>" placeholder="Nombre del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Apellido del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" class="form-control" name="apellido" value="<?php echo $apellido; ?>" placeholder="Apellido del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
@@ -206,9 +234,31 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nivel de Acceso :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbonivelacceso" class="form-control">
-                 <option value="Administrador">Administrador</option>
-                 <option value="Gerencia">Gerencia</option>
-                 <option value="Operador">Operador</option>
+
+                    <?php if ($nivel=="1") {
+                        ?>
+                           <option value="1" selected="true">Administrador</option>
+                 <option value="2">Gerencia</option>
+                 <option value="3">Operador</option>
+                 <?php
+                    }
+                    elseif ($nivel=="2") {
+                        ?>
+                          <option value="1" >Administrador</option>
+                 <option value="2" selected="true">Gerencia</option>
+                 <option value="3">Operador</option>
+                 <?php
+                    }
+                    else{
+                        ?>
+                          <option value="1" >Administrador</option>
+                 <option value="2" >Gerencia</option>
+                 <option value="3" selected="true">Operador</option>
+                 <?php
+                    }
+
+                     ?>
+              
              </select>
          </div>
      </div>
@@ -225,6 +275,8 @@ if(isset($_SESSION["loginUser-name"])){
                     </form>
                     </fielset>
                 </div>
+
+                <?php } ?>
 
 
 
@@ -246,5 +298,22 @@ if(isset($_SESSION["loginUser-name"])){
 <script src="../js/vendor/bootstrap.min.js"></script>
 
 <script src="../js/main.js"></script>
+
+<?php
+if (empty($_GET['actualizo'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['actualizo'];
+        if ($mensaje=="si") {
+            ?> <script type="text/javascript">alertify.success("Registro actualizado exitosamente");</script> <?php
+        }
+        if ($mensaje=="no") {
+            ?> <script type="text/javascript">alertify.error("Registro No se actualizo");</script> <?php
+        }
+    }
+
+    ?>
 </body>
 </html>

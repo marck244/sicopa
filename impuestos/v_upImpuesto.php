@@ -99,12 +99,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
   <div class="jumbotron">
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="m_llenarformImpuestos.php" method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Impuesto:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Buscar por nombre del Impuesto" pattern="[a-zA-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
+                                <input type="text" class="form-control" name="busqueda" placeholder="Buscar por nombre del Impuesto" pattern="[a-zA-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -119,21 +119,41 @@ if(isset($_SESSION["loginUser-name"])){
                     </fielset>
                 </div>
                 </div>
+
+                <?php
+                if (empty($_GET['id'])) {
+                    $id="";
+                    if (empty($_GET['valor'])) {
+                        $valor="";
+                    }
+                    if (empty($_GET['nombre'])) {
+                        $nombre="";
+                    }
+                    if (empty($_GET['descripcion'])) {
+                        $descripcion="";
+                    }
+                }
+                else{
+                    $id=$_GET['id'];
+                    $valor=$_GET['valor'];
+                    $nombre=$_GET['nombre'];
+                    $descripcion=$_GET['descripcion'];
+                ?>
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="#" class="form-horizontal">
+                       <form action="m_upImpuesto.php" class="form-horizontal" method="POST">
                         <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id :</label>
+                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                             <input type="name" class="form-control" readonly="true" placeholder="# Impuesto">
+                                             <input value="<?php echo $id; ?>" name="id" type="name" class="form-control" readonly="true" placeholder="# Impuesto">
                             </div>
                         </div>
                              <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del impuesto" pattern="[a-zA-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
+             <input type="name" name="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Nombre del impuesto" pattern="[a-zA-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
          </div>
      </div>
 
@@ -141,14 +161,14 @@ if(isset($_SESSION["loginUser-name"])){
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Valor del impuesto" pattern="[0-9]" title="no dejar el campo vacio y ingresar solo numeros" required>
+             <input type="name" name="valor" value="<?php echo $valor; ?>" class="form-control" placeholder="Valor del impuesto" pattern="[0-9]" title="no dejar el campo vacio y ingresar solo numeros" required>
          </div>
      </div>
     
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Descripcion:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea class="form-control" rows="3" pattern="[/^\w+$/]{10,100}" title="No poner un minimo descripcion de 10 caracteres y ingresar un maximo de 100 no se permiten caracteres especiales @!" placeholder="Ingresa una descripcion del impuesto"></textarea>
+            <textarea class="form-control" name="descripcion" rows="3" pattern="[/^\w+$/]{10,100}" title="No poner un minimo descripcion de 10 caracteres y ingresar un maximo de 100 no se permiten caracteres especiales @!" placeholder="Ingresa una descripcion del impuesto"><?php echo $descripcion; ?></textarea>
          </div>
      </div>
 
@@ -164,6 +184,7 @@ if(isset($_SESSION["loginUser-name"])){
                     </fielset>
                 </div>
 
+                <?php } ?>
 
 
       
@@ -185,4 +206,20 @@ if(isset($_SESSION["loginUser-name"])){
 
 <script src="../js/main.js"></script>
 </body>
+<?php
+if (empty($_GET['actualizo'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['actualizo'];
+        if ($mensaje=="si") {
+            ?> <script type="text/javascript">alertify.success("Registro actualizado exitosamente");</script> <?php
+        }
+        if ($mensaje=="no") {
+            ?> <script type="text/javascript">alertify.error("Registro No se actualizo");</script> <?php
+        }
+    }
+
+    ?>
 </html>

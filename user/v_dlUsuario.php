@@ -111,12 +111,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="m_llenartabladlUsuario.php" method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Usuario :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Busqueda por Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+                                <input type="text" class="form-control" name="busqueda" placeholder="Busqueda por Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -130,11 +130,49 @@ if(isset($_SESSION["loginUser-name"])){
 <div class="panel panel-default">
   <!-- Default panel contents -->
   <div class="panel-heading">Usuarios Registrados en <strong>SICOPA</strong></div>
+
   <!-- Table -->
   <div class="table-responsive">
+  <?php 
+
+  if (empty($_GET['nick'])) {
+        $nick="";
+        if (empty($_GET['nombre'])) {
+            $nombre="";
+        }
+        if (empty($_GET['apellido'])) {
+            $apellido="";
+        }
+        if (empty($_GET['nivel'])) {
+            $nivel="";
+            $nivelnom="";
+        }
+      
+           
+    }
+    else
+    {   
+        $nick=$_GET['nick'];
+        $nombre=$_GET['nombre'];
+        $apellido=$_GET['apellido'];
+        $nivel=$_GET['nivel'];
+
+        if ($nivel == "1" ) {
+            $nivelnom="Administrador";
+        }
+        if ($nivel == "2" ) {
+            $nivelnom="Gerencia";
+        }
+        if ($nivel=="3") {
+            $nivelnom="Operador";
+        }
+         
+
+?>
     <table class="table table-hover text-center">
      <tr>
-        <th>Nombre</th>
+    <th>Usuario</th>
+    <th>Nombre</th>
     <th>Apellido</th>
     <th>Nivel de Acceso</th>      
 
@@ -142,14 +180,46 @@ if(isset($_SESSION["loginUser-name"])){
      </tr>
 
      <tr>
-      <td>Jairo Ernesto</td>
-      <td>Velasquez Sibrian</td>
-      <td>Gerente</td>
+      <td><?php echo $nick; ?></td>
+      <td><?php echo $nombre; ?></td>
+      <td><?php echo $apellido; ?></td>
+      <td><?php echo $nivelnom; ?></td>
       <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
     </tr>
   </table>
+
+  <?php } ?>
 </div>
-</div>        
+<?php 
+if (empty($_GET['vacio'])) {
+        $vacio="";
+    }
+    else
+    {
+        $vacio=$_GET['vacio'];
+        if ($vacio == "si") {
+            ?>
+             <table class="table table-hover text-center">
+     <tr>
+        <th>Mensaje Del Sistema</th>
+   
+     </tr>
+
+     <tr>
+      <td>No hay informacion almacenada con ese Nickname</td>
+      
+      
+    </tr>
+  </table>
+            <?php
+        }
+    }
+
+  
+?> 
+</div>   
+
+     
     </fielset>
 </div>
 </div>
@@ -165,17 +235,17 @@ if(isset($_SESSION["loginUser-name"])){
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="idloti">Codigo del Usuario</label>
-                            <input type="text" value="1520" class="form-control" disabled>
+                            <label for="idloti">UserName</label>
+                            <input type="text" value="<?php echo $nick; ?>" class="form-control" disabled>
                         </div>
                         <div class="form-group">
                             <label for="pass">Nombre del Usuario: </label>
-                            <p class="form-control-static">Jairo Ernesto Velasquez Sibrian</p>
+                            <p class="form-control-static"><?php echo $nombre." ".$apellido; ?></p>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Aceptar</button>
+                    <a href="m_dlUsuario.php?id=<?php echo $nick; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarusuario();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
@@ -198,4 +268,20 @@ if(isset($_SESSION["loginUser-name"])){
 
 <script src="../js/main.js"></script>
 </body>
+<?php
+ if (empty($_GET['eliminado'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['eliminado'];
+        if ($mensaje == "si") {
+            ?> <script type="text/javascript">alertify.success('Registro eliminado exitosamente');</script> <?php
+        }
+
+        if ($mensaje == "no") {
+            ?> <script type="text/javascript">alertify.error('El registro no se elimino');</script> <?php
+        }
+    }
+?>
 </html>
