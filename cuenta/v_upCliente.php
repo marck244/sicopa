@@ -11,6 +11,77 @@ if(isset($_SESSION["loginUser-name"])){
 }else{
     header("Location: ../user/v_login");
 }
+
+
+
+if (empty($_GET['dui'])) {
+        $dui="";
+    }
+    else
+    {   
+        $dui=$_GET['dui'];
+    }
+
+    if (empty($_GET['nombre'])) {
+        $nombre="";
+    }
+    else
+    {   
+        $nombre=$_GET['nombre'];
+    }
+
+    if (empty($_GET['apellido'])) {
+        $apellido="";
+    }
+    else
+    {   
+        $apellido=$_GET['apellido'];
+    }
+
+    if (empty($_GET['nit'])) {
+        $nit="";
+    }
+    else
+    {   
+        $nit=$_GET['nit'];
+    }
+
+     if (empty($_GET['edad'])) {
+        $edad="";
+    }
+    else
+    {   
+        $edad=$_GET['edad'];
+    }
+
+      if (empty($_GET['domicilio'])) {
+        $domicilio="";
+    }
+    else
+    {   
+        $domicilio=$_GET['domicilio'];
+    }
+
+
+      if (empty($_GET['telefono'])) {
+        $telefono="";
+    }
+    else
+    {   
+        $telefono=$_GET['telefono'];
+    }
+
+      if (empty($_GET['fechanac'])) {
+        $fechanac="";
+    }
+    else
+    {   
+        $fechanac=$_GET['fechanac'];
+    }
+
+
+include("departamentos.php");
+      
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -34,7 +105,7 @@ if(isset($_SESSION["loginUser-name"])){
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
 
-
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
   
    
 
@@ -163,35 +234,48 @@ if(isset($_SESSION["loginUser-name"])){
 
    <!-- script validacion para domicilio excluyendo caracteres como @ o ! FIN-->
 
-<script type="text/javascript">
-function mostrar(){
-    var busqueda= document.getElementById("typeahead");
+     <script type="text/javascript">
 
-    
-    
-    if (busqueda.value == '') {
-             alertify.error("Error: No dejar el campo vacio!");
-        busqueda.focus();
-        return false;
-    }
+    function valida () {
+        
+        var busqueda= document.getElementById("busqueda");
 
-    re = /[0-9.-]/;
-
-    if (!re.test(busqueda.value)) {
-         alertify.error("Error: Solo ingresar numeros!");
-        busqueda.focus();
-        return false;
-    }
-    else
-
-    {
-        document.getElementById('oculto').style.display = 'block';
+        if (busqueda.value=='') {
+            alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
+            return false;
+        }
         return true;
+
+
     }
 
-</script>
+    </script>  
 
-   
+    <script type="text/javascript">
+    function muestraform()
+    {   
+            document.getElementById('oculto').style.display = 'block';
+    
+        
+    }
+    </script> 
+
+
+    <script type="text/javascript">
+ 
+  $(document).ready(function(){
+   $("#cbodepa").change(function () {
+           $("#cbodepa option:selected").each(function () {
+            var id_departamento = $(this).val();
+            var id=$('#cbomuni').val();
+            
+            $.post("otrosmunicipios.php", { id_departamento: id_departamento,id: id}, function(data){
+                $("#cbomuni").html(data);
+            });            
+        });
+   })
+});
+  </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -257,22 +341,22 @@ function mostrar(){
                         <legend>Actualizar Clientes</legend>
 
 
-  <div class="jumbotron">
-                <form class="form-horizontal" onsubmit="return mostrar();" method="POST" autocomplete="off">
+ 
+<div class="jumbotron">
+                <form class="form-horizontal" method="POST" action="m_llenarformCliente.php" onsubmit="return valida()">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-4 hidden-xs">DUI Cliente :</label>
+                            <label for="lotiname" class="control-label col-xs-4 hidden-xs">Numero DUI :</label>
                             <div class="input-group">
-                                <input type="text" name="typeahead" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead">
+                                <input name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" type="text" class="form-control" placeholder="Ingresa un numero de Dui">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">Buscar!</button>
+                                    <button class="btn btn-default" type="submit" onclick="muestraform()">Buscar!</button>
                                 </span>
-                            </div><!-- /input-group --> 
+                            </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
                     </div><!-- /.row -->
                 </form>
                 </div>
-
 
 
                     </fielset>
@@ -283,57 +367,58 @@ function mostrar(){
 <div class="col-15 col-sm-12 col-md-12 col-lg-13" id='oculto' style='display:none;'>
                     <fielset>
                         
-                       <form action="" class="form-horizontal" onsubmit="return validar()">
+                       <form method="POST" class="form-horizontal" action="m_upCliente.php" onsubmit="return validar()">
                         <div class="form-group">
+                        
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                             <input type="name" class="form-control" readonly="true" placeholder="# Dui">
+                                             <input type="name"  class="form-control" value="<?php echo $dui; ?>" name="dui" readonly="true" placeholder="# Dui">
                             </div>
                         </div>
   <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="nombre" id="nombre" class="form-control" maxlength="30" placeholder="Nombre" onkeypress="return soloLetras(event);">
+             <input type="name" name="nombre" id="nombre" class="form-control" value="<?php echo $nombre; ?>" maxlength="30" placeholder="Nombre" onkeypress="return soloLetras(event);">
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="apellido" id="apellido" class="form-control" maxlength="30" placeholder="Apellido" onkeypress="return soloLetras(event);">
+             <input type="name" name="apellido" id="apellido" class="form-control" value="<?php echo $apellido; ?>"  maxlength="30" placeholder="Apellido" onkeypress="return soloLetras(event);">
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nit :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="nit" id="nit" class="form-control" maxlength="17" onkeyup="mascaradui(this,'-',arraydigitosnit,true);" placeholder="Nit">
+             <input type="name" name="nit" id="nit" class="form-control" maxlength="17" value="<?php echo $nit; ?>" onkeyup="mascaradui(this,'-',arraydigitosnit,true);" placeholder="Nit">
          </div>
      </div>
 
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Edad :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="edad" id="edad" class="form-control" maxlength="3" onkeypress="return solonumeros(event)" placeholder="Edad">
+             <input type="name" name="edad" id="edad" class="form-control" value="<?php echo $edad; ?>" maxlength="3" onkeypress="return solonumeros(event)" placeholder="Edad">
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Domicilio :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="domicilio" id="domicilio" maxlength="150" class="form-control" onkeypress="return domicilio(event)" placeholder="Domicilio">
+             <input type="name" name="domicilio" id="domicilio" maxlength="150" value="<?php echo $domicilio; ?>" class="form-control" onkeypress="return domicilio(event)" placeholder="Domicilio">
          </div>
      </div>
 
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Telefono :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="telefono" id="telefono" class="form-control" maxlength="8" onkeypress="return solonumeros(event)" placeholder="Telefono">
+             <input type="name" name="telefono" id="telefono" value="<?php echo $telefono; ?>" class="form-control" maxlength="8" onkeypress="return solonumeros(event)" placeholder="Telefono">
          </div>
      </div>
 
      <div class="form-group">
          <label for="inputEmail" title="Fecha de Nacimiento" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nacimiento :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="date" class="form-control">
+             <input type="date" name="fechanacimiento" value="<?php echo $fechanac; ?>" class="form-control">
          </div>
      </div>
 
@@ -341,7 +426,21 @@ function mostrar(){
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Profesion :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cboprofesion" class="form-control">
-                <option>Seleccione</option>
+            <?php if (empty($_GET['profesionid'] || $_GET['nombreprofesion'])) {
+        $idprofesion="";
+        $nombreprofesion="";
+        ?><option>Seleccione</option><?php
+    }
+    else
+    {   
+        $idprofesion=$_GET['profesionid'];
+        $nombreprofesion=$_GET['nombreprofesion'];
+        ?>
+        <option>Seleccione</option>
+        <option value="<?php echo $idprofesion; ?>" selected><?php echo $nombreprofesion; ?></option>
+        <?php
+    }?>
+                
              </select>
          </div>
      </div>
@@ -349,8 +448,26 @@ function mostrar(){
        <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Departamento :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbodepa" class="form-control">
-                <option>Seleccione</option>
+             <select name="cbodepa" id="cbodepa" class="form-control">
+                        <?php if (empty($_GET['departamentoid'] || $_GET['departamentonombre'])) {
+        $iddepartamento="";
+        $nombredepartamento="";
+        ?><option>Seleccione</option><?php
+    }
+    else
+    {   
+        $iddepartamento=$_GET['departamentoid'];
+        $nombredepartamento=$_GET['departamentonombre'];
+        ?>
+        <option>Seleccione</option>
+        <option value="<?php echo $iddepartamento; ?>" selected><?php echo $nombredepartamento; ?></option>
+        <?php
+    }
+                    $departamentos = departamentodistintos($iddepartamento);
+                    foreach ($departamentos as $depa) { 
+                        echo '<option value="'.$depa->id .'">'.$depa->nombre.'</option>';        
+                    }
+                ?>
              </select>
          </div>
      </div>
@@ -359,7 +476,20 @@ function mostrar(){
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Municipio :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbomuni" id="cbomuni" class="form-control">
-                <option value="" >Seleccione</option>
+                        <?php if (empty($_GET['municipioid'] || $_GET['municipionombre'])) {
+        $municipioid="";
+        $municipionombre="";
+        ?><option>Seleccione</option><?php
+    }
+    else
+    {   
+        $municipioid=$_GET['municipioid'];
+        $municipionombre=$_GET['municipionombre'];
+        ?>
+        <option>Seleccione</option>
+        <option value="<?php echo $municipioid; ?>" selected><?php echo $municipionombre; ?></option>
+        <?php
+    }?>
              </select>
          </div>
      </div>
@@ -368,8 +498,35 @@ function mostrar(){
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Sabe Firmar :</label>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbofirma" class="form-control">
-                <option>Si</option>
-                <option>No</option>
+                            <?php if (empty($_GET['firma'])) {
+        $firma="";
+        
+        ?><option selected="true">Seleccione</option>
+        <option value="SI">SI</option>
+        <option value="NO">NO</option><?php
+    }
+    else
+    {   
+        $firma=$_GET['firma'];
+        
+        if ($firma == "SI") {
+        ?>
+        <option>Seleccione</option>
+        <option value="<?php echo $firma; ?>" selected><?php echo $firma; ?></option>
+        <option value="NO">NO</option>
+        <?php    
+        }
+        if ($firma == "NO") {
+            ?>
+        <option>Seleccione</option>
+        <option value="<?php echo $firma; ?>" selected><?php echo $firma; ?></option>
+        <option value="SI">SI</option>
+            <?php
+        }
+        ?>
+        
+        <?php
+    }?>
              </select>
          </div>
      </div>
@@ -404,7 +561,7 @@ function mostrar(){
     </footer>
 </center>
 </div> <!-- /container -->        
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
 
 <script src="../js/vendor/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/vendor/bootstrap-typeahead.js"></script>
@@ -433,7 +590,23 @@ function mostrar(){
 
 </script>
 
+<?php
+if (empty($_GET['actualizo'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['actualizo'];
+        if ($mensaje=="si") {
+            ?> <script type="text/javascript">alertify.success("Registro actualizado exitosamente");</script> <?php
+        }
+        if ($mensaje=="no") {
+            ?> <script type="text/javascript">alertify.error("Registro No se actualizo");</script> <?php
+        }
+    }
 
+    ?>
 </body>
+
 </html>
 

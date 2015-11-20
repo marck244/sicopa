@@ -11,6 +11,19 @@ if(isset($_SESSION["loginUser-name"])){
 }else{
     header("Location: ../user/v_login");
 }
+
+
+
+
+
+    if (empty($_GET['vacio'])) {
+        $nombre="";
+    }
+    else
+    {   
+        $nombre=$_GET['vacio'];
+    }
+
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -122,9 +135,9 @@ if(isset($_SESSION["loginUser-name"])){
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li><a href="v_nwCliente">Agregar Clientes</a></li>
-                            <li><a href="v_upCliente">Actualizar Clientes</a></li>
-                            <li><a href="v_dlCliente">Eliminar Clientes</a></li>
+                            <li><a href="v_nwCliente">Agregar Cliente</a></li>
+                            <li><a href="v_upCliente">Actualizar Cliente</a></li>
+                            <li><a href="v_dlCliente">Eliminar Cliente</a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -137,12 +150,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal" onsubmit="return valida()">
+                <form class="form-horizontal" method="POST"  action="m_llenartablaCliente.php" onsubmit="return valida()" autocomplete="off">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Nombre :</label>
+                            <label for="lotiname" class="control-label col-xs-4 hidden-xs">Numero DUI :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead">
+                                <input type="text" class="form-control" name="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead" placeholder="Ingresa un numero de Dui">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -158,7 +171,24 @@ if(isset($_SESSION["loginUser-name"])){
   <div class="panel-heading">Clientes Registrados en <strong>SICOPA</strong></div>
   <!-- Table -->
   <div class="table-responsive">
-    <table class="table table-hover text-center">
+
+  <?php 
+
+  if (empty($_GET['dui']) || empty($_GET['nombre'])  || empty($_GET['apellido']) || empty($_GET['nit']) ) {
+        $dui="";
+         $nombre="";
+          $apellido="";
+           $nit="";
+    }
+    else
+    {   
+        $dui=$_GET['dui'];
+        $nombre=$_GET['nombre'];
+        $apellido=$_GET['apellido'];
+         $nit=$_GET['nit'];
+
+         ?>
+         <table class="table table-hover text-center">
      <tr>
         <th>DUI</th>
     <th>Nombre</th>
@@ -168,13 +198,42 @@ if(isset($_SESSION["loginUser-name"])){
      </tr>
 
      <tr>
-      <td>0000000</td>
-      <td>Jairo</td>
-      <td>Ernesto</td>
-      <td>0000000</td>
-      <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
+      <td><?php echo $dui; ?></td>
+      <td><?php echo $nombre; ?></td>
+      <td><?php echo $apellido; ?></td>
+      <td><?php echo $nit; ?></td>
+      <td><a href="#" class="glyphicon glyphicon-trash" id="<?php echo $dui; ?>" data-toggle="modal" data-target="#inicioModal"></a></td>
     </tr>
   </table>
+         <?php
+    }
+
+    if (empty($_GET['vacio'])) {
+        $vacio="";
+    }
+    else
+    {
+        $vacio=$_GET['vacio'];
+        if ($vacio == "si") {
+            ?>
+             <table class="table table-hover text-center">
+     <tr>
+        <th>Mensaje Del Sistema</th>
+   
+     </tr>
+
+     <tr>
+      <td>No hay informacion almacenada con ese dui</td>
+      
+      
+    </tr>
+  </table>
+            <?php
+        }
+    }
+
+  ?>
+    
 </div>
 </div>        
     </fielset>
@@ -193,16 +252,16 @@ if(isset($_SESSION["loginUser-name"])){
                     <form>
                         <div class="form-group">
                             <label for="idloti">Codigo De Cliente</label>
-                            <input type="text" value="000000000" class="form-control" disabled>
+                            <input type="text" value="<?php echo $dui; ?>" class="form-control" disabled>
                         </div>
                         <div class="form-group">
                             <label for="pass">Nombre: </label>
-                            <p class="form-control-static">Jairo Ernesto Velasquez</p>
+                            <p class="form-control-static"><?php echo $nombre." ".$apellido; ?></p>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Aceptar</button>
+                    <a href="m_dlCliente.php?id=<?php echo $dui; ?>" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarcliente();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
@@ -248,5 +307,22 @@ if(isset($_SESSION["loginUser-name"])){
 </script>
 
 
+
 </body>
+<?php
+ if (empty($_GET['eliminado'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['eliminado'];
+        if ($mensaje == "si") {
+            ?> <script type="text/javascript">alertify.success('Registro eliminado exitosamente');</script> <?php
+        }
+
+        if ($mensaje == "no") {
+            ?> <script type="text/javascript">alertify.error('El registro no se elimino');</script> <?php
+        }
+    }
+?>
 </html>
