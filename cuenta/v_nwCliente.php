@@ -1,6 +1,5 @@
 <?php
 session_start();
-$usuario=$_SESSION["loginUser-name"];
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
     if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3" || $_SESSION["user-nivelacceso"]=="4") {
@@ -224,7 +223,7 @@ if(isset($_SESSION["loginUser-name"])){
 					<fielset>
 						<legend>Registro de un nuevo cliente</legend>
 					   <form method="POST" action="m_nwCliente.php" class="form-horizontal" onsubmit="return validar()">
-                       <input type="text" name="usuario" value="<?php echo $usuario; ?>" style="visibility:hidden">
+                       <input type="hidden" name="usuario" value="<?php echo $_SESSION["loginUser-name"]; ?>" >
 						<div class="form-group">
 							<label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>
 							<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
