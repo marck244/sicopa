@@ -5,6 +5,7 @@ if(isset($_SESSION["loginUser-name"])){
     if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3") {
         # code...
         require("../conexion/list_menu.php");
+        require("m_nwLotificacion_id.php");
     }else{
         header("Location: ../");
     }
@@ -39,6 +40,25 @@ if(isset($_SESSION["loginUser-name"])){
         <![endif]-->
 
         <!-- Nuevo Nav Bar-->
+        <?php
+        if (isset($_GET["r"])) {
+            # code...
+            if ($_GET["r"]!="1") {
+                # code...
+                ?>
+            <script>
+            alertify.success("Lotificacion Ingresada Exitosamente!");
+            </script>
+            <?php
+            }else{
+                ?>
+            <script>
+            alertify.error("Se ha producido un error. Intentento de Nuevo!");
+            </script>
+            <?php
+            }
+        }
+        ?>
         <nav class="navbar navbar-inverse navbar-fixed-top"> <!-- navbar-dafault o navbar-inverse -->
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -95,35 +115,35 @@ if(isset($_SESSION["loginUser-name"])){
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de una nueva Lotificacion</legend>
-                        <form action="" class="form-horizontal">
+                        <form action="m_nwLotificacion_action" class="form-horizontal" method="POST">
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                <p class="form-control-static">#ID (Sera dinamico)</p>
+                                <p class="form-control-static"><?php echo $newId; ?></p>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Nombre Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                <input type="text" class="form-control" placeholder="Nombre de la Nueva Lotificacion" pattern="[A-Za-z ]{5,150}" title="No se admiten numeros. Maximo 150 caracteres." required>
+                                <input type="text" name="nombre" class="form-control" placeholder="Nombre de la Nueva Lotificacion" pattern="[A-Za-z ]{5,150}" title="No se admiten numeros. Maximo 150 caracteres." required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Numero de Lotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Numero de Lotes</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                <input type="number" class="form-control" placeholder="Ejemplo: 100" title="Solo numero Enteros" required>
+                                <input type="number" name="numero" class="form-control" placeholder="Ejemplo: 100" title="Solo numero Enteros" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="Precio de Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio $ USD</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                <input type="text" class="form-control" placeholder="Ejemplo: 10000 o 10000.99" pattern="[0-9.]{7,9}" title="Ejemplo 1234567.89 No se permiten las comas (,). \n Minimo de un terremo es de $1000.00" required>
+                                <input type="text" name="precio" class="form-control" placeholder="Ejemplo: 10000 o 10000.99" pattern="[0-9.]{7,9}" title="Ejemplo 1234567.89 No se permiten las comas (,). \n Minimo de un terremo es de $1000.00" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-                                <button class="btn btn-primary">Registrar Lotificacion</button>
+                                <button class="btn btn-primary" type="submit">Registrar Lotificacion</button>
                             </div>
                         </div>
                     </form>
