@@ -64,7 +64,7 @@ if(isset($_SESSION["loginUser-name"])){
      
      
     } else {
-      alertify.warning("Atencion: debes ingresar una contraseña y confirmarla!");
+      alertify.warning("Atencion: No dejes los campos de la contraseña vacios porfavor al confirmar la contraseña debe concordar!");
       form.pwd1.focus();
       return false;
     }
@@ -139,12 +139,12 @@ if(isset($_SESSION["loginUser-name"])){
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo Usuario</legend>
-                       <form action="#" class="form-horizontal" onsubmit="return checkForm(this)">
+                       <form action="m_nwUsuario.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this)">
                         
                     <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="text" class="form-control" name="username" placeholder="Usuario Nickname" pattern="[/^\w+$/]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+             <input type="text" class="form-control" name="username" placeholder="Usuario Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
          </div>
      </div>
 
@@ -152,13 +152,13 @@ if(isset($_SESSION["loginUser-name"])){
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Nombre del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" name="nombre" class="form-control" placeholder="Nombre del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Apellido del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" name="apellido" class="form-control" placeholder="Apellido del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
          </div>
      </div>
      <div class="form-group">
@@ -178,9 +178,9 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nivel de Acceso :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbonivelacceso" class="form-control">
-                 <option value="Administrador">Administrador</option>
-                 <option value="Gerencia">Gerencia</option>
-                 <option value="Operador">Operador</option>
+                 <option value="1">Administrador</option>
+                 <option value="2">Gerencia</option>
+                 <option value="3">Operador</option>
              </select>
          </div>
      </div>
@@ -216,4 +216,37 @@ if(isset($_SESSION["loginUser-name"])){
 
 <script src="../js/main.js"></script>
 </body>
+<?php
+if (empty($_GET['duplicado'])) {
+        $duplicado="";
+    }
+    else
+    {   
+        $duplicado=$_GET['duplicado'];
+        if($duplicado=="si"){
+
+            ?> <script type="text/javascript">alertify.error('Error: el Nickname ingresado ya existe');</script> <?php
+
+        }
+    }
+
+
+    if (empty($_GET['guardado'])) {
+        $guardado="";
+    }
+    else
+    {   
+        $guardado=$_GET['guardado'];
+        if($guardado=="si"){
+
+            ?> <script type="text/javascript">alertify.success('El Usuario se ha ingresado exitosamente');</script> <?php
+
+        }
+
+        if($guardado == "no")
+        {
+            ?> <script type="text/javascript">alertify.error('Error: El Usuario no se pudo guardar');</script> <?php
+        }
+    }
+?>
 </html>

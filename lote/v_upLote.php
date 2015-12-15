@@ -11,6 +11,10 @@ if(isset($_SESSION["loginUser-name"])){
 }else{
     header("Location: ../user/v_login");
 }
+
+
+include("m_combobox_lotificacion.php");
+
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -100,12 +104,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
   <div class="jumbotron">
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="m_llenarformLote.php" method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lote :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control"    placeholder="Ingresar Codigo de Lote" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" title="Ingresa primer digito letra y los restantes numeros" required>
+                                <input type="text" class="form-control" name="busqueda"   placeholder="Ingresar Codigo de Lote" maxlength="4" pattern="[a-zA-Z]{1}[0-9]{3}" title="Ingresa primer digito letra y los restantes numeros" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -120,34 +124,98 @@ if(isset($_SESSION["loginUser-name"])){
                     </fielset>
                 </div>
                 </div>
-<div class="col-15 col-sm-12 col-md-12 col-lg-13">
+                <?php
+                if (empty($_GET['id'])) {
+
+        $id="";
+
+         if (empty($_GET['idlotificacion']))
+         {
+                $idlotificacion="";
+         }
+         if (empty($_GET['nombrelotificacion'])) {
+
+            $nombrelotificacion="";
+             # code...
+         }
+         if(empty($_GET['idpoligono']))
+         {
+                $idpoligono="";
+         }
+
+         if(empty($_GET['numpoligono']))
+         {
+                $numpoligono="";
+         }
+         if(empty($_GET['extension']))
+         {
+                $extension="";
+         }
+         if(empty($_GET['precio']))
+         {
+                 $precio="";
+         }
+         if(empty($_GET['extra']))
+         {
+                 $extra="";
+         }
+        
+        
+        
+       
+        
+        
+    }
+    else
+    {   
+         $id=$_GET['id'];
+        $idlotificacion=$_GET['idlotificacion'];
+
+        $idpoligono=$_GET['idpoligono'];
+
+        $numpoligono=$_GET['numpoligono'];
+
+        $extension=TRIM($_GET['extension']);
+        $precio=$_GET['precio'];
+        $extra=$_GET['extra'];
+        $nombrelotificacion=$_GET['nombrelotificacion'];
+
+        ?>
+
+        <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="#" class="form-horizontal">
+                       <form action="m_upLote.php" method="POST" class="form-horizontal">
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo/Lote :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                             <input type="name" class="form-control" readonly="true"  placeholder="Codigo de Lote">
+                                             <input type="name" name="codigo" class="form-control" readonly="true" value="<?php echo $id; ?>"  placeholder="Codigo de Lote">
                             </div>
                         </div>
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Metros cuadrados" pattern="[0-9]" title="Ingresar solo numeros" required>
+             <input type="name" name="extension" class="form-control" value="<?php echo $extension; ?>" placeholder="Metros cuadrados" pattern="[0-9]" title="Ingresar solo numeros" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="valor de el lote" pattern="[0-9]" title="Ingresar solo numeros" required>
+             <input type="name" class="form-control" name="precio" value="<?php echo $precio; ?>" placeholder="valor de el lote" pattern="[0-9]" title="Ingresar solo numeros" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbolotificacion" class="form-control" required title="Debe seleccionar una Lotificacion">
-                 
+                 <option value="<?php echo $idlotificacion; ?>" selected=""><?php echo $nombrelotificacion; ?></option>
+                 <?php
+                    $lotificaciones = lotificaciondistintos($idlotificacion);
+                    foreach ($lotificaciones as $lotificacion) { 
+                        echo '<option value="'.$lotificacion->id .'">'.$lotificacion->nombre.'</option>';        
+                    }
+                ?>
              </select>
          </div>
      </div>
@@ -156,7 +224,13 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Poligono :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbopoligono" class="form-control" required title="Debe seleccionar un poligono">
-                 
+                 <option value="<?php echo $idpoligono; ?>" selected=""><?php echo $numpoligono; ?></option>
+                  <?php
+                    $poligonos = poligonosdistintos($idpoligono);
+                    foreach ($poligonos as $poligono) { 
+                        echo '<option value="'.$poligono->id .'">'.$poligono->nombre.'</option>';        
+                    }
+                ?>
              </select>
          </div>
      </div>
@@ -164,7 +238,7 @@ if(isset($_SESSION["loginUser-name"])){
       <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Detalles Extra :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea class="form-control" rows="3" placeholder="Ingresa una descripcion sobre este lote"></textarea>
+            <textarea class="form-control" name="detalles" rows="3" placeholder="Ingresa una descripcion sobre este lote"><?php echo $extra; ?></textarea>
          </div>
      </div>
      
@@ -180,6 +254,11 @@ if(isset($_SESSION["loginUser-name"])){
                     </form>
                     </fielset>
                 </div>
+
+        <?php
+    }
+                 ?>
+                
 
 
 
@@ -201,5 +280,22 @@ if(isset($_SESSION["loginUser-name"])){
 <script src="../js/vendor/bootstrap.min.js"></script>
 
 <script src="../js/main.js"></script>
+
+<?php
+if (empty($_GET['actualizo'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['actualizo'];
+        if ($mensaje=="si") {
+            ?> <script type="text/javascript">alertify.success("Registro actualizado exitosamente");</script> <?php
+        }
+        if ($mensaje=="no") {
+            ?> <script type="text/javascript">alertify.error("Registro No se actualizo");</script> <?php
+        }
+    }
+
+    ?>
 </body>
 </html>

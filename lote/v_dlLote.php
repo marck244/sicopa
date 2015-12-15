@@ -109,12 +109,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="m_llenartablalote.php" method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lote:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control"    placeholder="Ingresar Codigo de Lote" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" title="Ingresa primer digito letra y los restantes numeros" required>
+                                <input type="text" class="form-control" name="busqueda"   placeholder="Ingresar Codigo de Lote" maxlength="4" pattern="[a-zA-Z]{1}[0-9]{3}" title="Ingresa primer digito letra y los restantes numeros" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -130,6 +130,25 @@ if(isset($_SESSION["loginUser-name"])){
   <div class="panel-heading">Lotes Registrados en <strong>SICOPA</strong></div>
   <!-- Table -->
   <div class="table-responsive">
+  <?php 
+
+  if (empty($_GET['codigo'])) {
+        $codigo="";
+         $precio="";
+          $extension="";
+           $nomlotificacion="";
+           $numpoligono="";
+           
+    }
+    else
+    {   
+        $codigo=$_GET['codigo'];
+        $precio=$_GET['precio'];
+        $extension=$_GET['extension'];
+         $nomlotificacion=$_GET['nombrelotificacion'];
+         $numpoligono=$_GET['numpoligono'];
+
+?>
     <table class="table table-hover text-center">
      <tr>
         <th>Numero de Lote</th>
@@ -141,16 +160,43 @@ if(isset($_SESSION["loginUser-name"])){
      </tr>
 
      <tr>
-      <td>0000000</td>
-      <td>200000</td>
-      <td>10 M2</td>
-      <td>EL CHAPARRON</td>
-      <td>E</td>
+      <td><?php echo $codigo; ?></td>
+      <td><?php echo $precio;?></td>
+      <td><?php echo $extension;?></td>
+      <td><?php echo $nomlotificacion;?></td>
+      <td><?php echo $numpoligono;?></td>
       <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
     </tr>
   </table>
 </div>
-</div>        
+</div>  
+<?php } 
+if (empty($_GET['vacio'])) {
+        $vacio="";
+    }
+    else
+    {
+        $vacio=$_GET['vacio'];
+        if ($vacio == "si") {
+            ?>
+             <table class="table table-hover text-center">
+     <tr>
+        <th>Mensaje Del Sistema</th>
+   
+     </tr>
+
+     <tr>
+      <td>No hay informacion almacenada con ese codigo de lote</td>
+      
+      
+    </tr>
+  </table>
+            <?php
+        }
+    }
+
+  
+?>      
     </fielset>
 </div>
 </div>
@@ -167,16 +213,16 @@ if(isset($_SESSION["loginUser-name"])){
                     <form>
                         <div class="form-group">
                             <label for="idloti">Codigo Del Lote</label>
-                            <input type="text" value="000000000" class="form-control" disabled>
+                            <input type="text" value="<?php echo $codigo; ?>" class="form-control" disabled>
                         </div>
                         <div class="form-group">
                             <label for="pass">Numero Del Lote: </label>
-                            <p class="form-control-static">45</p>
+                            <p class="form-control-static"></p>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Aceptar</button>
+                    <a href="m_dlLote.php?id=<?php echo $codigo; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarlote();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
@@ -198,5 +244,24 @@ if(isset($_SESSION["loginUser-name"])){
 <script src="../js/vendor/bootstrap.min.js"></script>
 
 <script src="../js/main.js"></script>
+
+
 </body>
+
+<?php
+ if (empty($_GET['eliminado'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['eliminado'];
+        if ($mensaje == "si") {
+            ?> <script type="text/javascript">alertify.success('Registro eliminado exitosamente');</script> <?php
+        }
+
+        if ($mensaje == "no") {
+            ?> <script type="text/javascript">alertify.error('El registro no se elimino');</script> <?php
+        }
+    }
+?>
 </html>
