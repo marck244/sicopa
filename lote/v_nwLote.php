@@ -11,6 +11,8 @@ if(isset($_SESSION["loginUser-name"])){
 }else{
     header("Location: ../user/v_login");
 }
+
+include("m_combobox_lotificacion.php");
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -173,12 +175,12 @@ if(isset($_SESSION["loginUser-name"])){
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo lote</legend>
-                       <form action="" class="form-horizontal" onsubmit="return validar()">
+                       <form action="m_nwLote.php" method="POST" class="form-horizontal" onsubmit="return validar()">
                         
                         <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo/Lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" title="Ingresa primer digito letra y los restantes numeros" class="form-control" placeholder="Codigo de Lote" required>
+             <input type="name" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" name="codigo" title="Ingresa primer digito letra y los restantes numeros" class="form-control" placeholder="Codigo de Lote" required>
          </div>
      </div>
 
@@ -200,6 +202,12 @@ if(isset($_SESSION["loginUser-name"])){
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbolotificacion" id="cbolotificacion" class="form-control">
                  <option value="">Seleccione</option>
+                 <?php
+                    $lotificaciones = lotificacion();
+                    foreach ($lotificaciones as $lotificacion) { 
+                        echo '<option value="'.$lotificacion->id .'">'.$lotificacion->nombre.'</option>';        
+                    }
+                ?>
              </select>
          </div>
      </div>
@@ -209,6 +217,12 @@ if(isset($_SESSION["loginUser-name"])){
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbopoligono" id="cbopoligono" class="form-control">
                  <option value="">Seleccione</option>
+                  <?php
+                    $poligonos = poligono();
+                    foreach ($poligonos as $poligono) { 
+                        echo '<option value="'.$poligono->id .'">'.$poligono->nombre.'</option>';        
+                    }
+                ?>
              </select>
          </div>
      </div>
@@ -216,7 +230,7 @@ if(isset($_SESSION["loginUser-name"])){
        <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Detalles Extra :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea class="form-control" maxlength="100" onkeypress="return detallesextra(event)" rows="3" placeholder="Ingresa una descripcion sobre este lote"></textarea>
+            <textarea class="form-control" name="detalles" maxlength="100" onkeypress="return detallesextra(event)" rows="3" placeholder="Ingresa una descripcion sobre este lote"></textarea>
          </div>
      </div>
      
@@ -251,4 +265,37 @@ if(isset($_SESSION["loginUser-name"])){
 
 <script src="../js/main.js"></script>
 </body>
+<?php
+if (empty($_GET['duplicado'])) {
+        $duplicado="";
+    }
+    else
+    {   
+        $duplicado=$_GET['duplicado'];
+        if($duplicado=="si"){
+
+            ?> <script type="text/javascript">alertify.error('Error: el codigo del lote ya existe');</script> <?php
+
+        }
+    }
+
+
+    if (empty($_GET['guardado'])) {
+        $guardado="";
+    }
+    else
+    {   
+        $guardado=$_GET['guardado'];
+        if($guardado=="si"){
+
+            ?> <script type="text/javascript">alertify.success('El lote se ha ingresado exitosamente');</script> <?php
+
+        }
+
+        if($guardado == "no")
+        {
+            ?> <script type="text/javascript">alertify.error('Error: El lote no se pudo guardar');</script> <?php
+        }
+    }
+?>
 </html>

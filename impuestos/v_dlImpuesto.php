@@ -110,12 +110,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal" action="#">
+                <form class="form-horizontal" action="m_llenartablaImpuestos.php" method="POST">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Impuesto:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre del impuesto" pattern="[A-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
+                                <input type="text" class="form-control" name="buscar" placeholder="Nombre del impuesto" pattern="[a-zA-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -131,6 +131,25 @@ if(isset($_SESSION["loginUser-name"])){
   <div class="panel-heading">Impuestos Registrados en <strong>SICOPA</strong></div>
   <!-- Table -->
   <div class="table-responsive">
+   <?php 
+
+  if (empty($_GET['id'])) {
+        $id="";
+         $valor="";
+          $nombre="";
+           $descripcion="";
+           
+           
+    }
+    else
+    {   
+        $id=$_GET['id'];
+        $valor=$_GET['valor'];
+        $nombre=$_GET['nombre'];
+        $descripcion=$_GET['descripcion'];
+         
+
+?>
     <table class="table table-hover text-center">
      <tr>
         <th>Nombre</th>
@@ -140,12 +159,41 @@ if(isset($_SESSION["loginUser-name"])){
      </tr>
 
      <tr>
-      <td>Impuesto X</td>
-      <td>200000</td>
-      <td>Descripsion</td>
+      <td><?php echo $nombre; ?></td>
+      <td><?php echo $valor; ?></td>
+      <td><?php echo $descripcion; ?></td>
       <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
     </tr>
   </table>
+  <?php
+}
+if (empty($_GET['vacio'])) {
+        $vacio="";
+    }
+    else
+    {
+        $vacio=$_GET['vacio'];
+        if ($vacio == "si") {
+            ?>
+             <table class="table table-hover text-center">
+     <tr>
+        <th>Mensaje Del Sistema</th>
+   
+     </tr>
+
+     <tr>
+      <td>No hay informacion almacenada con ese nombre de impuesto</td>
+      
+      
+    </tr>
+  </table>
+            <?php
+        }
+    }
+
+  
+?>      
+  
 </div>
 </div>        
     </fielset>
@@ -164,16 +212,16 @@ if(isset($_SESSION["loginUser-name"])){
                     <form>
                         <div class="form-group">
                             <label for="idloti">Codigo De Impuesto</label>
-                            <input type="text" value="000000000" class="form-control" disabled>
+                            <input type="text" value="<?php echo $id;?>" class="form-control" disabled>
                         </div>
                         <div class="form-group">
                             <label for="pass">Nombre Del Impuesto: </label>
-                            <p class="form-control-static">Impuesto X</p>
+                            <p class="form-control-static"><?php echo $nombre; ?></p>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Aceptar</button>
+                    <a href="m_dlImpuesto.php?id=<?php echo $id; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarimpuesto();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
@@ -196,4 +244,20 @@ if(isset($_SESSION["loginUser-name"])){
 
 <script src="../js/main.js"></script>
 </body>
+<?php
+ if (empty($_GET['eliminado'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['eliminado'];
+        if ($mensaje == "si") {
+            ?> <script type="text/javascript">alertify.success('Registro eliminado exitosamente');</script> <?php
+        }
+
+        if ($mensaje == "no") {
+            ?> <script type="text/javascript">alertify.error('El registro no se elimino');</script> <?php
+        }
+    }
+?>
 </html>
