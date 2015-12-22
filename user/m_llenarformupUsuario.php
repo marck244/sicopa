@@ -1,6 +1,6 @@
 <?php
 		include("../conexion/conexion.php");
-		$busqueda=$_POST['buscar'];
+		$busqueda=TRIM(strtoupper($_POST['buscar']));
 		$query=$conn->query("SELECT USER_NICK,USER_NOMBRE,USER_APELLIDO,USER_NIVELACCESO FROM usuario WHERE USER_NICK='$busqueda'");
 
 		if ($row = $query->fetch_assoc()) {

@@ -239,7 +239,7 @@ include("departamentos.php");
 				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
 					<fielset>
 						<legend>Registro de un nuevo cliente</legend>
-					   <form method="POST" action="m_nwCliente.php" class="form-horizontal" onsubmit="return validar()">
+					   <form method="POST" action="m_nwCliente.php" class="form-horizontal" onsubmit="return validar()" autocomplete="off">
                        <input type="text" name="usuario" value="<?php echo $usuario; ?>" style="visibility:hidden">
 						<div class="form-group">
 							<label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>

@@ -32,6 +32,25 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script type="text/javascript">
+    function numeros(e){
+    key = e.keyCode || e.which;
+    tecla = String.fromCharCode(key).toLowerCase();
+    letras = " 0123456789";
+    especiales = [8,37,39,46];
+ 
+    tecla_especial = false
+    for(var i in especiales){
+ if(key == especiales[i]){
+     tecla_especial = true;
+     break;
+        } 
+    }
+ 
+    if(letras.indexOf(tecla)==-1 && !tecla_especial)
+        return false;
+}
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -108,7 +127,7 @@ if(isset($_SESSION["loginUser-name"])){
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="valor" class="form-control" placeholder="Valor del impuesto" pattern="[0-9]" title="Ingreso de solo numeros y no dejar campo vacio" required>
+             <input type="name" name="valor" class="form-control" placeholder="Valor del impuesto" title="Ingreso de solo numeros y no dejar campo vacio" onkeypress="return numeros(event)" required>
          </div>
      </div>
     
