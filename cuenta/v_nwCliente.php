@@ -224,7 +224,7 @@ if(isset($_SESSION["loginUser-name"])){
 						<legend>Registro de un nuevo cliente</legend>
 
 					   <form method="POST" action="m_nwCliente.php" class="form-horizontal" onsubmit="return validar()" autocomplete="off">
-                       <input type="text" name="usuario" value="<?php echo $usuario; ?>" style="visibility:hidden">
+                       
 
 					   <form method="POST" action="m_nwCliente.php" class="form-horizontal" onsubmit="return validar()">
                        <input type="hidden" name="usuario" value="<?php echo $_SESSION["loginUser-name"]; ?>" >
