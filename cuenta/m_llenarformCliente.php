@@ -5,8 +5,7 @@
 	$busqueda=str_replace("-","",$_POST["busqueda"]);
 
 
-	$query=$conn->query("SELECT CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_NIT,CLIENTE_EDAD,CLIENTE_DOMICILIO,CLIENTE_TELEFONO,CLIENTE_FECHANAC
-		,PROFESIONES_ID,MUNICIPIO_ID,CLIENTE_FIRMA FROM cliente WHERE CLIENTE_ID='$busqueda' ");
+	$query=$conn->query("SELECT CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO,CLIENTE_NIT,CLIENTE_EDAD,CLIENTE_DOMICILIO,CLIENTE_TELEFONO,CLIENTE_FECHANAC,PROFESIONES_ID,MUNICIPIO_ID,CLIENTE_FIRMA FROM cliente WHERE CLIENTE_ID='$busqueda' ");
 
 	if ($row=$query->fetch_assoc()){
 
@@ -15,14 +14,18 @@
 		$apellido=$row["CLIENTE_APELLIDO"];
 		$nit=$row["CLIENTE_NIT"];
 		$edad=$row["CLIENTE_EDAD"];
-		$domicilio=$row["CLIENTE_DOMICILIO"];
+		$domicilio=TRIM($row["CLIENTE_DOMICILIO"]);
+
 		$telefono=$row["CLIENTE_TELEFONO"];
-		$fechanac=$row["CLIENTE_FECHANAC"];
+		$fecha=TRIM($row["CLIENTE_FECHANAC"]);
+		
+		
 		$profesionid=$row["PROFESIONES_ID"];
 //////////////////////////////////////IDMUNICIPIO
 		$municipioid=$row["MUNICIPIO_ID"];
 /////////////////////////////////////////////////
-		$firma=$row["CLIENTE_FIRMA"];
+		$firma=TRIM($row["CLIENTE_FIRMA"]);
+	
 		
 		$query1=$conn->query("SELECT PROFESIONES_ID,PROFESIONES_NOMBRE FROM profesiones WHERE PROFESIONES_ID = '$profesionid' ");
 		$row1=$query1->fetch_assoc();
@@ -41,10 +44,14 @@
 		$nombredepartamento=$row3["DEPARTAMENTO_NOMBRE"];
 		
 
-		header("location: v_upCliente.php?dui=$dui&nombre=$nombre&apellido=$apellido&nit=$nit
-		&edad=$edad&domicilio=$domicilio&telefono=$telefono&fechanac=$fechanac&profesionid=$profesionid&nombreprofesion=$nombreprofesion&departamentoid=$id_departamento&departamentonombre=$nombredepartamento&municipioid=$municipioid&municipionombre=$nombremunicipio&firma=$firma");
+		header("location: v_upCliente.php?dui=$dui&nombre=$nombre&apellido=$apellido&nit=$nit&edad=$edad&domicilio=$domicilio&telefono=$telefono&fecha=$fecha&profesionid=$profesionid&nombreprofesion=$nombreprofesion&departamentoid=$id_departamento&departamentonombre=$nombredepartamento&municipioid=$municipioid&municipionombre=$nombremunicipio&firma=$firma");
 		
 
+	}
+
+	else
+	{
+		header("location: v_upCliente.php?vacio=si");
 	}
 
 

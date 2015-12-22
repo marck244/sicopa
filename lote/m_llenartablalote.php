@@ -1,7 +1,7 @@
 <?php
 include("../conexion/conexion.php");
 
-	$buscar= TRIM($_POST["busqueda"]);
+	$buscar= TRIM(strtoupper($_POST["busqueda"]));
 	
 
 	$query= $conn->query("SELECT LOTE_ID,LOTE_PRECIO,LOTE_EXTENSION,LOTIFICACION_ID,POLIGONO_ID FROM lote WHERE LOTE_ID='$buscar'");

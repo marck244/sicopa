@@ -11,76 +11,6 @@ if(isset($_SESSION["loginUser-name"])){
 }else{
     header("Location: ../user/v_login");
 }
-
-
-
-if (empty($_GET['dui'])) {
-        $dui="";
-    }
-    else
-    {   
-        $dui=$_GET['dui'];
-    }
-
-    if (empty($_GET['nombre'])) {
-        $nombre="";
-    }
-    else
-    {   
-        $nombre=$_GET['nombre'];
-    }
-
-    if (empty($_GET['apellido'])) {
-        $apellido="";
-    }
-    else
-    {   
-        $apellido=$_GET['apellido'];
-    }
-
-    if (empty($_GET['nit'])) {
-        $nit="";
-    }
-    else
-    {   
-        $nit=$_GET['nit'];
-    }
-
-     if (empty($_GET['edad'])) {
-        $edad="";
-    }
-    else
-    {   
-        $edad=$_GET['edad'];
-    }
-
-      if (empty($_GET['domicilio'])) {
-        $domicilio="";
-    }
-    else
-    {   
-        $domicilio=$_GET['domicilio'];
-    }
-
-
-      if (empty($_GET['telefono'])) {
-        $telefono="";
-    }
-    else
-    {   
-        $telefono=$_GET['telefono'];
-    }
-
-      if (empty($_GET['fechanac'])) {
-        $fechanac="";
-    }
-    else
-    {   
-        $fechanac=$_GET['fechanac'];
-    }
-
-
-include("departamentos.php");
       
 ?>
 <!doctype html>
@@ -104,8 +34,8 @@ include("departamentos.php");
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
-
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    
   
    
 
@@ -251,31 +181,21 @@ include("departamentos.php");
 
     </script>  
 
-    <script type="text/javascript">
-    function muestraform()
-    {   
-            document.getElementById('oculto').style.display = 'block';
-    
-        
-    }
-    </script> 
 
-
-    <script type="text/javascript">
- 
-  $(document).ready(function(){
-   $("#cbodepa").change(function () {
-           $("#cbodepa option:selected").each(function () {
-            var id_departamento = $(this).val();
-            var id=$('#cbomuni').val();
-            
-            $.post("otrosmunicipios.php", { id_departamento: id_departamento,id: id}, function(data){
-                $("#cbomuni").html(data);
-            });            
-        });
-   })
-});
-  </script>
+    <script type="text/javascript" >
+      $(document).ready(function() {
+      // Parametros para el combo
+       $("#cbodepa").change(function () {
+          $("#cbodepa option:selected").each(function () {
+            elegido=$(this).val();
+            $.post("cbomuni.php", { elegido: elegido }, function(data){
+            $("#cbomuni").html(data);
+          });     
+         });
+       });    
+    });
+</script>   
+  
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -343,14 +263,14 @@ include("departamentos.php");
 
  
 <div class="jumbotron">
-                <form class="form-horizontal" method="POST" action="m_llenarformCliente.php" onsubmit="return valida()">
+                <form class="form-horizontal" method="POST" action="m_llenarformCliente.php" onsubmit="return valida()" autocomplete="off">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-4 hidden-xs">Numero DUI :</label>
                             <div class="input-group">
                                 <input name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" type="text" class="form-control" placeholder="Ingresa un numero de Dui">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit" onclick="muestraform()">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
@@ -363,17 +283,104 @@ include("departamentos.php");
                 </div>
                 </div>
 
+                    <?php
+                    
 
-<div class="col-15 col-sm-12 col-md-12 col-lg-13" id='oculto' style='display:none;'>
+                      if (empty($_GET['dui'])) {
+
+        $dui="";
+
+        if (empty($_GET['nombre'])) {
+        $nombre="";
+        }
+
+      if (empty($_GET['apellido'])) {
+        $apellido="";
+        }
+
+        if (empty($_GET['nit'])) {
+        $nit="";
+        }
+
+        if (empty($_GET['edad'])) {
+        $edad="";
+        }
+
+        if (empty($_GET['domicilio'])) {
+        $domicilio="";
+         }  
+
+        if (empty($_GET['telefono'])) {
+        $telefono="";
+        }
+
+        if (empty($_GET['fecha'])) {
+            $fechanac="";
+        }
+
+        if (empty($_GET['profesionid'])) {
+            $profesionid="";
+        }
+
+        if (empty($_GET['nombreprofesion'])) {
+            $profesionnombre="";
+        }
+
+         if (empty($_GET['departamentoid'])) {
+            $departamentoid="";
+        }
+
+         if (empty($_GET['departamentonombre'])) {
+            $departamentonombre="";
+        }
+
+
+        if (empty($_GET['municipioid'])) {
+            $municipioid="";
+        }
+
+
+        if (empty($_GET['municipionombre'])) {
+            $municipionombre="";
+        }
+
+        if (empty($_GET['firma'])) {
+            $firma="";
+        }
+  
+    }
+    else
+    {   
+
+        $dui=$_GET['dui'];
+        $nombre=$_GET['nombre'];
+        $apellido=$_GET['apellido'];
+        $nit=$_GET['nit'];
+        $edad=$_GET['edad'];
+        $domicilio=TRIM($_GET['domicilio']);
+        $telefono=$_GET['telefono'];
+        $fechanac=$_GET['fecha'];
+        $profesionid=$_GET['profesionid'];
+        $profesionnombre=$_GET['nombreprofesion'];
+        $departamentoid=$_GET['departamentoid'];
+        $departamentonombre=$_GET['departamentonombre'];
+        $municipioid=$_GET['municipioid'];
+        $municipionombre=$_GET['municipionombre'];
+        $firma=$_GET['firma'];
+
+        ?>
+        <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form method="POST" class="form-horizontal" action="m_upCliente.php" onsubmit="return validar()">
+                       <form method="POST" class="form-horizontal" autocomplete="off" action="m_upCliente.php" onsubmit="return validar()">
+                       <input type="text" name="usuario" value="<?php echo $_SESSION["loginUser-name"]; ?>" style="visibility:hidden;">
                         <div class="form-group">
                         
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
                                              <input type="name"  class="form-control" value="<?php echo $dui; ?>" name="dui" readonly="true" placeholder="# Dui">
+
                             </div>
                         </div>
   <div class="form-group">
@@ -426,20 +433,10 @@ include("departamentos.php");
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Profesion :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cboprofesion" class="form-control">
-            <?php if (empty($_GET['profesionid'] || $_GET['nombreprofesion'])) {
-        $idprofesion="";
-        $nombreprofesion="";
-        ?><option>Seleccione</option><?php
-    }
-    else
-    {   
-        $idprofesion=$_GET['profesionid'];
-        $nombreprofesion=$_GET['nombreprofesion'];
-        ?>
-        <option>Seleccione</option>
-        <option value="<?php echo $idprofesion; ?>" selected><?php echo $nombreprofesion; ?></option>
-        <?php
-    }?>
+          
+        
+        <option value="<?php echo $profesionid; ?>" selected><?php echo $profesionnombre; ?></option>
+      
                 
              </select>
          </div>
@@ -449,25 +446,20 @@ include("departamentos.php");
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Departamento :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbodepa" id="cbodepa" class="form-control">
-                        <?php if (empty($_GET['departamentoid'] || $_GET['departamentonombre'])) {
-        $iddepartamento="";
-        $nombredepartamento="";
-        ?><option>Seleccione</option><?php
-    }
-    else
-    {   
-        $iddepartamento=$_GET['departamentoid'];
-        $nombredepartamento=$_GET['departamentonombre'];
-        ?>
-        <option>Seleccione</option>
-        <option value="<?php echo $iddepartamento; ?>" selected><?php echo $nombredepartamento; ?></option>
-        <?php
-    }
-                    $departamentos = departamentodistintos($iddepartamento);
-                    foreach ($departamentos as $depa) { 
-                        echo '<option value="'.$depa->id .'">'.$depa->nombre.'</option>';        
-                    }
+                   
+    
+        <option value="<?php echo $departamentoid; ?>" selected><?php echo $departamentonombre; ?></option>
+            <?php 
+            include("../conexion/conexion.php");
+            $sql=$conn->query("SELECT DEPARTAMENTO_ID,DEPARTAMENTO_NOMBRE FROM departamento WHERE DEPARTAMENTO_ID <> $departamentoid");
+            while ($row=$sql->fetch_assoc()) {
                 ?>
+                <option value="<?php echo $row['DEPARTAMENTO_ID'];?>" ><?php echo $row['DEPARTAMENTO_NOMBRE']; ?></option>
+                <?php
+            }
+           
+            ?>
+      
              </select>
          </div>
      </div>
@@ -476,20 +468,19 @@ include("departamentos.php");
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Municipio :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbomuni" id="cbomuni" class="form-control">
-                        <?php if (empty($_GET['municipioid'] || $_GET['municipionombre'])) {
-        $municipioid="";
-        $municipionombre="";
-        ?><option>Seleccione</option><?php
-    }
-    else
-    {   
-        $municipioid=$_GET['municipioid'];
-        $municipionombre=$_GET['municipionombre'];
-        ?>
-        <option>Seleccione</option>
-        <option value="<?php echo $municipioid; ?>" selected><?php echo $municipionombre; ?></option>
-        <?php
-    }?>
+                 
+             <option value="<?php echo $municipioid; ?>" selected><?php echo $municipionombre; ?></option>
+                <?php 
+           
+            $sql1=$conn->query("SELECT MUNICIPIO_ID,MUNICIPIO_NOMBRE,DEPARTAMENTO_ID FROM municipio WHERE  DEPARTAMENTO_ID='$departamentoid' AND MUNICIPIO_ID <> $municipioid ");
+            while ($row1=$sql1->fetch_assoc()) {
+                ?>
+                <option value="<?php echo $row1['MUNICIPIO_ID'];?>" ><?php echo $row1['MUNICIPIO_NOMBRE']; ?></option>
+                <?php
+            }
+           
+            ?>
+     
              </select>
          </div>
      </div>
@@ -498,16 +489,10 @@ include("departamentos.php");
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Sabe Firmar :</label>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbofirma" class="form-control">
-                            <?php if (empty($_GET['firma'])) {
-        $firma="";
-        
-        ?><option selected="true">Seleccione</option>
-        <option value="SI">SI</option>
-        <option value="NO">NO</option><?php
-    }
-    else
-    {   
-        $firma=$_GET['firma'];
+                           
+    
+        <?php
+       
         
         if ($firma == "SI") {
         ?>
@@ -523,10 +508,9 @@ include("departamentos.php");
         <option value="SI">SI</option>
             <?php
         }
-        ?>
-        
-        <?php
-    }?>
+       
+       
+    ?>
              </select>
          </div>
      </div>
@@ -545,12 +529,9 @@ include("departamentos.php");
 
 
                 </div>
-
-
-
-      
-
-        </div>
+           <?php } ?>
+        
+</div>
 
 
 
@@ -591,6 +572,19 @@ include("departamentos.php");
 </script>
 
 <?php
+if (empty($_GET['vacio'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['vacio'];
+        if ($mensaje=="si") {
+            ?> <script type="text/javascript">alertify.error("No se encontro ningun registro asociado a ese numero de Dui");</script> <?php
+        }
+    
+    }
+
+
 if (empty($_GET['actualizo'])) {
         $mensaje="";
     }

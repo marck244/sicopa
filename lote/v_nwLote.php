@@ -175,12 +175,12 @@ include("m_combobox_lotificacion.php");
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo lote</legend>
-                       <form action="m_nwLote.php" method="POST" class="form-horizontal" onsubmit="return validar()">
+                       <form action="m_nwLote.php" method="POST" name="form" class="form-horizontal" onsubmit="return validar()">
                         
                         <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo/Lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" maxlength="5" pattern="[A-Z]{1}[0-9]{4}" name="codigo" title="Ingresa primer digito letra y los restantes numeros" class="form-control" placeholder="Codigo de Lote" required>
+             <input type="name" maxlength="4" pattern="[a-z]{1}[0-9]{3}" name="codigo" title="Ingresa primer digito letra y los restantes numeros" class="form-control" placeholder="Codigo de Lote" required>
          </div>
      </div>
 

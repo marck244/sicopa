@@ -1,15 +1,15 @@
 <?php
 		include("../conexion/conexion.php");
-		$username=TRIM($_POST['username']);
-		$nombre= TRIM($_POST['nombre']);
-		$apellido= TRIM($_POST['apellido']);
-		$pass= $_POST['pwd1'];
+		$username=TRIM(strtoupper($_POST['username']));
+		$nombre= TRIM(strtoupper($_POST['nombre']));
+		$apellido= TRIM(strtoupper($_POST['apellido']));
+		$pass= TRIM($_POST['pwd1']);
 		$pass5=md5(md5($pass));
-		$nivel=$_POST['cbonivelacceso'];
+		$nivel=TRIM($_POST['cbonivelacceso']);
 
 
-			$query=$conn->query("UPDATE usuario SET USER_NICK='$username',USER_CONTRASENA='$pass5',USER_NOMBRE='$nombre',USER_APELLIDO='$apellido',USER_NIVELACCESO='$nivel' WHERE USER_NICK='$username'")
-		or die($conn->error);
+			$query=$conn->query("UPDATE usuario SET USER_NICK='$username',USER_CONTRASENA='$pass5',USER_NOMBRE='$nombre',USER_APELLIDO='$apellido',USER_NIVELACCESO='$nivel' WHERE USER_NICK='$username'");
+	
 		
 
 		if ($query >0) {

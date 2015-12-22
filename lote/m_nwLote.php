@@ -1,19 +1,19 @@
 <?php
 
 	include("../conexion/conexion.php");
+	$codigo=strtoupper($_POST['codigo']);
 
-
-	$codigo=$_POST['codigo'];
 	$extension=$_POST['extension'];
 	$precio=$_POST['precio'];
 	$lotifiacion=$_POST['cbolotificacion'];
 	$poligono=$_POST['cbopoligono'];
-	$detalles=$_POST['detalles'];
+	$detalles=strtoupper($_POST['detalles']);
 
-	$consulta=$conn->query("SELECT LOTE_ID FROM lote WHERE LOTE_ID='$codigo' ");
-	
+	$consulta=$conn->query("SELECT LOTE_ID FROM lote WHERE LOTE_ID='$codigo'");
 
-	if ($consulta > 0) {
+	$row=$consulta->fetch_assoc();
+
+	if ($row > 0) {
 		header("location: v_nwLote.php?duplicado=si");
 	}
 	else
@@ -28,7 +28,7 @@
 		}
 		else
 		{				
-				header("location: v_nwLote.php?guardado=no");
+			header("location: v_nwLote.php?guardado=no");
 		}
 	}
 
