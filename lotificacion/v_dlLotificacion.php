@@ -32,6 +32,40 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script>
+
+    function buscarLotificacion(){
+        var texto = document.getElementById("textScan");
+        //document.getElementById("resultado").innerHTML = texto.value;
+            var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("resultado").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_dlLotificacion_scan.php?loti="+texto.value, true);
+        xhttp.send();
+    }
+
+    function abrirModalDelete(id){
+        var nombreL = document.getElementById("nom"+id);
+        var ID = document.getElementById("idEliminarX");
+
+        document.getElementById("deleTitle").innerHTML = "Eliminar Lotificacion: "+nombreL.value;
+        document.getElementById("deleID").innerHTML = id;
+        ID.value = id;
+        document.getElementById("deleNom").innerHTML = nombreL.value;
+        var myModal = $('#inicioModal');
+        myModal.modal('show');
+    }
+
+/*
+$(document).ready(function(){
+    $(".dropRespuesta").dropdown("toggle");
+});
+*/
+
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -61,7 +95,7 @@ if(isset($_SESSION["loginUser-name"])){
             Bienvenido: <strong><?php echo $_SESSION["loginUser-name"];?></strong> Hora: <strong id="timeServer">--:--:--</strong>
         </div>
         <!-- FIN Nuevo Nav Bar-->
-
+        
         <div class="container">
             <H1>Lotificacion</H1>
             <h4>Lotificacion > Eliminar/Cambio de Estado de  Lotificacion</h4>
@@ -103,7 +137,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lotificacion</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z ]{5,150}" title="!Solo introduzca letras! Minimo 5, maximo 150 caracteres!" required>
+                                <input type="text" id="textScan" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z0-9 ]{5,150}" title="Minimo 5 letras. Maximo 150. Solo letras y Numeros" required autocomplete="off" onkeyup="buscarLotificacion()" autofocus>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -119,23 +153,9 @@ if(isset($_SESSION["loginUser-name"])){
   <div class="panel-heading">Lotificaciones Registradas en <strong>SICOPA</strong></div>
   <!-- Table -->
   <div class="table-responsive">
-    <table class="table table-hover text-center">
-     <tr>
-       <th>Codigo</th>
-       <th>Nombre Lotificacion</th>
-       <th>Numero de Lotes</th>      
-       <th>Precio de Lotificacion</th>
-       <th>Eliminar</th>
-     </tr>
+    <table class="table table-hover text-center" id="resultado">
 
-     <tr>
-      <td>300</td>
-      <td>Lotificacion Esparta</td>
-      <td>300,000</td>
-      <td>$ 3,000,000.00 </td>
-      <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
-    </tr>
-  </table>
+    </table>
 </div>
 </div>        
     </fielset>
@@ -148,28 +168,44 @@ if(isset($_SESSION["loginUser-name"])){
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminacion de Lotificacion</h4>
+                    <h4 class="modal-title" id="deleTitle">Eliminacion de Lotificacion</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="formDelete" action="m_dlLotificacion_action" method="POST">
                         <div class="form-group">
-                            <label for="idloti">Codigo de Lotificacion</label>
-                            <input type="text" value="300" class="form-control" disabled>
+                            <label for="idloti">Codigo: </label>
+                            <p class="form-control-static" id="deleID"></p>
+                            <input type="hidden" id="idEliminarX" name="EliminarID">
                         </div>
                         <div class="form-group">
-                            <label for="pass">Nombre: </label>
-                            <p class="form-control-static">Lotificacion Esparta</p>
+                            <label for="pass">Lotificacion: </label>
+                            <p class="form-control-static" id="deleNom"></p>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary">Aceptar</button>
+                    <button class="btn btn-primary" type="submit" form="formDelete" value="Submit">Aceptar</button>
                     <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
         </div>
     </div>
-
+<?php 
+    if (isset($_GET["r"])) {
+        # code...
+        if ($_GET["r"]==1) {?>
+        <script>
+            alertify.error("No se Pudo Eliminar! Ya hay lotes Asociados a esta Lotificacion");
+        </script>
+    <?php }elseif ($_GET["r"]==0) {
+        # code...
+        ?>
+        <script>
+            alertify.success("Lotificacion ELIMNADA exitosamente!");
+        </script>
+    <?php
+    }
+    } ?>
 
 <center>
   <footer>

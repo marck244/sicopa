@@ -32,6 +32,53 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+
+
+<script src="../js/vendor/jquery-1.11.2.min.js"></script>
+<script src="../js/vendor/bootstrap.min.js"></script>  
+
+
+
+    <script>
+
+    function buscarLotificacion(){
+        var texto = document.getElementById("textScan");
+        //document.getElementById("resultado").innerHTML = texto.value;
+            $(".dropRespuesta").dropdown("toggle");
+            $("#formUpLotificacion").hide(1000);
+            var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("resultado").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_upLotificacion_scan.php?loti="+texto.value, true);
+        xhttp.send();
+    }
+
+    function formUpdate(id){
+        $("#formUpLotificacion").slideDown(1000);
+        var codigoH = document.getElementById("upIdh");
+        var nombreL = document.getElementById("upNombre");
+        var numeroL = document.getElementById("upNumero");
+        var precioL = document.getElementById("upPrecio");
+
+        document.getElementById("upId").innerHTML = id;
+        codigoH.value = id;
+        nombreL.value = document.getElementById("nom"+id).value;
+        numeroL.value = document.getElementById("num"+id).value;
+        precioL.value = document.getElementById("pre"+id).value;
+
+    }
+
+/*
+$(document).ready(function(){
+    $(".dropRespuesta").dropdown("toggle");
+});
+*/
+
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -98,48 +145,59 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                 <div class="jumbotron">
-                <form action="" class="form-horizontal">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lotificacion</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z ]{5,150}" title="No se admiten numeros" required>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">Buscar!</button>
-                                </span>
-                            </div><!-- /input-group -->
-                        </div><!-- /.col-lg-6 -->
-                    </div><!-- /.row -->
-                </form>
+                    <form  class="form-horizontal">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lotificacion</label>
+                                <div class="input-group">   
+                                    <input type="text" id="textScan" class="form-control" placeholder="Nombre de Lotificacion" pattern="[A-Za-z0-9 ]{5,150}" title="Minimo 5 letras. Maximo 150. Solo letras y Numeros" required autocomplete="off" onkeyup="buscarLotificacion()" autofocus>
+                                    <div class="dropdown">
+                                        <p class="dropRespuesta" data-toggle="dropdown"></p>
+                                        <ul class="dropdown-menu dropdown-scan" id="resultado" aria-labelledby="dropdownMenu1">
+                                            <li><a href="#">Escriba un nombre de Lotificacion</a></li>
+                                        </ul>
+                                    </div>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">Buscar!</button>
+                                    </span>
+                                </div><!-- /input-group -->
+
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </form>
+                   
                 </div>
 
 
 
 
-        <form action="" class="form-horizontal">
+
+
+        <form action="m_upLotificacion_action" class="form-horizontal ocultar" id="formUpLotificacion" method="POST">
             <div class="form-group">
                 <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo</label>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 
-                    <p class="form-control-static">#ID (Sera dinamico)</p>
+                    <p class="form-control-static" id="upId"></p>
+                    <input type="hidden" id="upIdh" name="textUpId">
                 </div>
             </div>
             <div class="form-group">
                 <label for="Nombre Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre</label>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" class="form-control" placeholder="Nombre de la Nueva Lotificacion" pattern="[A-Za-z ]{5,150}" title="No se admiten numeros. Maximo 150 caracteres." required>
+                    <input type="text" id="upNombre" name="textUpNombre"class="form-control" placeholder="Nombre de la Nueva Lotificacion" pattern="[A-Za-z ]{5,150}" title="No se admiten numeros. Maximo 150 caracteres." required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="Numero de Lotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Numero de Lotes</label>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                    <input type="number" class="form-control" placeholder="Numero de Lotes que posee o puede poseer" required>
+                    <input type="number" id="upNumero" name="textUpNumero"class="form-control" placeholder="Numero de Lotes que posee o puede poseer" required>
                 </div>
             </div>
             <div class="form-group">
                 <label for="Precio de Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio $ USD</label>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                    <input type="text" class="form-control" placeholder="Ejemplo: 10000 o 10000.99" pattern="[0-9.]{7,9}" title="Ejemplo 1234567.89 No se permiten las comas (,). \n Minimo de un terremo es de $1000.00" required>
+                    <input type="text" id="upPrecio" name="textUpPrecio"class="form-control" placeholder="Ejemplo: 10000 o 10000.99" pattern="[0-9.]{7,12}" title="Ejemplo 1234567.89 No se permiten las comas (,). \n Minimo de un terremo es de $1000.00" required>
                 </div>
             </div>
             <div class="form-group">
@@ -149,6 +207,22 @@ if(isset($_SESSION["loginUser-name"])){
             </div>
         </form>
     </fielset>
+    <?php 
+    if (isset($_GET["r"])) {
+        # code...
+        if ($_GET["r"]==1) {?>
+        <script>
+            alertify.error("No se Pudo actualizar.! Si continua el problema, contacte al adminstrador del Sistema");
+        </script>
+    <?php }elseif ($_GET["r"]==0) {
+        # code...
+        ?>
+        <script>
+            alertify.success("Lotificacion ACTUALIZADA exitosamente!");
+        </script>
+    <?php
+    }
+    } ?>
 </div>
 </div>
 </div>
@@ -164,9 +238,8 @@ if(isset($_SESSION["loginUser-name"])){
     <p>&copy; SICOPA 2015</p>
 </footer>
 </center>
-</div> <!-- /container -->       
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-<script src="../js/vendor/bootstrap.min.js"></script>
+</div> <!-- /container -->  
+
 <script src="../js/main.js"></script>
 </body>
 </html>

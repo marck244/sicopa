@@ -73,12 +73,27 @@ if(isset($_SESSION["loginUser-name"])){
     function cancelarPago(){
       alertify.log("Pago ha sido Cancelado!");
     }
+
+    /* Funcion para buscar una persona*/
+    function buscarClienteCuentas(){
+        var txt_id = document.getElementById("textScan");
+        $(".dropRespuesta").dropdown("toggle");
+        //$("#formUpLotificacion").hide(1000);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("resultado").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_ClienteCuenta_scan.php?dui="+txt_id.value, true);
+        xhttp.send();
+    }
+
+    function panelPagos(id){
+      var nameCliente = document.getElementById("clientenombre"+id);
+      document.getElementById("nombreCLiente").innerHTML=nameCliente.value;
+    }
     </script>
-
-
-
-
-
 
 </head>
 <body>
@@ -120,39 +135,30 @@ if(isset($_SESSION["loginUser-name"])){
                     <fielset>
                         <legend>Calculo de Pagos</legend>
                         <div class="jumbotron">
-                            <form class="form-horizontal">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <label for="lotiname" class="control-label col-sm-4 hidden-xs">DUI Cliente</label>
-                                        <div class="input-group col-sm-8">
-                                          <div class="dropdown">
-                                          <input type="text" name="dui" id="dropdownMenu1" class="form-control dropdown-toggle" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" pattern="[0-9-]{10}" title="Solo se aceptan numeros. No letras." placeholder="00000000-0" required autocomplete="off" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                            <li><a href="#">Escriba algo..</a></li>
-                                            <li><a href=""></a></li>
-                                          </ul>
-                                        </div>
-                                          <span class="input-group-btn">
-                                            <button class="btn btn-default" type="submit">Buscar!</button>
-                                          </span>
-                                        </div><!-- /input-group -->
-                                    </div><!-- /.col-lg-6 -->
-                                </div><!-- /.row -->
-                            </form>
+                          <form class="form-horizontal">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <label for="lotiname" class="control-label col-sm-4 hidden-xs">DUI Cliente</label>
+                                <div class="input-group col-sm-8">
+                                  <input type="text" id="textScan" name="dui" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" pattern="[0-9-]{10}" title="Solo se aceptan numeros. No letras." placeholder="00000000-0" required autocomplete="off" >
+                                  <div class="dropdown">
+                                    <p class="dropRespuesta" data-toggle="dropdown"></p>
+                                    <ul class="dropdown-menu dropdown-scan" id="resultado" aria-labelledby="dropdownMenu1">
+                                      <li><a href="#">Escriba DUI de Cliente</a></li>
+                                    </ul>
+                                  </div>
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-default">Buscar!</button>
+                                  </span>
+                                </div><!-- /input-group -->
+                              </div><!-- /.col-lg-6 -->
+                            </div><!-- /.row -->
+                          </form>
                         </div>
                     </fielset>
 
-<div class="dropdown ocultar">
-  <input class="dropdown-toggle" type="text" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div>
                     <div class="panel panel-default">
-                        <div class="panel-heading">Listado de Cuentas Abiertas de <strong>Marvin Rolando Segura Menjivar</strong></div>
+                        <div class="panel-heading">Listado de Cuentas Abiertas de <strong id="nombreCLiente"></strong></div>
                         <div class="table-responsive">
                             <table class="table table-hover text-center">
                                <tr>
@@ -170,63 +176,6 @@ if(isset($_SESSION["loginUser-name"])){
                                  <th></th>
                              </tr>
 
-                             <tr>
-                            
-                              <td>2 <input type="hidden" id="cod1" value="2"></td>
-                              <td>La Cima 2</td>
-                              <td>E004 </td>
-                              <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="number" placeholder="Numero" id="factura1"></td>
-                              <td>$ 4,500.00</td>
-                              <td>$ 33.33</td>
-                              <td>$ 5.00</td>
-                              <td>$ 4.33</td>
-                              <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta1" onkeyup="sumar(3)" size="5"></td>
-                              <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2" onclick="hacerPago(factura1.value,cuenta1.value,cod1.value)"></a>
-                              </td>
-                             
-
-                          </tr>
-                          <tr>
-                           
-                              <td>3 <input type="hidden" id="cod2" value="3"></td>
-                              <td>Esparta</td>
-                              <td>E005 </td>
-                              <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="number" placeholder="Numero" id="factura2"></td>
-                              <td>$ 4,500.00</td>
-                              <td>$ 33.33</td>
-                              <td>$ 5.00</td>
-                              <td>$ 4.33</td>
-                              <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta2" onkeyup="sumar(3)" size="5"></td>
-                              <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2" onclick="hacerPago(factura2.value,cuenta2.value,cod2.value)"></a>
-                              </td>
-                           
-
-                          </tr>
-                          <tr>
-                            
-                              <td>38 <input type="hidden" id="cod3" value="38"></td>
-                              <td>La Cima</td>
-                              <td>E040 </td>
-                              <td><?php echo date("Y/m/d");?></td>
-                              <td><input type="number" placeholder="Numero" id="factura3"></td>
-                              <td>$ 4,500.00</td>
-                              <td>$ 33.33</td>
-                              <td>$ 5.00</td>
-                              <td>$ 4.33</td>
-                              <td>$ 42.37</td>
-                              <td><input type="text" placeholder="$" id="cuenta3" onkeyup="sumar(3)" size="5"></td>
-                              <td>
-                                <a href="#" class="glyphicon glyphicon-piggy-bank mr-glyphicon-2" onclick="hacerPago(factura3.value,cuenta3.value,cod3.value)"></a>
-                              </td>
-                              
-
-                          </tr>
                             <tr>
                               
                               <td></td>
@@ -234,18 +183,17 @@ if(isset($_SESSION["loginUser-name"])){
                               <td></td>
                               <td></td>
                               <td></td>
-                              
                               <td colspan=2><strong>Minimo Total</strong></td>
-                              <td><strong>$ 82.96</strong></td>
+                              <td><strong id="minimo">$</strong></td>
                               <td></td>
                               <td><strong>Total</strong></td>
-                              <td><strong id="total"></strong></td>
+                              <td><strong id="total">$</strong></td>
                               <td></td>
                           </tr>
                       </table>
-                  </div> <!-- no se 1-->
-                  </div> <!-- no se 2-->
-                </div><!-- tabla-->
+                  </div> <!-- tabla responsiva-->
+                  </div> <!-- panel de tabla-->
+                </div><!-- caja de row -->
             </div><!-- ROW-->
         </div><!-- container-->
 <a href=""></a>

@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-$usuario=$_SESSION["loginUser-name"];
 if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
     if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3" || $_SESSION["user-nivelacceso"]=="4") {
@@ -14,7 +12,6 @@ if(isset($_SESSION["loginUser-name"])){
 }else{
     header("Location: ../user/v_login");
 }
-include("departamentos.php");
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -37,7 +34,6 @@ include("departamentos.php");
 	<script src="../js/vendor/modernizr-2.8.3.min.js"></script>
 	<script type="text/javascript" src="../alertify/alertify.min.js"></script>
 	<script type="text/javascript" src="../js/main.js"></script>
-	<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
 	<!-- script validacion entrada solo texto INICIO -->
 	<script type="text/javascript">
@@ -161,21 +157,8 @@ include("departamentos.php");
    }
 
    </script>
+
   <!--script no dejar campos vacios en el formulario FIN -->
-  
-  <script type="text/javascript">
- 
-  $(document).ready(function(){
-   $("#cbodepa").change(function () {
-           $("#cbodepa option:selected").each(function () {
-            id_departamento = $(this).val();
-            $.post("municipios.php", { id_departamento: id_departamento }, function(data){
-                $("#cbomuni").html(data);
-            });            
-        });
-   })
-});
-  </script>
    </head>
 <body>
 	<!--[if lt IE 8]>
@@ -239,8 +222,13 @@ include("departamentos.php");
 				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
 					<fielset>
 						<legend>Registro de un nuevo cliente</legend>
+<<<<<<< HEAD
 					   <form method="POST" action="m_nwCliente.php" class="form-horizontal" onsubmit="return validar()" autocomplete="off">
                        <input type="text" name="usuario" value="<?php echo $usuario; ?>" style="visibility:hidden">
+=======
+					   <form method="POST" action="m_nwCliente.php" class="form-horizontal" onsubmit="return validar()">
+                       <input type="hidden" name="usuario" value="<?php echo $_SESSION["loginUser-name"]; ?>" >
+>>>>>>> origin/master
 						<div class="form-group">
 							<label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>
 							<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -307,14 +295,9 @@ include("departamentos.php");
 	   <div class="form-group">
 		 <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Departamento :</label>
 		 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-			 <select name="cbodepa" class="form-control" id="cbodepa">
+			 <select name="cbodepa" class="form-control">
 				<option>Seleccione</option>
-				<?php
-                    $departamentos = departamentos();
-                    foreach ($departamentos as $depa) { 
-                        echo '<option value="'.$depa->id .'">'.$depa->nombre.'</option>';        
-                    }
-                ?>
+				<option value="Chalatenango">Chalatenango</option>
 			 </select>
 		 </div>
 	 </div>
@@ -323,7 +306,8 @@ include("departamentos.php");
 		 <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Municipio :</label>
 		 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 			 <select name="cbomuni" id="cbomuni" class="form-control">
-				<option value="">Seleccione</option>
+				<option value="" >Seleccione</option>
+				<option value="1" >La Palma</option>
 			 </select>
 		 </div>
 	 </div>
@@ -332,8 +316,8 @@ include("departamentos.php");
 		 <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Sabe Firmar :</label>
 		<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 			 <select name="cbofirma" class="form-control">
-				<option value="SI">Si</option>
-				<option value="NO">No</option>
+				<option value="Si">Si</option>
+				<option value="No">No</option>
 			 </select>
 		 </div>
 	 </div>
@@ -362,7 +346,7 @@ include("departamentos.php");
 	</footer>
 </center>
 </div> <!-- /container -->        
-
+<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
 <script src="../js/vendor/bootstrap.min.js"></script>
 
@@ -371,39 +355,23 @@ include("departamentos.php");
 </html>
 
 <?php
-if (empty($_GET['duplicado'])) 
-	{ 
-		$duplicado="";
-	} 
-	else 
-	{ 
-		$duplicado=$_GET['duplicado'];
-		if ($duplicado == "dui") {
+
+	if ($_GET["duplicado"] == "dui") {
 		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese DUI porque ya existe");</script>  <?php 
 	}
-	if ($duplicado == "nit") {
+
+	if ($_GET["duplicado"] == "nit") {
 		?> <script type="text/javascript">alertify.error("Error: no se puede registrar el cliente con ese NIT porque ya existe");</script>  <?php 
 	}
-	}
 	
-
-	
-	if (empty($_GET['guardado'])) {
-		$guardado="";
-	}
-	else
-	{	
-		$guardado=$_GET['guardado'];
-		if($guardado=="si")
+	if($_GET["guardado"]=="si")
 	{
 			
 
 		?> <script type="text/javascript"> alertify.success("El registro del cliente se efectuo exitosamente");</script>  <?php 
 	}
-	if ($guardado== "no") {
+	if ($_GET["guardado"]== "no") {
 		?> <script type="text/javascript">alertify.error("Error: no se pudo efectuar el registro del cliente");</script>  <?php 
 	}
-	}
-	
 
 ?>
