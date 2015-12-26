@@ -139,7 +139,7 @@ if(isset($_SESSION["loginUser-name"])){
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo Usuario</legend>
-                       <form action="m_nwUsuario.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this)">
+                       <form action="m_nwUsuario.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this)" autocomplete="off">
                         
                     <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>

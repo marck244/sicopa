@@ -110,12 +110,12 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal" action="m_llenartablaImpuestos.php" method="POST">
+                <form class="form-horizontal" action="m_llenartablaImpuestos.php" method="POST" autocomplete="off">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Impuesto:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="buscar" placeholder="Nombre del impuesto" pattern="[a-zA-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
+                                <input type="text" class="form-control" name="buscar" placeholder="Nombre del impuesto" pattern="[a-z ]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>

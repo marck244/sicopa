@@ -109,7 +109,7 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                 <div class="jumbotron">
-                <form class="form-horizontal" action="m_llenartablalote.php" method="POST">
+                <form class="form-horizontal" action="m_llenartablalote.php" method="POST" autocomplete="off">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lote:</label>

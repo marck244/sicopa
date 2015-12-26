@@ -119,7 +119,7 @@ if(isset($_SESSION["loginUser-name"])){
 
 
   <div class="jumbotron">
-                <form class="form-horizontal" action="m_llenarformImpuestos.php" method="POST">
+                <form class="form-horizontal" action="m_llenarformImpuestos.php" method="POST" autocomplete="off">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Impuesto:</label>
@@ -173,7 +173,7 @@ if(isset($_SESSION["loginUser-name"])){
                              <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Nombre del impuesto" pattern="[a-zA-Z]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
+             <input type="name" name="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Nombre del impuesto" pattern="[a-z ]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
          </div>
      </div>
 
