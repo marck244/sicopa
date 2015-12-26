@@ -3,9 +3,9 @@
 
 	include("../conexion/conexion.php");
 
-	$nombre=$_POST['nombre'];
-	$valor=$_POST['valor'];
-	$descripcion=$_POST['descripcion'];
+	$nombre=TRIM(strtoupper($_POST['nombre']));
+		$valor=TRIM($_POST['valor']);
+		$descripcion=TRIM(strtoupper($_POST['descripcion']));
 
 
 
