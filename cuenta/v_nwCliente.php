@@ -35,7 +35,20 @@ if(isset($_SESSION["loginUser-name"])){
 	<script type="text/javascript" src="../alertify/alertify.min.js"></script>
 	<script type="text/javascript" src="../js/main.js"></script>
 	<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script>
+  $(function() {
+    $( "#datepicker" ).datepicker({
+    	autoSize: true
 
+    });
+
+
+
+  });
+
+  </script>
 	<!-- script validacion entrada solo texto INICIO -->
 	<script type="text/javascript">
 
@@ -303,7 +316,8 @@ if(isset($_SESSION["loginUser-name"])){
 	 <div class="form-group">
 		 <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Fecha Nacimiento :</label>
 		 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-			 <input type="date" name="fechanacimiento" class="form-control">
+			 
+			 <input type="text" id="datepicker" name="fechanacimiento" class="form-control">
 		 </div>
 	 </div>
 
