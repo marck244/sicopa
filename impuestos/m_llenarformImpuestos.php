@@ -24,6 +24,10 @@
 
 
 			}
+			else
+			{
+				header("location: v_upImpuesto.php?vacio=si");
+			}
 
 
 
