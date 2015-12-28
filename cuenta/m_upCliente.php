@@ -6,12 +6,12 @@
 		
 		$dui = TRIM($_POST["dui"]);
 		
-		$nombre = $_POST["nombre"];
-		$apellido = $_POST["apellido"];
+		$nombre = strtoupper($_POST["nombre"]);
+		$apellido = strtoupper($_POST["apellido"]);
 		$nit = TRIM($_POST["nit"]);
 		$nitt= str_replace("-","",$nit);
 		$edad = $_POST["edad"];
-		$domicilio = $_POST["domicilio"];
+		$domicilio = strtoupper($_POST["domicilio"]);
 		$telefono = $_POST["telefono"];
 		$fechanacimiento = $_POST["fechanacimiento"];
 		$profesion = $_POST["cboprofesion"];

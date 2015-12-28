@@ -1,7 +1,7 @@
 <?php
 include("../conexion/conexion.php");
 
-	$buscar= TRIM($_POST["buscar"]);
+	$buscar= TRIM(strtoupper($_POST["buscar"]));
 	
 
 $query=$conn->query("SELECT IMPUESTO_ID,IMPUESTO_VALOR,IMPUESTO_NOMBRE,IMPUESTO_DESCRIPCION FROM impuesto WHERE IMPUESTO_NOMBRE='$buscar'");
