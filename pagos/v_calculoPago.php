@@ -4,6 +4,7 @@ if(isset($_SESSION["loginUser-name"])){
     /*mas codigo si esta logueado*/
     if ($_SESSION["user-nivelacceso"]=="1" || $_SESSION["user-nivelacceso"]=="3" || $_SESSION["user-nivelacceso"]=="4") {
         # code...
+        require("../conexion/conexion.php");
         require("../conexion/list_menu.php");
     }else{
         header("Location: ../");
@@ -33,7 +34,7 @@ if(isset($_SESSION["loginUser-name"])){
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
     <script>
-    function abrirModal(cod,factura,cuota){
+    function abrirModal(){
       var myModal = $('#inicioModal');
       myModal.modal('show');
       var codigo = document.getElementById("codigoCuenta");
@@ -44,6 +45,20 @@ if(isset($_SESSION["loginUser-name"])){
       factu.value = factura;
       usd.value = cuota;
     }
+    //Para realizar un pago mensual de un lote.
+    function abrirModal2(cod,factura,cuota){
+      var myModal = $('#inicioModal');
+      myModal.modal('show');
+      var codigo = document.getElementById("codigoCuenta");
+      var factu = document.getElementById("recibo");
+      var usd = document.getElementById("abono");
+      document.getElementById("labelCodigo").innerHTML=cod;
+      codigo.value = cod;
+      factu.value = factura;
+      usd.value = cuota;
+    }
+    
+    //sumar los txt de los minimos. Posiblemente ya no lo ocupe
     function sumar(num){
       var suma = 0.00;
       i=1;
@@ -56,8 +71,10 @@ if(isset($_SESSION["loginUser-name"])){
         }
         i++;
       }
-      document.getElementById("total").innerHTML = "$ "+suma.toFixed(2);;
+      document.getElementById("total").innerHTML = "$ "+suma.toFixed(2);
     }
+    
+    //valida los montos de dinero.
     function hacerPago(factura,cuota,cod){
       if(factura=="" || cuota==""){
         alertify.error('El numero de FACTURA y CUOTA no pueden estar vacios');
@@ -69,16 +86,18 @@ if(isset($_SESSION["loginUser-name"])){
         }
         
       }
-    }//funcion hacerPago()
+    }
+
+    //funcion hacerPago()
     function cancelarPago(){
       alertify.log("Pago ha sido Cancelado!");
     }
+
 
     /* Funcion para buscar una persona*/
     function buscarClienteCuentas(){
         var txt_id = document.getElementById("textScan");
         $(".dropRespuesta").dropdown("toggle");
-        //$("#formUpLotificacion").hide(1000);
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -90,8 +109,10 @@ if(isset($_SESSION["loginUser-name"])){
     }
 
     function panelPagos(id){
-      var nameCliente = document.getElementById("clientenombre"+id);
-      document.getElementById("nombreCLiente").innerHTML=nameCliente.value;
+      /*var nameCliente = document.getElementById("clientenombre"+id);
+      document.getElementById("nombreCLiente").innerHTML=nameCliente.value; */
+      var txtBuscar = document.getElementById("textScan");
+      txtBuscar.value = id;
     }
     </script>
 
@@ -156,6 +177,8 @@ if(isset($_SESSION["loginUser-name"])){
                           </form>
                         </div>
                     </fielset>
+<!-- Codigo si hay un DUI a Buscar-->
+<?php if(isset($_GET["dui"])){  ?>
 
                     <div class="panel panel-default">
                         <div class="panel-heading">Listado de Cuentas Abiertas de <strong id="nombreCLiente"></strong></div>
@@ -164,20 +187,82 @@ if(isset($_SESSION["loginUser-name"])){
                                <tr>
                                  <th>Cuenta</th>
                                  <th>Lotificacion</th>
-                                 <th>Lote</th>      
-                                 <th>Fecha</th>
-                                 <th>Numero Recibo</th>
-                                 <th>Monto Restante</th>
-                                 <th>Cuota Capital</th>
-                                 <th>Cuota Interes</th>
-                                 <th>Couta Iva</th>
-                                 <th>Pago Minimo</th>
+                                 <th>Lote</th>
+                                 <th>Saldo</th>
+                                 <th>A Capital</th>
+                                 <th>A Interes</th>
+                                 <th>A Iva</th>
+                                 <th>Pago Minimo</th>      
+                                 <th>N&deg; Recibo</th>
                                  <th>Abono a Cuenta</th>
-                                 <th></th>
+                                 <th>Cancelar</th>
                              </tr>
+<?php
+$scanDui = explode("-", $_GET["dui"]);
+// Version 1. este si funciono
+// Pero no tiene IVA e INTERES dinamicos de la base
+//$sql = "SELECT cuenta.CUENTA_ID, lotificacion.LOTIFICACION_NOMBRE, cuenta.LOTE_ID, lote.LOTE_PRECIO, cuenta.CUENTA_PLAZO FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID WHERE cuenta.CLIENTE_ID='".$scanDui[0].$scanDui[1]."'";
+// Version 2
+/*
+  Este ya posee iva e interes dinamicamente de la base.
+*/
+$sql = "SELECT cuenta.CUENTA_ID, lotificacion.LOTIFICACION_NOMBRE, cuenta.LOTE_ID, lote.LOTE_PRECIO, cuenta.CUENTA_PLAZO, impuesto.IMPUESTO_INTERES, impuesto.IMPUESTO_IVA FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID INNER JOIN impuesto ON cuenta.IMPUESTO_ID=impuesto.IMPUESTO_ID WHERE cuenta.CLIENTE_ID='".$scanDui[0].$scanDui[1]."'";
+$result = $conn->query($sql);
+$NInteres=0.00; // es la tasa de interes entre 12 meses..
+$NIva = 0.00; // es tasa normal del iva.
+$Cpagado=0.00;// es la suma de todo el capital que tiene guardado la tabla CUENTAS_PAGOS
+$aCapital=0.00; // es el valor fijo segun contrado del valor del lote entre numero de meses.
+$aInteres=0.00; // Valor que gana la lotificadora porq var el prestamo.
+$aIva=0.00; // iva a recolectar y dar al gobierno.
+$cuotaMinima=0.00;
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      $strTotalCapital = "SELECT SUM(CUENTA_PAGOS_CAPITAL) as TCAPITAL FROM cuenta_pagos WHERE CUENTA_ID='".$row["CUENTA_ID"]."'";
+      $rsTotalCapital = $conn->query($strTotalCapital);
+      if($rsTotalCapital->num_rows > 0){
+        $rowCapital =$rsTotalCapital->fetch_assoc();
+        $Cpagado = $rowCapital["TCAPITAL"];
+
+        $NInteres = $row["IMPUESTO_INTERES"]/12;
+        $NIva = $row["IMPUESTO_IVA"];
+        
+        $aCapital = $row["LOTE_PRECIO"]/$row["CUENTA_PLAZO"];
+        $aCapital = number_format($aCapital,2,'.',',');
+        $aInteres = ($row["LOTE_PRECIO"]-$Cpagado)*$NInteres;
+        $aInteres = number_format($aInteres,2,'.',',');
+        $aIva = ($aCapital+$aInteres)*$NIva;
+        $aIva = number_format($aIva,2,'.',',');
+        $cuotaMinima = $aCapital + $aInteres + $aIva;
+      
+         ?>
+                              <tr>
+                                 <td><?php echo $row["CUENTA_ID"]; ?></td>
+                                 <td><?php echo $row["LOTIFICACION_NOMBRE"]; ?></td>
+                                 <td><?php echo $row["LOTE_ID"]; ?></td>
+                                 <td><?php echo "$ ".number_format($row["LOTE_PRECIO"]-$Cpagado,2,'.',','); ?></td>
+                                 <td><?php echo "$ ".$aCapital; ?></td>
+                                 <td><?php echo "$ ".$aInteres; ?></td>
+                                 <td><?php echo "$ ".$aIva; ?></td>
+
+                                 <td><?php echo "$ ".$cuotaMinima; ?></td>      
+                                 <td><input type="number" name="txtRecibo<?php echo $row['CUENTA_ID'];?>" id="txtRecibo<?php echo $row['CUENTA_ID'];?>"></td>
+                                 <td><input type="text" name="txtAbono<?php echo $row['CUENTA_ID'];?>" id="txtAbono<?php echo $row['CUENTA_ID'];?>"></td>
+                                 <td><button type="button" class="btn btn-link btn-sm" onclick="abrirModal('<?php echo $row['CUENTA_ID']; ?>')"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span></button></td>
+                              </tr>
+        <?php
+      }else{
+        echo "<tr><td colspan='11'>no hay ninguna pago registrado</td></tr>"; //Este mensaje nunca se vera. el cero como resultado es un valor. asi q nunca entrara al else.
+      }
+       
+    }
+} else {
+    echo "<tr><td colspan='11'>El cliente no tiene ningun lote adquirido..</td></tr>";
+}
+$conn->close();
+                             ?>
 
                             <tr>
-                              
                               <td></td>
                               <td></td>
                               <td></td>
@@ -185,7 +270,6 @@ if(isset($_SESSION["loginUser-name"])){
                               <td></td>
                               <td colspan=2><strong>Minimo Total</strong></td>
                               <td><strong id="minimo">$</strong></td>
-                              <td></td>
                               <td><strong>Total</strong></td>
                               <td><strong id="total">$</strong></td>
                               <td></td>
@@ -193,6 +277,8 @@ if(isset($_SESSION["loginUser-name"])){
                       </table>
                   </div> <!-- tabla responsiva-->
                   </div> <!-- panel de tabla-->
+
+<?php } ?>
                 </div><!-- caja de row -->
             </div><!-- ROW-->
         </div><!-- container-->
