@@ -33,6 +33,21 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+       <script type="text/javascript" >
+      $(document).ready(function() {
+      // Parametros para el combo
+       $("#cbolotificacion").change(function () {
+          $("#cbolotificacion option:selected").each(function () {
+            elegido=$(this).val();
+            $.post("cbolotes.php", { elegido: elegido }, function(data){
+            $("#cbolote").html(data);
+          });     
+         });
+       });    
+    });
+</script> 
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -114,7 +129,19 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputImpuesto" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Impuesto :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cboimpuesto" class="form-control">
-                <option>Seleccione</option>
+                <option value="">Seleccione</option>
+                <?php 
+
+                include("../conexion/conexion.php");
+                $sql="SELECT IMPUESTO_ID,IMPUESTO_NOMBRE FROM impuesto";
+                $query=$conn->query($sql);
+                while ($row=$query->fetch_assoc()) {
+                    ?>
+                    <option value="<?php echo $row['IMPUESTO_ID'];?>"><?php echo $row['IMPUESTO_NOMBRE']; ?></option>
+                    <?php
+                }
+
+                ?>
              </select>
          </div>
      </div>
@@ -132,9 +159,20 @@ if(isset($_SESSION["loginUser-name"])){
       <div class="form-group">
          <label for="inputLotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbolotificacion" class="form-control">
-                <option>Seleccione</option>
-              
+             <select name="cbolotificacion" id="cbolotificacion" class="form-control">
+                <option value="0">Seleccione</option>
+                <?php 
+
+                
+                $sqlloti="SELECT LOTIFICACION_ID,LOTIFICACION_NOMBRE FROM lotificacion";
+                $queryloti=$conn->query($sqlloti);
+                while ($rowloti=$queryloti->fetch_assoc()) {
+                    ?>
+                    <option value="<?php echo $rowloti['LOTIFICACION_ID'];?>"><?php echo $rowloti['LOTIFICACION_NOMBRE']; ?></option>
+                    <?php
+                }
+
+                ?>
              </select>
          </div>
      </div>
@@ -142,8 +180,9 @@ if(isset($_SESSION["loginUser-name"])){
       <div class="form-group">
          <label for="inputLotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotes :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbolote" class="form-control">
-                <option>Seleccione</option>
+             <select name="cbolote" id="cbolote" class="form-control">
+                <option value="">Seleccione</option>
+                
              </select>
          </div>
      </div>
@@ -200,6 +239,12 @@ if(isset($_SESSION["loginUser-name"])){
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
              <button type="submit" class="btn btn-primary">Registrar Cuenta</button>
          </div>
+
+         <div class="col-xs-12 col-sm-1 col-sm-offset-0">
+             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#inicioModal">Simular Proceso</button>
+         </div>
+
+
          </center>
      </div>
                     </form>
@@ -208,7 +253,23 @@ if(isset($_SESSION["loginUser-name"])){
                 </div>
         </div>
 
-
+<div class="modal fade" id="inicioModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Simulacion de pagos</h4>
+                </div>
+                <div class="modal-body">
+                   
+                </div>
+                <div class="modal-footer">
+                    
+                    <button class="btn btn-default" onclick="" data-dismiss="modal">Cerrar Ventana</button>
+                </div>                            
+            </div>
+        </div>
+    </div>
 
 
 <center>
@@ -217,7 +278,7 @@ if(isset($_SESSION["loginUser-name"])){
     </footer>
 </center>
 </div> <!-- /container -->        
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
 
 <script src="../js/vendor/bootstrap.min.js"></script>
 
