@@ -168,9 +168,11 @@ if(isset($_SESSION["loginUser-name"])){
                         $pagar=$a_capital;
                         $a_pagar=$a_capital;
 
+                        $nuevafecha=date("Y-m-d",strtotime("$fechacreado + 1 month"));
 
 
-            for ($contador=1; $contador <= $plazo ; $contador++,$preciolote-=$a_capital,$interes-=$a_interes,$cuenta_iva-=$a_cuenta_iva,$cuot_maxima-=$a_cuot_maxima,$pagar+=$a_pagar) { 
+
+            for ($contador=1; $contador <= $plazo ; $contador++,$fechacreado+=$nuevafecha,$preciolote-=$a_capital,$interes-=$a_interes,$cuenta_iva-=$a_cuenta_iva,$cuot_maxima-=$a_cuot_maxima,$pagar+=$a_pagar) { 
 
                 
                  
@@ -178,7 +180,7 @@ if(isset($_SESSION["loginUser-name"])){
                 
         					<tr>
                            <td><?php echo $contador; ?></td>
-                            <td>2016/01/04</td>
+                            <td><?php echo $fechacreado;?></td>
                       
                             
                           <td><?php
