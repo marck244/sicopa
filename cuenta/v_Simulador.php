@@ -17,7 +17,7 @@ if(isset($_SESSION["loginUser-name"])){
             $lote=$_GET['lote'];
             $prima=$_GET['prima'];
             $plazo=$_GET['plazo'];
-            $fechacreado=$_GET['fechacreado'];
+            
             
 ?>
 <!doctype html>
@@ -253,7 +253,7 @@ if(isset($_SESSION["loginUser-name"])){
                            }
                            else
                            {
-                            
+                                     
                                      echo date( "d-F-Y", strtotime( "+".$mes." month" ) ); 
                                      
                            }

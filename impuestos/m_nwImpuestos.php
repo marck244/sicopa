@@ -3,15 +3,21 @@
 
 	include("../conexion/conexion.php");
 
-	$nombre=TRIM(strtoupper($_POST['nombre']));
-		$valor=TRIM($_POST['valor']);
+	
+
+		$valorinteres=TRIM($_POST['valorinteres']);
+		$valoriva=TRIM($_POST['valoriva']);
+
+		$interes= $valorinteres / 100;
+		$iva= $valoriva / 100;
+
 		$descripcion=TRIM(strtoupper($_POST['descripcion']));
 
 
 
 
 
-	$consulta=$conn->query("SELECT IMPUESTO_NOMBRE FROM impuesto WHERE IMPUESTO_NOMBRE='$nombre' ");
+	$consulta=$conn->query("SELECT IMPUESTO_DESCRIPCION FROM impuesto WHERE IMPUESTO_DESCRIPCION='$descripcion' ");
 	$array=$consulta->fetch_assoc();
 
 
@@ -22,7 +28,7 @@
 
 	else
 	{
-		$query=$conn->query("INSERT INTO impuesto(IMPUESTO_VALOR,IMPUESTO_NOMBRE,IMPUESTO_DESCRIPCION) VALUES('$valor','$nombre','$descripcion')");
+		$query=$conn->query("INSERT INTO impuesto(IMPUESTO_INTERES,IMPUESTO_IVA,IMPUESTO_DESCRIPCION) VALUES('$interes','$iva','$descripcion')");
 
 		
 		if($query > 0)

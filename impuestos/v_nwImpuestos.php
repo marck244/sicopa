@@ -114,20 +114,22 @@ if(isset($_SESSION["loginUser-name"])){
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo Impuesto</legend>
-                       <form action="m_nwImpuestos.php" method="POST" class="form-horizontal">
+                       <form action="m_nwImpuestos.php" method="POST" class="form-horizontal" autocomplete="off">
                         
-                   <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre Impuesto:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="nombre" class="form-control" placeholder="Nombre del impuesto" pattern="[a-zA-Z]{1,25}" title="Ingresar Solo letras y no dejar el campo vacio" required> 
-         </div>
-     </div>
+                  
 
 
                              <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor INTERES:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="valor" class="form-control" placeholder="Valor del impuesto" title="Ingreso de solo numeros y no dejar campo vacio" onkeypress="return numeros(event)" required>
+             <input type="name" name="valorinteres" class="form-control" placeholder="Valor interes del impuesto" title="Ingreso de solo numeros y no dejar campo vacio" onkeypress="return numeros(event)" required>
+         </div>
+     </div>
+
+     <div class="form-group">
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor IVA:</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="name" name="valoriva" class="form-control" placeholder="Valor iva del impuesto" title="Ingreso de solo numeros y no dejar campo vacio" onkeypress="return numeros(event)" required>
          </div>
      </div>
     

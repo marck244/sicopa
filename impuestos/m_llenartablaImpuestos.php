@@ -4,7 +4,7 @@ include("../conexion/conexion.php");
 	$buscar= TRIM(strtoupper($_POST["buscar"]));
 	
 
-$query=$conn->query("SELECT IMPUESTO_ID,IMPUESTO_VALOR,IMPUESTO_NOMBRE,IMPUESTO_DESCRIPCION FROM impuesto WHERE IMPUESTO_NOMBRE='$buscar'");
+$query=$conn->query("SELECT IMPUESTO_ID,IMPUESTO_INTERES,IMPUESTO_IVA,IMPUESTO_DESCRIPCION FROM impuesto WHERE IMPUESTO_DESCRIPCION='$buscar'");
 	
 
 	$row = $query->fetch_assoc();
@@ -12,11 +12,11 @@ $query=$conn->query("SELECT IMPUESTO_ID,IMPUESTO_VALOR,IMPUESTO_NOMBRE,IMPUESTO_
 			
 
 			$id=$row['IMPUESTO_ID'];
-			$valor=$row['IMPUESTO_VALOR'];
-			$nombre=$row['IMPUESTO_NOMBRE'];
+			$interes=$row['IMPUESTO_INTERES'];
+			$iva=$row['IMPUESTO_IVA'];
 			$descripcion=$row['IMPUESTO_DESCRIPCION'];
 
-			header("location: v_dlImpuesto.php?id=$id & valor=$valor & nombre= $nombre & descripcion=$descripcion");
+			header("location: v_dlImpuesto.php?id=$id&interes=$interes&iva=$iva&descripcion=$descripcion");
 
 
 		}	
