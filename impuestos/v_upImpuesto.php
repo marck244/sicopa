@@ -143,11 +143,11 @@ if(isset($_SESSION["loginUser-name"])){
                 <?php
                 if (empty($_GET['id'])) {
                     $id="";
-                    if (empty($_GET['valor'])) {
-                        $valor="";
+                    if (empty($_GET['iva'])) {
+                        $iva="";
                     }
-                    if (empty($_GET['nombre'])) {
-                        $nombre="";
+                    if (empty($_GET['interes'])) {
+                        $interes="";
                     }
                     if (empty($_GET['descripcion'])) {
                         $descripcion="";
@@ -155,8 +155,8 @@ if(isset($_SESSION["loginUser-name"])){
                 }
                 else{
                     $id=$_GET['id'];
-                    $valor=$_GET['valor'];
-                    $nombre=$_GET['nombre'];
+                    $iva=$_GET['iva'];
+                    $interes=$_GET['interes'];
                     $descripcion=$_GET['descripcion'];
                 ?>
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
@@ -170,25 +170,27 @@ if(isset($_SESSION["loginUser-name"])){
                                              <input value="<?php echo $id; ?>" name="id" type="name" class="form-control" readonly="true" placeholder="# Impuesto">
                             </div>
                         </div>
+                           
+
+
                              <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre:</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor INTERES:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="nombre" value="<?php echo $nombre; ?>" class="form-control" placeholder="Nombre del impuesto" pattern="[a-z ]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
+             <input type="name" name="valorinteres" class="form-control" value="<?php echo $interes; ?>" placeholder="Valor interes del impuesto" title="Ingreso de solo numeros y no dejar campo vacio" onkeypress="return numeros(event)" required>
          </div>
      </div>
 
-
-                             <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor Impuesto:</label>
+     <div class="form-group">
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor IVA:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="valor" value="<?php echo $valor; ?>" class="form-control" placeholder="Valor del impuesto" onkeypress="return numeros(event)"  title="no dejar el campo vacio y ingresar solo numeros" required>
+             <input type="name" name="valoriva" class="form-control" value="<?php echo $iva; ?>" placeholder="Valor iva del impuesto" title="Ingreso de solo numeros y no dejar campo vacio" onkeypress="return numeros(event)" required>
          </div>
      </div>
     
      <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Descripcion:</label>
+         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Descripcion Impuesto :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea class="form-control" name="descripcion" rows="3" pattern="[/^\w+$/]{10,100}" title="No poner un minimo descripcion de 10 caracteres y ingresar un maximo de 100 no se permiten caracteres especiales @!" placeholder="Ingresa una descripcion del impuesto"><?php echo $descripcion; ?></textarea>
+            <textarea name="descripcion"  class="form-control" pattern="[/^\w+$/]{10,100}" title="No poner un minimo descripcion de 10 caracteres y ingresar un maximo de 100 no se permiten caracteres especiales @!" rows="3" placeholder="Ingresa una descripcion del impuesto"><?php echo $descripcion; ?></textarea>
          </div>
      </div>
 

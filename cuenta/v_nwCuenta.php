@@ -57,10 +57,10 @@ if(isset($_SESSION["loginUser-name"])){
       var lote = document.getElementById("cbolote");
       var prima = document.getElementById("prima");
       var plazo = document.getElementById("plazo");
-      var fechacreado = document.getElementById("fechacreado");
+      
 
 
-        window.open("v_Simulador.php?dui="+dui.value+"&impuesto="+impuesto.value+"&lote="+lote.value+"&prima="+prima.value+"&plazo="+plazo.value+"&fechacreado="+fechacreado.value+"");
+        window.open("v_Simulador.php?dui="+dui.value+"&impuesto="+impuesto.value+"&lote="+lote.value+"&prima="+prima.value+"&plazo="+plazo.value+"");
     }
 
 </script>
@@ -224,13 +224,7 @@ if(isset($_SESSION["loginUser-name"])){
      </div>
 
 
-      <div class="form-group">
-         <label for="inputCuentaMontoTotal" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta Fecha Creacion :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="date" class="form-control" placeholder="" name="fechacreado" id="fechacreado">
-         </div>
-     </div>
-
+      
 
 
      <div class="form-group">

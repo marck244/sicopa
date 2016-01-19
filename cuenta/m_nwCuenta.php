@@ -12,7 +12,8 @@
 	$prima=TRIM($_POST['prima']);
 	$estado=TRIM($_POST['cboestado']);
 	$plazodias=TRIM($_POST['plazo']);
-	$fechacreado=TRIM($_POST['fechacreado']);
+	
+	$fechacreado=date("Y-m-d");
 	
 
 	if (empty($prima)) {

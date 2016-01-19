@@ -135,8 +135,8 @@ if(isset($_SESSION["loginUser-name"])){
 
   if (empty($_GET['id'])) {
         $id="";
-         $valor="";
-          $nombre="";
+         $interes="";
+          $iva="";
            $descripcion="";
            
            
@@ -144,24 +144,24 @@ if(isset($_SESSION["loginUser-name"])){
     else
     {   
         $id=$_GET['id'];
-        $valor=$_GET['valor'];
-        $nombre=$_GET['nombre'];
+        $interes=$_GET['interes'];
+        $iva=$_GET['iva'];
         $descripcion=$_GET['descripcion'];
          
 
 ?>
     <table class="table table-hover text-center">
      <tr>
-        <th>Nombre</th>
-    <th>Valor</th>
-    <th>Descripcion</th>      
+        <th>Descripcion del impuesto</th>
+    <th>Interes</th>
+    <th>Iva</th>      
     <th>Eliminar</th>
      </tr>
 
      <tr>
-      <td><?php echo $nombre; ?></td>
-      <td><?php echo $valor; ?></td>
       <td><?php echo $descripcion; ?></td>
+      <td><?php echo $interes; ?></td>
+      <td><?php echo $iva; ?></td>
       <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
     </tr>
   </table>
