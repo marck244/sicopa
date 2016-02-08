@@ -5,18 +5,24 @@
 			include("../conexion/conexion.php");
 			$busqueda=TRIM($_POST['busqueda']);
 
-			$query=$conn->query("SELECT IMPUESTO_ID,IMPUESTO_VALOR,IMPUESTO_NOMBRE,IMPUESTO_DESCRIPCION FROM impuesto WHERE IMPUESTO_NOMBRE='$busqueda'");
+			$query=$conn->query("SELECT IMPUESTO_ID,IMPUESTO_INTERES,IMPUESTO_IVA,IMPUESTO_DESCRIPCION FROM impuesto WHERE IMPUESTO_DESCRIPCION='$busqueda'");
 			if ($row=$query->fetch_assoc()){
 
 						$id=$row['IMPUESTO_ID'];
-						$valo=TRIM($row['IMPUESTO_VALOR']);
-						$valor=str_replace(".","",$valo);
+						
 
-						$nombre=$row['IMPUESTO_NOMBRE'];
+						
+
+						$ivav=$row['IMPUESTO_IVA'];
+						$interesv=$row['IMPUESTO_INTERES'];
+
+						$iva=$ivav * 100;
+						$interes=$interesv * 100;
+
 						$descripcion=$row['IMPUESTO_DESCRIPCION'];
 
 
-						header("location: v_upImpuesto.php?id=$id&valor=$valor&nombre=$nombre&descripcion=$descripcion");
+						header("location: v_upImpuesto.php?id=$id&iva=$iva&interes=$interes&descripcion=$descripcion");
 
 
 
