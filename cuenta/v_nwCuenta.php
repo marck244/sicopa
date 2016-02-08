@@ -33,6 +33,38 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+       <script type="text/javascript" >
+      $(document).ready(function() {
+      // Parametros para el combo
+       $("#cbolotificacion").change(function () {
+          $("#cbolotificacion option:selected").each(function () {
+            elegido=$(this).val();
+            $.post("cbolotes.php", { elegido: elegido }, function(data){
+            $("#cbolote").html(data);
+          });     
+         });
+       });    
+    });
+</script> 
+
+<script type="text/javascript">
+    function simulador()
+    {
+      var dui = document.getElementById("dui");
+      var impuesto = document.getElementById("cboimpuesto");
+      var lote = document.getElementById("cbolote");
+      var prima = document.getElementById("prima");
+      var plazo = document.getElementById("plazo");
+      
+
+
+        window.open("v_Simulador.php?dui="+dui.value+"&impuesto="+impuesto.value+"&lote="+lote.value+"&prima="+prima.value+"&plazo="+plazo.value+"");
+    }
+
+</script>
+
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -96,25 +128,31 @@ if(isset($_SESSION["loginUser-name"])){
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de una nueva cuenta</legend>
-                       <form action="" class="form-horizontal">
-                        <div class="form-group">
-                            <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Id Cuenta :</label>
-                            <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-                                
-                                             <input type="name" class="form-control" placeholder="Codigo de Cuenta">
-                            </div>
-                        </div>
+                       <form action="" method="POST" class="form-horizontal">
+                     
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre del cliente:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" placeholder="Ingrese Un Cliente">
+             <input type="name" class="form-control" name="dui" id="dui" placeholder="Ingrese Un Cliente">
          </div>
      </div>
      <div class="form-group">
          <label for="inputImpuesto" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Impuesto :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cboimpuesto" class="form-control">
-                <option>Seleccione</option>
+             <select name="cboimpuesto" id="cboimpuesto" class="form-control">
+                <option value="">Seleccione</option>
+                <?php 
+
+                include("../conexion/conexion.php");
+                $sql="SELECT IMPUESTO_ID,IMPUESTO_DESCRIPCION FROM impuesto";
+                $query=$conn->query($sql);
+                while ($row=$query->fetch_assoc()) {
+                    ?>
+                    <option value="<?php echo $row['IMPUESTO_ID'];?>"><?php echo $row['IMPUESTO_DESCRIPCION']; ?></option>
+                    <?php
+                }
+
+                ?>
              </select>
          </div>
      </div>
@@ -123,8 +161,19 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputEstadoCuenta" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Estado de Cuenta :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cboestado" class="form-control">
-                <option>Activo</option>
-                <option>Inactivo</option>
+               <option value="">Seleccione</option>
+                 <?php 
+
+                
+                $sqlestado="SELECT CUENTA_ESTADOS_ID,CUENTA_ESTADOS_NOMBRE FROM cuenta_estados";
+                $queryestado=$conn->query($sqlestado);
+                while ($rowestado=$queryestado->fetch_assoc()) {
+                    ?>
+                    <option value="<?php echo $rowestado['CUENTA_ESTADOS_ID'];?>"><?php echo $rowestado['CUENTA_ESTADOS_NOMBRE']; ?></option>
+                    <?php
+                }
+
+                ?>
              </select>
          </div>
      </div>
@@ -132,9 +181,20 @@ if(isset($_SESSION["loginUser-name"])){
       <div class="form-group">
          <label for="inputLotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotificacion :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbolotificacion" class="form-control">
-                <option>Seleccione</option>
-              
+             <select name="cbolotificacion" id="cbolotificacion" class="form-control">
+                <option value="0">Seleccione</option>
+                <?php 
+
+                
+                $sqlloti="SELECT LOTIFICACION_ID,LOTIFICACION_NOMBRE FROM lotificacion";
+                $queryloti=$conn->query($sqlloti);
+                while ($rowloti=$queryloti->fetch_assoc()) {
+                    ?>
+                    <option value="<?php echo $rowloti['LOTIFICACION_ID'];?>"><?php echo $rowloti['LOTIFICACION_NOMBRE']; ?></option>
+                    <?php
+                }
+
+                ?>
              </select>
          </div>
      </div>
@@ -142,8 +202,9 @@ if(isset($_SESSION["loginUser-name"])){
       <div class="form-group">
          <label for="inputLotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotes :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbolote" class="form-control">
-                <option>Seleccione</option>
+             <select name="cbolote" id="cbolote" class="form-control">
+                <option value="">Seleccione</option>
+                
              </select>
          </div>
      </div>
@@ -151,48 +212,19 @@ if(isset($_SESSION["loginUser-name"])){
      <div class="form-group">
          <label for="inputCuentaPrima" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta de prima :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="number" class="form-control" placeholder="Valor de Prima">
+             <input type="number" name="prima" id="prima" class="form-control" placeholder="Valor de Prima">
          </div>
      </div>
 
      <div class="form-group">
          <label for="inputCuentaPlazo" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta de plazo :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="number" class="form-control" placeholder="Plazo de pago(dias)">
-         </div>
-     </div>
-
-     <div class="form-group">
-         <label for="inputCuentaInteres" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta de interes :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="number" class="form-control" placeholder="cuenta de interes a pagar">
+             <input type="number" name="plazo" id="plazo" class="form-control" placeholder="Plazo de pago(dias)">
          </div>
      </div>
 
 
-     <div class="form-group">
-         <label for="inputCuentaIVA" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta IVA :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="number" class="form-control" placeholder="cuenta de IVA">
-         </div>
-     </div>
-
-    
-     <div class="form-group">
-         <label for="inputCuentaMontoTotal" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Monto Total :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="number" class="form-control" placeholder="cuenta de monto total a pagar">
-         </div>
-     </div>
-
-
-      <div class="form-group">
-         <label for="inputCuentaMontoTotal" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta Fecha Creacion :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="date" class="form-control" placeholder="">
-         </div>
-     </div>
-
+      
 
 
      <div class="form-group">
@@ -200,6 +232,12 @@ if(isset($_SESSION["loginUser-name"])){
          <div class="col-xs-12 col-sm-2 col-sm-offset-3">
              <button type="submit" class="btn btn-primary">Registrar Cuenta</button>
          </div>
+
+         <div class="col-xs-12 col-sm-1 col-sm-offset-0">
+             <button type="button" name="simular" class="btn btn-primary" onclick="simulador();" >Simular Proceso</button>
+         </div>
+
+
          </center>
      </div>
                     </form>
@@ -211,13 +249,14 @@ if(isset($_SESSION["loginUser-name"])){
 
 
 
+
 <center>
     <footer>
         <p>&copy; SICOPA 2015</p>
     </footer>
 </center>
 </div> <!-- /container -->        
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
 
 <script src="../js/vendor/bootstrap.min.js"></script>
 

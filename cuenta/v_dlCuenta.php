@@ -32,6 +32,35 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+     <script type="text/javascript">
+
+    function valida () {
+        
+        var busqueda= document.getElementById("typeahead");
+
+        if (busqueda.value=='') {
+            alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
+            return false;
+        }
+        return true;
+
+    }
+
+    </script>
+
+    <script type="text/javascript">
+         function cancelareliminar(){
+      alertify.log("proceso ha sido Cancelado!");
+    }
+
+        function eliminarcliente()
+        {
+            /******************* codigo para eliminar         */
+        }
+    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -97,15 +126,15 @@ if(isset($_SESSION["loginUser-name"])){
                 <legend>Eliminar/Cambio de Estado de Cuenta</legend>
 
 
-                <div class="jumbotron">
-                <form class="form-horizontal">
+                  <div class="jumbotron">
+                <form class="form-horizontal" method="POST"  action="m_llenartablaCuenta.php" onsubmit="return valida()" autocomplete="off">
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-3 hidden-xs">Cliente :</label>
+                            <label for="lotiname" class="control-label col-xs-4 hidden-xs">Numero DUI :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="buscar cuenta por nombre cliente">
+                                <input type="text" class="form-control" name="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead" placeholder="Ingresa un numero de Dui">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">Buscar!</button>
+                                    <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
@@ -120,33 +149,85 @@ if(isset($_SESSION["loginUser-name"])){
   <!-- Table -->
   <div class="table-responsive">
     <table class="table table-hover text-center">
+    <?php 
+
+  if (empty($_GET['dui']) || empty($_GET['id'])  ) {
+        $dui="";
+         $id="";
+          $cliente="";
+           $impuesto_descripcion="";
+           $cuenta_estado_id="";
+           $estado="";
+           $lote="";
+           $fecha_creado="";
+           $plazo="";
+    }
+    else
+    {   
+        $dui=$_GET["dui"];
+        $id=$_GET["id"];
+        $cliente=$_GET["cliente"];
+        $impuesto_descripcion=$_GET["impuestodescripcion"];
+        $cuenta_estado_id=$_GET["cuenta_estado_id"];
+        $estado=$_GET["estado"];
+        $lote=$_GET["lote"];
+        $fecha_creado=$_GET["fechacreado"];
+        $plazo=$_GET["plazo"];
+
+         ?>
+         <table class="table table-hover text-center">
      <tr>
-        <th>Id Cuenta</th>
-    <th>Cliente</th>
-    <th>Estado/Cuenta</th>      
+        <th>Codigo Cuenta</th>
+        <th>Dui</th>
+    <th>Cliente</th>     
+    <th>Estado Cuenta</th>
     <th>Lote</th>
-    <th>Prima</th>
+    <th>Fecha Creacion</th>
     <th>Plazo</th>
-    <th>Interes</th>
-    <th>IVA</th>
-    <th>MontoTotal</th>
-    <th>Fecha Creado</th>
-    <th>CANCELAR</th>
+    <th>Eliminar</th>
      </tr>
 
      <tr>
-      <td>0000000</td>
-      <td>Jairo Velasquez</td>
-      <td>ACTIVO</td>
-      <td>E040</td>
-      <td>$ 200.00</td>
-      <td>120 meses</td>
-      <td>$ 500</td>
-      <td>$ 450</td>
-      <td>$ 6,000</td>
-      <td>13/10/2015</td>
-      <td><a href="#" class="glyphicon glyphicon-trash" data-toggle="modal" data-target="#inicioModal"></a></td>
+      <td><?php echo $id; ?></td>
+      <td><?php echo $dui; ?></td>
+      <td><?php echo $cliente; ?></td>
+      <td><?php echo $estado; ?></td>
+      <td><?php echo $lote; ?></td>
+      <td><?php echo $fecha_creado; ?></td>
+      <td><?php echo $plazo." Cuotas"; ?></td>
+      
+      
+      <td><a href="#" class="glyphicon glyphicon-trash" id="<?php echo $dui; ?>" data-toggle="modal" data-target="#inicioModal"></a></td>
     </tr>
+  </table>
+         <?php
+    }
+
+    if (empty($_GET['vacio'])) {
+        $vacio="";
+    }
+    else
+    {
+        $vacio=$_GET['vacio'];
+        if ($vacio == "si") {
+            ?>
+             <table class="table table-hover text-center">
+     <tr>
+        <th>Mensaje Del Sistema</th>
+   
+     </tr>
+
+     <tr>
+      <td>No hay informacion almacenada con ese dui</td>
+      
+      
+    </tr>
+  </table>
+            <?php
+        }
+    }
+
+  ?>
   </table>
 </div>
 </div>        
@@ -166,19 +247,47 @@ if(isset($_SESSION["loginUser-name"])){
                     <form>
                         <div class="form-group">
                             <label for="idloti">Codigo De Cuenta</label>
-                            <input type="text" value="000000000" class="form-control" disabled>
+                            <input type="text" value="<?php echo $id; ?>" class="form-control" disabled>
                         </div>
                         <div class="form-group">
                             <label for="pass">Cliente: </label>
-                            <p class="form-control-static">Jairo Velasquez</p>
+                            <p class="form-control-static"><?php echo $cliente; ?></p>
                         </div>
                     </form>
-                    <p><strong>NOTA:</strong> La cuenta seleccionada no se eliminara sino que se dara de baja es decir si antes estaba Activa ahora sera Inactiva.</p>
+                    <?php
+                    include("../conexion/conexion.php");
+
+                    $sql="SELECT CUENTA_ID from cuenta_pagos WHERE CUENTA_ID='$id'";
+                    $query=$conn->query($sql);
+                    $n_row=$query->num_rows;
+
+                    if ($n_row > 0) {
+                        ?>
+                        <p><strong>NOTA:</strong> La cuenta seleccionada no se eliminara porque posee un pago asi que se dara de baja es decir si antes estaba Activa ahora sera Inactiva.</p>
+                         <div class="modal-footer">
+                    <a href="m_dlCuenta.php?cuenta=<?php echo $id; ?>&pago=si" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
+                    <button class="btn btn-default" onclick="cancelareliminar();" data-dismiss="modal">Cancelar</button>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-primary">Aceptar</button>
-                    <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                </div>                            
+                        <?php
+                    }
+                    else
+                    {
+
+                    ?>
+                      <p><strong>NOTA:</strong> La cuenta seleccionada se eliminara porque NO posee un pago.</p>
+                         <div class="modal-footer">
+                    <a href="m_dlCuenta.php?cuenta=<?php echo $id; ?>&pago=no" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
+                    <button class="btn btn-default" onclick="cancelareliminar();" data-dismiss="modal">Cancelar</button>
+                </div>
+                    <?php
+                
+                
+                    }
+
+                    ?>
+                </div>
+
+                                          
             </div>
         </div>
     </div>
@@ -193,10 +302,26 @@ if(isset($_SESSION["loginUser-name"])){
 </footer>
 </center>
 </div> <!-- /container -->       
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
 
 <script src="../js/vendor/bootstrap.min.js"></script>
 
 <script src="../js/main.js"></script>
 </body>
+<?php
+ if (empty($_GET['eliminado'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['eliminado'];
+        if ($mensaje == "si") {
+            ?> <script type="text/javascript">alertify.success('Registro eliminado o dado de baja exitosamente');</script> <?php
+        }
+
+        if ($mensaje == "no") {
+            ?> <script type="text/javascript">alertify.error('El registro no se elimino ni se dio de baja');</script> <?php
+        }
+    }
+?>
 </html>
