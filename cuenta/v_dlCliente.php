@@ -182,6 +182,7 @@ if(isset($_SESSION["loginUser-name"])){
     }
     else
     {   
+        $user=$_SESSION["loginUser-name"];
         $dui=$_GET['dui'];
         $nombre=$_GET['nombre'];
         $apellido=$_GET['apellido'];
@@ -261,7 +262,7 @@ if(isset($_SESSION["loginUser-name"])){
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="m_dlCliente.php?id=<?php echo $dui; ?>" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
+                    <a href="m_dlCliente.php?id=<?php echo $dui; ?>&user=<?php echo $user; ?>" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarcliente();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>

@@ -2,9 +2,11 @@
 	
 	include("../conexion/conexion.php");
 
+		$dui =TRIM($_POST["duicliente"]);
+
+		$id=TRIM($_POST["id"]);
 		
 		
-		$dui = TRIM($_POST["dui"]);
 		$impuesto=TRIM($_POST["cboimpuesto"]);
 		$estado=TRIM($_POST["cboestado"]);
 		$lotificacion=TRIM($_POST["cbolotificacion"]);
@@ -12,15 +14,42 @@
 		$prima=TRIM($_POST["prima"]);
 		$plazo=TRIM($_POST["plazo"]);
 		$modificado=date("Y-m-d");
+		$user=TRIM($_POST["user"]);
+		
+
+		$num_recibo=TRIM($_POST['recibo']);
+		
+
+		$query1=$conn->query("SELECT LOTE_ID FROM cuenta WHERE CUENTA_ID='$id'");
+		$row1=$query1->fetch_assoc();
+		$loteantiguo=$row1['LOTE_ID'];
+
+		if ($loteantiguo != $cbolote) {
+			$query2=$conn->query("UPDATE lote SET LOTE_ESTADO='LIBRE' WHERE LOTE_ID='$loteantiguo'");
+			$query3=$conn->query("UPDATE lote SET LOTE_ESTADO='PAGANDO' WHERE LOTE_ID='$cbolote'");
+		}
 
 
 		if (empty($prima)) {
 
-			$query=$conn->query("UPDATE cuenta SET CLIENTE_ID='$dui',IMPUESTO_ID='$impuesto',CUENTA_ESTADOS_ID='$estado',LOTE_ID='$cbolote',CUENTA_FECHA_MODIFICADO='$modificado',CUENTA_PLAZO='$plazo' WHERE CLIENTE_ID='$dui'")
+			$query12=$conn->query("SELECT CLIENTE_NOMBRE,CLIENTE_APELLIDO FROM cliente WHERE CLIENTE_ID='$dui'");
+	$rowi=$query12->fetch_assoc();
+	$nombre=$rowi['CLIENTE_NOMBRE']." ".$rowi['CLIENTE_APELLIDO'];
+	
+	$fechabitacora=date("Y-m-d H:i:s");
+	
+	$tabla="Cuenta";
+	$actividad="Se modifico una cuenta sin entrada de prima a nombre de el cliente ".$nombre." con numero de Dui No: ".$dui."";
+	
+	$ip=$_SERVER['REMOTE_ADDR'];
+
+			$query=$conn->query("UPDATE cuenta SET IMPUESTO_ID='$impuesto',CUENTA_ESTADOS_ID='$estado',LOTE_ID='$cbolote',CUENTA_FECHA_MODIFICADO='$modificado',CUENTA_PLAZO='$plazo' WHERE CUENTA_ID='$id'")
 		or die($conn->error);
 		
 
 		if ($query >0) {
+			
+			$update=$conn->query("INSERT INTO bitacora(USER_NICK,BITACORA_FECHA,BITACORA_ACTIVIDAD,BITACORA_TABLA,BITACORA_IP) VALUES('$user','$fechabitacora','$actividad','$tabla','$ip')");
 			header("location: v_upCuenta.php?actualizo=si");
 		}
 		else
@@ -34,8 +63,7 @@
 		else
 		{
 			
-				$query=$conn->query("UPDATE cuenta SET CLIENTE_ID='$dui',IMPUESTO_ID='$impuesto',CUENTA_ESTADOS_ID='$estado',LOTE_ID='$cbolote',CUENTA_FECHA_MODIFICADO='$modificado',CUENTA_PLAZO='$plazo' WHERE CLIENTE_ID='$dui'")
-		or die($conn->error);
+				$query=$conn->query("UPDATE cuenta SET IMPUESTO_ID='$impuesto',CUENTA_ESTADOS_ID='$estado',LOTE_ID='$cbolote',CUENTA_FECHA_MODIFICADO='$modificado',CUENTA_PLAZO='$plazo' WHERE CUENTA_ID='$id'") or die($conn->error);
 
 		
 	$sqllote="SELECT LOTE_ID,LOTE_PRECIO FROM lote WHERE LOTE_ID='$cbolote'";
@@ -72,10 +100,22 @@
 	$row_select_cuenta=$query_select_cuenta->fetch_assoc();
 	$id_cuenta=$row_select_cuenta['CUENTA_ID'];
 
-	$sql="INSERT INTO cuenta_pagos(CUENTA_ID,CUENTA_PAGOS_FECHA,CUENTA_PAGOS_NUMRECIBO,CUENTA_PAGOS_INTERES,CUENTA_PAGOS_IVA,CUENTA_PAGOS_CAPITAL,CUENTA_PAGOS_DESCRIPCION) VALUES('$id_cuenta','$fechacreado','250','$interes','$iva','$cuenta_pago_capital','Exito')";
+	$query0=$conn->query("SELECT CLIENTE_NOMBRE,CLIENTE_APELLIDO FROM cliente WHERE CLIENTE_ID='$dui'");
+	$row=$query0->fetch_assoc();
+	$nombre=$row['CLIENTE_NOMBRE']." ".$row['CLIENTE_APELLIDO'];
+	$fechabitacora=date("Y-m-d H:i:s");
+	$tabla="Cuenta";
+	$actividad="Se modifico una cuenta con una entrada de prima de $ ".$prima." a nombre de el cliente ".$nombre." con numero de Dui No: ".$dui."";
+	$ip=$_SERVER['REMOTE_ADDR'];
+
+	$fechacreadoconminutos=date("Y-m-d H:i:s");
+
+
+	$sql="INSERT INTO cuenta_pagos(CUENTA_ID,CUENTA_PAGOS_FECHA,CUENTA_PAGOS_NUMRECIBO,CUENTA_PAGOS_INTERES,CUENTA_PAGOS_IVA,CUENTA_PAGOS_CAPITAL,CUENTA_PAGOS_DESCRIPCION) VALUES('$id_cuenta','$fechacreadoconminutos','$num_recibo','$interes','$iva','$cuenta_pago_capital','Exito')";
 	$query1=$conn->query($sql);
 
 		if ($query1 >0) {
+			$update=$conn->query("INSERT INTO bitacora(USER_NICK,BITACORA_FECHA,BITACORA_ACTIVIDAD,BITACORA_TABLA,BITACORA_IP) VALUES('$user','$fechabitacora','$actividad','$tabla','$ip')");
 			header("location: v_upCuenta.php?actualizo=si");
 		}
 		else

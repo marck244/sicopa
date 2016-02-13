@@ -5,9 +5,9 @@
 
 
 
-		$query=$conn->query("SELECT LOTE_ID,LOTIFICACION_ID,POLIGONO_ID,LOTE_EXTENSION,LOTE_PRECIO,LOTE_EXTRA FROM lote WHERE LOTE_ID='$busqueda'");
-
-		if ($query > 0) {
+		$query=$conn->query("SELECT LOTE_ID,LOTIFICACION_ID,POLIGONO_ID,LOTE_EXTENSION,LOTE_PRECIO,LOTE_EXTRA,LOTE_ESTADO FROM lote WHERE LOTE_ID='$busqueda'");
+		$fi=$query->num_rows;
+		if ($fi > 0) {
 			$row=$query->fetch_assoc();
 
 			$id=$row['LOTE_ID'];

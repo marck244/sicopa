@@ -147,6 +147,7 @@ if(isset($_SESSION["loginUser-name"])){
         $interes=$_GET['interes'];
         $iva=$_GET['iva'];
         $descripcion=$_GET['descripcion'];
+        $user=$_SESSION["loginUser-name"];
          
 
 ?>
@@ -216,12 +217,12 @@ if (empty($_GET['vacio'])) {
                         </div>
                         <div class="form-group">
                             <label for="pass">Nombre Del Impuesto: </label>
-                            <p class="form-control-static"><?php echo $nombre; ?></p>
+                            <p class="form-control-static"><?php echo $descripcion; ?></p>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="m_dlImpuesto.php?id=<?php echo $id; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
+                    <a href="m_dlImpuesto.php?id=<?php echo $id; ?>&user=<?php echo $user; ?>&descripcion=<?php echo $descripcion; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarimpuesto();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
