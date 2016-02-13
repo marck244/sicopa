@@ -3,6 +3,7 @@
 error_reporting(0);
 
 //aca los parametros de conexion, si tienes aparte la conexión , solo incluyuela
+$user=$_POST['user'];
 $usuario="root";
 $passwd="root";
 $host="localhost";
@@ -135,6 +136,13 @@ if ( !headers_sent() ) {
         header("Content-type: application/force-download");
         echo $dump;
     }
+
+
+    $fechabitacora=date("Y-m-d H:i:s");
+        $tabla="Sistema";
+        $actividad="Se hizo un backup de la base de datos";  
+        $ip=$_SERVER['REMOTE_ADDR'];
+        $update=mysql_query("INSERT INTO bitacora(USER_NICK,BITACORA_FECHA,BITACORA_ACTIVIDAD,BITACORA_TABLA,BITACORA_IP) VALUES('$user','$fechabitacora','$actividad','$tabla','$ip')");
 } else {
     echo "<b>ATENCION: Probablemente ha ocurrido un error</b><br />\n<pre>\n$dump\n</pre>";
 }
