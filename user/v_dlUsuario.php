@@ -152,6 +152,7 @@ if(isset($_SESSION["loginUser-name"])){
     }
     else
     {   
+        $user=$_SESSION["loginUser-name"];
         $nick=$_GET['nick'];
         $nombre=$_GET['nombre'];
         $apellido=$_GET['apellido'];
@@ -245,7 +246,7 @@ if (empty($_GET['vacio'])) {
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="m_dlUsuario.php?id=<?php echo $nick; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
+                    <a href="m_dlUsuario.php?id=<?php echo $nick; ?>&user=<?php echo $user; ?>&nombre=<?php echo $nombre; ?>&apellido=<?php echo $apellido; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarusuario();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>

@@ -158,11 +158,13 @@ if(isset($_SESSION["loginUser-name"])){
                     $iva=$_GET['iva'];
                     $interes=$_GET['interes'];
                     $descripcion=$_GET['descripcion'];
+                    $user=$_SESSION["loginUser-name"];
                 ?>
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
                        <form action="m_upImpuesto.php" class="form-horizontal" method="POST">
+                       <input type="hidden" name="user" value="<?php echo $user; ?>">
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">

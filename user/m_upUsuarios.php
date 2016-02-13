@@ -13,6 +13,7 @@
 		
 		$user=$_POST['user'];
 		
+		
 
 
 
@@ -23,6 +24,7 @@
 
 		$query=$conn->query("UPDATE usuario SET USER_NICK='$username',USER_CONTRASENA='$pass5',USER_NOMBRE='$nombre',USER_APELLIDO='$apellido',USER_NIVELACCESO='$nivel' WHERE USER_NICK='$username'");
 			
+			
 
 
 	
@@ -30,11 +32,11 @@
 
 		if ($query > 0) {
 			$update=$conn->query("INSERT INTO bitacora(USER_NICK,BITACORA_FECHA,BITACORA_ACTIVIDAD,BITACORA_TABLA,BITACORA_IP) VALUES('$user','$fechabitacora','$actividad','$tabla','$ip')");
-			//header("location: v_upUsuario.php?actualizo=si");
+			header("location: v_upUsuario.php?actualizo=si");
 		}
 		else
 		{
-			//header("location: v_upUsuario.php?actualizo=no");
+			header("location: v_upUsuario.php?actualizo=no");
 		}
 
 

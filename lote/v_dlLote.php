@@ -147,6 +147,7 @@ if(isset($_SESSION["loginUser-name"])){
         $extension=$_GET['extension'];
          $nomlotificacion=$_GET['nombrelotificacion'];
          $numpoligono=$_GET['numpoligono'];
+         $user=$_SESSION["loginUser-name"];
 
 ?>
     <table class="table table-hover text-center">
@@ -215,14 +216,11 @@ if (empty($_GET['vacio'])) {
                             <label for="idloti">Codigo Del Lote</label>
                             <input type="text" value="<?php echo $codigo; ?>" class="form-control" disabled>
                         </div>
-                        <div class="form-group">
-                            <label for="pass">Numero Del Lote: </label>
-                            <p class="form-control-static"></p>
-                        </div>
+                        
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="m_dlLote.php?id=<?php echo $codigo; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
+                    <a href="m_dlLote.php?id=<?php echo $codigo; ?>&user=<?php echo $user; ?>&lotificacion=<?php echo $nomlotificacion; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarlote();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>

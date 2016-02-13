@@ -33,49 +33,7 @@ if(isset($_SESSION["loginUser-name"])){
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
-    <script type="text/javascript">
-
-    function checkForm(form)
-  {
     
-    if(form.pwd1.value != "" && form.pwd1.value == form.pwd2.value) {
-
-        if(form.pwd1.value.length > 25) {
-        alertify.error("Error: la contraseña no debe tener un maximo de 25 caracteres!");
-        form.pwd1.focus();
-        return false;
-      }
-      if(form.pwd1.value.length < 6) {
-        alertify.error("Error: la contraseña debe tener un minimo de 6 caracteres!");
-        form.pwd1.focus();
-        return false;
-      }
-      if(form.pwd1.value == form.username.value) {
-        alertify.error("Error: la contraseña debe ser diferente a el Nickname ingresado!");
-        form.pwd1.focus();
-        return false;
-      }
-      re = /[0-9]/;
-      if(!re.test(form.pwd1.value)) {
-        alertify.error("Error: la contraseña debe contener al menos un numero!");
-        form.pwd1.focus();
-        return false;
-      }
-     
-     
-    } else {
-      alertify.warning("Atencion: No dejes los campos de la contraseña vacios porfavor al confirmar la contraseña debe concordar!");
-      form.pwd1.focus();
-      return false;
-    }
-
-   
-    return true;
-  }
-
-
-
-    </script>
 </head>
 <body>
     <!--[if lt IE 8]>
@@ -107,8 +65,8 @@ if(isset($_SESSION["loginUser-name"])){
         <!-- FIN Nuevo Nav Bar-->
 
         <div class="container">
-            <H1>Usuarios</H1>
-            <h4>Usuarios > Agregar Nuevo Usuario</h4>
+            <H1>Sistema</H1>
+            <h4>Sistema > BD</h4>
             <p class="separate"></p>
         </div>
 
@@ -123,13 +81,13 @@ if(isset($_SESSION["loginUser-name"])){
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="navbar-brand">Menu Usuario</span>
+                        <span class="navbar-brand">Menu BD</span>
                         </div>
                         <div class="navbar-collapse collapse sidebar-navbar-collapse">
                             <ul class="nav navbar-nav">
-                                <li><a href="v_nwUsuario">Agregar Usuario</a></li>
-                                <li><a href="v_upUsuario">Actualizar Usuario</a></li>
-                                <li><a href="v_dlUsuario">Eliminar Usuario</a></li>
+                                <li><a href="v_BD">Backup BD</a></li>
+                                <li><a href="v_BackupBd">Restaurar BD</a></li>
+                                
                             </ul>
                         </div><!--/.nav-collapse -->
                         </div>
@@ -138,61 +96,29 @@ if(isset($_SESSION["loginUser-name"])){
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Registro de un nuevo Usuario</legend>
-                       <form action="m_nwUsuario.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this)" autocomplete="off">
+                        <legend>Restaurar Backup</legend>
+                       <form action="m_nwUsuario.php" method="POST" class="form-horizontal" autocomplete="off">
                        <input type="hidden" name="user" value="<?php echo $_SESSION["loginUser-name"]; ?>">
                         
                     <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Url :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="text" class="form-control" name="username" placeholder="Usuario Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+             <input type="name" name="nombre" class="form-control" placeholder="Url" readonly="true">
          </div>
      </div>
-
-
-                             <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="nombre" class="form-control" placeholder="Nombre del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="apellido" class="form-control" placeholder="Apellido del Usuario" pattern="[a-zA-Z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" name="pwd1" class="form-control"  placeholder="*********">
-         </div>
-     </div>
-     <div class="form-group">
-         <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Repetir Contraseña:</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="password" name="pwd2" class="form-control"  placeholder="*********">
-         </div>
-     </div>
-
-    <div class="form-group">
-         <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nivel de Acceso :</label>
-         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cbonivelacceso" class="form-control">
-                 <option value="1">Administrador</option>
-                 <option value="2">Gerencia</option>
-                 <option value="3">Operador</option>
-             </select>
-         </div>
-     </div>
+     
      
 
 
 
      <div class="form-group">
      <center>
-         <div class="col-xs-12 col-sm-2 col-sm-offset-3">
-             <button type="submit" class="btn btn-primary">Registrar Usuario</button>
+         <div class="col-xs-12 col-sm-1 col-sm-offset-3">
+             <button type="submit" class="btn btn-primary">Iniciar Restauracion Backup</button>
+         </div>
+
+         <div class="col-xs-12 col-sm-1 col-sm-offset-2">
+             <button type="submit" class="btn btn-primary">Restaurar Backup</button>
          </div>
          </center>
      </div>

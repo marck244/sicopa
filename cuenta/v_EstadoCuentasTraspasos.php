@@ -93,7 +93,7 @@ if(isset($_SESSION["loginUser-name"])){
 
         <div class="container">
             <H1>Cuentas</H1>
-            <h4>Cuentas > Eliminar/Cambio de Estado de Cuenta</h4>
+            <h4>Cuentas > Traspasos</h4>
             <p class="separate"></p>
         </div>
 
@@ -108,13 +108,13 @@ if(isset($_SESSION["loginUser-name"])){
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <span class="navbar-brand">Menu Cuenta</span>
+                        <span class="navbar-brand">Menu Estados</span>
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                          <ul class="nav navbar-nav">
-                            <li><a href="v_nwCuenta">Agregar Cuenta</a></li>
-                                <li><a href="v_upCuenta">Actualizar Cuenta</a></li>
-                                <li><a href="v_dlCuenta">Eliminar Cuenta</a></li>
+                            <li><a href="v_EstadoCuentas">Clientes Morosos</a></li>
+                            <li><a href="v_EstadoCuentasTraspasos">Traspasos</a></li>
+                            
                             </ul>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -123,18 +123,18 @@ if(isset($_SESSION["loginUser-name"])){
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
             <fielset>
-                <legend>Eliminar/Cambio de Estado de Cuenta</legend>
+                <legend>Traspasos De Cuenta</legend>
 
 
                   <div class="jumbotron">
-                <form class="form-horizontal" method="POST"  action="m_llenartablaCuenta.php" onsubmit="return valida()" autocomplete="off">
+                <form class="form-horizontal" method="POST"  action="" onsubmit="return valida()" autocomplete="off">
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-4 hidden-xs">Numero DUI :</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead" placeholder="Ingresa un numero de Dui">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit">Buscar!</button>
+                                    <button class="btn btn-default" name="buscar" type="submit">Buscar!</button>
                                 </span>
                             </div><!-- /input-group -->
                         </div><!-- /.col-lg-6 -->
@@ -145,73 +145,103 @@ if(isset($_SESSION["loginUser-name"])){
 
 <div class="panel panel-default">
   <!-- Default panel contents -->
-  <div class="panel-heading">Cuentas Registradas en <strong>SICOPA</strong></div>
+  <div class="panel-heading">Cuentas Registradas En <strong>SICOPA</strong><strong></strong></div>
   <!-- Table -->
-  <div class="table-responsive">
+  <?php 
+  if (isset($_POST["buscar"])) {
+
+  	include("../conexion/conexion.php");
+         $busqueda=trim(str_replace("-","",$_POST["busqueda"]));
+        
+         $fechaactual=date("Y-m-d");
+         $query=$conn->query("SELECT CUENTA_ID,CLIENTE_ID,LOTE_ID FROM cuenta WHERE CLIENTE_ID='$busqueda'");
+
+         $resultado=$query->num_rows;
+
+         if ($resultado > 0) {
+         	
+      
+     
+
+  	?>
+  	<div class="table-responsive">
     <table class="table table-hover text-center">
-    <?php 
-
-  if (empty($_GET['dui']) || empty($_GET['id'])  ) {
-        $dui="";
-         $id="";
-          $cliente="";
-           $impuesto_descripcion="";
-           $cuenta_estado_id="";
-           $estado="";
-           $lote="";
-           $fecha_creado="";
-           $plazo="";
-    }
-    else
-    {   
-        $dui=$_GET["dui"];
-        $id=$_GET["id"];
-        $cliente=$_GET["cliente"];
-        $impuesto_descripcion=$_GET["impuestodescripcion"];
-        $cuenta_estado_id=$_GET["cuenta_estado_id"];
-        $estado=$_GET["estado"];
-        $lote=$_GET["lote"];
-        $fecha_creado=$_GET["fechacreado"];
-        $plazo=$_GET["plazo"];
-
-        $user=$_SESSION["loginUser-name"];;
-
-         ?>
          <table class="table table-hover text-center">
-     <tr>
-        <th>Codigo Cuenta</th>
+
+        
+   
+      <?php 
+
+      	    $row=$query->fetch_assoc();
+         $cuenta_id= $row['CUENTA_ID'];
+       	 $lote=$row['LOTE_ID'];
+
+         $query1=$conn->query("SELECT DATEDIFF('$fechaactual',CUENTA_PAGOS_FECHA) as MORA_DIAS,CUENTA_PAGOS_ID FROM cuenta_pagos WHERE CUENTA_ID='$cuenta_id'");
+         $ndias=$query1->fetch_assoc();
+         $mora=$ndias['MORA_DIAS'];
+         $cuenta_pagos=$ndias['CUENTA_PAGOS_ID'];
+        
+         if ($mora > 60) {
+         	?>
+         	  <tr>
+        <th>Codigo Cuenta De Pago</th>
         <th>Dui</th>
     <th>Cliente</th>     
-    <th>Estado Cuenta</th>
-    <th>Lote</th>
-    <th>Fecha Creacion</th>
-    <th>Plazo</th>
-    <th>Eliminar</th>
+    <th>Lote Adquirido</th>
+    <th>Ultima Fecha De Pago</th>
+    <th>Dias Mora Hasta El Dia De Hoy</th>
+    
+    <th>Recuperar Lote</th>
+
      </tr>
 
      <tr>
-      <td><?php echo $id; ?></td>
-      <td><?php echo $dui; ?></td>
-      <td><?php echo $cliente; ?></td>
-      <td><?php echo $estado; ?></td>
-      <td><?php echo $lote; ?></td>
-      <td><?php echo $fecha_creado; ?></td>
-      <td><?php echo $plazo." Cuotas"; ?></td>
+         	<?php
+         	
+         	$sqll="SELECT a.CUENTA_PAGOS_ID,b.CLIENTE_ID,c.CLIENTE_NOMBRE,c.CLIENTE_APELLIDO,b.LOTE_ID,a.CUENTA_PAGOS_FECHA FROM cuenta_pagos a inner join cuenta b on a.CUENTA_ID=b.CUENTA_ID inner join cliente c on b.CLIENTE_ID=c.CLIENTE_ID WHERE b.CLIENTE_ID='$busqueda' ORDER BY a.CUENTA_PAGOS_FECHA DESC LIMIT 1";
+         	$query2=$conn->query($sqll);
+         
+         while ($fila=$query2->fetch_assoc()) {
+         	     
+         ?>
+      <td><?php echo $fila["CUENTA_PAGOS_ID"]; ?></td>
+      <td><?php echo $fila["CLIENTE_ID"];?></td>
+      <td><?php echo $fila["CLIENTE_NOMBRE"]." ".$fila["CLIENTE_APELLIDO"];?></td>
+      <td><?php echo $fila["LOTE_ID"];?></td>
+      <td><?php echo date("d-m-Y",strtotime($fila["CUENTA_PAGOS_FECHA"]));?></td>
+      <td><?php echo $mora." dias";?></td>
       
       
-      <td><a href="#" class="glyphicon glyphicon-trash" id="<?php echo $dui; ?>" data-toggle="modal" data-target="#inicioModal"></a></td>
+      
+      <td><a href="#" class="glyphicon glyphicon-trash" id="" data-toggle="modal" data-target="#inicioModal"></a></td>
+     
     </tr>
+     <?php  }
+      } 
+      else
+      {
+      	?>
+      	<tr>
+        <th>Mensaje Del Sistema</th>
+   
+     </tr>
+
+     <tr>
+      <td>No hay cuentas de pagos que entren en mora con el dui ingresado</td>
+      
+      
+    </tr>
+      	<?php
+      }
+
+      ?>
   </table>
          <?php
     }
 
-    if (empty($_GET['vacio'])) {
-        $vacio="";
-    }
     else
     {
-        $vacio=$_GET['vacio'];
-        if ($vacio == "si") {
+        
             ?>
              <table class="table table-hover text-center">
      <tr>
@@ -226,12 +256,21 @@ if(isset($_SESSION["loginUser-name"])){
     </tr>
   </table>
             <?php
-        }
+        
     }
 
   ?>
   </table>
 </div>
+  	<?php
+  	
+  }
+  else
+  {
+
+  }
+  ?>
+  
 </div>        
     </fielset>
 </div>
@@ -243,53 +282,34 @@ if(isset($_SESSION["loginUser-name"])){
             <div class="modal-content">
                 <div class="modal-header">
                     <button class="close" aria-hidden="true" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Eliminar/Cambio de Estado de Cuenta</h4>
+                    <h4 class="modal-title">Recuperar Lote</h4>
                 </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
+                    <div class="form-group">
+                            <label for="idloti">Codigo De Cuenta De Pagos</label>
+                            <input type="text" value="<?php echo $cuenta_pagos; ?>" class="form-control" disabled>
+                        </div>
+                    	<div class="form-group">
                             <label for="idloti">Codigo De Cuenta</label>
-                            <input type="text" value="<?php echo $id; ?>" class="form-control" disabled>
+                            <input type="text" value="<?php echo $cuenta_id; ?>" class="form-control" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="pass">Cliente: </label>
-                            <p class="form-control-static"><?php echo $cliente; ?></p>
+                            <label for="idloti">Codigo De Cliente</label>
+                            <input type="text" value="<?php echo $busqueda; ?>" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass">Lote: </label>
+                            <p class="form-control-static"><?php echo $lote; ?></p>
                         </div>
                     </form>
-                    <?php
-                    include("../conexion/conexion.php");
-
-                    $sql="SELECT CUENTA_ID from cuenta_pagos WHERE CUENTA_ID='$id'";
-                    $query=$conn->query($sql);
-                    $n_row=$query->num_rows;
-
-                    if ($n_row > 0) {
-                        ?>
-                        <p><strong>NOTA:</strong> La cuenta seleccionada no se eliminara porque posee un pago asi que se dara de baja es decir si antes estaba Activa ahora sera Inactiva.</p>
+                    <p><strong> NOTA:</strong> Estas tratando de recuperar el lote asociado a la cuenta de pagos y el cliente por lo tanto se anulara todo proceso de pago que tiene actualmente el cliente con ese lote </p>
                          <div class="modal-footer">
-                    <a href="m_dlCuenta.php?cuenta=<?php echo $id; ?>&pago=si&dui=<?php echo $dui; ?>&user=<?php echo $user; ?>" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
+                    <a href="m_RecuperarLote.php?id_pago=<?php echo $cuenta_pagos; ?>&id_cuenta=<?php echo $cuenta_id; ?>&lote=<?php echo $lote; ?>" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminar();" data-dismiss="modal">Cancelar</button>
+                </div> 
                 </div>
-                        <?php
-                    }
-                    else
-                    {
-
-                    ?>
-                      <p><strong>NOTA:</strong> La cuenta seleccionada se eliminara porque NO posee un pago.</p>
-                         <div class="modal-footer">
-                    <a href="m_dlCuenta.php?cuenta=<?php echo $id; ?>&pago=no" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
-                    <button class="btn btn-default" onclick="cancelareliminar();" data-dismiss="modal">Cancelar</button>
-                </div>
-                    <?php
-                
-                
-                    }
-
-                    ?>
-                </div>
-
-                                          
+                                         
             </div>
         </div>
     </div>
@@ -318,11 +338,11 @@ if(isset($_SESSION["loginUser-name"])){
     {   
         $mensaje=$_GET['eliminado'];
         if ($mensaje == "si") {
-            ?> <script type="text/javascript">alertify.success('Registro eliminado o dado de baja exitosamente');</script> <?php
+            ?> <script type="text/javascript">alertify.success('Registro eliminado exitosamente');</script> <?php
         }
 
         if ($mensaje == "no") {
-            ?> <script type="text/javascript">alertify.error('El registro no se elimino ni se dio de baja');</script> <?php
+            ?> <script type="text/javascript">alertify.error('El registro no se elimino');</script> <?php
         }
     }
 ?>

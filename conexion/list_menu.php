@@ -12,6 +12,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_index.='<ul class="dropdown-menu">';
         $menu_index.='<li><a href="cuenta/v_nwCliente" class="glyphicon glyphicon-user"> CLIENTES</a></li>';
         $menu_index.='<li><a href="cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> CUENTAS</a></li>';
+        $menu_index.='<li><a href="cuenta/v_EstadoCuentas" class="glyphicon glyphicon-list-alt"> ESTADOS/CUENTAS</a></li>';
         $menu_index.='<li><a href="pagos/v_calculoPago" class="glyphicon glyphicon-usd"> PAGOS</a></li>';
         $menu_index.='</ul>';
         $menu_index.='</li>';
@@ -26,7 +27,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_index.='<li class="dropdown">';
         $menu_index.='<a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>';
         $menu_index.='<ul class="dropdown-menu">';
-        $menu_index.='<li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>';
+        $menu_index.='<li><a href="user/v_Bd" class="glyphicon glyphicon-tasks"> BD</a></li>';
         $menu_index.='<li><a href="user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>';
         $menu_index.='<li><a href="impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>';
         $menu_index.='</ul>';
@@ -41,6 +42,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_system.='<ul class="dropdown-menu">';
         $menu_system.='<li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> CLIENTES</a></li>';
         $menu_system.='<li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> CUENTAS</a></li>';
+        $menu_system.='<li><a href="../cuenta/v_EstadoCuentas" class="glyphicon glyphicon-list-alt"> ESTADOS/CUENTAS</a></li>';
         $menu_system.='<li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> PAGOS</a></li>';
         $menu_system.='</ul>';
         $menu_system.='</li>';
@@ -55,7 +57,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_system.='<li class="dropdown">';
         $menu_system.='<a href="#" class="glyphicon glyphicon-cog" data-toggle="dropdown"> SISTEMA <span class="caret"></span></a>';
         $menu_system.='<ul class="dropdown-menu">';
-        $menu_system.='<li><a href="#" class="glyphicon glyphicon-tasks"> BD</a></li>';
+        $menu_system.='<li><a href="../user/v_Bd" class="glyphicon glyphicon-tasks"> BD</a></li>';
         $menu_system.='<li><a href="../user/v_nwUsuario" class="glyphicon glyphicon-user"> USUARIOS</a></li>';
         $menu_system.='<li><a href="../impuestos/v_nwImpuestos" class="glyphicon glyphicon-book"> IMPUESTO</a></li>';
         $menu_system.='</ul>';
@@ -112,6 +114,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_index.='<ul class="dropdown-menu">';
         $menu_index.='<li><a href="cuenta/v_nwCliente" class="glyphicon glyphicon-user"> CLIENTES</a></li>';
         $menu_index.='<li><a href="cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> CUENTAS</a></li>';
+        $menu_index.='<li><a href="cuenta/v_EstadoCuentas" class="glyphicon glyphicon-list-alt"> ESTADOS/CUENTAS</a></li>';
         $menu_index.='<li><a href="pagos/v_calculoPago" class="glyphicon glyphicon-usd"> PAGOS</a></li>';
         $menu_index.='</ul>';
         $menu_index.='</li>';
@@ -133,6 +136,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_system.='<ul class="dropdown-menu">';
         $menu_system.='<li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> CLIENTES</a></li>';
         $menu_system.='<li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> CUENTAS</a></li>';
+        $menu_system.='<li><a href="../cuenta/v_EstadoCuentas" class="glyphicon glyphicon-list-alt"> ESTADOS/CUENTAS</a></li>';
         $menu_system.='<li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> PAGOS</a></li>';
         $menu_system.='</ul>';
         $menu_system.='</li>';
@@ -162,6 +166,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_index.='<ul class="dropdown-menu">';
         $menu_index.='<li><a href="cuenta/v_nwCliente" class="glyphicon glyphicon-user"> CLIENTES</a></li>';
         $menu_index.='<li><a href="cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> CUENTAS</a></li>';
+        $menu_index.='<li><a href="cuenta/v_EstadoCuentas" class="glyphicon glyphicon-list-alt"> ESTADOS/CUENTAS</a></li>';
         $menu_index.='<li><a href="pagos/v_calculoPago" class="glyphicon glyphicon-usd"> PAGOS</a></li>';
         $menu_index.='</ul>';
         $menu_index.='</li>';
@@ -176,6 +181,7 @@ switch ($_SESSION["user-nivelacceso"]) {
         $menu_system.='<ul class="dropdown-menu">';
         $menu_system.='<li><a href="../cuenta/v_nwCliente" class="glyphicon glyphicon-user"> CLIENTES</a></li>';
         $menu_system.='<li><a href="../cuenta/v_nwCuenta" class="glyphicon glyphicon-list-alt"> CUENTAS</a></li>';
+        $menu_system.='<li><a href="../cuenta/v_EstadoCuentas" class="glyphicon glyphicon-list-alt"> ESTADOS/CUENTAS</a></li>';
         $menu_system.='<li><a href="../pagos/v_calculoPago" class="glyphicon glyphicon-usd"> PAGOS</a></li>';
         $menu_system.='</ul>';
         $menu_system.='</li>';
