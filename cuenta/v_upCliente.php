@@ -37,6 +37,15 @@ if(isset($_SESSION["loginUser-name"])){
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script src="../js/vendor/bootstrap.min.js"></script>
+<script>
+$(function() {
+    $( "#busqueda" ).autocomplete({
+        source: 'autocliente.php'
+    });
+});
+</script>
   <script>
   $(function() {
     $( "#datepicker" ).datepicker();
@@ -583,32 +592,8 @@ if(isset($_SESSION["loginUser-name"])){
 </div> <!-- /container -->        
 
 
-<script src="../js/vendor/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/vendor/bootstrap-typeahead.js"></script>
-
-<script type="text/javascript">
-    
-    $(function() {
-        $("#typeahead").typeahead({
-
-            source: function(typeahead,query){
-                $.ajax({
-                    url: 'm_busquedacliente.php',
-                    type: 'POST',
-                    data: 'query='+query,
-                    dataType: 'JSON',
-                    async: false,
-                    success: function(data){
-                            typeahead.process(data);
-                    }
-
-                });
-            }
-        });
-    });
 
 
-</script>
 
 <?php
 if (empty($_GET['vacio'])) {

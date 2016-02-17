@@ -24,16 +24,28 @@ if(isset($_SESSION["loginUser-name"])){
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
-    
-    <link rel="stylesheet" href="../css/main.css">
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script src="../js/vendor/bootstrap.min.js"></script>
+
+  <script>
+$(function() {
+    $( "#dui" ).autocomplete({
+        source: 'autocliente.php'
+    });
+});
+</script>
 
        <script type="text/javascript" >
       $(document).ready(function() {
@@ -231,9 +243,9 @@ if(isset($_SESSION["loginUser-name"])){
                        <?php $user=$_SESSION["loginUser-name"]; ?>
                             <input type="hidden" name="user" value="<?php echo $user; ?>">
                              <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre del cliente:</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui Cliente:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" name="dui" id="dui" placeholder="Ingrese Un Cliente">
+             <input type="name" class="form-control" name="dui" id="dui" placeholder="Ingrese Un Dui">
          </div>
      </div>
      <div class="form-group">
@@ -363,10 +375,6 @@ if(isset($_SESSION["loginUser-name"])){
 </center>
 </div> <!-- /container -->        
 
-
-<script src="../js/vendor/bootstrap.min.js"></script>
-
-<script src="../js/main.js"></script>
 </body>
 <?php
 if (empty($_GET['guardado'])) {
