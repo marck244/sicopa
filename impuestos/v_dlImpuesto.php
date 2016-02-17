@@ -23,15 +23,27 @@ if(isset($_SESSION["loginUser-name"])){
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script src="../js/vendor/bootstrap.min.js"></script>
+<script>
+$(function() {
+    $( "#busqueda" ).autocomplete({
+        source: 'autoimpuesto.php'
+    });
+});
+</script>
 
     <script type="text/javascript">
          function cancelareliminarimpuesto(){
@@ -115,7 +127,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Impuesto:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="buscar" placeholder="Nombre del impuesto" pattern="[a-z ]{1,25}" title="no dejar el campo vacio y ingresar solo letras" required>
+                                <input type="text" class="form-control" name="buscar" id="busqueda" placeholder="Nombre del impuesto">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>

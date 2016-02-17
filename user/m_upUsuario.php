@@ -1,10 +1,10 @@
 <?php
 		include("../conexion/conexion.php");
-		$username=TRIM(strtoupper($_POST['username']));	
+		$username=TRIM($_POST['username']);	
 		
-		$nombre= TRIM(strtoupper($_POST['nombre']));
+		$nombre= TRIM($_POST['nombre']);
 		
-		$apellido= TRIM(strtoupper($_POST['apellido']));
+		$apellido= TRIM($_POST['apellido']);
 		
 		$pass= TRIM($_POST['pwd1']);
 		
@@ -22,19 +22,19 @@
 		$ip=$_SERVER['REMOTE_ADDR'];
 
 		$query=$conn->query("UPDATE usuario SET USER_NICK='$username',USER_CONTRASENA='$pass5',USER_NOMBRE='$nombre',USER_APELLIDO='$apellido',USER_NIVELACCESO='$nivel' WHERE USER_NICK='$username'");
-			
+		$row=$query->num_rows;
 
 
 	
 		
 
-		if ($query > 0) {
+		if ($row > 0) {
 			$update=$conn->query("INSERT INTO bitacora(USER_NICK,BITACORA_FECHA,BITACORA_ACTIVIDAD,BITACORA_TABLA,BITACORA_IP) VALUES('$user','$fechabitacora','$actividad','$tabla','$ip')");
-			//header("location: v_upUsuario.php?actualizo=si");
+			header("location: v_upUsuario.php?actualizo=si");
 		}
 		else
 		{
-			//header("location: v_upUsuario.php?actualizo=no");
+			header("location: v_upUsuario.php?actualizo=no");
 		}
 
 
