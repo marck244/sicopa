@@ -200,7 +200,7 @@ if(isset($_SESSION["loginUser-name"])){
      }
      else
      {
-        $nick=$_GET['nick'];
+        $nick=TRIM($_GET['nick']);
         $nombre=$_GET['nombre'];
         $apellido=$_GET['apellido'];
         $nivel=$_GET['nivel'];
@@ -209,7 +209,7 @@ if(isset($_SESSION["loginUser-name"])){
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="m_upUsuarios.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this);">
+                       <form action="m_upUsuario.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this);" autocomplete="off">
                      <input type="hidden" name="user" value="<?php echo $user; ?>">
               <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
@@ -221,13 +221,13 @@ if(isset($_SESSION["loginUser-name"])){
                           <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" name="nombre" value="<?php echo $nombre; ?>" placeholder="Nombre del Usuario" pattern="[a-z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" class="form-control" name="nombre" value="<?php echo $nombre; ?>" placeholder="Nombre del Usuario" >
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" name="apellido" value="<?php echo $apellido; ?>" placeholder="Apellido del Usuario" pattern="[a-z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" class="form-control" name="apellido" value="<?php echo $apellido; ?>" placeholder="Apellido del Usuario" >
          </div>
      </div>
      <div class="form-group">
