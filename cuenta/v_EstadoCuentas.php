@@ -50,7 +50,7 @@ $(function() {
 
     function valida () {
         
-        var busqueda= document.getElementById("typeahead");
+        var busqueda= document.getElementById("busqueda");
 
         if (busqueda.value=='') {
             alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
@@ -169,6 +169,7 @@ $(function() {
 
          $resultado=$query->num_rows;
 
+
          if ($resultado > 0) {
          	
       
@@ -182,15 +183,37 @@ $(function() {
         
    
       <?php 
+        while($row=$query->fetch_assoc()) { 
+        
+         
 
-      	    $row=$query->fetch_assoc();
+         
+
+      	 
+
          $cuenta_id= $row['CUENTA_ID'];
        	 $lote=$row['LOTE_ID'];
-
-         $query1=$conn->query("SELECT DATEDIFF('$fechaactual',CUENTA_PAGOS_FECHA) as MORA_DIAS,CUENTA_PAGOS_ID FROM cuenta_pagos WHERE CUENTA_ID='$cuenta_id'");
+         
+         $query1=$conn->query("SELECT DATEDIFF('$fechaactual',CUENTA_PAGOS_FECHA) as MORA_DIAS FROM cuenta_pagos WHERE CUENTA_ID='$cuenta_id'");
          $ndias=$query1->fetch_assoc();
          $mora=$ndias['MORA_DIAS'];
-         $cuenta_pagos=$ndias['CUENTA_PAGOS_ID'];
+         
+         $query9=$conn->query("SELECT CUENTA_PAGOS_ID FROM cuenta_pagos WHERE CUENTA_ID='$cuenta_id'");
+         $cuenta_pago=$query9->fetch_assoc();
+         
+
+         $cuenta_pagos=$cuenta_pago['CUENTA_PAGOS_ID'];
+
+         $queryfech=$conn->query("SELECT CUENTA_PAGOS_FECHA FROM cuenta_pagos WHERE CUENTA_ID='$cuenta_id'");
+         $rowfech=$queryfech->fetch_assoc();
+         $fechapago=date("d-m-Y",strtotime($rowfech['CUENTA_PAGOS_FECHA']));
+
+         $queryclien=$conn->query("SELECT CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO FROM cliente WHERE CLIENTE_ID='$busqueda'");
+         $rowclien=$queryclien->fetch_assoc();
+
+         $duis=$rowclien['CLIENTE_ID'];
+         $cliente=$rowclien['CLIENTE_NOMBRE']." ".$rowclien['CLIENTE_APELLIDO'];
+         
         
          if ($mora > 60) {
          	?>
@@ -209,17 +232,14 @@ $(function() {
      <tr>
          	<?php
          	
-         	$sqll="SELECT a.CUENTA_PAGOS_ID,b.CLIENTE_ID,c.CLIENTE_NOMBRE,c.CLIENTE_APELLIDO,b.LOTE_ID,a.CUENTA_PAGOS_FECHA FROM cuenta_pagos a inner join cuenta b on a.CUENTA_ID=b.CUENTA_ID inner join cliente c on b.CLIENTE_ID=c.CLIENTE_ID WHERE b.CLIENTE_ID='$busqueda' ORDER BY a.CUENTA_PAGOS_FECHA DESC LIMIT 1";
-         	$query2=$conn->query($sqll);
          
-         while ($fila=$query2->fetch_assoc()) {
          	     
          ?>
-      <td><?php echo $fila["CUENTA_PAGOS_ID"]; ?></td>
-      <td><?php echo $fila["CLIENTE_ID"];?></td>
-      <td><?php echo $fila["CLIENTE_NOMBRE"]." ".$fila["CLIENTE_APELLIDO"];?></td>
-      <td><?php echo $fila["LOTE_ID"];?></td>
-      <td><?php echo date("d-m-Y",strtotime($fila["CUENTA_PAGOS_FECHA"]));?></td>
+      <td><?php echo $cuenta_id; ?></td>
+      <td><?php echo $duis;?></td>
+      <td><?php echo $cliente;?></td>
+      <td><?php echo $lote;?></td>
+      <td><?php echo $fechapago;?></td>
       <td><?php echo $mora." dias";?></td>
       
       
@@ -227,23 +247,15 @@ $(function() {
       <td><a href="#" class="glyphicon glyphicon-trash" id="" data-toggle="modal" data-target="#inicioModal"></a></td>
      
     </tr>
-     <?php  }
-      } 
-      else
-      {
-      	?>
-      	<tr>
-        <th>Mensaje Del Sistema</th>
-   
-     </tr>
-
-     <tr>
-      <td>No hay cuentas de pagos que entren en mora con el dui ingresado</td>
-      
-      
-    </tr>
-      	<?php
+     <?php  
+ 
       }
+
+      else{
+        ?> <script type="text/javascript">alertify.success("<?php echo 'la cuenta de pago '.$cuenta_id.' y el lote '.$lote.' no estan en mora'; ?>");</script> <?php
+      } 
+     
+    }
 
       ?>
   </table>
@@ -299,15 +311,15 @@ $(function() {
                     <form>
                     <div class="form-group">
                             <label for="idloti">Codigo De Cuenta De Pagos</label>
-                            <input type="text" value="<?php echo $cuenta_pagos; ?>" class="form-control" disabled>
+                            <input type="text" value="<?php echo $cuenta_id; ?>" class="form-control" disabled>
                         </div>
                     	<div class="form-group">
                             <label for="idloti">Codigo De Cuenta</label>
-                            <input type="text" value="<?php echo $cuenta_id; ?>" class="form-control" disabled>
+                            <input type="text" value="<?php echo $cuenta_pagos; ?>" class="form-control" disabled>
                         </div>
                         <div class="form-group">
                             <label for="idloti">Codigo De Cliente</label>
-                            <input type="text" value="<?php echo $busqueda; ?>" class="form-control" disabled>
+                            <input type="text" value="<?php echo $duis; ?>" class="form-control" disabled>
                         </div>
                         <div class="form-group">
                             <label for="pass">Lote: </label>

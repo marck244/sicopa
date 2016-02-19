@@ -55,7 +55,7 @@ if(isset($_SESSION["loginUser-name"])){
  <script>
 $(function() {
     $( "#busqueda" ).autocomplete({
-        source: 'autocuenta.php'
+        source: 'autocliente.php'
     });
 });
 </script>
@@ -67,7 +67,7 @@ $(function() {
 
     function valida () {
         
-        var busqueda= document.getElementById("typeahead");
+        var busqueda= document.getElementById("busqueda");
 
         if (busqueda.value=='') {
             alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
