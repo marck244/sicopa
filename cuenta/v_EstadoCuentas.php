@@ -124,7 +124,7 @@ $(function() {
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                          <ul class="nav navbar-nav">
                             <li><a href="v_EstadoCuentas">Clientes Morosos</a></li>
-                            <li><a href="v_EstadoCuentasTraspasos">Traspasos</a></li>
+                            
                             
                             </ul>
                     </div><!--/.nav-collapse -->

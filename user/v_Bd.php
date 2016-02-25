@@ -156,7 +156,7 @@ if(isset($_SESSION["loginUser-name"])){
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Usuario:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="username" id="username" class="form-control" placeholder="" value="root">
+             <input type="name" name="username" id="username" readonly="true" class="form-control" placeholder="" value="root">
          </div>
      </div>
      <div class="form-group">
