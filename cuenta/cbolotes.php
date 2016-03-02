@@ -10,7 +10,7 @@ if ($id_lotificacion == "0") {
 	echo $nada;
 }
 // construimos el combo de ciudades deacuerdo al pais seleccionado
-$combog = $conn->query("SELECT LOTE_ID,LOTIFICACION_ID FROM lote WHERE LOTIFICACION_ID='$id_lotificacion' ORDER BY LOTE_ID ASC");
+$combog = $conn->query("SELECT LOTE_ID,LOTIFICACION_ID FROM lote WHERE LOTIFICACION_ID='$id_lotificacion' AND LOTE_ESTADO='LIBRE' ORDER BY LOTE_ID ASC");
   while($sql_p = $combog->fetch_assoc())
   {
    $salida.= "<option value='".$sql_p['LOTE_ID']."'>".$sql_p['LOTE_ID']."</option>";

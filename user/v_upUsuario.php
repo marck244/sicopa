@@ -27,12 +27,25 @@ if(isset($_SESSION["loginUser-name"])){
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
-
     <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script src="../js/vendor/bootstrap.min.js"></script>
+
+    <script>
+    $(function() {
+    $( "#busqueda" ).autocomplete({
+        source: 'autousuario.php'
+    });
+    });
+    </script>
 
      <script type="text/javascript">
 
@@ -149,7 +162,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Usuario :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="buscar" placeholder="Busqueda por Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+                                <input type="text" class="form-control" name="buscar" id="busqueda" placeholder="Busqueda por Nickname" pattern="[a-zA-Z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -176,7 +189,7 @@ if(isset($_SESSION["loginUser-name"])){
          if (empty($_GET['apellido'])) {
 
             $apellido="";
-             # code...
+             
          }
          if(empty($_GET['nivel']))
          {
@@ -187,33 +200,34 @@ if(isset($_SESSION["loginUser-name"])){
      }
      else
      {
-        $nick=$_GET['nick'];
-        $nombre=$_GET['nombre'];
-        $apellido=$_GET['apellido'];
-        $nivel=$_GET['nivel'];
+        $nick=TRIM($_GET['nick']);
+        $nombre=TRIM($_GET['nombre']);
+        $apellido=TRIM($_GET['apellido']);
+        $nivel=TRIM($_GET['nivel']);
+        $user=$_SESSION["loginUser-name"];
      ?>
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                       <form action="m_upUsuario.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this);">
-                     
+                       <form action="m_upUsuario.php" method="POST" class="form-horizontal" onsubmit="return checkForm(this);" autocomplete="off">
+                     <input type="hidden" name="user" value="<?php echo $user; ?>">
               <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nickname :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="text" class="form-control" name="username" value="<?php echo $nick; ?>" placeholder="Usuario Nickname" pattern="[A-Za-z\.]{8,25}" title="El campo Nickname debe contener un minimo de 8 Caracteres y como maximo 25 Caracteres" required>
+             <input type="text" class="form-control" name="username" value="<?php echo $nick; ?>" placeholder="Usuario Nickname" readonly="true" title="El nickname no se puede cambiar ya">
          </div>
      </div>
           
                           <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" name="nombre" value="<?php echo $nombre; ?>" placeholder="Nombre del Usuario" pattern="[A-Za-z ]{4,25}" title="El campo Nombre debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" class="form-control" name="nombre" value="<?php echo $nombre; ?>" placeholder="Nombre del Usuario" >
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Apellido:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" name="apellido" value="<?php echo $apellido; ?>" placeholder="Apellido del Usuario" pattern="[A-Za-z ]{4,25}" title="El campo Apellido debe contener un minimo de 4 caracteres y como maximo 25 caracteres" required>
+             <input type="name" class="form-control" name="apellido" value="<?php echo $apellido; ?>" placeholder="Apellido del Usuario" >
          </div>
      </div>
      <div class="form-group">
@@ -293,11 +307,7 @@ if(isset($_SESSION["loginUser-name"])){
     </footer>
 </center>
 </div> <!-- /container -->        
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-<script src="../js/vendor/bootstrap.min.js"></script>
-
-<script src="../js/main.js"></script>
 
 <?php
 if (empty($_GET['actualizo'])) {

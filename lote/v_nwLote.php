@@ -12,7 +12,7 @@ if(isset($_SESSION["loginUser-name"])){
     header("Location: ../user/v_login");
 }
 
-include("m_combobox_lotificacion.php");
+
 ?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -175,8 +175,10 @@ include("m_combobox_lotificacion.php");
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de un nuevo lote</legend>
-                       <form action="m_nwLote.php" method="POST" name="form" class="form-horizontal" onsubmit="return validar()">
+                       <form action="m_nwLote.php" method="POST" name="form" class="form-horizontal" onsubmit="return validar()" autocomplete="off">
                         
+                        <input type="hidden" name="user" value="<?php echo $_SESSION["loginUser-name"]; ?>">
+
                         <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo/Lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -202,11 +204,17 @@ include("m_combobox_lotificacion.php");
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbolotificacion" id="cbolotificacion" class="form-control">
                  <option value="">Seleccione</option>
-                 <?php
-                    $lotificaciones = lotificacion();
-                    foreach ($lotificaciones as $lotificacion) { 
-                        echo '<option value="'.$lotificacion->id .'">'.$lotificacion->nombre.'</option>';        
-                    }
+                 <?php 
+
+                include("../conexion/conexion.php");
+                $sqlloti="SELECT LOTIFICACION_ID,LOTIFICACION_NOMBRE FROM lotificacion";
+                $queryloti=$conn->query($sqlloti);
+                while ($rowloti=$queryloti->fetch_assoc()) {
+                    ?>
+                    <option value="<?php echo $rowloti['LOTIFICACION_ID'];?>"><?php echo $rowloti['LOTIFICACION_NOMBRE']; ?></option>
+                    <?php
+                }
+
                 ?>
              </select>
          </div>
@@ -217,11 +225,17 @@ include("m_combobox_lotificacion.php");
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbopoligono" id="cbopoligono" class="form-control">
                  <option value="">Seleccione</option>
-                  <?php
-                    $poligonos = poligono();
-                    foreach ($poligonos as $poligono) { 
-                        echo '<option value="'.$poligono->id .'">'.$poligono->nombre.'</option>';        
-                    }
+                  <?php 
+
+                
+                $sqlpoli="SELECT POLIGONO_ID,POLIGONO_NUM FROM poligono";
+                $query=$conn->query($sqlpoli);
+                while ($row=$query->fetch_assoc()) {
+                    ?>
+                    <option value="<?php echo $row['POLIGONO_ID'];?>"><?php echo $row['POLIGONO_NUM']; ?></option>
+                    <?php
+                }
+
                 ?>
              </select>
          </div>

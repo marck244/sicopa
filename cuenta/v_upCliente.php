@@ -37,6 +37,15 @@ if(isset($_SESSION["loginUser-name"])){
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script src="../js/vendor/bootstrap.min.js"></script>
+<script>
+$(function() {
+    $( "#busqueda" ).autocomplete({
+        source: 'autocliente.php'
+    });
+});
+</script>
   <script>
   $(function() {
     $( "#datepicker" ).datepicker();
@@ -206,6 +215,22 @@ if(isset($_SESSION["loginUser-name"])){
        });    
     });
 </script>   
+
+<!--<script type="text/javascript">
+     function buscarClienteCuentas(){
+        var txt_id = document.getElementById("textScan");
+        $(".dropRespuesta").dropdown("toggle");
+        //$("#formUpLotificacion").hide(1000);
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("resultado").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "../pagos/m_ClienteCuenta_scan.php?dui="+txt_id.value, true);
+        xhttp.send();
+    }
+</script>-->
   
 </head>
 <body>
@@ -273,20 +298,21 @@ if(isset($_SESSION["loginUser-name"])){
 
 
  
-<div class="jumbotron">
-                <form class="form-horizontal" method="POST" action="m_llenarformCliente.php" onsubmit="return valida()" autocomplete="off">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <label for="lotiname" class="control-label col-xs-4 hidden-xs">Numero DUI :</label>
-                            <div class="input-group">
-                                <input name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" type="text" class="form-control" placeholder="Ingresa un numero de Dui">
-                                <span class="input-group-btn">
+                <div class="jumbotron">
+               <form class="form-horizontal" onsubmit="return valida();" method="POST" action="m_llenarformCliente.php">
+                            <div class="row">
+                              <div class="col-lg-6">
+                                <label for="lotiname" class="control-label col-sm-4 hidden-xs">DUI Cliente</label>
+                                <div class="input-group col-sm-8">
+                                  <input type="text" name="busqueda" id="busqueda" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" placeholder="00000000-0" autocomplete="off" >
+                                 
+                                  <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
-                                </span>
-                            </div><!-- /input-group -->
-                        </div><!-- /.col-lg-6 -->
-                    </div><!-- /.row -->
-                </form>
+                                  </span>
+                                </div><!-- /input-group -->
+                              </div><!-- /.col-lg-6 -->
+                            </div><!-- /.row -->
+                          </form>
                 </div>
 
 
@@ -448,6 +474,16 @@ if(isset($_SESSION["loginUser-name"])){
           
         
         <option value="<?php echo $profesionid; ?>" selected><?php echo $profesionnombre; ?></option>
+           <?php 
+            include("../conexion/conexion.php");
+            $sql0=$conn->query("SELECT PROFESIONES_ID,PROFESIONES_NOMBRE FROM profesiones WHERE PROFESIONES_ID <> $profesionid");
+            while ($row0=$sql0->fetch_assoc()) {
+                ?>
+                <option value="<?php echo $row0['PROFESIONES_ID'];?>" ><?php echo $row0['PROFESIONES_NOMBRE']; ?></option>
+                <?php
+            }
+           
+            ?>
       
                 
              </select>
@@ -462,7 +498,7 @@ if(isset($_SESSION["loginUser-name"])){
     
         <option value="<?php echo $departamentoid; ?>" selected><?php echo $departamentonombre; ?></option>
             <?php 
-            include("../conexion/conexion.php");
+            
             $sql=$conn->query("SELECT DEPARTAMENTO_ID,DEPARTAMENTO_NOMBRE FROM departamento WHERE DEPARTAMENTO_ID <> $departamentoid");
             while ($row=$sql->fetch_assoc()) {
                 ?>
@@ -556,32 +592,8 @@ if(isset($_SESSION["loginUser-name"])){
 </div> <!-- /container -->        
 
 
-<script src="../js/vendor/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/vendor/bootstrap-typeahead.js"></script>
-
-<script type="text/javascript">
-    
-    $(function() {
-        $("#typeahead").typeahead({
-
-            source: function(typeahead,query){
-                $.ajax({
-                    url: 'm_busquedacliente.php',
-                    type: 'POST',
-                    data: 'query='+query,
-                    dataType: 'JSON',
-                    async: false,
-                    success: function(data){
-                            typeahead.process(data);
-                    }
-
-                });
-            }
-        });
-    });
 
 
-</script>
 
 <?php
 if (empty($_GET['vacio'])) {

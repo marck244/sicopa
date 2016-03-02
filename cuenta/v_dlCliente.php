@@ -46,8 +46,19 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+  <script src="../js/vendor/bootstrap.min.js"></script>
 
+ <script>
+$(function() {
+    $( "#busqueda" ).autocomplete({
+        source: 'autocliente.php'
+    });
+});
+</script>
     
 
     <!-- validacion form busqueda -->
@@ -56,7 +67,7 @@ if(isset($_SESSION["loginUser-name"])){
 
     function valida () {
         
-        var busqueda= document.getElementById("typeahead");
+        var busqueda= document.getElementById("busqueda");
 
         if (busqueda.value=='') {
             alertify.warning("No ha digitado nada en la caja de busqueda por favor ingrese un numero de DUI");
@@ -155,7 +166,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-4 hidden-xs">Numero DUI :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="typeahead" data-provide="typeahead" placeholder="Ingresa un numero de Dui">
+                                <input type="text" class="form-control" name="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" id="busqueda"  placeholder="Ingresa un numero de Dui">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -182,6 +193,7 @@ if(isset($_SESSION["loginUser-name"])){
     }
     else
     {   
+        $user=$_SESSION["loginUser-name"];
         $dui=$_GET['dui'];
         $nombre=$_GET['nombre'];
         $apellido=$_GET['apellido'];
@@ -261,7 +273,7 @@ if(isset($_SESSION["loginUser-name"])){
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="m_dlCliente.php?id=<?php echo $dui; ?>" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
+                    <a href="m_dlCliente.php?id=<?php echo $dui; ?>&user=<?php echo $user; ?>" class="btn btn-primary" id="eliminar" onclick="">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarcliente();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
@@ -278,33 +290,9 @@ if(isset($_SESSION["loginUser-name"])){
 </footer>
 </center>
 </div> <!-- /container -->       
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-<script src="../js/vendor/bootstrap.min.js"></script>
-<script type="text/javascript" src="../js/vendor/bootstrap-typeahead.js"></script>
-
-<script type="text/javascript">
-    
-    $(function() {
-        $("#typeahead").typeahead({
-
-            source: function(typeahead,query){
-                $.ajax({
-                    url: 'm_busquedacliente.php',
-                    type: 'POST',
-                    data: 'query='+query,
-                    dataType: 'JSON',
-                    async: false,
-                    success: function(data){
-                            typeahead.process(data);
-                    }
-
-                });
-            }
-        });
-    });
 
 
-</script>
+
 
 
 

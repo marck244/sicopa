@@ -1,14 +1,14 @@
 <?php 
 	include("../conexion/conexion.php");
 
-	$busqueda=str_replace("-","",$_POST["busqueda"]);
+	$busqueda=TRIM(str_replace("-","",$_POST["busqueda"]));
 
 
 	$query=$conn->query("SELECT CUENTA_ID,CLIENTE_ID,IMPUESTO_ID,CUENTA_ESTADOS_ID,LOTE_ID,CUENTA_PLAZO FROM cuenta WHERE CLIENTE_ID='$busqueda' ");
 
 	if ($row=$query->fetch_assoc()){
 		$id=$row["CUENTA_ID"];
-		$dui=$row["CLIENTE_ID"];
+		$dui=TRIM($row["CLIENTE_ID"]);
 		$plazo=$row["CUENTA_PLAZO"];
 	
 		

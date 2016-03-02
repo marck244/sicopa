@@ -24,16 +24,28 @@ if(isset($_SESSION["loginUser-name"])){
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
-    
-    <link rel="stylesheet" href="../css/main.css">
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <script src="../js/vendor/bootstrap.min.js"></script>
+
+  <script>
+$(function() {
+    $( "#dui" ).autocomplete({
+        source: 'autocliente.php'
+    });
+});
+</script>
 
        <script type="text/javascript" >
       $(document).ready(function() {
@@ -58,12 +70,111 @@ if(isset($_SESSION["loginUser-name"])){
       var prima = document.getElementById("prima");
       var plazo = document.getElementById("plazo");
       
+       if (dui.value=='') {
 
+            alertify.warning('No puede dejar el campo DUI vacio');
+            dui.focus();
+            
 
-        window.open("v_Simulador.php?dui="+dui.value+"&impuesto="+impuesto.value+"&lote="+lote.value+"&prima="+prima.value+"&plazo="+plazo.value+"");
+        }
+        else if (impuesto.value=='') {
+
+            alertify.warning('No puede dejar el campo Impuesto vacio');
+            impuesto.focus();
+            
+
+        }
+        
+
+        else if (lote.value=='0') {
+            alertify.warning('No puede dejar el campo Lote vacio selecciona una lotificacion para elegir un Lote');
+            lote.focus();
+          
+        }
+
+       
+        else if (plazo.value=='') {
+            alertify.warning('No puede dejar el campo Plazo vacio');
+            plazo.focus();
+           
+        }
+       
+
+        else
+        {
+            window.open("v_Simulador.php?dui="+dui.value+"&impuesto="+impuesto.value+"&lote="+lote.value+"&prima="+prima.value+"&plazo="+plazo.value+"");
+        }
+
+        
+
     }
 
 </script>
+
+
+ <!-- script no dejar campos vacios en el formulario INICIO-->
+
+   <script type="text/javascript">
+
+   function validar(){
+
+        var campodui= document.getElementById("dui");
+        var campoimpuesto= document.getElementById("cboimpuesto");
+        var campoestado= document.getElementById("cboestado");
+        var campolotificacion= document.getElementById("cbolotificacion");
+        var campolote= document.getElementById("cbolote");
+        
+        
+        var campoplazo= document.getElementById("plazo");
+
+        if (campodui.value=='') {
+
+            alertify.warning('No puede dejar el campo DUI vacio');
+            campodui.focus();
+            return false
+
+        }
+        if (campoimpuesto.value=='') {
+
+            alertify.warning('No puede dejar el campo Impuesto vacio');
+            campoimpuesto.focus();
+            return false;
+
+        }
+        if (campoestado.value=='') {
+            alertify.warning('No puede dejar el campo Estado vacio');
+            campoestado.focus();
+            return false;
+        }
+
+        if (campolotificacion.value=='0') {
+            alertify.warning('No puede dejar el campo Lotificacion vacio');
+            campolotificacion.focus();
+            return false;
+        }
+
+          if (campolote.value=='0') {
+            alertify.warning('No puede dejar el campo Lote vacio');
+            campolote.focus();
+            return false;
+        }
+
+       
+        if (campoplazo.value=='') {
+            alertify.warning('No puede dejar el campo Plazo vacio');
+            campoplazo.focus();
+            return false;
+        }
+
+
+
+    return true;        
+
+   }
+
+   </script>
+
+  <!--script no dejar campos vacios en el formulario FIN -->
 
 </head>
 <body>
@@ -128,12 +239,13 @@ if(isset($_SESSION["loginUser-name"])){
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
                         <legend>Registro de una nueva cuenta</legend>
-                       <form action="" method="POST" class="form-horizontal">
-                     
+                       <form action="m_nwCuenta.php" method="POST" class="form-horizontal" onsubmit="return validar()" autocomplete="off">
+                       <?php $user=$_SESSION["loginUser-name"]; ?>
+                            <input type="hidden" name="user" value="<?php echo $user; ?>">
                              <div class="form-group">
-         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre del cliente:</label>
+         <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui Cliente:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" name="dui" id="dui" placeholder="Ingrese Un Cliente">
+             <input type="name" class="form-control" name="dui" id="dui" placeholder="Ingrese Un Dui">
          </div>
      </div>
      <div class="form-group">
@@ -160,7 +272,7 @@ if(isset($_SESSION["loginUser-name"])){
      <div class="form-group">
          <label for="inputEstadoCuenta" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Estado de Cuenta :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <select name="cboestado" class="form-control">
+             <select name="cboestado" id="cboestado" class="form-control">
                <option value="">Seleccione</option>
                  <?php 
 
@@ -203,7 +315,7 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputLotes" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Lotes :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbolote" id="cbolote" class="form-control">
-                <option value="">Seleccione</option>
+                <option value="0">Seleccione</option>
                 
              </select>
          </div>
@@ -213,6 +325,12 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputCuentaPrima" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta de prima :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="number" name="prima" id="prima" class="form-control" placeholder="Valor de Prima">
+         </div>
+     </div>
+     <div class="form-group">
+         <label for="inputCuentaPrima" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Numero Recibo :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="number" name="recibo" id="recibo" class="form-control" placeholder="Valor de Prima">
          </div>
      </div>
 
@@ -257,9 +375,23 @@ if(isset($_SESSION["loginUser-name"])){
 </center>
 </div> <!-- /container -->        
 
-
-<script src="../js/vendor/bootstrap.min.js"></script>
-
-<script src="../js/main.js"></script>
 </body>
+<?php
+if (empty($_GET['guardado'])) {
+        $mensaje="";
+    }
+    else
+    {
+        $mensaje=$_GET['guardado'];
+    if($mensaje=="si")
+    {
+            
+
+        ?> <script type="text/javascript"> alertify.success("El registro se efectuo exitosamente");</script>  <?php 
+    }
+    if ($mensaje== "no") {
+        ?> <script type="text/javascript">alertify.error("Error: no se pudo efectuar el registro");</script>  <?php 
+    }
+}
+?>
 </html>
