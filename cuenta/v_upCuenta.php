@@ -24,7 +24,7 @@ if(isset($_SESSION["loginUser-name"])){
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
@@ -34,7 +34,18 @@ if(isset($_SESSION["loginUser-name"])){
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+  <script src="../js/vendor/bootstrap.min.js"></script>
+
+    <script>
+$(function() {
+    $( "#busqueda" ).autocomplete({
+        source: 'autocuenta.php'
+    });
+});
+</script>
 
      <script type="text/javascript">
 
@@ -137,7 +148,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Cliente :</label>
                             <div class="input-group">
-                                <input  name="busqueda" id="busq" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" type="text" class="form-control" placeholder="Ingresa un numero de Dui">
+                                <input  name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" type="text" class="form-control" placeholder="Ingresa un numero de Dui">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -158,7 +169,7 @@ if(isset($_SESSION["loginUser-name"])){
 
                       if (empty($_GET['dui'])) {
 
-        $dui="";
+        $duicliente="";
         if (empty($_GET['cuenta'])) {
         $cuenta="";
         }
@@ -204,8 +215,8 @@ if(isset($_SESSION["loginUser-name"])){
     }
     else
     {   
-
-        $dui=$_GET['dui'];
+        $user=$_SESSION["loginUser-name"];
+        $duicliente=$_GET['dui'];
         $cuenta=$_GET['cuenta'];
         $cliente=$_GET['nombrecliente'];
         $impuesto_id=$_GET['impuesto_id'];
@@ -222,18 +233,21 @@ if(isset($_SESSION["loginUser-name"])){
 <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
-                      <form action="m_upCuenta.php" class="form-horizontal" method="POST">
+                      <form action="m_upCuenta.php" class="form-horizontal" method="POST" autocomplete="off">
+                      <input type="hidden" name="id" value="<?php echo $cuenta; ?>">
+                      <input type="hidden" name="user" value="<?php echo $user; ?>">
+
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 
-                                             <input type="name" name="dui" class="form-control" disabled="true" placeholder="Codigo de Cuenta" value="<?php echo $dui; ?>">
+                        <input type="name" name="duicliente" id="duicliente" class="form-control"  value="<?php echo $duicliente;  ?>" readonly>
                             </div>
                         </div>
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nombre/cliente:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name"  class="form-control" placeholder="Ingrese Un Cliente" disabled="true" value="<?php echo $cliente; ?>">
+             <input type="name" name="nombre" class="form-control" placeholder="Ingrese Un Cliente" disabled="true" value="<?php echo $cliente; ?>">
          </div>
      </div>
      <div class="form-group">
@@ -305,7 +319,7 @@ if(isset($_SESSION["loginUser-name"])){
                 <option value="<?php echo $lote_id; ?>" selected="selected"><?php echo $lote_id; ?></option>
                    <?php 
            
-            $sql2=$conn->query("SELECT LOTE_ID,LOTIFICACION_ID FROM lote WHERE LOTIFICACION_ID='$lotificacion_id' AND LOTE_ID <> '$lote_id' ");
+            $sql2=$conn->query("SELECT LOTE_ID,LOTIFICACION_ID FROM lote WHERE LOTIFICACION_ID='$lotificacion_id' AND LOTE_ESTADO='LIBRE' AND LOTE_ID <> '$lote_id'  ");
             while ($row2=$sql2->fetch_assoc()) {
                 ?>
                 <option value="<?php echo $row2['LOTE_ID'];?>" ><?php echo $row2['LOTE_ID']; ?></option>
@@ -334,6 +348,13 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputCuentaPrima" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta/prima :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="number" name="prima" class="form-control" placeholder="Valor de Prima">
+         </div>
+     </div>
+
+      <div class="form-group">
+         <label for="inputCuentaPrima" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Numero Recibo :</label>
+         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
+             <input type="number" name="recibo" id="recibo" class="form-control" placeholder="numero recibo">
          </div>
      </div>
         <?php
@@ -381,7 +402,7 @@ if(isset($_SESSION["loginUser-name"])){
 </div> <!-- /container -->        
 
 
-<script src="../js/vendor/bootstrap.min.js"></script>
+
 
 <script src="../js/main.js"></script>
 

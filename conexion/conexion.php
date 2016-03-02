@@ -2,8 +2,10 @@
 /*conexion a la base*/
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "db_sicopa_desa";
+
+
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -14,7 +16,7 @@ if ($conn->connect_error) {
 
 
 
-// CONEXION POR METODOS UTIL PARA EL FUNCIONAMIENTO DE DEPARTAMENTOS Y MUNICIPIOS
+
 
 
 ?>

@@ -13,7 +13,7 @@ if(isset($_SESSION["loginUser-name"])){
 }
 
 
-include("m_combobox_lotificacion.php");
+
 
 ?>
 <!doctype html>
@@ -33,9 +33,40 @@ include("m_combobox_lotificacion.php");
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script src="../js/vendor/bootstrap.min.js"></script>
+
+    <script>
+    $(function() {
+    $( "#busqueda" ).autocomplete({
+        source: 'autolote.php'
+    });
+    });
+    </script>
+
+
+
+    <!-- script validacion entrada solo numero INICIO -->
+     <script type="text/javascript">
+      <!--
+      function solonumeros(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+ 
+         return true;
+      }
+      //-->
+   </script>
+   <!-- script validacion entrada solo numero FIN -->
 
    
 </head>
@@ -109,7 +140,7 @@ include("m_combobox_lotificacion.php");
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lote :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="busqueda"   placeholder="Ingresar Codigo de Lote" maxlength="4" pattern="[a-zA-Z]{1}[0-9]{3}" title="Ingresa primer digito letra y los restantes numeros" required>
+                                <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Ingresar Codigo de Lote" maxlength="4" pattern="[a-zA-Z]{1}[0-9]{3}" title="Ingresa primer digito letra y los restantes numeros" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -180,12 +211,15 @@ include("m_combobox_lotificacion.php");
         $extra=$_GET['extra'];
         $nombrelotificacion=$_GET['nombrelotificacion'];
 
+        $user=$_SESSION["loginUser-name"];
+
         ?>
 
         <div class="col-15 col-sm-12 col-md-12 col-lg-13">
                     <fielset>
                         
                        <form action="m_upLote.php" method="POST" class="form-horizontal">
+                       <input type="hidden" name="user" class="form-control" value="<?php echo $user; ?>" >
                         <div class="form-group">
                             <label for="Id Lotificacion" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo/Lote :</label>
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
@@ -196,13 +230,13 @@ include("m_combobox_lotificacion.php");
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Extension:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" name="extension" class="form-control" value="<?php echo $extension; ?>" placeholder="Metros cuadrados" pattern="[0-9]" title="Ingresar solo numeros" required>
+             <input type="name" name="extension" class="form-control" value="<?php echo $extension; ?>" placeholder="Metros cuadrados" onkeypress="return solonumeros(event)" title="Ingresar solo numeros y no dejar campo vacio" required>
          </div>
      </div>
      <div class="form-group">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Precio lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" name="precio" value="<?php echo $precio; ?>" placeholder="valor de el lote" pattern="[0-9]" title="Ingresar solo numeros" required>
+             <input type="name" class="form-control" name="precio" value="<?php echo $precio; ?>" placeholder="valor de el lote"  onkeypress="return solonumeros(event)" title="Ingresar solo numeros y no dejar campo vacio" required>
          </div>
      </div>
      <div class="form-group">
@@ -210,12 +244,16 @@ include("m_combobox_lotificacion.php");
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbolotificacion" class="form-control" required title="Debe seleccionar una Lotificacion">
                  <option value="<?php echo $idlotificacion; ?>" selected=""><?php echo $nombrelotificacion; ?></option>
-                 <?php
-                    $lotificaciones = lotificaciondistintos($idlotificacion);
-                    foreach ($lotificaciones as $lotificacion) { 
-                        echo '<option value="'.$lotificacion->id .'">'.$lotificacion->nombre.'</option>';        
-                    }
+                  <?php 
+            include("../conexion/conexion.php");
+            $sql=$conn->query("SELECT LOTIFICACION_ID,LOTIFICACION_NOMBRE FROM lotificacion WHERE LOTIFICACION_ID <> $idlotificacion");
+            while ($row=$sql->fetch_assoc()) {
                 ?>
+                <option value="<?php echo $row['LOTIFICACION_ID'];?>" ><?php echo $row['LOTIFICACION_NOMBRE']; ?></option>
+                <?php
+            }
+           
+            ?>
              </select>
          </div>
      </div>
@@ -225,12 +263,16 @@ include("m_combobox_lotificacion.php");
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbopoligono" class="form-control" required title="Debe seleccionar un poligono">
                  <option value="<?php echo $idpoligono; ?>" selected=""><?php echo $numpoligono; ?></option>
-                  <?php
-                    $poligonos = poligonosdistintos($idpoligono);
-                    foreach ($poligonos as $poligono) { 
-                        echo '<option value="'.$poligono->id .'">'.$poligono->nombre.'</option>';        
-                    }
+                    <?php 
+            
+            $sql=$conn->query("SELECT POLIGONO_ID,POLIGONO_NUM FROM poligono WHERE POLIGONO_ID <> $idpoligono");
+            while ($row=$sql->fetch_assoc()) {
                 ?>
+                <option value="<?php echo $row['POLIGONO_ID'];?>" ><?php echo $row['POLIGONO_NUM']; ?></option>
+                <?php
+            }
+           
+            ?>
              </select>
          </div>
      </div>
@@ -275,11 +317,7 @@ include("m_combobox_lotificacion.php");
     </footer>
 </center>
 </div> <!-- /container -->        
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-<script src="../js/vendor/bootstrap.min.js"></script>
-
-<script src="../js/main.js"></script>
 
 <?php
 if (empty($_GET['actualizo'])) {
@@ -294,6 +332,18 @@ if (empty($_GET['actualizo'])) {
         if ($mensaje=="no") {
             ?> <script type="text/javascript">alertify.error("Registro No se actualizo");</script> <?php
         }
+    }
+
+    if (empty($_GET['vacio'])) {
+        $mensaje="";
+    }
+    else
+    {   
+        $mensaje=$_GET['vacio'];
+        if ($mensaje=="si") {
+            ?> <script type="text/javascript">alertify.error("No se encontro ningun registro asociado a ese Lote");</script> <?php
+        }
+    
     }
 
     ?>

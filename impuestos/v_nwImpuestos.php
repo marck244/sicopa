@@ -117,7 +117,7 @@ if(isset($_SESSION["loginUser-name"])){
                        <form action="m_nwImpuestos.php" method="POST" class="form-horizontal" autocomplete="off">
                         
                   
-
+                       <input type="hidden" name="user" value="<?php echo $_SESSION["loginUser-name"]; ?>">
 
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Valor INTERES:</label>
@@ -136,7 +136,7 @@ if(isset($_SESSION["loginUser-name"])){
      <div class="form-group">
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Descripcion Impuesto :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-            <textarea name="descripcion"  class="form-control" pattern="[/^\w+$/]{10,100}" title="No poner un minimo descripcion de 10 caracteres y ingresar un maximo de 100 no se permiten caracteres especiales @!" rows="3" placeholder="Ingresa una descripcion del impuesto"></textarea>
+            <textarea name="descripcion"  class="form-control" pattern="[/^\w+$/]{10,100}" title="No poner un minimo descripcion de 10 caracteres y ingresar un maximo de 100 no se permiten caracteres especiales @!" rows="3" placeholder="Ingresa una descripcion del impuesto" required></textarea>
          </div>
      </div>
 

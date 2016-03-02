@@ -29,9 +29,23 @@ if(isset($_SESSION["loginUser-name"])){
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/alertify.css">
     <link rel="stylesheet" type="text/css" href="../alertify/css/themes/default.css">
+    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
-    <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    <script type="text/javascript" src="../js/main.js"></script>
+    <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <script src="../js/vendor/bootstrap.min.js"></script>
+
+    <script>
+    $(function() {
+    $( "#busqueda" ).autocomplete({
+        source: 'autolote.php'
+    });
+    });
+    </script>
 
     <script type="text/javascript">
          function cancelareliminarlote(){
@@ -114,7 +128,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-3 hidden-xs">Lote:</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="busqueda"   placeholder="Ingresar Codigo de Lote" maxlength="4" pattern="[a-zA-Z]{1}[0-9]{3}" title="Ingresa primer digito letra y los restantes numeros" required>
+                                <input type="text" class="form-control" name="busqueda" id="busqueda" placeholder="Ingresar Codigo de Lote" maxlength="4" pattern="[a-zA-Z]{1}[0-9]{3}" title="Ingresa primer digito letra y los restantes numeros" required>
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>
@@ -147,6 +161,7 @@ if(isset($_SESSION["loginUser-name"])){
         $extension=$_GET['extension'];
          $nomlotificacion=$_GET['nombrelotificacion'];
          $numpoligono=$_GET['numpoligono'];
+         $user=$_SESSION["loginUser-name"];
 
 ?>
     <table class="table table-hover text-center">
@@ -215,14 +230,11 @@ if (empty($_GET['vacio'])) {
                             <label for="idloti">Codigo Del Lote</label>
                             <input type="text" value="<?php echo $codigo; ?>" class="form-control" disabled>
                         </div>
-                        <div class="form-group">
-                            <label for="pass">Numero Del Lote: </label>
-                            <p class="form-control-static"></p>
-                        </div>
+                        
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <a href="m_dlLote.php?id=<?php echo $codigo; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
+                    <a href="m_dlLote.php?id=<?php echo $codigo; ?>&user=<?php echo $user; ?>&lotificacion=<?php echo $nomlotificacion; ?>" id="eliminar" onclick="" class="btn btn-primary">Aceptar</a>
                     <button class="btn btn-default" onclick="cancelareliminarlote();" data-dismiss="modal">Cancelar</button>
                 </div>                            
             </div>
@@ -239,11 +251,7 @@ if (empty($_GET['vacio'])) {
 </footer>
 </center>
 </div> <!-- /container -->       
-<script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 
-<script src="../js/vendor/bootstrap.min.js"></script>
-
-<script src="../js/main.js"></script>
 
 
 </body>
