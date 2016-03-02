@@ -49,14 +49,15 @@ if(isset($_SESSION["loginUser-name"])){
         var myModal = $('#inicioModal');
         myModal.modal('show');
 
-
-        //var codigo = document.getElementById("codigoCuenta");
-        var factu = document.getElementById("recibo");
         var usd = document.getElementById("abonoUSD");
+        var pay = document.getElementById("payid");
+        var abonoMaximo = document.getElementById("abonoLiquidar");
         document.getElementById("labelCodigo").innerHTML=cuenta;
-        //codigo.value = cod;
-        factu.value = liquidar;
+        document.getElementById("liquidar").innerHTML = liquidar;
+        document.getElementById("abonoUSDlabel").innerHTML = "$ "+txtPagoMinimo;
+        pay.value = cuenta;
         usd.value = txtPagoMinimo;
+        abonoMaximo.value = liquidar;
 
       }else{
         alertify.error("Abono a Cuenta no puede ser menor que Pago Minimo. Debe ser igual o mayor.");
@@ -87,6 +88,8 @@ if(isset($_SESSION["loginUser-name"])){
     //funcion cancelar Pago
     function cancelarPago(){
       alertify.log("Pago ha sido Cancelado!");
+      var recibo = document.getElementById("recibo");
+      recibo.value = "";
     }
 
 
@@ -105,10 +108,52 @@ if(isset($_SESSION["loginUser-name"])){
     }
 
     function panelPagos(id){
-      /*var nameCliente = document.getElementById("clientenombre"+id);
-      document.getElementById("nombreCLiente").innerHTML=nameCliente.value; */
       var txtBuscar = document.getElementById("textScan");
       txtBuscar.value = id;
+    }
+    /********************************/
+    /* Funcion que genera el pago   */
+    /********************************/
+    function efectuarPago(cuenta,factura){
+      if (factura!="") {
+
+        var abonoMaximo = document.getElementById("abonoLiquidar").value;
+        var abono = document.getElementById("abonoUSD").value;
+        abono = parseFloat(abono); // es pago minimo o mas del minimo
+        abonoMaximo = parseFloat(abonoMaximo); // abono Maximo es Liquidar cuenta
+        //Formula Deduccion de capital a partir del abono
+        var txtpagado = document.getElementById("cpagado"+cuenta).value;
+        txtpagado = parseFloat(txtpagado);
+        var deuda = document.getElementById("deuda");
+        deuda.value = txtpagado;
+        var K =0.00;
+        K = (abono - ((txtpagado*0.0125)*1.13)) / 1.13;
+        K = parseFloat(K.toFixed(2));
+        // fin de formula
+
+        if (abono <= abonoMaximo) {
+          var resta = abonoMaximo - abono;
+          var Kminima = document.getElementById("ak"+cuenta).value;
+          var nuevoK = txtpagado - K;
+
+          if (resta == 0.00) {
+            //ABONAR CANCELAR
+            document.getElementById("pagopay").submit();
+          }else if (nuevoK >= Kminima){
+            //ABONAR
+            document.getElementById("pagopay").submit();
+          }else{
+            //No se puede ABONAR esa cantidad. Trate de LIQUIDAR la cuenta o disminuya el monto de ABONO
+            alertify.error("No se puede ABONAR esa cantidad. Trate de LIQUIDAR la cuenta o disminuya el monto de ABONO");
+          }
+          //document.getElementById("pagopay").submit();
+        }else{
+          alertify.error("El abono que esta intentando realizar supera el total maximo para canelar la cuenta. Por favor, revise bien el monto que se abonara.");
+        }
+        //alertify.log("hola pay: "+cuenta+" - fac: "+factura+" - "+abono);
+      }else{
+        alertify.warning("Debe introducir el numero de la factura que relaciona la Transaccion para poder continuar");
+      }
     }
     </script>
 
@@ -176,15 +221,32 @@ if(isset($_SESSION["loginUser-name"])){
               <!-- Codigo si hay un DUI a Buscar-->
               <?php if(isset($_GET["dui"])){  ?>
 
+              <?php
+              $duimarcara = $_GET["dui"];
+              $duiexplode = explode("-", $duimarcara);
+              $duiexplod = $duiexplode[0].$duiexplode[1];
+              $sqlname = "SELECT CLIENTE_APELLIDO, CLIENTE_NOMBRE FROM cliente WHERE CLIENTE_ID = '$duiexplod'";
+              $resulname = $conn->query($sqlname);
+              $ClienteName = "";
+              if ($resulname->num_rows > 0) {
+                // output data of each row
+                if($rowcliente = $resulname->fetch_assoc()) {
+                  $ClienteName = $rowcliente["CLIENTE_APELLIDO"].", ".$rowcliente["CLIENTE_NOMBRE"]." - DUI: ".$_GET["dui"];
+                }
+              } else {
+                  $ClienteName = "No Name";
+              }
+              ?>
+
               <div class="panel panel-default">
-                <div class="panel-heading">Listado de Cuentas Abiertas de <strong id="nombreCLiente"></strong></div>
+                <div class="panel-heading">Listado de Cuentas Abiertas de <strong id="nombreCLiente"><?php echo $ClienteName;?></strong></div>
                 <div class="table-responsive">
                   <table class="table table-hover text-center">
                    <tr>
                      <th>Cuenta</th>
                      <th>Lotificacion</th>
                      <th>Lote</th>
-                     <th>Saldo</th>
+                     <th>CAPITAL</th>
                      <th>A Capital</th>
                      <th>A Interes</th>
                      <th>A Iva</th>
@@ -201,8 +263,8 @@ if(isset($_SESSION["loginUser-name"])){
 /*
   Este ya posee iva e interes dinamicamente de la base.
 */
-  $sql = "SELECT cuenta.CUENTA_ID, lotificacion.LOTIFICACION_NOMBRE, cuenta.LOTE_ID, lote.LOTE_PRECIO, cuenta.CUENTA_PLAZO, impuesto.IMPUESTO_INTERES, impuesto.IMPUESTO_IVA FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID INNER JOIN impuesto ON cuenta.IMPUESTO_ID=impuesto.IMPUESTO_ID WHERE cuenta.CLIENTE_ID='".$scanDui[0].$scanDui[1]."'";
-  $result = $conn->query($sql);
+$sql = "SELECT cuenta.CUENTA_ID, lotificacion.LOTIFICACION_NOMBRE, cuenta.LOTE_ID, lote.LOTE_PRECIO, cuenta.CUENTA_PLAZO, impuesto.IMPUESTO_INTERES, impuesto.IMPUESTO_IVA FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID INNER JOIN impuesto ON cuenta.IMPUESTO_ID=impuesto.IMPUESTO_ID WHERE cuenta.CLIENTE_ID='".$scanDui[0].$scanDui[1]."'";
+$result = $conn->query($sql);
 $NInteres=0.00; // es la tasa de interes entre 12 meses..
 $NIva = 0.00; // es tasa normal del iva.
 $Cpagado=0.00;// es la suma de todo el capital que tiene guardado la tabla CUENTAS_PAGOS
@@ -211,6 +273,7 @@ $aInteres=0.00; // Valor que gana la lotificadora porq var el prestamo.
 $aIva=0.00; // iva a recolectar y dar al gobierno.
 $cuotaMinima=0.00;
 $liquidar=0.00;
+$CapitalSaldo = 0.00;
 if ($result->num_rows > 0) {
     // output data of each row
   while($row = $result->fetch_assoc()) {
@@ -224,26 +287,28 @@ if ($result->num_rows > 0) {
       $NIva = $row["IMPUESTO_IVA"];
 
       $aCapital = $row["LOTE_PRECIO"]/$row["CUENTA_PLAZO"];
-      $aCapital = number_format($aCapital,2,'.',',');
+      $aCapital = number_format($aCapital,2,'.','');
       $aInteres = ($row["LOTE_PRECIO"]-$Cpagado)*$NInteres;
-      $aInteres = number_format($aInteres,2,'.',',');
+      $aInteres = number_format($aInteres,2,'.','');
       $aIva = ($aCapital+$aInteres)*$NIva;
-      $aIva = number_format($aIva,2,'.',',');
+      $aIva = number_format($aIva,2,'.','');
       $cuotaMinima = $aCapital + $aInteres + $aIva;
         $liquidar = ($row["LOTE_PRECIO"]-$Cpagado); //Sacando el capital que se debe.
+        //$N2Interes = $NInteres*12;
         $liquidar = $liquidar + ($liquidar*$NInteres); // se saca el interes al capital q se debe y se suma al capital
         $liquidar = $liquidar*(1+$NIva); // se saca el iva y se agrega. 
+        $liquidar = number_format($liquidar,2,'.','');
+        $CapitalSaldo = $row["LOTE_PRECIO"]-$Cpagado;
         ?>
         <tr>
          <td><?php echo $row["CUENTA_ID"]; ?></td>
          <td><?php echo $row["LOTIFICACION_NOMBRE"]; ?></td>
          <td><?php echo $row["LOTE_ID"]; ?></td>
-         <td><?php echo "$ ".number_format($row["LOTE_PRECIO"]-$Cpagado,2,'.',','); ?></td>
-         <td><?php echo "$ ".$aCapital; ?></td>
+         <td><?php echo "$ ".number_format($CapitalSaldo,2,'.',''); ?></td>
+         <td><input type="hidden" name="ak<?php echo $row['CUENTA_ID'];?>" id="ak<?php echo $row['CUENTA_ID'];?>" value="<?php echo $aCapital;?>"><?php echo "$ ".$aCapital; ?></td>
          <td><?php echo "$ ".$aInteres; ?></td>
          <td><?php echo "$ ".$aIva; ?></td>
-
-         <td><input type="hidden" name="hin<?php echo $row['CUENTA_ID'];?>" id="hin<?php echo $row['CUENTA_ID'];?>" value="<?php echo $cuotaMinima; ?>"><?php echo "$ ".$cuotaMinima; ?></td>      
+         <td><input type="hidden" name="cpagado<?php echo $row['CUENTA_ID'];?>" id="cpagado<?php echo $row['CUENTA_ID'];?>" value="<?php echo $CapitalSaldo;?>"><input type="hidden" name="hin<?php echo $row['CUENTA_ID'];?>" id="hin<?php echo $row['CUENTA_ID'];?>" value="<?php echo $cuotaMinima; ?>"><?php echo "$ ".$cuotaMinima; ?></td>      
          <td><input type="text" name="txtAbono<?php echo $row['CUENTA_ID'];?>" id="txtAbono<?php echo $row['CUENTA_ID'];?>" size="8"></td>
          <td><button type="button" class="btn btn-link btn-sm" onclick="abrirModal('<?php echo $row['CUENTA_ID']; ?>','<?php echo $liquidar; ?>')"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span></button></td>
        </tr>
@@ -277,33 +342,57 @@ if ($result->num_rows > 0) {
         <h4 class="modal-title">Abono a Numero de Cuenta: <strong id="labelCodigo"></strong></h4>
       </div>
       <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="idloti">Codigo de Cuenta</label>
-            <input type="text" value="" id="codigoCuenta" class="form-control" disabled>
-          </div>
+        <form id="pagopay" action="pay" method="POST">
           <div class="form-group">
             <label for="pass">Fecha de Pago </label>
-            <input type="text" value="<?php echo date("Y/m/d");?>" id="fecha" class="form-control" disabled>
+            <input type="text" value="<?php echo date("d/m/Y");?>" id="fecha" class="form-control" disabled>
           </div>
           <div class="form-group">
             <label for="idloti">Numero de Recibo</label>
-            <input type="text" value="" id="recibo" class="form-control">
+            <input type="number" name="recibo" id="recibo" class="form-control" placeholder="Digite el numero de factura correspondiente">
           </div>
           <div class="form-group">
-            <label for="idloti">Abono de $ USD</label>
-            <input type="text" name="abonoUSD" id="abonoUSD" class="form-control" disabled>
+            <label for="idloti">Abono a Cuenta de $ USD</label>
+            <p class="form-control-static" id="abonoUSDlabel"></p>
           </div>
+          <input type="hidden" name="payid" id="payid">
+          <input type="hidden" name="abonoUSD" id="abonoUSD">
+          <input type="hidden" id="abonoLiquidar">
+          <input type="hidden" name="deuda" id="deuda">
+          <input type="hidden" name ="dui" value = "<?php echo $_GET['dui'];?>">
         </form>
+        <p>Nota: Si usted desea cancelar la cuenta en este momento, 
+          debe pagar la cantidad de <span class="sp-liquidar">$<span id="liquidar"></span></span>. Intereses e IVA ya estan incluidos.</p>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-success"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Realizar Transaccion</button>
+        <button class="btn btn-success" onclick="efectuarPago(payid.value,recibo.value)"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Realizar Transaccion</button>
         <button class="btn btn-default" onclick="cancelarPago()" data-dismiss="modal">Cancelar</button>
       </div>                            
     </div>
   </div>
 </div>
-
+<?php
+if (isset($_GET["error"])) {
+  # code...
+  if ($_GET["error"]==0) {
+    # code...
+    // si se ingreso
+    ?>
+    <script>
+    alertify.success("Su pago ha sido REGISTRADO EXITOSAMENTE.");
+    </script>
+    <?php
+  }else if ($_GET["error"]==1) {
+    # code...
+    //no se pudo
+    ?>
+    <script>
+    alertify.error("Su pago no ha podido ingresarse. Si el Problema persiste, favor contactar a mantenimiento");
+    </script>
+    <?php
+  }
+}
+?>
 <center>
   <footer>
     <p>&copy; SICOPA 2015</p>
