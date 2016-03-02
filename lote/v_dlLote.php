@@ -34,7 +34,7 @@ if(isset($_SESSION["loginUser-name"])){
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>
     <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
-     <link rel="stylesheet" href="../css/vendor/jquery-ui.css">
+     <link rel="stylesheet" href="../css/jquery-ui.css">
   <script src="../js/vendor/jquery-ui.js"></script>
 
     <script src="../js/vendor/bootstrap.min.js"></script>
