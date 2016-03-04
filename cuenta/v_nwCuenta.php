@@ -42,7 +42,7 @@ if(isset($_SESSION["loginUser-name"])){
   <script>
 $(function() {
     $( "#dui" ).autocomplete({
-        source: 'autocliente.php'
+        source: 'autoclientedui.php'
     });
 });
 </script>
@@ -245,7 +245,7 @@ $(function() {
                              <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Dui Cliente:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" class="form-control" name="dui" id="dui" placeholder="Ingrese Un Dui">
+             <input type="text" name="dui" id="dui" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" placeholder="00000000-0" autocomplete="off" >
          </div>
      </div>
      <div class="form-group">
