@@ -20,11 +20,13 @@ include("../conexion/conexion.php");
             
             if(strlen($queryString) >0) {
 
-                $query = $conn->query("SELECT CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO FROM cliente WHERE CLIENTE_ID LIKE '$queryString%' LIMIT 1");
+                $query = $conn->query("SELECT CLIENTE_ID FROM cuenta WHERE CLIENTE_ID LIKE '%".$queryString."%' GROUP BY CLIENTE_ID ORDER BY CLIENTE_ID ASC");
                 if($query) {
                 echo '<ul>';
                     while ($result = $query ->fetch_object()) {
-                        echo '<li onClick="fill(\''.addslashes($result->CLIENTE_ID).'\');">'.$result->CLIENTE_NOMBRE.' '.$result->CLIENTE_APELLIDO.'</li>';
+                        $query1 = $conn->query("SELECT CLIENTE_ID,CLIENTE_NOMBRE,CLIENTE_APELLIDO FROM cliente WHERE CLIENTE_ID=$result->CLIENTE_ID");
+                        $result1 = $query1->fetch_object();
+                        echo '<li onClick="fill(\''.addslashes($result->CLIENTE_ID).'\');">'.$result1->CLIENTE_NOMBRE.' '.$result1->CLIENTE_APELLIDO.'</li>';
                     }
                 echo '</ul>';
                     
