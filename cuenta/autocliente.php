@@ -7,8 +7,8 @@ include("../conexion/conexion.php");
     $searchTerm = $_GET['term'];
     
     //get matched data from skills table
-    $query = $conn->query("SELECT CLIENTE_ID FROM cliente WHERE CLIENTE_ID LIKE '%".$searchTerm."%' ORDER BY CLIENTE_ID ASC");
-    while ($row = $query->fetch_assoc()) {
+    $q = $conn->query("SELECT CLIENTE_ID FROM cliente WHERE CLIENTE_ID LIKE '%".$searchTerm."%' ORDER BY CLIENTE_ID ASC");
+    while ($row = $q->fetch_assoc()) {
         $data[] = $row['CLIENTE_ID'];
     }
     
