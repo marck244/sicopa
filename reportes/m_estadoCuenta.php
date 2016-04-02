@@ -1,6 +1,6 @@
 <?php
 $cuenta = $_GET["cuenta"];
-echo "<h4>Cuenta: $cuenta &nbsp;&nbsp;<span class='glyphicon glyphicon-tasks'></span> <strong>56894172-9</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-user'></span> <strong>Jacinto Ordoñez</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-tree-conifer'></span> <strong>Esparta</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-leaf'></span> <strong>E0083</strong></h4>";
+echo "<h4>Cuenta: $cuenta &nbsp;&nbsp;<span class='glyphicon glyphicon-user'></span> <strong>Jacinto Ordoñez</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-tree-conifer'></span> <strong>Esparta</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-leaf'></span> <strong>E0083</strong></h4>";
 echo "<table class='table table-hover text-center'>";
 echo "<tr>";
 echo "<th>#</th>";
