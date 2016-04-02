@@ -37,6 +37,8 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script>
     function buscarHistorial(cuenta){
+      var txt = document.getElementById("imprimirValor");
+      txt.value = cuenta;
       xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -48,6 +50,12 @@ if(isset($_SESSION["loginUser-name"])){
     }
     </script>
 
+    <script>
+      function abrirVentana() {
+        var txt = document.getElementById("imprimirValor").value;
+        window.open("v_estadoCuentaImprimir.php?cuenta="+txt, "nuevo", "directories=no, location=no, menubar=no, scrollbars=yes, statusbar=no, tittlebar=no, width=1020, height=600");
+      }
+    </script>
 
 </head>
 <body>
@@ -193,7 +201,7 @@ if(isset($_SESSION["loginUser-name"])){
                         </div><!-- Panel 1--> 
                         <div class="panel panel-default"><!-- Panel 2--> 
                         <!-- Default panel contents -->
-                        <div class="panel-heading alig txt-right">Estado/Historial de Cuenta<span class="glyphicon glyphicon-print mr-glyphicon-2 mr-glyphicon-padding-6"></span></div>                        
+                        <div class="panel-heading alig txt-right">Estado/Historial de Cuenta <a href="#" class="glyphicon glyphicon-print mr-glyphicon-2 mr-glyphicon-padding-6" onclick="abrirVentana()"></a></div>                        
                         <!-- Table -->
                         <div class="table-responsive" id="tablaCuenta">
                           
@@ -205,7 +213,7 @@ if(isset($_SESSION["loginUser-name"])){
                 </div><!-- ROW-->
         </div><!-- container-->
 
-
+<input type="hidden" id="imprimirValor">
 
 
 <?php
