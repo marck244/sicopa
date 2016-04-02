@@ -188,28 +188,6 @@ if(isset($_SESSION["loginUser-name"])){
                                 }
                               }
                             ?>
-                            <tr>
-                              <td>22 <input type="hidden" value="22" id="cuenta22"></td>
-                              <td>2015/01/05</td>
-                              <td>$ 4,000</td>
-                              <td>$ 500</td>
-                              <td>$900</td>
-                              <td>$897.00</td>
-                              <td>$7,797</td>
-                              <td>VIGENTE</td>
-                              <td><a href="#" class="glyphicon glyphicon-search mr-glyphicon-2" onclick="buscarHistorial(cuenta22.value)"></a></td>
-                            </tr>
-                            <tr>
-                              <td>38 <input type="hidden" value="38" id="cuenta38"></td>
-                              <td>2015/04/24</td>
-                              <td>$ 4,000</td>
-                              <td>$ 500</td>
-                              <td>$600</td>
-                              <td>$520</td>
-                              <td>$5,120</td>
-                              <td>CANCELADA</td>
-                              <td><a href="#" class="glyphicon glyphicon-search mr-glyphicon-2" onclick="buscarHistorial(cuenta38.value)"></a></td>
-                            </tr>
                           </table>
                         </div>
                         </div><!-- Panel 1--> 
