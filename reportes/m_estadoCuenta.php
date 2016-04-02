@@ -1,7 +1,19 @@
 <?php
 require("../conexion/conexion.php");
 $cuenta = $_GET["cuenta"];
-echo "<h4>Cuenta: $cuenta &nbsp;&nbsp;<span class='glyphicon glyphicon-tree-conifer'></span> <strong>Esparta</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-leaf'></span> <strong>E0083</strong></h4>";
+
+$sqlDatos = "SELECT lote.LOTE_ID, lotificacion.LOTIFICACION_NOMBRE FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID WHERE cuenta.CUENTA_ID='$cuenta'";
+$resultDatos = $conn->query($sqlDatos);
+$Loti = "";
+$Lote = "";
+if($rowDatos = $resultDatos->fetch_assoc()) {
+	# code...
+	$Loti = $rowDatos["LOTIFICACION_NOMBRE"];
+	$Lote = $rowDatos["LOTE_ID"];
+
+}
+
+echo "<h4>Cuenta: $cuenta &nbsp;&nbsp;<span class='glyphicon glyphicon-tree-conifer'></span> <strong>$Loti</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-leaf'></span> <strong>$Lote</strong></h4>";
 echo "<table class='table table-hover text-center'>";
 echo "<tr>";
 echo "<th>#</th>";
@@ -22,7 +34,7 @@ if ($resultTodo->num_rows > 0) {
     	$fecha = date_create($rowTodo["CUENTA_PAGOS_FECHA"]);
     	$cuota = ($rowTodo["CUENTA_PAGOS_CAPITAL"]+$rowTodo["CUENTA_PAGOS_INTERES"]+$rowTodo["CUENTA_PAGOS_IVA"]);
     	$Total = ($cuota+$aux);
-    	echo "<tr><td>$correlativo</td><td>".date_format($fecha,'d/m/Y g:i A')."</td><td>$rowTodo[CUENTA_PAGOS_CAPITAL]</td><td>$rowTodo[CUENTA_PAGOS_INTERES]</td><td>$rowTodo[CUENTA_PAGOS_IVA]</td><td> $ ".$cuota."</td><td>$ $Total </td></tr>";
+    	echo "<tr><td>$correlativo</td><td>".date_format($fecha,'d/m/Y g:i A')."</td><td> $ ".number_format($rowTodo["CUENTA_PAGOS_CAPITAL"],2,'.',',')."</td><td> $ ".number_format($rowTodo["CUENTA_PAGOS_INTERES"],2,'.',',')."</td><td> $ ".number_format($rowTodo["CUENTA_PAGOS_IVA"],2,'.',',')."</td><td> $ ".number_format($cuota,2,'.',',')."</td><td>$ ".number_format($Total,2,'.',',')." </td></tr>";
     	$correlativo++;
     	$aux = $Total;
     }
