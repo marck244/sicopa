@@ -45,7 +45,7 @@ if(isset($_SESSION["loginUser-name"])){
                 document.getElementById("tablaCuenta").innerHTML = xhttp.responseText;
             }
         }
-        xhttp.open("GET", "m_estadoCuenta.php?cuenta="+cuenta, true);
+        xhttp.open("GET", "m_estadoCuenta24.php?cuenta="+cuenta, true);
         xhttp.send();
     }
     </script>

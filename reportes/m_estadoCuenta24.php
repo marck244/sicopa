@@ -1,9 +1,7 @@
 <?php
 require("../conexion/conexion.php");
 $cuenta = $_GET["cuenta"];
-<<<<<<< HEAD
 echo "<h4>Cuenta: $cuenta &nbsp;&nbsp;<span class='glyphicon glyphicon-tree-conifer'></span> <strong>Esparta</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-leaf'></span> <strong>E0083</strong></h4>";
-=======
 
 $sqlDatos = "SELECT lote.LOTE_ID, lotificacion.LOTIFICACION_NOMBRE FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID WHERE cuenta.CUENTA_ID='$cuenta'";
 $resultDatos = $conn->query($sqlDatos);
@@ -15,9 +13,7 @@ if($rowDatos = $resultDatos->fetch_assoc()) {
 	$Lote = $rowDatos["LOTE_ID"];
 
 }
-
 echo "<h4>Cuenta: $cuenta &nbsp;&nbsp;<span class='glyphicon glyphicon-tree-conifer'></span> <strong>$Loti</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-leaf'></span> <strong>$Lote</strong></h4>";
->>>>>>> refs/remotes/origin/P2-Marvin
 echo "<table class='table table-hover text-center'>";
 echo "<tr>";
 echo "<th>#</th>";
@@ -28,7 +24,6 @@ echo "<th>C.IVA</th>";
 echo "<th>T. Cuota</th>";
 echo "<th>Credito Pagado</th>";
 echo "</tr>";
-
 $sqltodo = "SELECT CUENTA_PAGOS_FECHA, CUENTA_PAGOS_CAPITAL, CUENTA_PAGOS_INTERES, CUENTA_PAGOS_IVA FROM cuenta_pagos WHERE CUENTA_ID ='".$cuenta."'";
 $resultTodo = $conn->query($sqltodo);
 $correlativo = 1;
