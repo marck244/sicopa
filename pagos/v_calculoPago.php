@@ -33,6 +33,7 @@ if(isset($_SESSION["loginUser-name"])){
 
   <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
   <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+  <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css" /> 
   <script>
   function abrirModal(cuenta,liquidar){
 
@@ -136,11 +137,15 @@ if(isset($_SESSION["loginUser-name"])){
           var Kminima = document.getElementById("ak"+cuenta).value;
           var nuevoK = txtpagado - K;
 
+          var txtAccion = document.getElementById("accion");
+
           if (resta == 0.00) {
-            //ABONAR CANCELAR
+            //ABONAR CANCELAR liquidar
+            txtAccion.value = "1";
             document.getElementById("pagopay").submit();
           }else if (nuevoK >= Kminima){
             //ABONAR
+            txtAccion.value = "2";
             document.getElementById("pagopay").submit();
           }else{
             //No se puede ABONAR esa cantidad. Trate de LIQUIDAR la cuenta o disminuya el monto de ABONO
@@ -202,13 +207,13 @@ if(isset($_SESSION["loginUser-name"])){
                       <div class="col-lg-6">
                         <label for="lotiname" class="control-label col-sm-4 hidden-xs">DUI Cliente</label>
                         <div class="input-group col-sm-8">
-                          <input type="text" id="textScan" name="dui" class="form-control" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" pattern="[0-9-]{10}" title="Solo se aceptan numeros. No letras." placeholder="00000000-0" required autocomplete="off" >
-                          <div class="dropdown">
+                          <input type="text" id="textScan" name="dui" class="form-control auto" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" pattern="[0-9-]{10}" title="Solo se aceptan numeros. No letras." placeholder="00000000-0" required autocomplete="off" >
+                          <!-- <div class="dropdown">
                             <p class="dropRespuesta" data-toggle="dropdown"></p>
                             <ul class="dropdown-menu dropdown-scan" id="resultado" aria-labelledby="dropdownMenu1">
                               <li><a href="#">Escriba DUI de Cliente</a></li>
                             </ul>
-                          </div>
+                          </div> -->
                           <span class="input-group-btn">
                             <button class="btn btn-default">Buscar!</button>
                           </span>
@@ -263,7 +268,7 @@ if(isset($_SESSION["loginUser-name"])){
 /*
   Este ya posee iva e interes dinamicamente de la base.
 */
-$sql = "SELECT cuenta.CUENTA_ID, lotificacion.LOTIFICACION_NOMBRE, cuenta.LOTE_ID, lote.LOTE_PRECIO, cuenta.CUENTA_PLAZO, impuesto.IMPUESTO_INTERES, impuesto.IMPUESTO_IVA FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID INNER JOIN impuesto ON cuenta.IMPUESTO_ID=impuesto.IMPUESTO_ID WHERE cuenta.CLIENTE_ID='".$scanDui[0].$scanDui[1]."'";
+$sql = "SELECT cuenta.CUENTA_ID, lotificacion.LOTIFICACION_NOMBRE, cuenta.LOTE_ID, lote.LOTE_PRECIO, cuenta.CUENTA_PLAZO, impuesto.IMPUESTO_INTERES, impuesto.IMPUESTO_IVA FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID INNER JOIN impuesto ON cuenta.IMPUESTO_ID=impuesto.IMPUESTO_ID WHERE cuenta.CLIENTE_ID='".$scanDui[0].$scanDui[1]."' AND cuenta.CUENTA_ESTADOS_ID=1";
 $result = $conn->query($sql);
 $NInteres=0.00; // es la tasa de interes entre 12 meses..
 $NIva = 0.00; // es tasa normal del iva.
@@ -360,6 +365,7 @@ if ($result->num_rows > 0) {
           <input type="hidden" id="abonoLiquidar">
           <input type="hidden" name="deuda" id="deuda">
           <input type="hidden" name ="dui" value = "<?php echo $_GET['dui'];?>">
+          <input type="hidden" name="accion" id="accion">
         </form>
         <p>Nota: Si usted desea cancelar la cuenta en este momento, 
           debe pagar la cantidad de <span class="sp-liquidar">$<span id="liquidar"></span></span>. Intereses e IVA ya estan incluidos.</p>
@@ -402,6 +408,20 @@ if (isset($_GET["error"])) {
 <script>window.jQuery || document.write('<script src="../js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 <script src="../js/vendor/bootstrap.min.js"></script>
 <script src="../js/main.js"></script>
+
+
+<script type="text/javascript" src="../js/vendor/jquery-ui.min.js"></script>    
+<script type="text/javascript">
+
+$(function() {
+    //autocomplete
+    $(".auto").autocomplete({
+        source: "scanCliente.php",
+        minLength: 1
+    });                
+});
+
+</script>
 </body>
 </html>
 
