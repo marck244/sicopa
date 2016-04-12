@@ -1,44 +1,32 @@
 <?php
-require("../conexion/conexion.php");
 $cuenta = $_GET["cuenta"];
-
-$sqlDatos = "SELECT lote.LOTE_ID, lotificacion.LOTIFICACION_NOMBRE FROM cuenta INNER JOIN lote ON cuenta.LOTE_ID=lote.LOTE_ID INNER JOIN lotificacion ON lote.LOTIFICACION_ID=lotificacion.LOTIFICACION_ID WHERE cuenta.CUENTA_ID='$cuenta'";
-$resultDatos = $conn->query($sqlDatos);
-$Loti = "";
-$Lote = "";
-if($rowDatos = $resultDatos->fetch_assoc()) {
-	# code...
-	$Loti = $rowDatos["LOTIFICACION_NOMBRE"];
-	$Lote = $rowDatos["LOTE_ID"];
-
-}
-
-echo "<h4>Cuenta: $cuenta &nbsp;&nbsp;<span class='glyphicon glyphicon-tree-conifer'></span> <strong>$Loti</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-leaf'></span> <strong>$Lote</strong></h4>";
+echo "<h4>Cuenta: $cuenta &nbsp;&nbsp;<span class='glyphicon glyphicon-tree-conifer'></span> <strong>Esparta</strong> &nbsp;&nbsp;<span class='glyphicon glyphicon-leaf'></span> <strong>E0083</strong></h4>";
 echo "<table class='table table-hover text-center'>";
 echo "<tr>";
 echo "<th>#</th>";
 echo "<th>Fecha Pago</th>";
+echo "<th>Saldo Capital</th>";
+echo "<th>Saldo Interes</th>";
+echo "<th>Saldo IVA</th>";
+echo "<th>Credito Total</th>";
 echo "<th>C.C</th>";
 echo "<th>C.Interes</th>";
 echo "<th>C.IVA</th>";
 echo "<th>T. Cuota</th>";
 echo "<th>Credito Pagado</th>";
 echo "</tr>";
-
-$sqltodo = "SELECT CUENTA_PAGOS_FECHA, CUENTA_PAGOS_CAPITAL, CUENTA_PAGOS_INTERES, CUENTA_PAGOS_IVA FROM cuenta_pagos WHERE CUENTA_ID ='".$cuenta."'";
-$resultTodo = $conn->query($sqltodo);
-$correlativo = 1;
-$aux=0.00;
-if ($resultTodo->num_rows > 0) {
-    while($rowTodo = $resultTodo->fetch_assoc()) {
-    	$fecha = date_create($rowTodo["CUENTA_PAGOS_FECHA"]);
-    	$cuota = ($rowTodo["CUENTA_PAGOS_CAPITAL"]+$rowTodo["CUENTA_PAGOS_INTERES"]+$rowTodo["CUENTA_PAGOS_IVA"]);
-    	$Total = ($cuota+$aux);
-    	echo "<tr><td>$correlativo</td><td>".date_format($fecha,'d/m/Y g:i A')."</td><td> $ ".number_format($rowTodo["CUENTA_PAGOS_CAPITAL"],2,'.',',')."</td><td> $ ".number_format($rowTodo["CUENTA_PAGOS_INTERES"],2,'.',',')."</td><td> $ ".number_format($rowTodo["CUENTA_PAGOS_IVA"],2,'.',',')."</td><td> $ ".number_format($cuota,2,'.',',')."</td><td>$ ".number_format($Total,2,'.',',')." </td></tr>";
-    	$correlativo++;
-    	$aux = $Total;
-    }
-}
+echo "<tr><td>01</td><td>2015/02/15</td><td>$5,950.00</td><td>$892.50</td><td>$889.53</td><td>$7,732.03</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$64.98 </td></tr>";
+echo "<tr><td>02</td><td>2015/03/15</td><td>$5,900.00</td><td>$885.00</td><td>$882.05</td><td>$7,667.05</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$129.95</td></tr>"; 
+echo "<tr><td>03</td><td>2015/04/15</td><td>$5,850.00</td><td>$877.50</td><td>$874.58</td><td>$7,602.08</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$194.93</td></tr>"; 
+echo "<tr><td>04</td><td>2015/05/15</td><td>$5,800.00</td><td>$870.00</td><td>$867.10</td><td>$7,537.10</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$259.90</td></tr>"; 
+echo "<tr><td>05</td><td>2015/06/15</td><td>$5,750.00</td><td>$862.50</td><td>$859.63</td><td>$7,472.13</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$324.88</td></tr>"; 
+echo "<tr><td>06</td><td>2015/07/15</td><td>$5,700.00</td><td>$855.00</td><td>$852.15</td><td>$7,407.15</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$389.85</td></tr>"; 
+echo "<tr><td>07</td><td>2015/08/15</td><td>$5,650.00</td><td>$847.50</td><td>$844.68</td><td>$7,342.18</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$454.83</td></tr>"; 
+echo "<tr><td>08</td><td>2015/09/15</td><td>$5,600.00</td><td>$840.00</td><td>$837.20</td><td>$7,277.20</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$519.80</td></tr>"; 
+echo "<tr><td>09</td><td>2015/10/15</td><td>$5,550.00</td><td>$832.50</td><td>$829.73</td><td>$7,212.23</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$584.78</td></tr>"; 
+echo "<tr><td>10</td><td>2015/11/15</td><td>$5,500.00</td><td>$825.00</td><td>$822.25</td><td>$7,147.25</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$649.75</td></tr>"; 
+echo "<tr><td>11</td><td>2015/12/15</td><td>$5,450.00</td><td>$817.50</td><td>$814.78</td><td>$7,082.28</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$714.73</td></tr>"; 
+echo "<tr><td>12</td><td>2016/01/15</td><td>$5,400.00</td><td>$810.00</td><td>$807.30</td><td>$7,017.30</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$779.70</td></tr>"; 
+echo "<tr><td>13</td><td>2016/02/15</td><td>$5,350.00</td><td>$802.50</td><td>$799.83</td><td>$6,952.33</td><td>$50.00</td><td>$7.50</td><td>$7.48</td><td>$64.98</td><td>$844.68</td></tr>"; 
 echo "</table>";
- $conn->close();
 ?>
