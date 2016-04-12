@@ -32,9 +32,44 @@ if(isset($_SESSION["loginUser-name"])){
 
     <script src="../js/vendor/modernizr-2.8.3.min.js"></script>
     <script type="text/javascript" src="../alertify/alertify.min.js"></script>
+    
+    <script>
+    function cuentasAlCorriente(){
+      xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("tablaCuenta").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_listadoCuentaAlCorriente.php", true);
+        xhttp.send();
+    }
 
+    function cuentasCriticas(){
+      xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("tablaCuenta").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_listadoCuentasCriticas.php", true);
+        xhttp.send();
+    }
+
+    function cuentasMora(){
+      xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("tablaCuenta").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_listadoCuentasMora.php", true);
+        xhttp.send();
+    }
+
+    </script>
 </head>
-<body>
+<body onload="cuentasAlCorriente()">
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -93,71 +128,29 @@ if(isset($_SESSION["loginUser-name"])){
                         <legend>Listado de Estados de Cuentas</legend>
                     </fielset>
                     <div class="btn-group" role="group" aria-label="...">
-                        <button type="button" class="btn btn-default">Al Corriente</button>
-                        <button type="button" class="btn btn-default">Dias Criticos</button>
-                        <button type="button" class="btn btn-default">Mora</button>
+                        <button type="button" class="btn btn-default" onclick="cuentasAlCorriente()">Al Corriente</button>
+                        <button type="button" class="btn btn-default" onclick="cuentasCriticas()">Dias Criticos</button>
+                        <button type="button" class="btn btn-default" onclick="cuentasMora()">Mora</button>
                       </div>
                       <br><br>
 
-                    <div class="panel panel-default">
+                         <div class="panel panel-default">
                         <!-- Default panel contents -->
                         <div class="panel-heading">Listado de Cuenta de <strong>Vigentes</strong></div>
                         <!-- Table -->
-                        <div class="table-responsive">
-                          <table class="table table-hover text-center">
-                            <tr>
-                              <th>DUI</th>
-                              <th>Nombre</th>
-                              <th>Apellido</th>
-                              <th>Cuenta</th>
-                              <th>Credito Total</th>
-                              <th>Credito Pagado</th>
-                              <th>Dias</th>
-                            </tr>
-                            <tr>
-                              <td>023569-8</td>
-                              <td>Ana Patricia</td>
-                              <td>Lemus Castro</td>
-                              <td>50</td>
-                              <td>$ 4,000</td>
-                              <td>$ 300</td>
-                              <td>5</td>
-                            </tr>
-                            <tr>
-                              <td>259456-8</td>
-                              <td>Isabel</td>
-                              <td>Franco</td>
-                              <td>15</td>
-                              <td>$ 7,000</td>
-                              <td>$ 1,500</td>
-                              <td>7</td>
-                            </tr>
-                            <tr>
-                              <td>651548-2</td>
-                              <td>Jacinto</td>
-                              <td>Ordoñez</td>
-                              <td>2</td>
-                              <td>$ 7,797</td>
-                              <td>$ 844.68</td>
-                              <td>22</td>
-                            </tr>
-                          </table>
+                        <div id="tablaCuenta" class="table-responsive">
+                          
                         </div>
-                        </div>  
+                        </div><!-- Panel Default-->
                       </div><!-- row 2-->
                 </div><!-- ROW-->
         </div><!-- container-->
 
 
 
-
-
-
-
-
 <center>
     <footer>
-        <p>&copy; SICOPA 2015</p>
+        <p>&copy; SICOPA 2016</p>
     </footer>
 </center>
      
