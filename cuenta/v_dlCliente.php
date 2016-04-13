@@ -65,7 +65,7 @@ $(function() {
             $('#suggestions').fadeOut();
         } else {
         $('#busqueda').addClass('load');
-            $.post("autocliente.php", {queryString: ""+inputString+""}, function(data){
+            $.post("autocliente_up.php", {queryString: ""+inputString+""}, function(data){
                 if(data.length >0) {
                     $('#suggestions').fadeIn();
                     $('#suggestionsList').html(data);
