@@ -79,10 +79,40 @@ if(isset($_SESSION["loginUser-name"])){
 
     }
     </script>
-
-
+    <script>
+      function bitacoraHoy(){
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("tablaBitacora").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_bitacoraHoy.php", true);
+        xhttp.send();
+      }
+      function bitacoraFecha(){
+       xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("tablaBitacora").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_bitacoraFecha.php", true);
+        xhttp.send(); 
+      }
+      function bitacora2Fecha(){
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState == 4 && xhttp.status == 200) {
+                document.getElementById("tablaBitacora").innerHTML = xhttp.responseText;
+            }
+        }
+        xhttp.open("GET", "m_bitacora2Fecha.php", true);
+        xhttp.send();
+      }
+    </script>
 </head>
-<body>
+<body onload="bitacoraHoy()">
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -207,33 +237,20 @@ if(isset($_SESSION["loginUser-name"])){
                               <td>Cliente</td>
                               <td>192.168.0.14</td>
                             </tr>
-                            <tr>
-                              <td>2</td>
-                              <td>Ernesto Lopez</td>
-                              <td>2015/11/10 10:30:55 PM</td>
-                              <td>Genero reporte de Estado de Cuenta de Cindy Garcia</td>
-                              <td>Generada al momento</td>
-                              <td>204.56.52.202</td>
-                            </tr>
-                            <tr>
-                              <td>3</td>
-                              <td>Marisol Menjivar</td>
-                              <td>2015/11/10 10:37:52 PM</td>
-                              <td>Agrego Lote E050 a Jorge Alberto</td>
-                              <td>Cuenta</td>
-                              <td>192.168.0.16</td>
-                            </tr>
-                            <tr>
-                              <td>4</td>
-                              <td>Marisol Menjivar</td>
-                              <td>2015/11/10 10:40:23 PM</td>
-                              <td>Actualizo a Jorge Alberto a Jorge Alberto Deras</td>
-                              <td>Cliente</td>
-                              <td>192.168.0.16</td>
-                            </tr>
+                          
                           </table>
                         </div>
+                        </div>
+
+                         <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading">Actividades de <strong>SICOPA</strong></div>
+                        <!-- Table -->
+                        <div id="tablaBitacora" class="table-responsive">
+                          
+                        </div>
                         </div>  
+
                       </div><!-- row 2-->
                 </div><!-- ROW-->
         </div><!-- container-->
