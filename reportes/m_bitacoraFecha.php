@@ -1,5 +1,6 @@
 <?php
 require("../conexion/conexion.php");
+$fecha = $_GET["fecha"];
 ?>
       <table class="table table-hover text-center">
         <tr>
@@ -11,7 +12,7 @@ require("../conexion/conexion.php");
           <th>IP</th>
         </tr>
         <?php
-        $sql = "SELECT USER_NICK,BITACORA_FECHA, BITACORA_ACTIVIDAD, BITACORA_TABLA, BITACORA_IP FROM bitacora WHERE BITACORA_FECHA LIKE '".date("Y-m-d")."%' ORDER BY BITACORA_FECHA ASC";
+        $sql = "SELECT USER_NICK,BITACORA_FECHA, BITACORA_ACTIVIDAD, BITACORA_TABLA, BITACORA_IP FROM bitacora WHERE BITACORA_FECHA LIKE '".$fecha."%' ORDER BY BITACORA_FECHA ASC";
         $result = $conn->query($sql);
         $num=1;
         if ($result->num_rows > 0) {

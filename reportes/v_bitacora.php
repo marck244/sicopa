@@ -40,6 +40,7 @@ if(isset($_SESSION["loginUser-name"])){
       },500);
       $("#filtro1dia").slideUp(500);
       $("#filtro2dia").slideUp(500);
+      bitacoraHoy();
     }
     function filtro1dia(){
       setTimeout(function(){
@@ -90,24 +91,24 @@ if(isset($_SESSION["loginUser-name"])){
         xhttp.open("GET", "m_bitacoraHoy.php", true);
         xhttp.send();
       }
-      function bitacoraFecha(){
+      function bitacoraFecha(date1){
        xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 document.getElementById("tablaBitacora").innerHTML = xhttp.responseText;
             }
         }
-        xhttp.open("GET", "m_bitacoraFecha.php", true);
+        xhttp.open("GET", "m_bitacoraFecha.php?fecha="+date1, true);
         xhttp.send(); 
       }
-      function bitacora2Fecha(){
+      function bitacora2Fecha(date2,date3){
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
                 document.getElementById("tablaBitacora").innerHTML = xhttp.responseText;
             }
         }
-        xhttp.open("GET", "m_bitacora2Fecha.php", true);
+        xhttp.open("GET", "m_bitacora2Fecha.php?fecha2="+date2+"&fecha3="+date3, true);
         xhttp.send();
       }
     </script>
@@ -186,11 +187,11 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="form-group">
                           <label for="buscar" class="control-label">Fecha</label>
                           <div class="input-group">
-                           <input type="date" class="form-control" aria-describedby="basic-addon2" required>
+                           <input id="date1" type="date" class="form-control" aria-describedby="basic-addon2" required>
                            <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
                          </div>
                        </div>
-                       <button class="btn btn-primary">Buscar</button>
+                       <button type="button" class="btn btn-primary" onclick="bitacoraFecha(date1.value)">Buscar</button>
                      </form>
                     <br>
                     </div>
@@ -199,48 +200,21 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="form-group">
                           <label for="buscar" class="control-label">Fecha Inicio</label>
                           <div class="input-group">
-                           <input type="date" name="fechaI" class="form-control" aria-describedby="basic-addon2" required>
+                           <input id="date2" type="date" name="fechaI" class="form-control" aria-describedby="basic-addon2" required>
                            <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
                          </div>
                        </div>
                        <div class="form-group">
                           <label for="buscar" class="control-label">Fecha Final</label>
                           <div class="input-group">
-                           <input type="date" name="fechaF" class="form-control" aria-describedby="basic-addon2" required>
+                           <input id="date3" type="date" name="fechaF" class="form-control" aria-describedby="basic-addon2" required>
                            <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></span>
                          </div>
                        </div>
-                       <button class="btn btn-primary" type="submit">Buscar</button>
+                       <button type="button" class="btn btn-primary" onclick="bitacora2Fecha(date2.value,date3.value)">Buscar</button>
                      </form>
                     <br>
                     </div>
-                   
-                    <div class="panel panel-default">
-                        <!-- Default panel contents -->
-                        <div class="panel-heading">Actividades de <strong>SICOPA</strong></div>
-                        <!-- Table -->
-                        <div class="table-responsive">
-                          <table class="table table-hover text-center">
-                            <tr>
-                              <th>#</th>
-                              <th>Usuario</th>
-                              <th>Fecha</th>
-                              <th>Actividad</th>
-                              <th>Tabla</th>
-                              <th>IP</th>
-                            </tr>
-                            <tr>
-                              <td>1</td>
-                              <td>Marisol Menjivar</td>
-                              <td>2015/11/10 10:27:05 PM</td>
-                              <td>Nuevo cliente Jorge Alberto</td>
-                              <td>Cliente</td>
-                              <td>192.168.0.14</td>
-                            </tr>
-                          
-                          </table>
-                        </div>
-                        </div>
 
                          <div class="panel panel-default">
                         <!-- Default panel contents -->
