@@ -11,7 +11,7 @@ if ($lotificacion=="" || $lotificacion==NULL) {
 	if ($result->num_rows > 0) {
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
-			echo "<li><button class='btn btn-link' type='button' value='".$row["LOTIFICACION_ID"]."' id='".$row["LOTIFICACION_ID"]."' onclick='formUpdate(this.value)')> ID: <strong>".$row["LOTIFICACION_ID"]."</strong> Lotificacion: <strong>".$row["LOTIFICACION_NOMBRE"]."</strong></button><input type='hidden' id='nom".$row["LOTIFICACION_ID"]."' value='".$row["LOTIFICACION_NOMBRE"]."'><input type='hidden' id='num".$row["LOTIFICACION_ID"]."' value='".$row["LOTIFICACION_NLOTE"]."'>
+			echo "<li><button class='btn btn-link' type='button' value='".$row["LOTIFICACION_ID"]."' id='".$row["LOTIFICACION_ID"]."' onclick='formUpdate(this.value)')><strong>".$row["LOTIFICACION_NOMBRE"]."</strong></button><input type='hidden' id='nom".$row["LOTIFICACION_ID"]."' value='".$row["LOTIFICACION_NOMBRE"]."'><input type='hidden' id='num".$row["LOTIFICACION_ID"]."' value='".$row["LOTIFICACION_NLOTE"]."'>
 			<input type='hidden' id='pre".$row["LOTIFICACION_ID"]."' value='".$row["LOTIFICACION_PRECIO"]."'></li>";
 			//echo "<li><a href='' '>ID: <strong>".$row["LOTIFICACION_ID"]."</strong> Lotificacion: <strong>".$row["LOTIFICACION_NOMBRE"]."</strong></a></li>";
 		}
