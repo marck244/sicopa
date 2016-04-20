@@ -153,13 +153,13 @@ if(isset($_SESSION["loginUser-name"])){
 
 
                              
-     <div class="form-group">
+     <div class="form-group oculto">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Usuario:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="name" name="username" id="username" readonly="true" class="form-control" placeholder="" value="root">
          </div>
      </div>
-     <div class="form-group">
+     <div class="form-group oculto">
          <label for="inputEmail"class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Contraseña:</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <input type="password" name="password" id="password" class="form-control" value="root" readonly="true">
@@ -243,7 +243,6 @@ if(isset($_SESSION["loginUser-name"])){
  
         if ($backupRestore == 'backup'){        
            
-           # % -> esta línea la pueden quitar es para evitar un error con el highlight
 set_time_limit(0);
  
 define('DB_NAME', 'db_sicopa_desa');
@@ -375,6 +374,9 @@ fclose($f);
 ?> <script type="text/javascript">alertify.success('Copia de Base de datos generada');</script> <?php
  
         }
+
+
+        
         else{//Restore the database
           include("../conexion/conexion.php");
                $databasefilename = $_FILES["databasefile"]["name"];

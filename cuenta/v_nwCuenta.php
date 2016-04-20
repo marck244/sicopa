@@ -337,7 +337,7 @@ $(function() {
      <div class="form-group">
          <label for="inputCuentaPlazo" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Cuenta de plazo :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="number" name="plazo" id="plazo" class="form-control" placeholder="Plazo de pago(dias)">
+             <input type="number" name="plazo" id="plazo" class="form-control" placeholder="Plazo de pago(meses)">
          </div>
      </div>
 
