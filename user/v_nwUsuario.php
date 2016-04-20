@@ -179,9 +179,9 @@ if(isset($_SESSION["loginUser-name"])){
          <label for="inputEmail" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Nivel de Acceso :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
              <select name="cbonivelacceso" class="form-control">
-                 <option value="1">Administrador</option>
-                 <option value="2">Gerencia</option>
-                 <option value="3">Operador</option>
+                 <option value="2">Gerencia General</option>
+                 <option value="3">Administrativo General</option>
+                 <option value="4">Operador del Sistema</option>
              </select>
          </div>
      </div>
