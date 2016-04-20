@@ -38,36 +38,14 @@ if(isset($_SESSION["loginUser-name"])){
 
   <script src="../js/vendor/bootstrap.min.js"></script>
 
-    <!-- <script>
+     <script>
 $(function() {
     $( "#busqueda" ).autocomplete({
         source: 'autocuenta.php'
     });
 });
-</script> -->
+</script> 
 
-<script type="text/javascript">
-    function suggest(inputString){
-        if(inputString.length == 0) {
-            $('#suggestions').fadeOut();
-        } else {
-        $('#busqueda').addClass('load');
-            $.post("autocuentao.php", {queryString: ""+inputString+""}, function(data){
-                if(data.length >0) {
-                    $('#suggestions').fadeIn();
-                    $('#suggestionsList').html(data);
-                    $('#busqueda').removeClass('load');
-                }
-            });
-        }
-    }
-
-    function fill(thisValue) {
-        $('#busqueda').val(thisValue);
-        setTimeout("$('#suggestions').fadeOut();", 600);
-    }
-
-</script>
 
      <script type="text/javascript">
 
@@ -166,13 +144,7 @@ $(function() {
                         <div class="col-lg-6">
                             <label for="lotiname" class="control-label col-xs-4 hidden-xs">Numero DUI :</label>
                             <div class="input-group">
-                                <!-- <input type="text" class="form-control" name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" placeholder="Ingresa un numero de Dui">-->
-                                <input id="busqueda" name="busqueda"  onblur="fill();" class="form-control" type="text" maxlength="9" onkeyup="suggest(this.value);" placeholder="00000000-0" autocomplete="off" />
-                                   
-<div id="suggestions" class="suggestionsBox" style="display: none;">
- <img style="position: relative; top: -12px; left: 30px;" src="arrow.png" alt="upArrow" />
-<div id="suggestionsList" class="suggestionList"></div>
-</div>
+                                <input type="text" class="form-control" name="busqueda" id="busqueda" maxlength="10" onkeyup="mascaradui(this,'-',arraydigitosdui,true);" placeholder="Ingresa un numero de Dui">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit">Buscar!</button>
                                 </span>

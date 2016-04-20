@@ -217,7 +217,7 @@ if(isset($_SESSION["loginUser-name"])){
 
                 <p class="separate"></p>
         		<div class="table-responsive">
-        				<table class="table table-hover text-center">
+        				<table class="table table-hover  text-center">
         					<tr>
         					<th>#Cuota</th>
         					<th>Fecha Pago</th>
