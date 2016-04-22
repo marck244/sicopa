@@ -182,7 +182,7 @@ if(isset($_SESSION["loginUser-name"])){
                         <div class="form-group">
          <label for="inputName" class="col-xs-12 col-sm-3 col-md-3 col-lg-3 control-label">Codigo/Lote :</label>
          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
-             <input type="name" maxlength="4" pattern="[a-z]{1}[0-9]{3}" name="codigo" title="Ingresa primer digito letra y los restantes numeros" class="form-control" placeholder="Codigo de Lote" required>
+             <input type="name"  pattern="[A-Za-z]{1}[0-9]{4}" name="codigo" title="Ingresa primer digito letra mayuscula o minuscula y los restantes numeros Maximo digitos permitidos 5" class="form-control" placeholder="Codigo de Lote" required>
          </div>
      </div>
 
