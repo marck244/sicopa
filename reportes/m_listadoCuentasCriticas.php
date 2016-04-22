@@ -14,6 +14,7 @@ require("../conexion/conexion.php");
 	<?php
 	$sqlGlobal = "SELECT cliente.CLIENTE_ID, cliente.CLIENTE_NOMBRE, cliente.CLIENTE_APELLIDO, cuenta.CUENTA_ID FROM `cuenta` INNER JOIN cliente ON cuenta.CLIENTE_ID=cliente.CLIENTE_ID WHERE CUENTA_ESTADOS_ID=1;";
 	$resultGlobal = $conn->query($sqlGlobal);
+	$enumm=0;
 	if ($resultGlobal->num_rows > 0) {
 	# code...
 		while ($rowGlobal = $resultGlobal->fetch_assoc()) {
@@ -24,7 +25,7 @@ if ($result->num_rows > 0) {//inicio de IF
     // output data of each row
     while($row = $result->fetch_assoc()) { //inicio de while
     	if ($row["DIAS"]>30 AND $row["DIAS"]<=60) { // if 30
-
+    		$enumm=1;
     		?>
     		<tr>
     			<td><?php echo $rowGlobal["CLIENTE_ID"];?></td>
@@ -37,13 +38,16 @@ if ($result->num_rows > 0) {//inicio de IF
     		</tr>
     		<?php
     	}else{ //if 30
-	echo "<td colspan='7'>Genial, No hay Cuentas Criticas !!!</td>";
+	
 }
     }//fin de while
 } //fin de If
 	} // WHILE GLOBAL
 }
-
+if ($enumm==0) {
+	# code...
+	echo "<tr><td colspan='7'>Genial, No hay Cuentas Criticas !!!</td></tr>";
+}
 ?>
 
 </table>
