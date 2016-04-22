@@ -8,8 +8,7 @@
 
 
 
-	$query=$conn->query("DELETE FROM cuenta_pagos WHERE CUENTA_PAGOS_ID='$codigo_pagos'");
-	$query1=$conn->query("DELETE FROM cuenta WHERE CUENTA_ID='$codigo_cuenta'");
+	
 	$query2=$conn->query("UPDATE lote SET LOTE_ESTADO='LIBRE' WHERE LOTE_ID='$lote'");
 
 	if ($query > 0 ) {

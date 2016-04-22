@@ -106,7 +106,7 @@ $(function() {
 
         <div class="container">
             <H1>Cuentas</H1>
-            <h4>Cuentas > Estados de Cuenta</h4>
+            <h4>Cuentas > Recuperar/Lote</h4>
             <p class="separate"></p>
         </div>
 
@@ -125,7 +125,7 @@ $(function() {
                     </div>
                     <div class="navbar-collapse collapse sidebar-navbar-collapse">
                          <ul class="nav navbar-nav">
-                            <li><a href="v_EstadoCuentas">Clientes Morosos</a></li>
+                            <li><a href="v_EstadoCuentas">Recuperar Lote</a></li>
                             
                             
                             </ul>
@@ -136,7 +136,7 @@ $(function() {
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
             <fielset>
-                <legend>Cambios De Estados De Cuenta</legend>
+                <legend>Recuperar Lote De Una Cuenta</legend>
 
 
                   <div class="jumbotron">
