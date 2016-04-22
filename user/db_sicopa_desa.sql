@@ -3,8 +3,8 @@
 -- http://www.forosdelweb.com/miembros/abimaelrc/
 --  
 -- Host: localhost
--- Generation Time: 2016-02-16 15:05:03
--- PHP Version: 5.5.12 
+-- Generation Time: 2016-04-17 11:11:53
+-- PHP Version: 5.6.12 
 -- Database: 'db_sicopa_desa' 
 -- Tables: [0] => bitacora;
 --           [1] => cliente;
@@ -25,55 +25,19 @@ CREATE TABLE `bitacora` (
   `BITACORA_ID` int(11) NOT NULL AUTO_INCREMENT,
   `USER_NICK` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `BITACORA_FECHA` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `BITACORA_ACTIVIDAD` varchar(500) COLLATE utf8_spanish_ci NOT NULL,
+  `BITACORA_ACTIVIDAD` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `BITACORA_TABLA` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `BITACORA_IP` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`BITACORA_ID`,`USER_NICK`),
   KEY `FK_RELATIONSHIP_3` (`USER_NICK`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 INSERT INTO `bitacora`(`BITACORA_ID`, `USER_NICK`, `BITACORA_FECHA`, `BITACORA_ACTIVIDAD`, `BITACORA_TABLA`, `BITACORA_IP`) VALUES 
-(1, 'admin', '2016-01-22 00:00:00', 'se registro al clienteJAIRO ERNESTO, VELASQUEZ SIBRIAN con su numero de dui No:050796106', 'Cliente', '::1'),
-(2, 'admin', '2016-01-22 15:18:27', 'se registro al cliente JOSE EMILIO, ANCHETA CARRANZA con su numero de dui No: 050496401', 'Cliente', '::1'),
-(3, 'admin', '2016-01-22 15:42:05', 'Se modifico informacion del cliente JAIRO ERNES VELASQUEZ SIBRIANcon numero de Dui No: 050796106', 'Cliente', '::1'),
-(8, 'admin', '2016-02-05 16:08:51', 'Se elimino el cliente JOSE EMILIO ANCHETA CARRANZA con numero de Dui No: 050496401 ', 'Cliente', ''),
-(9, 'admin', '2016-02-05 16:12:34', 'Se elimino el cliente ABRAHAN GALDAMEZ con numero de Dui No: 037788998 ', 'Cliente', '::1'),
-(10, 'admin', '2016-02-05 17:13:55', 'se registro al cliente JORGE ALBERTO, SIBRIAN GONZALES con su numero de dui No: 050796107', 'Cliente', '::1'),
-(12, 'admin', '2016-02-05 17:16:26', 'Se creo una cuenta con una entrada de prima de $ 200 a nombre de el clienteJORGE ALBERTO SIBRIAN GONZALES con numero de Dui No: 050796107 al lote B002', 'Cuenta', '::1'),
-(40, 'admin', '2016-02-06 19:15:10', 'Se modifico una cuenta sin entrada de prima a nombre de el cliente JORGE ALBERTO SIBRIAN GONZALES con numero de Dui No: 050796107', 'Cuenta', '::1'),
-(42, 'admin', '2016-02-06 19:17:08', 'Se modifico una cuenta sin entrada de prima a nombre de el cliente JORGE ALBERTO SIBRIAN GONZALES con numero de Dui No: 050796107', 'Cuenta', '::1'),
-(43, 'admin', '2016-02-06 19:19:57', 'Se modifico una cuenta con una entrada de prima de $ 200 a nombre de el cliente JORGE ALBERTO SIBRIAN GONZALES con numero de Dui No: 050796107', 'Cuenta', '::1'),
-(44, 'admin', '2016-02-06 19:25:18', 'Se modifico una cuenta con una entrada de prima de $ 200 a nombre de el cliente JORGE ALBERTO SIBRIAN GONZALES con numero de Dui No: 050796107', 'Cuenta', '::1'),
-(46, 'admin', '2016-02-07 11:41:14', 'Se dio de baja una cuenta porque tenia pagos a nombre de el cliente JORGE ALBERTO SIBRIAN GONZALES con numero de Dui No: 050796107', 'Cuenta', '::1'),
-(47, 'admin', '2016-02-08 12:11:27', 'Se registro un lote con su codigo C001 a un precio de :  para la lotifiacion : Chaparron', 'Lote', '::1'),
-(48, 'admin', '2016-02-09 12:08:14', 'Se registro un impuesto con la siguiente descripcion IMPUESTO POR LA TELEFONIA LOCAL', 'Impuesto', '::1'),
-(49, 'admin', '2016-02-09 12:25:09', 'Se elimino un impuesto con la siguiente descripcion PRUEBA', 'Impuesto', '::1'),
-(50, 'admin', '2016-02-09 15:02:39', 'Se agrego un usuario con su nombre completo:  JAIRO ERNESTO SIBRIAN SIBRIAN y su nickname: JAIRO.VELASQUEZ', 'Usuario', '::1'),
-(51, 'admin', '2016-02-09 16:30:48', 'Se elimino un usuario con su nombre completo:  JAIRO ERNESTO  SIBRIAN SIBRIAN y su nickname: JAIRO.VELASQUEZ ', 'Usuario', '::1'),
-(52, 'admin', '2016-02-11 16:24:27', 'Se registro un lote con su codigo C002 a un precio de : 4000 para la lotifiacion : San Bartolo', 'Lote', '::1'),
-(53, 'admin', '2016-02-11 16:31:19', 'Se modifico un lote con su codigo C002 a un precio de : 4000 para la lotifiacion : San Bartolo', 'Lote', '::1'),
-(54, 'admin', '2016-02-11 16:31:30', 'Se elimino un lote con su codigo  de un precio de :  para la lotifiacion : San Bartolo', 'Lote', '::1'),
-(55, 'admin', '2016-02-11 16:39:05', 'Se registro un impuesto con la siguiente descripcion ', 'Impuesto', '::1'),
-(56, 'admin', '2016-02-11 16:49:41', 'Se agrego un usuario con su nombre completo:  jose ernesto velasquez y su nickname: jose.ernesto', 'Usuario', '::1'),
-(57, 'admin', '2016-02-11 16:50:12', 'Se modifico un usuario con su nombre completo:  JOSE JAIRO VELASQUEZ y su nickname: JOSE.JAIRO', 'Usuario', '::1'),
-(58, 'admin', '2016-02-11 16:52:44', 'Se modifico un usuario con su nombre completo:  JOSE JAIRO VELASQUEZ y su nickname: JOSE.JAIRO', 'Usuario', '::1'),
-(59, 'admin', '2016-02-11 16:53:06', 'Se modifico un usuario con su nombre completo:  JOSE JAIRO VELASQUEZ y su nickname: JOSE.JAIRO', 'Usuario', '::1'),
-(60, 'admin', '2016-02-11 16:53:56', 'Se modifico un usuario con su nombre completo:  JOSE PINA VELASQUEZ y su nickname: JOSE.PINA', 'Usuario', '::1'),
-(61, 'admin', '2016-02-11 16:54:23', 'Se modifico un usuario con su nombre completo:  JOSE PINA VELASQUEZ y su nickname: JOSE.PINA', 'Usuario', '::1'),
-(62, 'admin', '2016-02-11 16:58:15', 'Se modifico un usuario con su nombre completo:  JOSE PINA VELASQUEZ y su nickname: JOSE.PINA', 'Usuario', '::1'),
-(63, 'admin', '2016-02-12 20:36:37', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASQUEZ y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(64, 'admin', '2016-02-12 20:37:57', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASQUEZ y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(65, 'admin', '2016-02-12 20:39:36', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASQUEZ y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(66, 'admin', '2016-02-12 20:40:27', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASQUEZ y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(67, 'admin', '2016-02-12 20:44:51', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASQUEZ y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(68, 'admin', '2016-02-12 20:46:25', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASQUEZ y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(69, 'admin', '2016-02-12 20:47:37', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASQUEZ y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(70, 'admin', '2016-02-12 20:48:52', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASQUEZ y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(71, 'admin', '2016-02-12 20:51:26', 'Se modifico un usuario con su nombre completo:  JOSE ERNESTO VELASQUEZ y su nickname: JOSE.ERNESTO', 'Usuario', '::1'),
-(72, 'admin', '2016-02-12 20:52:08', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASCO y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(73, 'admin', '2016-02-12 20:54:15', 'Se modifico un usuario con su nombre completo:  JOSE JUAN VELASCO y su nickname: JOSE.JUAN', 'Usuario', '::1'),
-(74, 'admin', '2016-02-12 20:55:45', 'Se elimino un usuario con su nombre completo:  JOSE ERNESTO  VELASQUEZ y su nickname: JOSE.ERNESTO ', 'Usuario', '::1'),
-(75, 'admin', '2016-02-12 22:06:14', 'Se hizo un backup de la base de datos', 'Sistema', '::1');
+(1, 'marck.admin', '2016-03-31 11:08:27', 'se registro al cliente MARCK, ZUKERBERG con su numero de dui No: 055555555', 'Cliente', ':2:1'),
+(2, 'marck.gerente', '2016-04-12 23:40:22', 'queee', 'twes', 'sdfs'),
+(3, 'marck.admin', '2016-04-15 13:35:44', 'se registro al cliente REGULUS, BLACK con su numero de dui No: 099999999', 'Cliente', '::1'),
+(4, 'marck.admin', '2016-04-15 13:44:35', 'Se modifico informacion del cliente REGULUS POTTER BLACK con numero de Dui No: 099999999', 'Cliente', '::1'),
+(5, 'marck.admin', '2016-04-15 13:47:37', 'Se elimino el cliente MOISES HERNANDEZ con numero de Dui No: 037788333 ', 'Cliente', '::1');
 
 
 DROP TABLE IF EXISTS `cliente`;
@@ -97,8 +61,10 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 INSERT INTO `cliente`(`CLIENTE_ID`, `MUNICIPIO_ID`, `PROFESIONES_ID`, `USER_NICK`, `CLIENTE_NIT`, `CLIENTE_NOMBRE`, `CLIENTE_APELLIDO`, `CLIENTE_EDAD`, `CLIENTE_DOMICILIO`, `CLIENTE_TELEFONO`, `CLIENTE_FECHANAC`, `CLIENTE_FIRMA`) VALUES 
-(50796106, 1, 1, 'admin', 55459656565662, 'JAIRO ERNESTO', 'VELASQUEZ SIBRIAN', 20, 'COLONIA SANTA EUGENIA POLIGONO C CASA 16 AGUILARES SAN SALVADOR', 72003590, '1994-11-21', 'SI'),
-(50796107, 1, 1, 'admin', 65656565656565, 'JORGE ALBERTO', 'SIBRIAN GONZALES', 25, 'SAN SALVADOR', 72003590, '1992-08-05', 'SI');
+(037788998, 1, 1, 'marck.admin', 12458563256987, 'ABRAHAN', 'GALDAMEZ', 34, 'amates 2', 23232345, '2015-10-02', 'si'),
+(055555555, 1, 1, 'marck.admin', 04444444444444, 'MARCK', 'ZUKERBERG', 30, 'EEUU', 55555555, '1990-06-09', 'SI'),
+(099999999, 1, 1, 'marck.admin', 09999999999999, 'REGULUS POTTER', 'BLACK', 52, 'SANTA BARBARA', 99999999, '1966-04-07', 'SI'),
+(888888888, 1, 1, 'marck.admin', 88888888888888, 'GOOGLE', 'CHROME', 58, 'kjgkljglkglkg', 88888888, '2015-10-30', 'Si');
 
 
 DROP TABLE IF EXISTS `cuenta`;
@@ -108,18 +74,19 @@ CREATE TABLE `cuenta` (
   `IMPUESTO_ID` int(11) NOT NULL,
   `CUENTA_ESTADOS_ID` int(11) NOT NULL,
   `LOTE_ID` char(5) COLLATE utf8_spanish_ci NOT NULL,
-  `CUENTA_FECHA_CREADO` date NOT NULL,
-  `CUENTA_FECHA_MODIFICADO` date DEFAULT NULL,
+  `CUENTA_FECHA` date NOT NULL,
   `CUENTA_PLAZO` int(11) NOT NULL,
   PRIMARY KEY (`CUENTA_ID`,`LOTE_ID`,`CLIENTE_ID`,`IMPUESTO_ID`,`CUENTA_ESTADOS_ID`),
   KEY `FK_RELATIONSHIP_14` (`LOTE_ID`),
   KEY `FK_RELATIONSHIP_5` (`CLIENTE_ID`),
   KEY `FK_RELATIONSHIP_6` (`IMPUESTO_ID`),
   KEY `FK_RELATIONSHIP_7` (`CUENTA_ESTADOS_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-INSERT INTO `cuenta`(`CUENTA_ID`, `CLIENTE_ID`, `IMPUESTO_ID`, `CUENTA_ESTADOS_ID`, `LOTE_ID`, `CUENTA_FECHA_CREADO`, `CUENTA_FECHA_MODIFICADO`, `CUENTA_PLAZO`) VALUES 
-(5, 50796107, 1, 3, 'B001', '2016-02-05', '2016-02-06', 120);
+INSERT INTO `cuenta`(`CUENTA_ID`, `CLIENTE_ID`, `IMPUESTO_ID`, `CUENTA_ESTADOS_ID`, `LOTE_ID`, `CUENTA_FECHA`, `CUENTA_PLAZO`) VALUES 
+(1, 037788998, 1, 2, 'B0001', '2015-10-25', 120),
+(2, 037788998, 1, 1, 'B0002', '2016-01-01', 120),
+(9, 099999999, 1, 1, 'P0001', '2016-02-02', 120);
 
 
 DROP TABLE IF EXISTS `cuenta_estados`;
@@ -131,9 +98,9 @@ CREATE TABLE `cuenta_estados` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 INSERT INTO `cuenta_estados`(`CUENTA_ESTADOS_ID`, `CUENTA_ESTADOS_NOMBRE`, `CUENTA_ESTADOS_DESCRIPCION`) VALUES 
-(1, 'ACTIVO', 'Pago Normal de un lote adquirido'),
-(2, 'INACTIVO/MORA', 'Ya no pudo pagar porque cayo en mora y no se ha presentado a pagar'),
-(3, 'INACTIVO/OLVIDADO', 'Cayo en mora y nunca se acerco a ver el estado de su cuenta');
+(1, 'ACTIVO', 'Cuenta Abierta, Pago Normal de un lote adquirido'),
+(2, 'CANCELADO', 'La cuenta ha sido cancelado normalmente'),
+(3, 'MORA', 'La cuenta se deshabilitado por mora.');
 
 
 DROP TABLE IF EXISTS `cuenta_pagos`;
@@ -145,13 +112,97 @@ CREATE TABLE `cuenta_pagos` (
   `CUENTA_PAGOS_INTERES` decimal(10,2) NOT NULL,
   `CUENTA_PAGOS_IVA` decimal(10,2) NOT NULL,
   `CUENTA_PAGOS_CAPITAL` decimal(10,2) NOT NULL,
-  `CUENTA_PAGOS_DESCRIPCION` varchar(6) COLLATE utf8_spanish_ci NOT NULL,
+  `CUENTA_PAGOS_DESCRIPCION` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`CUENTA_PAGOS_ID`,`CUENTA_ID`),
   KEY `FK_RELATIONSHIP_8` (`CUENTA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=332 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 INSERT INTO `cuenta_pagos`(`CUENTA_PAGOS_ID`, `CUENTA_ID`, `CUENTA_PAGOS_FECHA`, `CUENTA_PAGOS_NUMRECIBO`, `CUENTA_PAGOS_INTERES`, `CUENTA_PAGOS_IVA`, `CUENTA_PAGOS_CAPITAL`, `CUENTA_PAGOS_DESCRIPCION`) VALUES 
-(2, 5, '2016-02-06 19:25:18', 2147483647, 50.00, 23.01, 126.99, 'Exito');
+(243, 1, '2016-03-02 09:36:41', 100, 50.00, 10.93, 34.07, ''),
+(244, 1, '2016-03-02 09:36:47', 100, 49.57, 10.93, 34.50, ''),
+(245, 1, '2016-03-02 09:36:57', 100, 49.14, 10.93, 34.93, ''),
+(246, 1, '2016-03-02 09:37:07', 100, 48.71, 10.70, 33.59, ''),
+(247, 1, '2016-03-02 09:37:14', 100, 48.29, 10.70, 34.01, ''),
+(248, 1, '2016-03-02 09:37:20', 100, 47.86, 10.58, 33.55, ''),
+(249, 1, '2016-03-02 09:37:26', 100, 47.44, 10.58, 33.97, ''),
+(250, 1, '2016-03-02 09:37:33', 100, 47.02, 10.47, 33.51, ''),
+(251, 1, '2016-03-02 09:37:39', 100, 46.60, 10.47, 33.93, ''),
+(252, 1, '2016-03-02 09:37:45', 100, 46.17, 10.35, 33.47, ''),
+(253, 1, '2016-03-02 09:37:51', 100, 45.76, 10.93, 38.31, ''),
+(254, 1, '2016-03-02 09:38:00', 100, 45.28, 10.35, 34.37, ''),
+(255, 1, '2016-03-02 09:38:06', 100, 44.85, 10.35, 34.80, ''),
+(256, 1, '2016-03-02 09:38:11', 100, 44.41, 10.35, 35.23, ''),
+(257, 1, '2016-03-02 09:38:17', 100, 43.97, 10.35, 35.67, ''),
+(258, 1, '2016-03-02 09:38:23', 100, 43.53, 10.35, 36.12, ''),
+(259, 1, '2016-03-02 09:38:28', 100, 43.07, 10.35, 36.57, ''),
+(260, 1, '2016-03-02 09:38:33', 100, 42.62, 10.35, 37.03, ''),
+(261, 1, '2016-03-02 09:38:39', 100, 42.15, 10.35, 37.49, ''),
+(262, 1, '2016-03-02 09:38:44', 100, 41.69, 10.35, 37.96, ''),
+(263, 1, '2016-03-02 09:38:53', 100, 41.21, 9.78, 34.01, ''),
+(264, 1, '2016-03-02 09:38:59', 100, 40.79, 9.78, 34.43, ''),
+(265, 1, '2016-03-02 09:39:06', 100, 40.36, 9.78, 34.87, ''),
+(266, 1, '2016-03-02 09:39:11', 100, 39.92, 9.78, 35.30, ''),
+(267, 1, '2016-03-02 09:39:17', 100, 39.48, 9.78, 35.74, ''),
+(268, 1, '2016-03-02 09:39:24', 100, 39.03, 9.78, 36.19, ''),
+(269, 1, '2016-03-02 09:39:33', 100, 38.58, 9.78, 36.64, ''),
+(270, 1, '2016-03-02 09:39:44', 100, 38.12, 9.32, 33.56, ''),
+(271, 1, '2016-03-02 09:40:08', 100, 37.70, 9.32, 33.98, ''),
+(272, 1, '2016-03-02 09:40:30', 100, 37.28, 9.20, 33.52, ''),
+(273, 1, '2016-03-02 09:40:35', 100, 36.86, 9.20, 33.94, ''),
+(274, 1, '2016-03-02 09:40:42', 100, 36.43, 9.20, 34.36, ''),
+(275, 1, '2016-03-02 09:40:48', 100, 36.00, 9.20, 34.79, ''),
+(276, 1, '2016-03-02 09:40:54', 100, 35.57, 9.20, 35.23, ''),
+(277, 1, '2016-03-02 09:40:59', 100, 35.13, 9.20, 35.67, ''),
+(278, 1, '2016-03-02 09:41:05', 100, 34.68, 9.20, 36.11, ''),
+(279, 1, '2016-03-02 09:41:10', 100, 34.23, 9.20, 36.56, ''),
+(280, 1, '2016-03-02 09:41:16', 100, 33.78, 9.20, 37.02, ''),
+(281, 1, '2016-03-02 09:41:22', 100, 33.31, 9.20, 37.48, ''),
+(282, 1, '2016-03-02 09:41:28', 100, 32.84, 8.63, 33.53, ''),
+(283, 1, '2016-03-02 09:41:34', 100, 32.42, 8.63, 33.95, ''),
+(284, 1, '2016-03-02 09:41:41', 100, 32.00, 8.63, 34.37, ''),
+(285, 1, '2016-03-02 09:41:47', 100, 31.57, 8.63, 34.80, ''),
+(286, 1, '2016-03-02 09:41:52', 100, 31.14, 8.63, 35.24, ''),
+(287, 1, '2016-03-02 09:41:59', 100, 30.70, 8.63, 35.68, ''),
+(288, 1, '2016-03-02 09:42:04', 100, 30.25, 8.63, 36.12, ''),
+(289, 1, '2016-03-02 09:42:10', 100, 29.80, 8.63, 36.57, ''),
+(290, 1, '2016-03-02 09:42:16', 100, 29.34, 8.63, 37.03, ''),
+(291, 1, '2016-03-02 09:42:21', 100, 28.88, 8.63, 37.49, ''),
+(292, 1, '2016-03-02 09:42:27', 100, 28.41, 8.05, 33.54, ''),
+(293, 1, '2016-03-02 09:42:32', 100, 27.99, 8.05, 33.96, ''),
+(294, 1, '2016-03-02 09:42:39', 100, 27.57, 11.50, 60.93, ''),
+(295, 1, '2016-03-02 09:42:46', 100, 26.80, 11.50, 61.69, ''),
+(296, 1, '2016-03-02 09:42:51', 100, 26.03, 11.50, 62.46, ''),
+(297, 1, '2016-03-02 09:42:57', 100, 25.25, 11.50, 63.24, ''),
+(298, 1, '2016-03-02 09:43:04', 100, 24.46, 11.50, 64.03, ''),
+(299, 1, '2016-03-02 09:43:10', 100, 23.66, 11.50, 64.83, ''),
+(300, 1, '2016-03-02 09:43:15', 100, 22.85, 8.63, 43.52, ''),
+(301, 1, '2016-03-02 09:43:20', 100, 22.31, 8.63, 44.06, ''),
+(302, 1, '2016-03-02 09:43:26', 100, 21.76, 7.48, 35.77, ''),
+(303, 1, '2016-03-02 09:43:32', 100, 21.31, 7.48, 36.21, ''),
+(304, 1, '2016-03-02 09:44:49', 100, 20.86, 11.50, 67.64, ''),
+(305, 1, '2016-03-02 09:44:55', 100, 20.01, 11.50, 68.48, ''),
+(306, 1, '2016-03-02 09:45:01', 100, 19.15, 11.50, 69.34, ''),
+(307, 1, '2016-03-02 09:45:07', 100, 18.29, 11.50, 70.21, ''),
+(308, 1, '2016-03-02 09:45:16', 100, 17.41, 11.50, 71.09, ''),
+(309, 1, '2016-03-02 09:45:23', 100, 16.52, 11.50, 71.97, ''),
+(310, 1, '2016-03-02 09:45:31', 100, 15.62, 11.50, 72.87, ''),
+(311, 1, '2016-03-02 09:45:46', 100, 14.71, 23.01, 162.28, ''),
+(312, 1, '2016-03-02 09:45:52', 100, 12.68, 11.50, 75.81, ''),
+(313, 1, '2016-03-02 09:45:59', 100, 11.74, 11.50, 76.76, ''),
+(314, 1, '2016-03-02 09:46:05', 100, 10.78, 11.50, 77.72, ''),
+(315, 1, '2016-03-02 09:46:11', 100, 9.80, 11.50, 78.69, ''),
+(316, 1, '2016-03-02 09:46:19', 100, 8.82, 11.50, 79.68, ''),
+(317, 1, '2016-03-02 09:46:27', 100, 7.82, 11.50, 80.67, ''),
+(318, 1, '2016-03-02 09:46:38', 100, 6.82, 11.50, 81.68, ''),
+(319, 1, '2016-03-02 09:46:46', 100, 5.80, 11.50, 82.70, ''),
+(320, 1, '2016-03-02 09:46:53', 100, 4.76, 11.50, 83.73, ''),
+(321, 1, '2016-03-02 09:47:00', 100, 3.71, 11.50, 84.78, ''),
+(322, 1, '2016-03-02 09:47:08', 100, 2.66, 11.50, 85.84, ''),
+(326, 1, '2016-03-18 16:45:48', 300, 1.58, 4.54, 33.33, 'PAGO NORMAL'),
+(327, 1, '2016-03-18 16:46:22', 301, 1.17, 4.49, 33.34, 'PAGO NORMAL'),
+(328, 1, '2016-03-18 16:47:22', 303, 0.75, 7.88, 59.89, 'FINALIZA CREDITO'),
+(330, 2, '2016-03-31 12:10:03', 1, 62.50, 13.81, 43.69, 'PAGO NORMAL'),
+(331, 9, '2016-03-02 14:03:22', 9, 62.50, 115.04, 822.46, 'PAGO NORMAL');
 
 
 DROP TABLE IF EXISTS `departamento`;
@@ -172,11 +223,10 @@ CREATE TABLE `impuesto` (
   `IMPUESTO_IVA` decimal(5,2) NOT NULL,
   `IMPUESTO_DESCRIPCION` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   PRIMARY KEY (`IMPUESTO_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 INSERT INTO `impuesto`(`IMPUESTO_ID`, `IMPUESTO_INTERES`, `IMPUESTO_IVA`, `IMPUESTO_DESCRIPCION`) VALUES 
-(1, 0.15, 0.13, 'Tasa de interes del 15% segun contrato. tasa de iva del 13% segun ley Salvadore'),
-(5, 0.10, 0.15, 'IMPUESTO POR LA TELEFONIA LOCAL');
+(1, 0.15, 0.13, 'Tasa de interes del 15% segun contrato. tasa de iva del 13% segun ley Salvadoreña');
 
 
 DROP TABLE IF EXISTS `lote`;
@@ -187,17 +237,15 @@ CREATE TABLE `lote` (
   `LOTE_EXTENSION` decimal(7,2) NOT NULL,
   `LOTE_PRECIO` decimal(7,2) DEFAULT '0.00',
   `LOTE_EXTRA` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
-  `LOTE_ESTADO` varchar(25) COLLATE utf8_spanish_ci DEFAULT NULL,
   PRIMARY KEY (`LOTE_ID`,`POLIGONO_ID`,`LOTIFICACION_ID`),
   KEY `FK_RELATIONSHIP_15` (`POLIGONO_ID`),
   KEY `FK_RELATIONSHIP_4` (`LOTIFICACION_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-INSERT INTO `lote`(`LOTE_ID`, `LOTIFICACION_ID`, `POLIGONO_ID`, `LOTE_EXTENSION`, `LOTE_PRECIO`, `LOTE_EXTRA`, `LOTE_ESTADO`) VALUES 
-('B001', 1, 1, 52.50, 4000.00, 'NORMAL', 'PAGANDO'),
-('B002', 1, 1, 50.00, 4000.00, 'NORMAL', 'LIBRE'),
-('B003', 1, 1, 50.00, 4000.00, 'NORMAL', 'LIBRE'),
-('C001', 3, 1, 25.00, 4000.00, 'NORMAL', 'LIBRE');
+INSERT INTO `lote`(`LOTE_ID`, `LOTIFICACION_ID`, `POLIGONO_ID`, `LOTE_EXTENSION`, `LOTE_PRECIO`, `LOTE_EXTRA`) VALUES 
+('B0001', 1, 1, 52.50, 4000.00, 'normal'),
+('B0002', 3, 1, 65.00, 5000.00, 'normal'),
+('P0001', 6, 1, 200.00, 5000.00, 'lotificacion de prueba');
 
 
 DROP TABLE IF EXISTS `lotificacion`;
@@ -207,13 +255,13 @@ CREATE TABLE `lotificacion` (
   `LOTIFICACION_NLOTE` int(11) NOT NULL,
   `LOTIFICACION_PRECIO` decimal(9,2) DEFAULT '0.00',
   PRIMARY KEY (`LOTIFICACION_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 INSERT INTO `lotificacion`(`LOTIFICACION_ID`, `LOTIFICACION_NOMBRE`, `LOTIFICACION_NLOTE`, `LOTIFICACION_PRECIO`) VALUES 
 (1, 'San Bartolo', 88, 9234234.00),
 (3, 'Chaparron', 200, 34000.00),
-(4, 'Chilindrina', 50, 24000.00),
-(5, 'Esparta', 300, 300000.00);
+(5, 'Esparta', 300, 300000.00),
+(6, 'Los Altos del Pital', 190, 10000.00);
 
 
 DROP TABLE IF EXISTS `municipio`;
@@ -263,11 +311,10 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 INSERT INTO `usuario`(`USER_NICK`, `USER_CONTRASENA`, `USER_NOMBRE`, `USER_APELLIDO`, `USER_NIVELACCESO`) VALUES 
-('admin', 'c3284d0f94606de1fd2af172aba15bf3', 'Administrador', 'General', 1),
-('marck.admin', 'c3284d0f94606de1fd2af172aba15bf3', 'Administrador', 'General', 1),
-('marck.administrativo', 'c3284d0f94606de1fd2af172aba15bf3', 'adminstrativo', 'administrativo', 3),
-('marck.gerente', 'c3284d0f94606de1fd2af172aba15bf3', 'Usuario', 'Gerente', 2),
-('marck.operador', 'c3284d0f94606de1fd2af172aba15bf3', 'operador', 'operador', 4);
+('marck.admin', 'c3284d0f94606de1fd2af172aba15bf3', 'Marck', 'Admin', 1),
+('marck.administrativo', 'c3284d0f94606de1fd2af172aba15bf3', 'Marck', 'Administrativo', 3),
+('marck.gerente', 'c3284d0f94606de1fd2af172aba15bf3', 'Marck', 'Gerente', 2),
+('marck.operador', 'c3284d0f94606de1fd2af172aba15bf3', 'Marck', 'Operador', 4);
 
 
 ALTER TABLE bitacora

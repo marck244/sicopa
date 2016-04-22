@@ -14,17 +14,19 @@ require("../conexion/conexion.php");
 	<?php
 	$sqlGlobal = "SELECT cliente.CLIENTE_ID, cliente.CLIENTE_NOMBRE, cliente.CLIENTE_APELLIDO, cuenta.CUENTA_ID FROM `cuenta` INNER JOIN cliente ON cuenta.CLIENTE_ID=cliente.CLIENTE_ID WHERE CUENTA_ESTADOS_ID=1;";
 	$resultGlobal = $conn->query($sqlGlobal);
+	$enumm=0;
 	if ($resultGlobal->num_rows > 0) {
 	# code...
 		while ($rowGlobal = $resultGlobal->fetch_assoc()) {
 		# code...
 			$sql = "SELECT MAX(CUENTA_PAGOS_FECHA) AS ULTIMOPAGO, date_add(MAX(CUENTA_PAGOS_FECHA), INTERVAL 1 MONTH) AS NEXT, DATEDIFF(NOW(),(SELECT MAX(CUENTA_PAGOS_FECHA) FROM cuenta_pagos WHERE CUENTA_ID='".$rowGlobal["CUENTA_ID"]."')) AS DIAS FROM cuenta_pagos WHERE CUENTA_ID='".$rowGlobal["CUENTA_ID"]."';";
 			$result = $conn->query($sql);
+			
 if ($result->num_rows > 0) {//inicio de IF
     // output data of each row
     while($row = $result->fetch_assoc()) { //inicio de while
     	if ($row["DIAS"]<=30) { // if 30
-
+    		$enumm=1;
     		?>
     		<tr>
     			<td><?php echo $rowGlobal["CLIENTE_ID"];?></td>
@@ -36,12 +38,15 @@ if ($result->num_rows > 0) {//inicio de IF
     			<td><?php echo $row["DIAS"];?></td>
     		</tr>
     		<?php
-    	}else{//if 30
-	echo "<td colspan='7'>Oops, Todas las cuentas pueden estar criticas o en mora. O no hay cuentas activas !!!</td>";
-} 
+    	}//if 30
     }//fin de while
 } //fin de If
+
 	} // WHILE GLOBAL
+}
+if ($enumm==0) {
+
+	echo "<tr><td colspan='7'>$enumm Oops! Todas las cuentas pueden estar criticas o en mora. O no hay cuentas activas !!!</td></tr>";
 }
 ?>
 
