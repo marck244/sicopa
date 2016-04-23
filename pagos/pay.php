@@ -34,6 +34,14 @@ if(isset($_SESSION["loginUser-name"])){
     $sql = "INSERT INTO cuenta_pagos(CUENTA_ID, CUENTA_PAGOS_NUMRECIBO, CUENTA_PAGOS_INTERES, CUENTA_PAGOS_IVA, CUENTA_PAGOS_CAPITAL, CUENTA_PAGOS_DESCRIPCION) 
     VALUES ('$cuenta','$factura','$ainteres','$aiva','$ak', '$motivo')";
 
+//***********************************************************
+$fechabitacora=date("Y-m-d H:i:s");
+$sqlBitacora = "INSERT INTO bitacora(USER_NICK,BITACORA_FECHA,BITACORA_ACTIVIDAD,BITACORA_TABLA,BITACORA_IP) VALUES('".$_SESSION["loginUser-name"]."','$fechabitacora','Realizo pago a CUENTA $cuenta con FACTURA $factura','PAGOS','PAGO COUTA')";
+if ($conn->query($sqlBitacora) === TRUE) {
+    echo "New record created successfully";
+}//**********************************************************
+
+
 	if ($conn->query($sql) === TRUE) {
     if ($accion == "1") {
       # liquidar
