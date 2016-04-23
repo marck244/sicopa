@@ -24,7 +24,7 @@ require("../conexion/conexion.php");
 if ($result->num_rows > 0) {//inicio de IF
     // output data of each row
     while($row = $result->fetch_assoc()) { //inicio de while
-    	if ($row["DIAS"]>60) { // if 30
+    	if ($row["DIAS"]>60 AND $row["DIAS"]<150) { // if 30
     		$enumm=1;
     		?>
     		<tr>
@@ -37,6 +37,10 @@ if ($result->num_rows > 0) {//inicio de IF
     			<td><?php echo $row["DIAS"];?></td>
     		</tr>
     		<?php
+    		$sql = "UPDATE cuenta SET CUENTA_ESTADOS_ID = '3' WHERE cuenta.CUENTA_ID = ".$rowGlobal["CUENTA_ID"].";";
+			if ($conn->query($sql) === TRUE) {
+			    //echo "Record updated successfully";
+			}
     	} //if 30
     }//fin de while
 } //fin de If
