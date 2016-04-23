@@ -249,12 +249,13 @@ $(function() {
       <td><a href="#" class="glyphicon glyphicon-trash" id="" data-toggle="modal" data-target="#inicioModal"></a></td>
      
     </tr>
+
      <?php  
- 
+      ?> <script type="text/javascript">alertify.warning("<?php echo 'El dui '.$duis.' posee una o mas cuentas que entran en mora'; ?>");</script> <?php
       }
 
       else{
-        ?> <script type="text/javascript">alertify.success("<?php echo 'la cuenta de pago '.$cuenta_id.' y el lote '.$lote.' no estan en mora'; ?>");</script> <?php
+        ?> <script type="text/javascript">alertify.success("<?php echo 'El dui '.$duis.' no posee cuentas que entran en mora'; ?>");</script> <?php
       } 
      
     }

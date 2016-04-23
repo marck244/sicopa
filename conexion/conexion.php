@@ -2,7 +2,7 @@
 /*conexion a la base*/
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "db_sicopa_desa";
 
 
