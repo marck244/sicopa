@@ -17,7 +17,14 @@ if(isset($_SESSION["loginUser-name"])){
             while($row = $result->fetch_assoc()) {
                 $_SESSION["loginUser-name"] = $id;
                 $_SESSION["user-nivelacceso"]=$row["USER_NIVELACCESO"];
-                header("Location: v_login.php");
+                //***********************************************************
+                $fechabitacora=date("Y-m-d H:i:s");
+                $sqlBitacora = "INSERT INTO bitacora(USER_NICK,BITACORA_FECHA,BITACORA_ACTIVIDAD,BITACORA_TABLA,BITACORA_IP) VALUES('$id','$fechabitacora','Inicio de Session SICOPA','Inicio de Sesion','Inicio')";
+                if ($conn->query($sqlBitacora) === TRUE) {
+                    echo "New record created successfully";
+                    header("Location: v_login.php");
+                }//**********************************************************
+                
             }
         } else {
             $error=1;
