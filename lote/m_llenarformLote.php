@@ -28,8 +28,7 @@
 			$precio = $row['LOTE_PRECIO'];
 			$extra = $row['LOTE_EXTRA'];
 
-			header("location: v_upLote.php?id=$id&idlotificacion=$idlotificacion&nombrelotificacion=$nombrelotificacion&idpoligono=$idpoligono&numpoligono=$numpoligono&extension=$extension
-				&precio=$precio&extra=$extra");
+			header("location: v_upLote.php?id=$id&idlotificacion=$idlotificacion&nombrelotificacion=$nombrelotificacion&idpoligono=$idpoligono&numpoligono=$numpoligono&extension=$extension&precio=$precio&extra=$extra");
 		}
 		else
 		{
