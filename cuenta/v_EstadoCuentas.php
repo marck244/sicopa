@@ -170,7 +170,10 @@ $(function() {
          $query=$conn->query("SELECT CUENTA_ID,CLIENTE_ID,LOTE_ID FROM cuenta WHERE CLIENTE_ID='$busqueda'");
 
          $resultado=$query->num_rows;
+         $r=$conn->query("SELECT a.CUENTA_ID,a.CLIENTE_ID,b.LOTE_ID from cuenta a inner join lote b on a.LOTE_ID=b.LOTE_ID WHERE b.LOTE_ESTADO='PAGANDO' AND CLIENTE_ID='$busqueda'");
+         $f=$r->num_rows;
 
+         if($f > 0){
 
          if ($resultado > 0) {
          	
@@ -195,6 +198,9 @@ $(function() {
 
          $cuenta_id= $row['CUENTA_ID'];
        	 $lote=$row['LOTE_ID'];
+
+         
+
          
          $query1=$conn->query("SELECT DATEDIFF('$fechaactual',CUENTA_PAGOS_FECHA) as MORA_DIAS FROM cuenta_pagos WHERE CUENTA_ID='$cuenta_id'");
          $ndias=$query1->fetch_assoc();
@@ -284,6 +290,27 @@ $(function() {
             <?php
         
     }
+
+
+
+    //end if
+  }
+  else{
+     ?>
+             <table class="table table-hover text-center">
+     <tr>
+        <th>Mensaje Del Sistema</th>
+   
+     </tr>
+
+     <tr>
+      <td>No hay informacion almacenada con ese dui</td>
+      
+      
+    </tr>
+  </table>
+            <?php
+  }
 
   ?>
   </table>

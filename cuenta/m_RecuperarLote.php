@@ -11,7 +11,7 @@
 	
 	$query2=$conn->query("UPDATE lote SET LOTE_ESTADO='LIBRE' WHERE LOTE_ID='$lote'");
 
-	if ($query > 0 ) {
+	if ($query2 > 0 ) {
 					header("location:v_EstadoCuentas.php?eliminado=si");
 				}
 

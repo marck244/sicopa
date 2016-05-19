@@ -30,8 +30,7 @@ include("../conexion/conexion.php");
 			$numpoligono=$row3['POLIGONO_NUM'];
 
 
-			header("location:v_dlLote.php?codigo=$codigo & precio=$precio & extension=$extension & nombrelotificacion=$nombrelotificacion
-				& numpoligono=$numpoligono");
+			header("location:v_dlLote.php?codigo=$codigo & precio=$precio & extension=$extension & nombrelotificacion=$nombrelotificacion&numpoligono=$numpoligono");
 
 
 		}	
