@@ -143,7 +143,7 @@ if(isset($_SESSION["loginUser-name"])){
                 </div>
                 <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
                     <fielset>
-                        <legend>Registro de un nuevo Usuario</legend>
+                        <legend>Base de datos SICOPA Controles</legend>
                        <form action="" method="POST" class="form-horizontal" onsubmit="return checkParameters();" autocomplete="off" enctype="multipart/form-data">
                        
                         
