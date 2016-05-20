@@ -2,8 +2,13 @@
 /*conexion a la base*/
 $servername = "localhost";
 $username = "root";
+<<<<<<< HEAD
 $password = "root";
 $dbname = "db_sicopa_produccion";
+=======
+$password = "";
+$dbname = "db_sicopa_desa";
+>>>>>>> origin/master
 
 
 // Create connection

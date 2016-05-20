@@ -31,8 +31,9 @@ if(isset($_SESSION["loginUser-name"])){
       # normal
       $motivo = "PAGO NORMAL";
     }
-    $sql = "INSERT INTO cuenta_pagos(CUENTA_ID, CUENTA_PAGOS_NUMRECIBO, CUENTA_PAGOS_INTERES, CUENTA_PAGOS_IVA, CUENTA_PAGOS_CAPITAL, CUENTA_PAGOS_DESCRIPCION) 
-    VALUES ('$cuenta','$factura','$ainteres','$aiva','$ak', '$motivo')";
+    $fechapago=date("Y-m-d H:i:s");
+    $sql = "INSERT INTO cuenta_pagos(CUENTA_ID,CUENTA_PAGOS_FECHA, CUENTA_PAGOS_NUMRECIBO, CUENTA_PAGOS_INTERES, CUENTA_PAGOS_IVA, CUENTA_PAGOS_CAPITAL, CUENTA_PAGOS_DESCRIPCION) 
+    VALUES ('$cuenta','$fechapago','$factura','$ainteres','$aiva','$ak', '$motivo')";
 
 //***********************************************************
 $fechabitacora=date("Y-m-d H:i:s");
