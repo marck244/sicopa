@@ -240,141 +240,29 @@ if(isset($_SESSION["loginUser-name"])){
         $backupRestore = $_POST['backupRestore'];
  
         if ($backupRestore == 'backup'){        
-           
-set_time_limit(0);
+           include("../conexion/conexion.php");
+        $target_path = getcwd();
+   $now = str_replace(":", "", date("Y-m-d H:i"));
+   $outputfilename = $dbname . '-' . $now . '.sql';
+   $outputfilename = str_replace(" ", "-", $outputfilename);
+   $save_path = $target_path . '/'.$outputfilename;
+          
+   $command = "mysqldump --user=$username --password=$password $dbname > $outputfilename";
+   shell_exec($command);
+            
+   //Para forzar la descarga del navegador
+   header('Content-Type: application/octet-stream');
+   header("Content-Transfer-Encoding: Binary"); 
+   header('Content-Disposition: attachment; filename='.basename($outputfilename));
+   header('Content-Transfer-Encoding: binary');
+   header("Content-Type: application/download");
+   header("Content-Description: File Transfer"); 
+   header("Content-Length: ".filesize($outputfilename));
+   readfile($save_path);
+         
+   //Eliminar el archivo del servidor
+   shell_exec('rm ' . $save_path);  
  
-define('DB_NAME', 'db_sicopa_desa');
-define('DB_HOST', 'localhost');
-define('DB_USER', 'root');
-define('DB_PASS', '');
- 
- 
-function setQuery($setSelectQueryStr, $fetchType = NULL){
-    $arr = array();
- 
-    try{
-        $db = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USER, DB_PASS);
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
- 
-        $pdoQuery = $db->query($setSelectQueryStr);
-        $fetchType = empty($fetchType) ? PDO::FETCH_ASSOC : $fetchType;
-        $arr = ($pdoQuery->rowCount() > 0) ? $pdoQuery->fetchAll($fetchType) : array();
- 
-    }catch(PDOException $e){
-        echo $e->getMessage();
-        exit;
-    }
- 
-    return $arr;
-}
- 
- 
- 
- 
-define('NL', PHP_EOL);
- 
-$drop = true; 
-$tables = array(); 
-$extra = array();
-$constraints = array();
-        $fechabitacora=date("Y-m-d H:i:s");
-        $tabla="Sistema";
-        $user=$_SESSION["loginUser-name"];
-        $actividad="Se hizo un backup de la base de datos";  
-        $ip=$_SERVER['REMOTE_ADDR'];
-        $update=mysql_query("INSERT INTO bitacora(USER_NICK,BITACORA_FECHA,BITACORA_ACTIVIDAD,BITACORA_TABLA,BITACORA_IP) VALUES('$user','$fechabitacora','$actividad','$tabla','$ip')");
-$f = fopen('C:/Users/jairo/Desktop/'. DB_NAME . '.sql', 'w');
- 
-$query = setQuery('SHOW TABLES FROM `' . DB_NAME . '`', PDO::FETCH_NUM);
-foreach($query as $row){
-    $tables[] = $row[0];
-}
- 
-$extra['dumpVersion'] = "1.0";
-$extra['dtTm'] = date("Y-m-d H:i:s");
-$extra['phpVersion'] = phpversion();
-$extra['dbName'] = DB_NAME;
- 
-$t = array();
-foreach($tables as $k => $v){
-    $t[] = "[$k] => $v;";
-}
-$extra['tables'] = implode(NL . '--           ', $t);
- 
-$text = <<<HEADERTEXT
--- dumpFDW  
--- version {$extra['dumpVersion']}
--- http://www.forosdelweb.com/miembros/abimaelrc/
---  
--- Host: {$_SERVER['HTTP_HOST']}
--- Generation Time: {$extra['dtTm']}
--- PHP Version: {$extra['phpVersion']} 
--- Database: '{$extra['dbName']}' 
--- Tables: {$extra['tables']} 
-HEADERTEXT;
- 
-fwrite($f, $text);
- 
-foreach ($tables as $table){
-    fwrite($f, NL . NL .($drop ? "DROP TABLE IF EXISTS `$table`;" : "-- No especificado.") . NL);
- 
-    $query = setQuery("SHOW CREATE TABLE `$table`", PDO::FETCH_NUM);
-    foreach($query as $row){
-        $arr = explode("\n", $row[1]);
-        $tmpArr = array();
-        foreach($arr as $key => $value){
-            if(stripos($value, "CONSTRAINT") !== false){
-                $tmpArr[] = '  ADD ' . trim($value);
-                if(array_key_exists($key - 1, $arr)){
-                    $arr[$key - 1] = str_replace(',','',$arr[$key - 1]);
-                }
-                unset($arr[$key]);
-            }
-        }
-        if(!empty($tmpArr)){
-            $constraints[] = 'ALTER TABLE ' . $row[0] . NL . implode(NL, $tmpArr) . ';';
-        }
-        fwrite($f, implode(NL, $arr) . ';' . NL . NL);
-    }
- 
- 
-    $query = setQuery("SELECT * FROM `$table`");
- 
-    $n = 0;
-    $nR = count($query) - 1;
-    foreach($query as $qry){
-        $columnas = array_keys($qry);
-        $values = array();
-        $keys = array();
- 
-        foreach($columnas as $columna){
-            $keys[] = "`".$columna."`";
-            if( is_numeric($qry[$columna]) || is_null($qry[$columna]) ){
-                $values[] = $qry[$columna];
-            } else{
-                $values[] = "'" . str_replace(array("'", NL), array("''", '\r\n'), addcslashes($qry[$columna], '\\')) . "'";
-            }
-        }
- 
-        /* $sC = special Char, saber cual cáracter especial colocar al final del código */
-        $sC = ($n%2000 == 1999 || $n == $nR ? ";" : ",");
- 
-        if($n%2000 == 0){
-            fwrite($f, "INSERT INTO `$table`(".implode(", ", $keys).") VALUES " . NL . "(" . implode(", ", $values) . ")" . $sC . NL);
-        }else{
-            fwrite($f, "(" . implode(", ", $values) . ")" . $sC . NL);
-        }
-        $n++;
-    }
-}
- 
-if(!empty($constraints)){
-    fwrite($f, NL . NL . implode(NL . NL, $constraints));
-}
- 
-fclose($f); 
-
-?> <script type="text/javascript">alertify.success('Copia de Base de datos generada');</script> <?php
  
         }
 
