@@ -10,7 +10,7 @@ $fecha2 = $_GET["fecha3"];
           <th>Fecha</th>
           <th>Actividad</th>
           <th>Modulo</th>
-          <th>IP</th>
+          <th>Operacion</th>
         </tr>
         <?php
         $sql = "SELECT USER_NICK,BITACORA_FECHA, BITACORA_ACTIVIDAD, BITACORA_TABLA, BITACORA_IP FROM bitacora WHERE BITACORA_FECHA BETWEEN '".$fecha1."' AND '".$fecha2."' ORDER BY BITACORA_FECHA ASC";
