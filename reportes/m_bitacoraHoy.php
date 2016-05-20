@@ -8,7 +8,7 @@ require("../conexion/conexion.php");
           <th>Fecha</th>
           <th>Actividad</th>
           <th>Modulo</th>
-          <th>IP</th>
+          <th>Operacion</th>
         </tr>
         <?php
         $sql = "SELECT USER_NICK,BITACORA_FECHA, BITACORA_ACTIVIDAD, BITACORA_TABLA, BITACORA_IP FROM bitacora WHERE BITACORA_FECHA LIKE '".date("Y-m-d")."%' ORDER BY BITACORA_FECHA ASC";

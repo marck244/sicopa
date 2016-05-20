@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "db_sicopa_desa";
+$dbname = "db_sicopa_produccion";
 
 
 // Create connection
